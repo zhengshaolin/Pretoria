@@ -1,15 +1,49 @@
 {
 	"product":"template demo",
 	"pages":[
-    {"firstName":"John", "lastName":"Doe"},
-    {"firstName":"Anna", "lastName":"Smith"},
-    {"firstName":"Peter", "lastName":"Jones"}
-	],
-	"name":"demo 1",
-	"status":"已发布",
-	"des":"描述",
-	"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
-	"creatTime":"2014-11-11 13:23:23",
-	"uploadTime":"2014-11-11 13:23:23",
-	"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+		{
+			"id":"L_1", 
+			"element":[
+				{"id":"L_1_1","lastName":"Smith"}
+
+
+    			],
+    		"name":"demo 1",
+			"status":"已发布",
+			"des":"描述",
+			"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
+			"creatTime":"2014-11-11 13:23:23",
+			"uploadTime":"2014-11-11 13:23:23",
+			"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+   		},
+		{
+			"id":"L_2", 
+			"element":[
+				{"id":"L_2_1","lastName":"Smith"}
+
+
+    			],
+    		"name":"demo 1",
+			"status":"已发布",
+			"des":"描述",
+			"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
+			"creatTime":"2014-11-11 13:23:23",
+			"uploadTime":"2014-11-11 13:23:23",
+			"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+   		},
+		{
+			"id":"L_3", 
+			"element":[
+				{"id":"L_3_1","lastName":"Smith"}
+
+
+    			]
+   		}],
+    	"name":"demo 1",
+		"status":"已发布",
+		"des":"描述",
+		"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
+		"creatTime":"2014-11-11 13:23:23",
+		"uploadTime":"2014-11-11 13:23:23",
+		"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
 }
