@@ -6,6 +6,11 @@
 			"element":[{
 					"id":"L_1_1",
 					"lastName":"Smith",
+					"palne":"1",
+					"vertical":"1",
+					"lshift":"30",
+					"tshift":"30",
+					"animate":"1"
 				}],
     		"name":"demo 1",
 			"status":"已发布",
