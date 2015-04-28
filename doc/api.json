@@ -1,39 +1,116 @@
 {
-	"product":"template demo",
+	"product":"template demo",//名称
+	"status":"已发布",//发布状态
+	"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",//封面信息
+	"creatTime":"2014-11-11 13:23:23",//创建时间
+	"uploadTime":"2014-11-11 13:23:23",//更新时间
+	"music":"http://music",//音乐设置路径
+	"des":"描述",//作品描述
+	"glass":"0",//毛玻璃效果
+	"glass_url":"http://1.jpg",//毛玻璃背景图片
+	"glass_trans":"10",//毛玻璃涂抹程度
+	"switch_tyep":"0",//切换方式
+	"orign_mum":"10",//起始值
+	"pry":"2",//基数
+	"music_pos":"1",//音乐设置位置
+	"music_option":"1",//音乐设置选择
+	"product_background":"",//底图设置背景
+	"product_background_img":"",//底图设置背景填充
 	"pages":[
-		{
-			"id":"L_1", 
-			"element":[{
-					"id":"L_1_1",
-					"lastName":"Smith",
-					"palne":"1",
-					"vertical":"1",
-					"lshift":"30",
-					"tshift":"30",
-					"animate":"1"
-				}]
-   		},
-		{
-			"id":"L_2", 
-			"element":[
-				{"id":"L_2_1","lastName":"Smith"}
-
-
-    			]
-   		},
-		{
-			"id":"L_3", 
-			"element":[
-				{"id":"L_3_1","lastName":"Smith"}
-
-
-    			]
-   		}],
-    	"name":"demo 1",
-		"status":"已发布",
-		"des":"描述",
-		"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
-		"creatTime":"2014-11-11 13:23:23",
-		"uploadTime":"2014-11-11 13:23:23",
-		"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+			{
+				"id":"L_1", //场景ID
+				"element":[ //场景元素合集
+					{
+						"id":"L_1_1",//元素ID
+						"name":"ele 1",//element name
+						"width":"300",//element width
+						"height":"300",//element height
+						"palne":"1",//水平
+						"vertical":"1",//垂直
+						"lshift":"30",//水平偏移
+						"tshift":"30",//垂直偏移
+						"fts":"12",//font-size
+						"ftc":"333",//font-color
+						"ftb":"0",//font-bold
+						"fti":"0",//font-italic
+						"ftu":"0",//font-underline
+						"animate_effect":"1",//动画效果
+						"animate_defer":"1",//动画延迟时间
+						"animate_duration":"1",//动画持续时间
+						"slider":"http://1,http://2,http://3,http://4",//轮播
+						"pic":"http://1.jpg",//图片资源
+						"click_action":"1"//点击动作
+					},
+					{
+						"id":"L_1_2",//元素ID
+						"name":"ele 1",//element name
+						"width":"300",//element width
+						"height":"300",//element height
+						"palne":"1",//水平
+						"vertical":"1",//垂直
+						"lshift":"30",//水平偏移
+						"tshift":"30",//垂直偏移
+						"fts":"12",//font-size
+						"ftc":"333",//font-color
+						"ftb":"0",//font-bold
+						"fti":"0",//font-italic
+						"ftu":"0",//font-underline
+						"animate_effect":"1",//动画效果
+						"animate_defer":"1",//动画延迟时间
+						"animate_duration":"1",//动画持续时间
+						"slider":"http://1,http://2,http://3,http://4",//轮播
+						"pic":"http://1.jpg",//图片资源
+						"click_action":"1"//点击动作
+					}]
+			},
+			{
+				"id":"L_2", 
+				"element":[
+			{
+				"id":"L_1", //场景ID
+				"element":[ //场景元素合集
+					{
+						"id":"L_2_1",//元素ID
+						"name":"ele 1",//element name
+						"width":"300",//element width
+						"height":"300",//element height
+						"palne":"1",//水平
+						"vertical":"1",//垂直
+						"lshift":"30",//水平偏移
+						"tshift":"30",//垂直偏移
+						"fts":"12",//font-size
+						"ftc":"333",//font-color
+						"ftb":"0",//font-bold
+						"fti":"0",//font-italic
+						"ftu":"0",//font-underline
+						"animate_effect":"1",//动画效果
+						"animate_defer":"1",//动画延迟时间
+						"animate_duration":"1",//动画持续时间
+						"slider":"http://1,http://2,http://3,http://4",//轮播
+						"pic":"http://1.jpg",//图片资源
+						"click_action":"1"//点击动作
+					},
+					{
+						"id":"L_2_2",//元素ID
+						"name":"ele 1",//element name
+						"width":"300",//element width
+						"height":"300",//element height
+						"palne":"1",//水平
+						"vertical":"1",//垂直
+						"lshift":"30",//水平偏移
+						"tshift":"30",//垂直偏移
+						"fts":"12",//font-size
+						"ftc":"333",//font-color
+						"ftb":"0",//font-bold
+						"fti":"0",//font-italic
+						"ftu":"0",//font-underline
+						"animate_effect":"1",//动画效果
+						"animate_defer":"1",//动画延迟时间
+						"animate_duration":"1",//动画持续时间
+						"slider":"http://1,http://2,http://3,http://4",//轮播
+						"pic":"http://1.jpg",//图片资源
+						"click_action":"1"//点击动作
+					}]
+			}
+		]
 }
