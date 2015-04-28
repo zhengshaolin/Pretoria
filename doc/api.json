@@ -11,14 +11,7 @@
 					"lshift":"30",
 					"tshift":"30",
 					"animate":"1"
-				}],
-    		"name":"demo 1",
-			"status":"已发布",
-			"des":"描述",
-			"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
-			"creatTime":"2014-11-11 13:23:23",
-			"uploadTime":"2014-11-11 13:23:23",
-			"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+				}]
    		},
 		{
 			"id":"L_2", 
@@ -26,14 +19,7 @@
 				{"id":"L_2_1","lastName":"Smith"}
 
 
-    			],
-    		"name":"demo 1",
-			"status":"已发布",
-			"des":"描述",
-			"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",
-			"creatTime":"2014-11-11 13:23:23",
-			"uploadTime":"2014-11-11 13:23:23",
-			"camer":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg"
+    			]
    		},
 		{
 			"id":"L_3", 
