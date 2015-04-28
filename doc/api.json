@@ -3,11 +3,10 @@
 	"pages":[
 		{
 			"id":"L_1", 
-			"element":[
-				{"id":"L_1_1","lastName":"Smith"}
-
-
-    			],
+			"element":[{
+					"id":"L_1_1",
+					"lastName":"Smith",
+				}],
     		"name":"demo 1",
 			"status":"已发布",
 			"des":"描述",
