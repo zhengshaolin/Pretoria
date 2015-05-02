@@ -5,3 +5,6 @@ editor.prototype.init = function(id){
 editor.prototype.save = function(layer,element,key,val){
 	/* body... */
 };
+editor.prototype.initView = function(data){
+	/* body... */
+};
