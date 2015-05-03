@@ -8,3 +8,9 @@ editor.prototype.save = function(layer,element,key,val){
 editor.prototype.initView = function(data){
 	/* body... */
 };
+editor.prototype.storeData = function(){
+	/* body... */
+};
+editor.prototype.renderPage = function(){
+	/* body... */
+};
