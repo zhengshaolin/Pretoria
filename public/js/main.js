@@ -1,6 +1,12 @@
+var api = {
+
+};
 var editor = {};
-editor.prototype.init = function(id){
-	/* body... */
+editor.prototype.init = function(){
+	this.fetch();
+};
+editor.prototype.fetch = function(id){
+	
 };
 editor.prototype.save = function(layer,element,key,val){
 	/* body... */

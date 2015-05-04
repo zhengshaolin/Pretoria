@@ -18,10 +18,10 @@
 	"product_background_img":"",//底图设置背景填充
 	"pages":[
 			{
-				"id":"L_1", //场景ID
+				"id":"p_1", //场景ID
 				"element":[ //场景元素合集
 					{
-						"id":"L_1_1",//元素ID
+						"id":"p_1_1",//元素ID
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -42,7 +42,7 @@
 						"click_action":"1"//点击动作
 					},
 					{
-						"id":"L_1_2",//元素ID
+						"id":"p_1_2",//元素ID
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -64,10 +64,10 @@
 					}]
 			},
 			{
-				"id":"L_2", //场景ID
+				"id":"p_2", //场景ID
 				"element":[ //场景元素合集
 					{
-						"id":"L_2_1",//元素ID
+						"id":"p_2_1",//元素ID
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -88,7 +88,7 @@
 						"click_action":"1"//点击动作
 					},
 					{
-						"id":"L_2_2",//元素ID
+						"id":"p_2_2",//元素ID
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
