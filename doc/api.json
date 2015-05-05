@@ -34,8 +34,7 @@
 						"ftb":"0",//font-bold
 						"fti":"0",//font-italic
 						"ftu":"0",//font-underline
-						"animate_effect":"1",//动画效果
-						"animate_defer":"1",//动画延迟时间
+						"animate_effect":"1",//动画效果						"animate_defer":"1",//动画延迟时间
 						"animate_duration":"1",//动画持续时间
 						"slider":"http://1,http://2,http://3,http://4",//轮播
 						"pic":"http://1.jpg",//图片资源
