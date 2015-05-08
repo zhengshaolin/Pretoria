@@ -20,10 +20,10 @@ Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 --
 3.添加接口  
 添加一个产品模板传递参数
-"type":0 // 0 为添加一个新的产品
-“templat”:1 // 需要初始化的借鉴的模板类型  例如，红色模板，蓝色模板
+"type":0 // 0 为添加一个新的产品  
+“templat”:1 // 需要初始化的借鉴的模板类型  例如，红色模板，蓝色模板  
 
-在一个产品页添加page时传递参数
+在一个产品页添加page时传递参数  
 "product_id":'111',//产品ID  
 "type":'1'//1为在一个产品里添加一个page  
 "pid":"p_1" // 生成一个新的唯一page id给服务端  
@@ -37,9 +37,9 @@ Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 --
 
 4.删除接口  
-删除某个产品
-"product_id":'111',//产品ID 
-"type":'0'// 0 为删除一个已有产品  
+删除某个产品  
+"product_id":'111',//产品ID   
+"type":'0'// 0 为删除一个已有产品   
 
 删除page时传递参数  
 "product_id":'111',//产品ID  
