@@ -11,13 +11,28 @@ Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 与后端交互接口
 
 --
-1.初始化接口，所需参数，product_id，返回结构为doc/api.json结构  
+1.初始化接口
+"product_id":111 // 产品id  
+
+return  
+true -> doc/api.json结构  
+false -> message
 
 --
 
-2.保存接口，所需参数 product_id,layer,element_id,attribute，返回为true or false  
+2.保存接口
 
---
+"product_id":11,
+"page":1,
+"element_id":"p_1_1",
+"with":300  
+
+return  
+true -> true  
+false -> message   
+
+--  
+
 3.添加接口  
 添加一个产品模板传递参数
 "type":0 // 0 为添加一个新的产品  
