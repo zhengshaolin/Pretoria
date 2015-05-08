@@ -2,14 +2,7 @@
 Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 
 --
---
-
-
-
-拖拽插件选取框接口，参数5个，layer:z-index,plane:'0',vertical:'0',lshift:'10',tshift:'1'
-
-与后端交互接口
-
+  
 --
 1.初始化接口
 "product_id":111 // 产品id  
