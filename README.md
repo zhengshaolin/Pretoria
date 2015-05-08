@@ -1,7 +1,12 @@
 # Pretoria
 Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 
-接口1：选取框接口，参数5个，layer:z-index,plane:'0',vertical:'0',lshift:'10',tshift:'1'
+--
+--
+
+
+
+拖拽插件选取框接口，参数5个，layer:z-index,plane:'0',vertical:'0',lshift:'10',tshift:'1'
 
 与后端交互接口
 
@@ -26,7 +31,7 @@ Cullinan Diamond，in the Premier No. 2 mine, near Pretoria, South Africa
 "pid":"p_1" // 将当前的page id传给后端  
 "eid":"p_1_2" // 生成一个新的唯一的element id给服务端  
 
----
+--
 
 4.删除接口
 
