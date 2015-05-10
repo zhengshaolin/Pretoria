@@ -13,6 +13,12 @@ editor.prototype.fetch = function(id){
 editor.prototype.save = function(layer,element,key,val){
 	/* body... */
 };
+editor.prototype.add = function (type,options) {
+	// body...
+};
+editor.prototype.remove = function (type,options) {
+	// body...
+};
 editor.prototype.initView = function(){
 	this.renderPage();
 	this.renderArena();
