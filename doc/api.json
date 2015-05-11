@@ -23,6 +23,7 @@
 				"element":[ //场景元素合集
 					{
 						"id":"p_1_1",//元素ID
+						"type":"0"//元素类型
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -43,6 +44,7 @@
 					},
 					{
 						"id":"p_1_2",//元素ID
+						"type":"0"//元素类型
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -69,7 +71,7 @@
 				"element":[ //场景元素合集
 					{
 						"id":"p_2_1",//元素ID
-						"tyoe":"0"//元素类型
+						"type":"0"//元素类型
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
@@ -91,6 +93,7 @@
 					},
 					{
 						"id":"p_2_2",//元素ID
+						"type":"0"//元素类型
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
