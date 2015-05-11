@@ -19,6 +19,9 @@ editor.prototype.add = function (type,options) {
 editor.prototype.remove = function (type,options) {
 	// body...
 };
+editor.prototype.animate = function(){
+	/* body... */
+};
 editor.prototype.initView = function(){
 	this.renderPage();
 	this.renderArena();
