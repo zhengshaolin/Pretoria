@@ -1,4 +1,5 @@
 {
+	"status":"true",//接口成功true 失败false
 	"product":"template demo",//名称
 	"status":"已发布",//发布状态
 	"avatar":"http://pic4.zhimg.com/d4dbca77ecb4e77b2f2698678e45b047_r.jpg",//封面信息
