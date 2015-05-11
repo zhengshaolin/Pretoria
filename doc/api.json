@@ -19,6 +19,7 @@
 	"pages":[
 			{
 				"id":"p_1", //场景ID
+				"status":"delete"//已经删除
 				"element":[ //场景元素合集
 					{
 						"id":"p_1_1",//元素ID
@@ -64,9 +65,11 @@
 			},
 			{
 				"id":"p_2", //场景ID
+				"status":"open"//还在用
 				"element":[ //场景元素合集
 					{
 						"id":"p_2_1",//元素ID
+						"tyoe":"0"//元素类型
 						"name":"ele 1",//element name
 						"width":"300",//element width
 						"height":"300",//element height
