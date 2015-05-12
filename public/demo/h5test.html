@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<title>H5test</title>
+		<script language='javascript' src='jquery-1.11.2.min.js'></script>
+		<script language='javascript'>
+		$(function () {
+			$('#select_product_test').click(function () {
+				console.log('select_product_test sended');
+				$.ajax({
+					type: 'GET',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':0},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(products) {
+						console.log('select_product_test returned:');
+						console.log(products);
+					},
+					error: function(err) {
+						console.log('select_product_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#create_product_test').click(function () {
+				console.log('create_product_test sended');
+				$.ajax({
+					type: 'POST',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':0},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						console.log('create_product_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						console.log('create_product_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#create_page_test').click(function () {
+				console.log('create_page_test sended');
+				$.ajax({
+					type: 'POST',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':1, 'product_id':'554f8128a7f3232023bc18d8'},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						console.log('create_page_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						console.log('create_page_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#create_element_test').click(function () {
+				console.log('create_element_test sended');
+				$.ajax({
+					type: 'POST',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':2, 'product_id':'554f8128a7f3232023bc18d8', 'page_id':'554f82c7e4c4266d23967b4d'},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						console.log('create_element_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						console.log('create_element_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#login_test').click(function () {
+				console.log('login_test sended');
+				$.ajax({
+					type: 'GET',
+					url: 'http://115.29.32.105:8080/login',
+					data: {'user':'admin', 'pass':'admin'},
+					dataType: 'json',
+					success: function(data) {
+						console.log('login_test returned:');
+						console.log(data);
+					},
+					error: function(err) {
+						console.log('login_test err:');
+						console.log(err);
+					}
+				})
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<button id='select_product_test'>select_product test</button>
+		<button id='create_product_test'>create_product test</button>
+		<button id='create_page_test'>create_page test</button>
+		<button id='create_element_test'>create_element test</button>
+		<button id='login_test'>login as admin/admin</button>
+	</body>
+</html>
+
