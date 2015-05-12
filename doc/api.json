@@ -27,7 +27,7 @@
 				"elements":[ //场景元素合集
 					{
 						"_id":"p_1_1",//元素ID
-						"z-order":1//z-index
+						"z-index":4//z-index
 						"element_type":"0"//元素类型 0 1 2
 						"width":"300",//element width
 						"height":"300",//element height

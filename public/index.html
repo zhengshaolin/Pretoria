@@ -1,0 +1,151 @@
+<html>
+		<body>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="drag.js"></script>
+		<script type="text/javascript" src="RightMenu/jquery-smartMenu.js"></script>
+		<script type="text/javascript" src="ajaxUpload.js"></script>
+		<link type="text/css" href="RightMenu/smartMenu.css" rel="stylesheet"/>
+
+		<div style="width:360px;height:640px;border:3px solid #aaa;position:relative;margin-left:300px" id="cnm">
+		<img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2"></img>
+		<img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="z-index:1;position:absolute;top:50px;right:50px" plane="0" vertical="0"></img>
+			<div class="selector" style="display:none;z-index:9999"></div>
+		</div>
+		<input type="button" id="btn" value="左">
+		<input type="button" id="btn1" value="中">
+		<input type="button" id="btn2" value="右">
+		<input type="button" id="btn3" value="满">
+		<input type="button" id="btn4" value="上">
+		<input type="button" id="btn5" value="中">
+		<input type="button" id="btn6" value="下">
+		<input type="button" id="btn7" value="满">
+		<input type="button" id="btn8" value="上传">
+
+		
+</body>
+</html>
+<script type="text/javascript">
+var s;
+$('#cnm').on('click',function(e){
+	s=Drag(e);
+	$('#btn,#btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7').unbind('click')
+	$('#btn').on('click',function(){
+		s.planeLeft();
+	})
+	$('#btn1').on('click',function(){
+		console.log(s)
+		s.planeMiddle()
+	})
+	$('#btn2').on('click',function(){
+		console.log(s)
+		s.planeRight()
+	})
+	$('#btn3').on('click',function(){
+		console.log(s)
+		s.planeFull()
+	})
+	$('#btn4').on('click',function(){
+		console.log(s)
+		s.verticalTop()
+	})
+	$('#btn5').on('click',function(){
+		console.log(s)
+		s.verticalMiddle()
+	})
+	$('#btn6').on('click',function(){
+		console.log(s)
+		s.verticalBottom()
+	})
+	$('#btn7').on('click',function(){
+		console.log(s)
+		s.verticalFull()
+	})
+})
+$('#cnm').on('mousedown',function(e){
+	if(e.which==3){
+		$(this).smartMenu([[{
+			text:'浮动到最上层',
+			func:function(){
+				//$(s[0]).css('zIndex',)
+			}
+		}],[{
+			text:'删除选中层',
+			func:function(){
+				$(s[0]).remove();
+				$('.selector').hide()
+				/*$.ajax({
+
+				})*/
+			}
+		}]],{offsetX:2,offsetY:2,name:''})
+	}
+});
+$.fn.ajaxUpload=function(options){
+	var that = $(this),
+			tarImg = options.tarimg || '',
+			action = options.action || 'upload',
+			name = options.name || 'Filename',
+			genre = options.genre || 'img',
+			size = options.size || 2048 * 1024,
+			type = options.type || 'logo',
+			data = options.data || '',
+			arrType = { //for picture appear
+				'picture': $("#pictureUpload").find("img"),
+				'logo': $("[rel='img-target-logo']"),
+				'card': $("[rel='img-target']"),
+				'avatar': $("[rel='img-target-avatar']"),
+				'album': $("[rel='img-taget-album']")
+			},
+			text = that.text();
+			new AjaxUpload(that, {
+				action: action,
+				name: name,
+				data: data,
+				validation: {
+					sizeLimit: size
+				},
+				onSubmit: function(file, extension) {
+					that.val('loading...');
+					that.attr('disabled', 'disabled');
+					tarImg = arrType[type];
+					if (genre === 'img') {
+						if (extension && /^(jpg|png|gif|JPG|PNG|GIF)$/.test(extension)) {
+							if (type === 'picture') {
+								var activeCount = tarImg.length;
+								if (activeCount === 8) {
+									alert('您已上传8张截图');
+									that.text(text);
+									that.removeAttr('disabled');
+									return false;
+								}
+							}
+						} else {
+							alert('上传的图片仅限gif,jpg,png!');
+							that.text(text);
+							that.removeAttr('disabled');
+							return false;
+						}
+					}
+					return true;
+				},
+				onComplete: function(file, res) {
+					that.val('选择图片');
+					if (typeof res == 'object')
+						res = res;
+					else
+						res = $.parseJSON(res);
+					that.removeAttr('disabled');
+					options.callback.call(this, res);
+				}
+			});
+}
+$('#btn8').ajaxUpload({
+	action:'http://localhost:8000'
+})
+//
+//边界判断，
+//上中下满，左中右满，
+//右键：删除，置顶
+</script>
+

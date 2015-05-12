@@ -31,6 +31,12 @@ editor.prototype.storeData = function(data){
 	var tid = $('#product_id').val();
 	localData.set(tid+"_data",data);
 };
+editor.prototype.upPage = function(){
+	/* body... */
+};
+editor.prototype.downPage = function(){
+	/* body... */
+};
 //render left page
 editor.prototype.renderPage = function(){
 	/* body... */
