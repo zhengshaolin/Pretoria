@@ -89,7 +89,7 @@ $.fn.ajaxUpload=function(options){
 			genre = options.genre || 'img',
 			size = options.size || 2048 * 1024,
 			type = options.type || 'logo',
-			data = options.data || '',
+			data = options.data || {'product_id':'555249ded26be12f251902dd', 'access_token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
 			arrType = { //for picture appear
 				'picture': $("#pictureUpload").find("img"),
 				'logo': $("[rel='img-target-logo']"),
@@ -141,7 +141,7 @@ $.fn.ajaxUpload=function(options){
 			});
 }
 $('#btn8').ajaxUpload({
-	action:'http://localhost:8000'
+	action:'http://115.29.32.105:8080/upload'
 })
 //
 //边界判断，

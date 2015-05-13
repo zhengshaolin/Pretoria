@@ -3,7 +3,7 @@
 	<head>
 		<meta charset='utf-8' />
 		<title>H5test</title>
-		<script language='javascript' src='jquery-1.11.2.min.js'></script>
+		<script language='javascript' src='../js/jquery-1.11.2.min.js'></script>
 		<script language='javascript'>
 		$(function () {
 			$('#select_product_test').click(function () {
@@ -15,10 +15,12 @@
 					dataType: 'json',
 					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
 					success: function(products) {
+						$('#select_product_test_result').text(JSON.stringify(products));
 						console.log('select_product_test returned:');
 						console.log(products);
 					},
 					error: function(err) {
+						$('#select_product_test_result').text(JSON.stringify(err));
 						console.log('select_product_test err:');
 						console.log(err);
 					}
@@ -34,10 +36,12 @@
 					dataType: 'json',
 					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
 					success: function(result) {
+						$('#create_product_test_result').text(JSON.stringify(result));
 						console.log('create_product_test returned:');
 						console.log(result);
 					},
 					error: function(err) {
+						$('#create_product_test_result').text(JSON.stringify(err));
 						console.log('create_product_test err:');
 						console.log(err);
 					}
@@ -49,14 +53,16 @@
 				$.ajax({
 					type: 'POST',
 					url: 'http://115.29.32.105:8080/api',
-					data: {'type':1, 'product_id':'554f8128a7f3232023bc18d8'},
+					data: {'type':1, 'product_id':$('#create_page_product_id').val()},
 					dataType: 'json',
 					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
 					success: function(result) {
+						$('#create_page_test_result').text(JSON.stringify(result));
 						console.log('create_page_test returned:');
 						console.log(result);
 					},
 					error: function(err) {
+						$('#create_page_test_result').text(JSON.stringify(err));
 						console.log('create_page_test err:');
 						console.log(err);
 					}
@@ -68,15 +74,150 @@
 				$.ajax({
 					type: 'POST',
 					url: 'http://115.29.32.105:8080/api',
-					data: {'type':2, 'product_id':'554f8128a7f3232023bc18d8', 'page_id':'554f82c7e4c4266d23967b4d'},
+					data: {'type':2, 'product_id':$('#create_element_product_id').val(), 'page_id':$('#create_element_page_id').val()},
 					dataType: 'json',
 					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
 					success: function(result) {
+						$('#create_element_test_result').text(JSON.stringify(result));
 						console.log('create_element_test returned:');
 						console.log(result);
 					},
 					error: function(err) {
+						$('#create_element_test_result').text(JSON.stringify(err));
 						console.log('create_element_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#update_product_test').click(function () {
+				var data = {'type':0, 'product_id':$('#update_product_product_id').val()};
+				data[$('#update_product_attr').val()] = $('#update_product_value').val();
+				console.log('update_product_test sended');
+				$.ajax({
+					type: 'PUT',
+					url: 'http://115.29.32.105:8080/api',
+					data: data,
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#update_product_test_result').text(JSON.stringify(result));
+						console.log('update_product_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#update_product_test_result').text(JSON.stringify(err));
+						console.log('update_product_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#update_page_test').click(function () {
+				var data = {'type':1, 'product_id':$('#update_page_product_id').val(), 'page_id':$('#update_page_page_id').val()};
+				data[$('#update_page_attr').val()] = $('#update_page_value').val();
+				console.log('update_page_test sended');
+				$.ajax({
+					type: 'PUT',
+					url: 'http://115.29.32.105:8080/api',
+					data: data,
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#update_page_test_result').text(JSON.stringify(result));
+						console.log('update_page_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#update_page_test_result').text(JSON.stringify(err));
+						console.log('update_page_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+
+			$('#update_element_test').click(function () {
+				var data = {'type':2, 'product_id':$('#update_element_product_id').val(), 'page_id':$('#update_element_page_id').val(), 'element_id':$('#update_element_element_id').val()};
+				data[$('#update_element_attr').val()] = $('#update_element_value').val();
+				console.log('update_element_test sended');
+				$.ajax({
+					type: 'PUT',
+					url: 'http://115.29.32.105:8080/api',
+					data: data,
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#update_element_test_result').text(JSON.stringify(result));
+						console.log('update_element_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#update_element_test_result').text(JSON.stringify(err));
+						console.log('update_element_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#delete_product_test').click(function () {
+				console.log('delete_product_test sended');
+				$.ajax({
+					type: 'DELETE',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':0, 'product_id':$('#delete_product_product_id').val()},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#delete_product_test_result').text(JSON.stringify(result));
+						console.log('delete_product_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#delete_product_test_result').text(JSON.stringify(err));
+						console.log('delete_product_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#delete_page_test').click(function () {
+				console.log('delete_page_test sended');
+				$.ajax({
+					type: 'DELETE',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':1, 'product_id':$('#delete_page_product_id').val(), 'page_id':$('#delete_page_page_id').val()},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#delete_page_test_result').text(JSON.stringify(result));
+						console.log('delete_page_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#delete_page_test_result').text(JSON.stringify(err));
+						console.log('delete_page_test err:');
+						console.log(err);
+					}
+				});
+			});
+
+			$('#delete_element_test').click(function () {
+				console.log('delete_element_test sended');
+				$.ajax({
+					type: 'DELETE',
+					url: 'http://115.29.32.105:8080/api',
+					data: {'type':2, 'product_id':$('#delete_element_product_id').val(), 'page_id':$('#delete_element_page_id').val(), 'element_id':$('#delete_element_element_id').val()},
+					dataType: 'json',
+					headers: {'Access-Token':'554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'},
+					success: function(result) {
+						$('#delete_element_test_result').text(JSON.stringify(result));
+						console.log('delete_element_test returned:');
+						console.log(result);
+					},
+					error: function(err) {
+						$('#delete_element_test_result').text(JSON.stringify(err));
+						console.log('delete_element_test err:');
 						console.log(err);
 					}
 				});
@@ -103,11 +244,77 @@
 		</script>
 	</head>
 	<body>
-		<button id='select_product_test'>select_product test</button>
-		<button id='create_product_test'>create_product test</button>
-		<button id='create_page_test'>create_page test</button>
-		<button id='create_element_test'>create_element test</button>
+		<p>
+			<button id='select_product_test'>select_product test</button>
+			<p id='select_product_test_result'></p>
+		</p>
+
+		<p>
+			<button id='create_product_test'>create_product test</button>
+			<p id='create_product_test_result'></p>
+		</p>
+		
+		<p>
+			<input placeholder='product_id' id='create_page_product_id'></input>
+			<button id='create_page_test'>create_page test</button>
+			<p id='create_page_test_result'></p>
+		</p>
+		
+		<p>
+			<input placeholder='product_id' id='create_element_product_id'></input>
+			<input placeholder='page_id' id='create_element_page_id'></input>
+			<button id='create_element_test'>create_element test</button>
+			<p id='create_element_test_result'></p>
+		</p>
+		
+		<p>
+			<input placeholder='product_id' id='update_product_product_id'></input>
+			<input placeholder='attr' id='update_product_attr'></input>
+			<input placeholder='value' id='update_product_value'></input>
+			<button id='update_product_test'>update_product test</button>
+			<p id='update_product_test_result'></p>
+		</p>
+
+		<p>
+			<input placeholder='product_id' id='update_page_product_id'></input>
+			<input placeholder='page_id' id='update_page_page_id'></input>
+			<input placeholder='attr' id='update_page_attr'></input>
+			<input placeholder='value' id='update_page_value'></input>
+			<button id='update_page_test'>update_page test</button>
+			<p id='update_page_test_result'></p>
+		</p>
+
+		<p>
+			<input placeholder='product_id' id='update_element_product_id'></input>
+			<input placeholder='page_id' id='update_element_page_id'></input>
+			<input placeholder='element_id' id='update_element_element_id'></input>
+			<input placeholder='attr' id='update_element_attr'></input>
+			<input placeholder='value' id='update_element_value'></input>
+			<button id='update_element_test'>update_element test</button>
+			<p id='update_element_test_result'></p>
+		</p>
+		
+		<p>
+			<input placeholder='product_id' id='delete_product_product_id'></input>
+			<button id='delete_product_test'>delete_product test</button>
+			<p id='delete_product_test_result'></p>
+		</p>
+
+		<p>
+			<input placeholder='product_id' id='delete_page_product_id'></input>
+			<input placeholder='page_id' id='delete_page_page_id'></input>
+			<button id='delete_page_test'>delete_page test</button>
+			<p id='delete_page_test_result'></p>
+		</p>
+
+		<p>
+			<input placeholder='product_id' id='delete_element_product_id'></input>
+			<input placeholder='page_id' id='delete_element_page_id'></input>
+			<input placeholder='element_id' id='delete_element_element_id'></input>
+			<button id='delete_element_test'>delete_element test</button>
+			<p id='delete_element_test_result'></p>
+		</p>
+		
 		<button id='login_test'>login as admin/admin</button>
 	</body>
 </html>
-
