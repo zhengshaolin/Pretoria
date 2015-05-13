@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>H5后台</title>
+    <!-- Bootstrap core CSS -->
+    <link href="public/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="public/bootstrap/dashboard.css" rel="stylesheet">
+    <link href="public/css/form.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="public/bootstrap/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="bg_y">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAA81BMVEX///9VPnxWPXxWPXxWPXxWPXxWPXxWPXz///9hSYT6+vuFc6BXPn37+vz8+/z9/f2LeqWMe6aOfqiTg6uXiK5bQ4BZQX9iS4VdRYFdRYJfSINuWI5vWY9xXJF0YJR3Y5Z4ZZd5ZZd6Z5h9apq0qcW1qsW1q8a6sMqpnLyrn76tocCvpMGwpMJoUoprVYxeRoJjS4abjLGilLemmbrDutDFvdLPx9nX0eDa1OLb1uPd1+Td2OXe2eXh3Ofj3+nk4Orl4evp5u7u7PLv7fPx7/T08vb08/f19Pf29Pj39vn6+fuEcZ9YP35aQn/8/P1ZQH5fR4PINAOdAAAAB3RSTlMAIWWOw/P002ipnAAAAPhJREFUeF6NldWOhEAUBRvtRsfdfd3d3e3/v2ZPmGSWZNPDqScqqaSBSy4CGJbtSi2ubRkiwXRkBo6ZdJIApeEwoWMIS1JYwuZCW7hc6ApJkgrr+T/eW1V9uKXS5I5GXAjW2VAV9KFfSfgJpk+w4yXhwoqwl5AIGwp4RPgdK3XNHD2ETYiwe6nUa18f5jYSxle4vulw7/EtoCdzvqkPv3bn7M0eYbc7xFPXzqCrRCgH0Hsm/IjgTSb04W0i7EGjz+xw+wR6oZ1MnJ9TWrtToEx+4QfcZJ5X6tnhw+nhvqebdVhZUJX/oFcKvaTotUcvUnY188ue/n38AunzPPE8yg7bAAAAAElFTkSuQmCC" height="20" width="20">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="" target="_blank">王大力</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav navbar-right">
+            <li><button class="btn btn-info" style="margin-top:8px; margin-right:10px;">预览</button></li>
+            <li><button class="btn btn-success" style="margin-top:8px; margin-right:10px;">添加新页面</button></li>
+            <li><button class="btn btn-primary" style="margin-top:8px; margin-right:10px;">添加图片素材</button></li>
+            <li><button class="btn btn-primary" style="margin-top:8px; margin-right:10px;">添加文本素材</button></li>
+            <li><button class="btn btn-primary" style="margin-top:8px; margin-right:10px;">添加轮播素材</button></li>
+          </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><button class="btn btn-success" style="margin-top:8px; margin-right:10px;">发布</button></li>
+            <li><button class="btn btn-success" style="margin-top:8px">作品列表</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2" style="border-top:1px solid #dedede">
+          <h6>页面名称:页面1</h6>
+          <div class="thumbnail" style="height: 300px; width: 135px;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 240px; width: 135px; display: block;" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p class="tc"><a href="#" class="btn btn-success" role="button">删除</a></p>
+            </div>
+          </div>
+          <h6>页面名称:页面2</h6>
+          <div class="thumbnail" style="height: 300px; width: 135px;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 240px; width: 135px; display: block;" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p class="tc"><a href="#" class="btn btn-success" role="button">删除</a></p>
+            </div>
+          </div>
+          <h6>页面名称:页面3</h6>
+          <div class="thumbnail" style="height: 300px; width: 135px;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 240px; width: 135px; display: block;" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p class="tc"><a href="#" class="btn btn-success" role="button">删除</a></p>
+            </div>
+          </div>
+          <h6>页面名称:页面4</h6>
+          <div class="thumbnail" style="height: 300px; width: 135px;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 240px; width: 135px; display: block;" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p class="tc"><a href="#" class="btn btn-success" role="button">删除</a></p>
+            </div>
+          </div>
+          <h6>页面名称:页面5</h6>
+          <div class="thumbnail" style="height: 300px; width: 135px;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 249px; width: 135px; display: block;" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p class="tc"><a href="#" class="btn btn-success" role="button">删除</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" style="border-top:1px solid #dedede; border-left:1px solid #dedede; border-right:1px solid #dedede;">
+          <h6 class="tc">页面名称:页面2</h6>
+          <div class="thumbnail" style="width:380px; margin:0px auto;">
+            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" style="height: 640px; width: 360px; display: block;" data-src="holder.js/100%x200" alt="360%x640">
+          </div>
+          <p class="tc">
+              <button class="btn btn-info" style="margin-top:8px; margin-right:10px;">保存作品</button>
+            <button class="btn btn-info" style="margin-top:8px; margin-right:10px;">预览发布</button>
+          </p>
+
+        </div>
+        <div class="col-md-4" width="360px;" style="border-top:1px solid #dedede">
+        <h6>页面名称:页面2</h6>
+          <div class='container-fluid'>
+            <div class='tabbable tabs-left'>
+              <ul class='nav nav-tabs nav-right'>
+                <li class='active'><a href='#tab1' data-toggle='tab'>素材信息</a></li>
+                <li><a href='#tab2' data-toggle='tab'>页面动画</a></li>
+                <li><a href='#tab3' data-toggle='tab'>底图设置</a></li>
+                <li><a href='#tab4' data-toggle='tab'>背景音乐</a></li>
+                <li><a href='#tab5' data-toggle='tab'>作品相关</a></li>
+              </ul>
+              <div class='tab-content e_tab_content'>
+                <div class='tab-pane active' id='tab1'>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">素材名称</div>
+                    <div class="panel-body">
+                      <h3><input class="form-control" placeholder="name" aria-describedby="basic-addon1" value="素材名称" type="text"></h3>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">素材大小</h3>
+                    </div>
+                    <div class="panel-body">
+                      <h3><input class="form-control" placeholder="name" aria-describedby="basic-addon1" value="宽度" type="text"></h3>
+                      <h3><input class="form-control" placeholder="name" aria-describedby="basic-addon1" value="高度" type="text"></h3>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">素材位置</h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="input-group">
+                      <h6>
+                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                      </h6>
+                        <h3><input class="form-control" placeholder="name" aria-describedby="basic-addon1" value="左偏移" type="text"></h3>
+                        <h3><input class="form-control" placeholder="name" aria-describedby="basic-addon1" value="右偏移" type="text"></h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">文字信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                        <div class="form-group">
+                          <label for="name">字体大小</label>
+                          <select class="form-control">
+                            <option>12</option>
+                            <option>14</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                        <label for="name">字体设置</label>
+                          <h6>
+                          <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+                        </h6>
+
+                        </div>
+                        <div class="input-group mb10">
+                        <label for="name">字体颜色</label>
+                        <input class="form-control" placeholder="name" value="#" aria-describedby="basic-addon1" value="高度" type="tex t">
+                      </div>
+                        <div class="input-group mb10">
+                        <label for="name">字体对齐</label>
+                      <h6>
+                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                      </h6>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">动画设置</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">延迟0.5秒后出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">左飞入出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">持续0.5秒</label>
+                        </div>
+                        <button class="btn btn-warning" style="margin-top:8px; margin-right:10px;">修改</button>
+                    </div>
+                  </div>
+                </div>
+                <div class='tab-pane' id='tab2'>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">页面动画设置</div>
+                    <div class="panel-body">
+                      <div class="input-group mb10">
+                        <label for="name">素材1</label>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">延迟0.5秒后出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">左飞入出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">持续0.5秒</label>
+                        </div>
+                        <button class="btn btn-warning" style="margin-top:8px; margin-right:10px;">修改</button>
+                      </div>
+                      <div class="input-group mb10">
+                        <label for="name">素材2</label>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">延迟0.5秒后出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">左飞入出现</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="">持续0.5秒</label>
+                        </div>
+                        <button class="btn btn-warning" style="margin-top:8px; margin-right:10px;">修改</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='tab-pane' id='tab3'>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">背景设置</div>
+                    <div class="panel-body">
+                      <div class="input-group mb10">
+                        <span class="input-group-addon">
+                          <input type="radio" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="..." value="无背景">
+                      </div>
+                      <div class="input-group mb10">
+                        <span class="input-group-addon">
+                          <input type="radio" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="..." value="#">
+                      </div>
+                      <div class="input-group mb10">
+                        <span class="input-group-addon">
+                          <input type="radio" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="..." value="图片背景填充">
+                      </div>
+                      <div class="media">
+                        <div class="media-left">
+                          <a href="#">
+                            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 id="media-heading" class="media-heading">fdsfdsfd.jpg<a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4>
+                          <button class="btn btn-primary">替换</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='tab-pane' id='tab4'>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">音乐资源</div>
+                    <div class="panel-body">
+                      <div class="media">
+                        <div class="media-left">
+                          <a href="#">
+                            <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 id="media-heading" class="media-heading">fdsfdsfd.MP3<a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4>
+                          <button class="btn btn-primary">替换音乐</button>
+                          <button class="btn btn-danger">删除音乐</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">播放按钮位置</h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          左上
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          右上
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          左下
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          右下
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">播放选择：</h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          默认播放
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          默认暂停
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='tab-pane' id='tab5'>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">作品名称</div>
+                    <div class="panel-body">
+                      <h3><input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="作品名称"></h3>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">首页涂抹图片设置：</h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          左上
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          右上
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          左下
+                        </span>
+                      </div>
+                      <div class="input-group">
+                        <span>
+                          <input type="radio" class="mr5">
+                        </span>
+                        <span>
+                          右下
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">页面切换方式：</h3>
+                    </div>
+                    <div class="panel-body">
+                      <form role="form">
+                        <div class="form-group">
+                          <label for="name">平移方式</label>
+                          <select class="form-control">
+                            <option>平移切换</option>
+                            <option>缩小退出</option>
+                          </select>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="panel panel-default mt10">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">计数器设置：</h3>
+                    </div>
+                    <div class="panel-body">
+                      <h6>计数器设置方法：</h6>
+                      <h6>1）在相应页面添加文本框素材</h6>
+                      <h6>2）按照格式输入：</h6>
+                      <h6>3）数值设置：</h6>
+                      <h3><input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="起始值"></h3>
+                      <h3><input type="text" class="form-control" placeholder="name" aria-describedby="basic-addon1" value="实际人数*"></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="public/bootstrap/jquery.min.js"></script>
+    <script src="public/bootstrap/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="public/bootstrap/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
