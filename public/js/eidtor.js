@@ -1,56 +1,88 @@
 var Editor = {
+    // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
     },
-    //creat product
-    addProduct: function() {
-        console.log('create_product_test sended');
-        $.ajax({
-            type: 'POST',
-            url: 'http://115.29.32.105:8080/api',
-            data: {
-                'type': 0
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'
-            },
-            success: function(result) {
-                $('#create_product_test_result').text(JSON.stringify(result));
-                console.log('create_product_test returned:');
-                console.log(result);
-            },
-            error: function(err) {
-                $('#create_product_test_result').text(JSON.stringify(err));
-                console.log('create_product_test err:');
-                console.log(err);
-            }
-        });
-    },
-    addPage: function() {
-        console.log('create_page_test sended');
-        $.ajax({
-            type: 'POST',
-            url: 'http://115.29.32.105:8080/api',
-            data: {
-                'type': 1,
-                'product_id': $('#create_page_product_id').val()
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d'
-            },
-            success: function(result) {
-                $('#create_page_test_result').text(JSON.stringify(result));
-                console.log('create_page_test returned:');
-                console.log(result);
-            },
-            error: function(err) {
-                $('#create_page_test_result').text(JSON.stringify(err));
-                console.log('create_page_test err:');
-                console.log(err);
-            }
-        });
+    //add method for administor creat product,page or elements
+    //type 0 product
+    //tyoe 1 page
+    //type 2 element
+    add: function(type) {
+        var token = localData.get('token'),
+            product_id = $('#create_element_product_id').val(),
+            page_id = $('#create_element_page_id').val();
+        if (type = 0) {
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 0
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    $('#create_product_test_result').text(JSON.stringify(result));
+                    console.log('create_product_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    $('#create_product_test_result').text(JSON.stringify(err));
+                    console.log('create_product_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type == 1) {
+            console.log('create_page_test sended');
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 1,
+                    'product_id': product_id
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    $('#create_page_test_result').text(JSON.stringify(result));
+                    console.log('create_page_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    $('#create_page_test_result').text(JSON.stringify(err));
+                    console.log('create_page_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type == 2) {
+            console.log('create_element_test sended');
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 2,
+                    'product_id': product_id,
+                    'page_id': page_id
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    $('#create_element_test_result').text(JSON.stringify(result));
+                    console.log('create_element_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    $('#create_element_test_result').text(JSON.stringify(err));
+                    console.log('create_element_test err:');
+                    console.log(err);
+                }
+            });
+        }
     },
     downPage: function() {
 
@@ -102,7 +134,7 @@ var Editor = {
     remove: function() {
 
     },
-    renderList:function(data) {
+    renderList: function(data) {
         // body...
     },
     renderPage: function() {
