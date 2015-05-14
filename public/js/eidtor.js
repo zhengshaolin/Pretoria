@@ -6,7 +6,7 @@ var Editor = {
     //add method for administor creat product,page or elements
     //type 0 product
     //tyoe 1 page
-    //type 2 element
+    //type 2 elements
     add: function(type) {
         var token = localData.get('token'),
             product_id = $('#create_element_product_id').val(),
