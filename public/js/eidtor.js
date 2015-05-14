@@ -156,7 +156,7 @@ var Editor = {
             this.auth();
         }
     },
-    publish:function (id) {
+    publish:function (pid) {
         
     },
     //remove method for administor delete product,page or elements
@@ -256,7 +256,6 @@ var Editor = {
         $('#v_product_info').find('.update_time').text(obj.update_time);
         $('#v_product_info').find('.product_name').val(obj.product_name);
         $('#v_product_info').find('.product_des').text(obj.product_des);
-
     },
     renderList: function(data) {
         console.log('renderList method start');
@@ -285,4 +284,7 @@ var Editor = {
     upPage: function() {
 
     },
+    uplodad:function () {
+        return url;
+    }
 };
