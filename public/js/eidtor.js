@@ -88,7 +88,7 @@ var Editor = {
     downPage: function() {
 
     },
-    fetchList: function(uid) {
+    fetchList: function() {
         console.log('fetchList method start');
         var token = localData.get('token');
         $.ajax({
@@ -113,10 +113,34 @@ var Editor = {
             }
         });
     },
-    fetchForm: function(pid) {
-        this.renderPage();
-        this.renderArena();
-        this.renderPlant();
+    fetchForm: function() {
+        console.log('fetchForm method start');
+        var token = localData.get('token');
+        $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/api',
+            data: {
+                'type': 0,
+                'product_id':product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                console.log('fetchForm returned');
+                console.log(products);
+                Editor.store(products);
+                Editor.renderPage();
+                Editor.renderArena();
+                Editor.renderPlant();
+            },
+            error: function(err) {
+                // $('#select_product_test_result').text(JSON.stringify(err));
+                console.log('fetchForm err:');
+                console.log(err);
+            }
+        });
     },
     initList: function() {
         if (localData.get('token') != null) {
@@ -127,7 +151,7 @@ var Editor = {
     },
     initForm: function() {
         if (localData.get('token') != null) {
-            this.fetchForm(pid);
+            this.fetchForm();
         } else {
             this.auth();
         }
@@ -240,7 +264,7 @@ var Editor = {
         for (var i = 0; i < data.length; i++) {
             localData.set(data[i]._id + '_data', data[i]);
             $('#v_product_list').append('<li id="'+data[i]+'"><img data-holder-rendered="true" src="' + data[i].img + '" class="works-img" data-src="holder.js/180x320" alt="180x320"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review id="' + data[i]._id + '">预览</a><a class="e_publish" id="' + data[i]._id + '">发布</a><a class="last e_delete" id="" type="0">删除</a></div><div class="caption">' + data[i].name + '</div></li>');
-        }
+        };
     },
     renderPage: function() {
 
@@ -252,8 +276,8 @@ var Editor = {
 
     },
     store: function(data) {
-        var tid = localData.get('current_id');
-        localData.set(tid + "_data", data);
+        var product_id = localData.get('Form_current_id');
+        localData.set(product_id + "_data", data);
     },
     update: function() {
 
