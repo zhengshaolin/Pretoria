@@ -26,6 +26,7 @@ var Editor = {
                     $('#create_product_test_result').text(JSON.stringify(result));
                     console.log('create_product_test returned:');
                     console.log(result);
+                    $('#v_product_list').append('<li id="'+result._id+'"><img data-holder-rendered="true" src="'+ result.img +'" class="works-img" data-src="holder.js/180x320" alt="180x320"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a class="e_publish" id="' + result._id + '">发布</a><a class="last e_delete" id="" type="0">删除</a></div><div class="caption">' + result.name + '</div></li>');
                 },
                 error: function(err) {
                     $('#create_product_test_result').text(JSON.stringify(err));
