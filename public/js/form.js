@@ -14,10 +14,53 @@ if ($ && jQuery) {
         Editor.remove(type);
     });
 
+    $("#v_page_list").on("click","li", function () { 
+        var page_current_id = $(this).attr('id');
+        $('#page_id').val(page_current_id);
+        $('#element_id').val(page_current_id+'_0');
+        Editor.renderArena();
+        Editor.renderPageInfo();
+        Editor.renderElementInfo();
+        Editor.renderGlobalInfo()
+    });
+
+    $("#v_page_edit").on("click",".item", function () { 
+        var element_current_id = $(this).attr('id');
+        $('#element_id').val(element_current_id);
+    });
+
 
     $('.update_item').on('blur', function() {
-        var type = $(this).attr('id');
-        Editor.renderPI();
+        //elementype 0 产品全局
+        //elementype 1 页面属性
+        //elementype 2 元素属性
+        //key 映射json里的key
+        var type = $(this).attr('elementype');
+            key = $(this).attr('id').split('-')[1],
+            val = $(this).val();
+        Editor.update(type,key,val);
+    });
+
+    $('.update_radio').on('click', function() {
+        //elementype 0 产品全局
+        //elementype 1 页面属性
+        //elementype 2 元素属性
+        //key 映射json里的key
+        if ($(this).attr('type') == 'radio') {
+            var type = $(this).parents('.panel-body').attr('elementype'),
+                key = $(this).parents('.panel-body').attr('id').split('-')[1];
+                val = $(this).val();
+            $(this).attr("checked",true);
+            Editor.update(type,key,val);
+        }else{
+            return false;
+        }
+    });
+    $('.update_select').change(function(){
+        var type = $(this).attr('elementype'),
+            key = $(this).attr('id').split('-')[1];
+            val = $(this).children('option:selected').val();
+            Editor.update(type,key,val);
     });
 
     $('.e_publish').click(function() {

@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>H5后台</title>
+    <title>H5后台-表单页</title>
     <!-- Bootstrap core CSS -->
     <link href="public/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -25,9 +25,10 @@
   </head>
   <body class="bg_y" style="height:950px;">
   <input type="hidden" id="product_id">
-  <input type="hidden" id="page_id">
+  <input type="hidden" id="page_id" value="p_0">
   <input type="hidden" id="page_number">
-  <input type="hidden" id="element_id">
+  <input type="hidden" id="element_id" value="p_0_0">
+
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -59,12 +60,14 @@
         </div>
 
         <div class="col-md-6">
-          <h1 class="tc"><span class="page-name">页面2</span></h1>
+          <h1 class="tc"><span class="page-name">页面1</span></h1>
           <div class="page-edit">
-            <img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2">
+            <div id="v_page_edit">
+              <img class="item" id="p_1_1" src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2">
+          </div>
 
           <p class="page-btn">
-            <button class="btn btn-default">保存</button>
+            <button class="btn btn-default e_save">保存</button>
             <button class="btn btn-default e_preview">预览</button>
             <button class="btn btn-default e_publish">发布</button>
           </p>
@@ -86,45 +89,45 @@
                   <ul class="panel">
                     <li>
                       <label>素材名称:</label>
-                      <input class="panel-text w187" type="text" value="" />
+                      <input class="panel-text w187 update_item" elementype="1" id="d-title" type="text" value="" />
                     </li>
                     <li>
                       <label>素材大小:</label>
                       宽:
-                      <input class="panel-text w55 mr30" type="text" value="" />
+                      <input class="panel-text w55 mr30 update_item" id="d-width" elementype="2" type="text" value="" />
                       高:
-                      <input class="panel-text w55" type="text" value="" />
+                      <input class="panel-text w55 update_item" id="d-height" elementype="2"  type="text" value="" />
                     </li>
                     <li>
                       <label>素材位置:</label>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-left" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-center" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-right" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true" class=""></span>
                         </h6>
                         <div class="fr mt5">
                           左边距:
-                          <input class="panel-text w55 mr30" type="text" value="" />
+                          <input class="panel-text w55 mr30 update_item" type="text"  elementype="2" id="d-d-hshift" value="" />
                         </div>
                       </div>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-left update_item" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-center update_item" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-right update_item" aria-hidden="true"></span> 
+                          <span class="glyphicon glyphicon-align-justify update_item" aria-hidden="true"></span>
                         </h6>
                         <div class="fr mt5">
                           右边距:
-                          <input class="panel-text w55 mr30" type="text" value="" />
+                          <input class="panel-text w55 mr30 update_item" id="d-vshift" elementype="2" type="text" value="" />
                         </div>
                       </div>
                     </li>
-                    <li> 
+                    <li class="hidden d_1"> 
                       <!-- 图片素材 -->
-                      <label>图片资源:</label>
+                      <label >图片资源:</label>
                       <div class="panel-body">
                         <div class="fl">
                         <a href="#">
@@ -135,7 +138,7 @@
                         <button class="fr pic-btn" >替换</button>
                       </div>                      
                     </li>
-                    <li> 
+                    <li class="d_0"> 
                       <!-- 文本素材 -->
                       <label>文本信息:</label>
                       <div class="panel-body">
@@ -169,7 +172,7 @@
                         </div>
                       </div>                      
                     </li>
-                    <li> 
+                    <li class="hidden d_3"> 
                       <!-- 轮播素材 -->
                       <label>轮播资源:</label>
                       <div class="panel-body">
@@ -285,7 +288,7 @@
                 <div class='tab-pane' id='tab3'>
                   <div class="tab-content">
                     <h1 class="edit-title"><i class="e-title"></i>页面背景设置<i class="e-close"></i></h1>
-                    <ul class="panel">
+                    <ul class="panel" id="">
                       <li>
                           <input type="radio" aria-label="..."><span class="ml10">无背景</span>
                       </li>
@@ -314,18 +317,18 @@
                       <li>
                         <label>音乐资源:<small class="fn ml10 red">请选择3.5M以下MP3格式</small></label>
                         <div class="panel-body">
-                          <button class="audio-btn">替换音频</button>
-                          <div class="mt10">
+                          <button class="audio-btn e_upload_music">替换音频</button>
+                          <div class="mt10" id="v_upload_music">
                             <p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><span class="ml10">试听资源1</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <label>播放按钮位置:</label>
-                        <div class="panel-body">
+                        <div class="panel-body" id="d-music_pos" elementype="0">
                           <div class="input-group">
                             <span>
-                              <input type="radio" class="mr5">
+                              <input type="radio" class="mr5 update_radio" name="music_pos" value="0">
                             </span>
                             <span>
                               左上
@@ -333,7 +336,7 @@
                           </div>
                           <div class="input-group">
                             <span>
-                              <input type="radio" class="mr5">
+                              <input type="radio" class="mr5 update_radio" name="music_pos" value="1">
                             </span>
                             <span>
                               右上
@@ -341,7 +344,7 @@
                           </div>
                           <div class="input-group">
                             <span>
-                              <input type="radio" class="mr5">
+                              <input type="radio" class="mr5 update_radio" name="music_pos" value="2">
                             </span>
                             <span>
                               左下
@@ -349,7 +352,7 @@
                           </div>
                           <div class="input-group">
                             <span>
-                              <input type="radio" class="mr5">
+                              <input type="radio" class="mr5 update_radio" name="music_pos" value="3">
                             </span>
                             <span>
                               右下
@@ -359,10 +362,10 @@
                       </li>
                       <li class="last">
                         <label>播放选择:</label>
-                        <div class="panel-body">
+                        <div class="panel-body" id="d-music_option" elementype="0">
                         <div class="input-group">
                           <span>
-                            <input type="radio" class="mr5">
+                            <input type="radio" class="mr5 update_radio" value="0" name="music_option">
                           </span>
                           <span>
                             默认播放
@@ -370,7 +373,7 @@
                         </div>
                         <div class="input-group">
                           <span>
-                            <input type="radio" class="mr5">
+                            <input type="radio" class="mr5 update_radio" value="0" name="music_option">
                           </span>
                           <span>
                             默认暂停
@@ -387,33 +390,33 @@
                      <ul class="panel">
                         <li>
                           <label>作品名称:</label>
-                          <input class="panel-text w187 update_item" id="d_product" type="text" value="" />
+                          <input class="panel-text w187 update_item" id="d-product" type="text" elementype="0" value="" />
                         </li>
                         <li>
                           <label>首页涂抹图片设置:</label>
-                          <div class="panel-body">
+                          <div class="panel-body" id="d-glass">
                             <div class="mb10">
-                              <input type="radio" aria-label="..."><span class="ml10">首页无涂抹</span>
+                              <input type="radio" class="update_radio" elementype="0" name="glass" value="0"><span class="ml10" >首页无涂抹</span>
                             </div>
                             <div class="clearfix">
-                              <input type="radio" aria-label="..."><span class="ml10">首页涂抹图片<small class="red ml10">建议尺寸：640*960</small></span>
+                              <input type="radio"  class="update_radio" elementype="0" name="glass" value="1"><span class="ml10">首页涂抹图片<small class="red ml10">建议尺寸：640*960</small></span>
                               <div class="fl mt10">
                               <a href="#">
-                                <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                                <img data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" elementype="0" id="d-glass_url">
                               </a>
                               <h4 class="pic-name">绘图.png</h4>
                               </div>
                               <button class="fr pic-btn e_upload_pic" >替换</button>
                             </div>                          
-                            <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10" value="" />%
+                            <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10 update_item" elementype="0" id="d-glass_trans" value="" />%
                           </div>
                         </li>
                         <li>
                           <label>页面切换方式:</label>
                           <div class="panel-body">
-                            <select class="click-action" id="d_switch_type">
-                              <option value="0">页面2</option>
-                              <option value="1">页面3</option>
+                            <select class="click-action update_select" elementype="0" id="d-switch_type">
+                              <option value="0">原页面打开</option>
+                              <option value="1">新页面打开</option>
                               <option value="2">页面4</option>
                             </select>
                           </div>
@@ -425,9 +428,9 @@
                             <h6>1）在相应页面添加文本框素材</h6>
                             <h6>2）按照格式输入：</h6>
                             <h6>3）数值设置：</h6>
-                            <h6>起始值<input type="text" class="panel-text ml27 update_item" placeholder="name" aria-describedby="basic-addon1" id="d_orign_mum" value=""></h6>
+                            <h6>起始值<input type="text" class="panel-text ml27 update_item" aria-describedby="basic-addon1" id="d-orign_mum" elementype="0" value=""></h6>
                             <h6>+</h6>
-                            <h6>实际人数*<input type="text" class="panel-text ml10 update_item" id="e_pry" placeholder="name" aria-describedby="basic-addon1" value=" "></h6>
+                            <h6>实际人数*<input type="text" class="panel-text ml10 update_item" elementype="0" id="d-pry" aria-describedby="basic-addon1" value=" "></h6>
                           </div>
                         </li>
                      </ul>

@@ -27,7 +27,7 @@ var Editor = {
                     $('#create_product_test_result').text(JSON.stringify(result));
                     console.log('create_product_test returned:');
                     console.log(result);
-                    $('#v_product_list').append('<li id="'+result._id+'"><img data-holder-rendered="true" src="'+ result.avatar +'" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a class="e_publish" id="' + result._id + '">发布</a><a class="last e_delete" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
+                    $('#v_product_list').append('<li id="' + result._id + '"><img data-holder-rendered="true" src="' + result.avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a class="e_publish" id="' + result._id + '">发布</a><a class="last e_delete" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
                 },
                 error: function(err) {
                     $('#create_product_test_result').text(JSON.stringify(err));
@@ -49,9 +49,10 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    $('#create_page_test_result').text(JSON.stringify(result));
                     console.log('create_page_test returned:');
                     console.log(result);
+                    Editor.store(JSON.stringify(result));
+                    Editor.renderPage();
                 },
                 error: function(err) {
                     $('#create_page_test_result').text(JSON.stringify(err));
@@ -123,7 +124,7 @@ var Editor = {
             url: 'http://115.29.32.105:8080/api',
             data: {
                 'type': 0,
-                'product_id':product_id
+                'product_id': product_id
             },
             dataType: 'json',
             headers: {
@@ -132,10 +133,18 @@ var Editor = {
             success: function(products) {
                 console.log('fetchForm returned');
                 console.log(products);
+                //保存数据到本地
                 Editor.store(JSON.stringify(products));
+                //渲染左侧列表
                 Editor.renderPage();
+                //渲染中间操作层
                 Editor.renderArena();
-                Editor.renderPlant();
+                //渲染右侧页面元素元素信息
+                Editor.renderPageInfo();
+                //渲染右侧元素元素信息
+                Editor.renderElementInfo();
+                //无参数，渲染右侧产品公共信息
+                Editor.renderGlobalInfo();
             },
             error: function(err) {
                 // $('#select_product_test_result').text(JSON.stringify(err));
@@ -159,10 +168,10 @@ var Editor = {
             this.auth();
         }
     },
-    publish:function () {
+    publish: function() {
         var product_id = $('#product_id').val();
     },
-    preview:function () {
+    preview: function() {
         var product_id = $('#product_id').val();
     },
     //remove method for administor delete product,page or elements
@@ -193,7 +202,7 @@ var Editor = {
                     console.log('delete_product_test returned:');
                     console.log(result);
                     if (result.ok == 1) {
-                        $('#'+product_id).remove();
+                        $('#' + product_id).remove();
                         $('#product_id').val('');
                     };
                 },
@@ -256,10 +265,10 @@ var Editor = {
             });
         }
     },
-    renderItemInfo:function (product_id) {
-        var obj = JSON.parse(localData.get(product_id+'_info'));
+    renderItemInfo: function(product_id) {
+        var obj = JSON.parse(localData.get(product_id + '_info'));
         $('#v_product_info').find('.status').text(obj.status);
-        $('#v_product_info').find('.avatar').attr('src',obj.avatar);
+        $('#v_product_info').find('.avatar').attr('src', obj.avatar);
         $('#v_product_info').find('.creat_time').text(obj.createTime);
         $('#v_product_info').find('.update_time').text(obj.updateTime);
         $('#v_product_info').find('.product_name').val(obj.product);
@@ -270,46 +279,192 @@ var Editor = {
         $('#v_product_list').empty();
         for (var i = 0; i < data.length; i++) {
             localData.set(data[i]._id + '_info', JSON.stringify(data[i]));
-            $('#v_product_list').append('<li id="'+data[i]._id+'"><img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review id="' + data[i]._id + '">预览</a><a class="e_publish" id="' + data[i]._id + '">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>');
+            $('#v_product_list').append('<li id="' + data[i]._id + '"><img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review id="' + data[i]._id + '">预览</a><a class="e_publish" id="' + data[i]._id + '">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>');
         };
     },
     renderPage: function() {
         console.log('render page method start');
         $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val()+'_data'));
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
         $('#page_number').val(parseInt(data.length + 1));
         for (var i = 0; i < data.length; i++) {
-            $('#v_page_list').append('<li id="p_'+ i +'"><span class="page-num">'+ parseInt(i + 1) +'</span><i class="del e_delete" type="2" id="p_'+ i +'"></i><img data-holder-rendered="true" src="' + data[i].avatar + '" class="page-img" ></li>');
+            $('#v_page_list').append('<li id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="2" id="p_' + i + '"></i><img data-holder-rendered="true" src="' + data[i].avatar + '" class="page-img" ></li>');
         };
-        $('#v_page_list').append('<li><span class="page-num">'+$('#page_number').val()+'</span><div class="add-newpage e_create" type="1"></div></li>');
+        $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_create" type="1"></div></li>');
     },
     renderArena: function() {
         console.log('render arena method start');
-        $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val()+'_data'));
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
+            page_id = $('#page_id').val();
+            console.log(page_id);
+            num = parseInt(page_id.split('_')[1]) + parseInt(1);
+        $('.page-name').empty().text("页面" + num);
+        $('#v_page_edit').empty();
+        if (data != undefined) {
+            for (var i = 0; i < data.length; i++) {
+            if (data[i]._id == page_id) {
+                for (var j = 0; j < data[i].elements.length; i++) {
+                    var obj = data[i].elements[j];
+                    if (obj.element_type == 0) {
+                        $('#v_page_edit').append('div id="' + obj[i]._id + ' cnm" type="0" class="item"  style="width:' + obj[i].width + ';height:' + obj[i].height + ';border:3px solid #aaa;position:relative;" id=""><div style="position:absolute;top:' + obj[i].vshift + ';left:' + obj[i].hshift + '" plane="' + obj[i].horizontal + '" vertical="' + obj[i].vertical + '"></div></div>');
+                    }
+                };
+            }
+            }
+        };
     },
-    renderPlant: function() {
-        console.log('render plant method start');
-        $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val()+'_data'));
+    renderElementInfo:function() {
+        console.log('render Element method start');
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
+            product_id = $('#product_id').val(),
+            page_id = $('#page_id').val(),
+            element_id = $('#element_id').val();
+        if (data != undefined) {
+            for (var i = 0; i < data.length; i++) {
+            if (data[i]._id == page_id) {
+                for (var j = 0; j < data[i].elements.length; i++) {
+                    if (data[i].elements[j]._id == element_id) {
+                        var obj = data[i].elements[j];
+                        //render operation
+                        $('#d-width').val(obj.width);
+                        $('#d-hshift').val(obj.hshift);
+                        $('#d-vshift').val(obj.vshift);
+                    };                    
+                };
+            }
+            }
+        };       
     },
-    renderGlobal:function() {
-        console.log('render global method start');
-        $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val()+'_data'));
+    renderPageInfo: function() {
+        console.log('render page method start');
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
+            product_id = $('#product_id').val(),
+            page_id = $('#page_id').val();
+        if (data != undefined) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._id == page_id) {
+                    var obj = data[i];
+                    //render operation
+                    $('#d-title').val(obj.title);
+                }
+            }
+        }; 
 
+    },
+    renderGlobalInfo: function() {
+        console.log('render global method start');
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
+        //box5
+        $('#d-product').val(data[0].product);
+        $("input[name='glass']")[data[0].music_pos].checked = true;
+        $('#d-glass_url').attr('src', data[0].glass_url);
+        $('#d-glass_trans').val(data[0].glass_trans);
+        $('#d-orign_mum').val(data[0].orign_num);
+        $('#d-pry').val(data[0].pry);
+        $('d-switch_type').val(data[0].switch_type);
+        //box4
+        //音乐列表
+        $("input[name='music_pos']")[data[0].music_pos].checked = true;
+        $("input[name='music_option']")[data[0].music_option].checked = true;
+        //box3
+        //box2
+        //box1
     },
     store: function(data) {
         var product_id = $('#product_id').val();
         localData.set(product_id + "_data", data);
     },
-    update: function() {
-
+    //update method for administor upddate items
+    //type 0 product global element
+    //tyoe 1 page element
+    //type 2 elements
+    update: function(type, key, val) {
+        console.log('update method start');
+        var token = localData.get('token'),
+            product_id = $('#product_id').val(),
+            page_id = $('#page_id').val(),
+            element_id = $('#element_id').val();
+        if (type == 0) {
+            console.log('update type 0 start');
+            console.log('update_product_test sended');
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 0,
+                    'product_id': $('#product_id').val(),
+                    key: val
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    $('#update_product_test_result').text(JSON.stringify(result));
+                    console.log('update_product_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    $('#update_product_test_result').text(JSON.stringify(err));
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type == 1) {
+            console.log('update_product_test sended');
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 1,
+                    'product_id': $('#product_id').val(),
+                    'page_id': $('#page_id').val(),
+                    key: val
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('update_product_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type == 2) {
+            console.log('update_product_test sended');
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 1,
+                    'product_id': $('#product_id').val(),
+                    'page_id': $('#page_id').val(),
+                    'element_id': $('#element_id').val(),
+                    key: val
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('update_product_test returned:');
+                    console.log(result);
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
+        }
     },
     upPage: function() {
 
     },
-    uplodad:function () {
+    uplodad: function() {
         return url;
     }
 };
