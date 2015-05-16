@@ -8,18 +8,19 @@ if ($ && jQuery) {
         var type = $(this).attr('type');
         Editor.add(type);
     });
-    $('.e_delete').on('click',function () {
-        var type = $(this).arrt('type');
+    $('#v_product_list').on('click','.e_delete',function () {
+        var type = $(this).attr('type');
+        $('#product_id').val($(this).attr('id'));
         Editor.remove(type);
     });
-    $('#v_product_list li').on('click',function(){
+    $("#v_product_list").on("click","li", function () { 
         var List_current_id = $(this).attr('id');
-        localData.set('List_current_id',List_current_id);
-        Editor.renderPI();
+        $('#product_id').val(List_current_id);
+        Editor.renderItemInfo(List_current_id);
     });
+
     $('.e_publish').click(function () {
-        var List_current_id = localData.get('List_current_id');
-        Editor.publish(List_current_id);
+        Editor.publish();
     });
 
 };

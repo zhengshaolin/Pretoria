@@ -12,7 +12,7 @@
 	"glass":"0",//毛玻璃效果
 	"glass_url":"http://1.jpg",//毛玻璃背景图片
 	"glass_trans":"10",//毛玻璃涂抹程度
-	"switch_tyep":"0",//切换方式
+	"d_switch_type":"0",//切换方式
 	"orign_mum":"10",//起始值
 	"pry":"2",//基数
 	"music_pos":"1",//音乐设置位置

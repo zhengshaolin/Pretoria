@@ -26,20 +26,22 @@
   <body class="bg_y" style="height:950px;">
   <input type="hidden" id="product_id">
   <input type="hidden" id="page_id">
+  <input type="hidden" id="page_number">
   <input type="hidden" id="element_id">
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <ul class="navb navbar-nav navbar-right">
             <li class="yl"><i  class="yulan"></i><a href="#">预览</a></li>
-            <li class="break-up"><i class="add-pic"></i><a href="#">添加图片素材</a></li>
-            <li class="break-up"><i class="add-text"></i><a href="#">添加文本素材</a></li>
-            <li class="break-up"><i class="add-lb"></i><a href="#">添加轮播素材</a></li>
+            <li class="break-up"><i class="add-text"></i><a class="e_creat" type="2" element="0">添加文本素材</a></li>
+            <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="2" element="1">添加图片素材</a></li>
+            <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="2" element="2">添加轮播素材</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navb navbar-nav navbar-right">
             <li class="break-up-r"><i class="list"></i><a href="#">作品列表</a></li>
-            <li class="w120 mr40"><i class="publish"></i><a href="#">发布作品</a></li>
+            <li class="w120 mr40"><i class="publish"></i><a class="e_publish">发布作品</a></li>
             <li class="user"><a href="" target="_blank">王大力</a></li>
             <li><a href="#">退出</a></li>
           </ul>
@@ -50,28 +52,9 @@
         <div class="col-md-2" style="height:950px;">
           <div class="add-page">
             <i class="add-btn"></i>
-            <a href="#">添加新页面</a>
+            <a type="1" class="e_creat">添加新页面</a>
           </div>
-          <ul class="page-list">
-            <li>
-              <span class="page-num">1</span>
-              <i class="del"></i>
-              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" class="page-img" data-src="holder.js/120%x214" alt="120%x214">
-            </li>
-            <li>
-              <span class="page-num">2</span>
-              <i class="del"></i>
-              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" class="page-img" data-src="holder.js/120%x214" alt="120%x214">
-            </li>
-            <li>
-              <span class="page-num">3</span>
-              <i class="del"></i>
-              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjkxLjk3NTAwMDM4MTQ2OTczIiB5PSIxMDAiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTFwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj4yNDJ4MjAwPC90ZXh0PjwvZz48L3N2Zz4=" class="page-img" data-src="holder.js/120%x214" alt="120%x214">
-            </li>
-            <li>
-              <span class="page-num">4</span>
-              <div class="add-newpage"></div>
-            </li>
+          <ul class="page-list" id="v_page_list">
           </ul>          
         </div>
 
@@ -82,8 +65,8 @@
 
           <p class="page-btn">
             <button class="btn btn-default">保存</button>
-            <button class="btn btn-default">预览</button>
-            <button class="btn btn-default">发布</button>
+            <button class="btn btn-default e_preview">预览</button>
+            <button class="btn btn-default e_publish">发布</button>
           </p>
           </div>
         </div>
@@ -404,7 +387,7 @@
                      <ul class="panel">
                         <li>
                           <label>作品名称:</label>
-                          <input class="panel-text w187" type="text" value="" />
+                          <input class="panel-text w187 update_item" id="d_product" type="text" value="" />
                         </li>
                         <li>
                           <label>首页涂抹图片设置:</label>
@@ -420,7 +403,7 @@
                               </a>
                               <h4 class="pic-name">绘图.png</h4>
                               </div>
-                              <button class="fr pic-btn" >替换</button>
+                              <button class="fr pic-btn e_upload_pic" >替换</button>
                             </div>                          
                             <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10" value="" />%
                           </div>
@@ -428,10 +411,10 @@
                         <li>
                           <label>页面切换方式:</label>
                           <div class="panel-body">
-                            <select class="click-action">
-                              <option>页面2</option>
-                              <option>页面3</option>
-                              <option>页面4</option>
+                            <select class="click-action" id="d_switch_type">
+                              <option value="0">页面2</option>
+                              <option value="1">页面3</option>
+                              <option value="2">页面4</option>
                             </select>
                           </div>
                         </li>
@@ -442,9 +425,9 @@
                             <h6>1）在相应页面添加文本框素材</h6>
                             <h6>2）按照格式输入：</h6>
                             <h6>3）数值设置：</h6>
-                            <h6>起始值<input type="text" class="panel-text ml27" placeholder="name" aria-describedby="basic-addon1" value=" "></h6>
+                            <h6>起始值<input type="text" class="panel-text ml27 update_item" placeholder="name" aria-describedby="basic-addon1" id="d_orign_mum" value=""></h6>
                             <h6>+</h6>
-                            <h6>实际人数*<input type="text" class="panel-text ml10" placeholder="name" aria-describedby="basic-addon1" value=" "></h6>
+                            <h6>实际人数*<input type="text" class="panel-text ml10 update_item" id="e_pry" placeholder="name" aria-describedby="basic-addon1" value=" "></h6>
                           </div>
                         </li>
                      </ul>
@@ -467,9 +450,7 @@
     <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/form.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="public/js/drag.js"></script>
-    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
-    <script type="text/javascript" src="public/js/  "></script>
-    
+    <!--<script type="text/javascript" src="public/js/drag.js"></script>
+    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>-->
   </body>
 </html>
