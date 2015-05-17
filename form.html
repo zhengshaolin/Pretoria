@@ -62,8 +62,12 @@
         <div class="col-md-6">
           <h1 class="tc"><span class="page-name">页面1</span></h1>
           <div class="page-edit">
-            <div id="v_page_edit">
-              <img class="item" id="p_1_1" src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2">
+            <div id="v_page_edit cnm">
+               <div>
+                 
+                 
+               </div>
+                <img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2"></img>
           </div>
 
           <p class="page-btn">
@@ -102,10 +106,10 @@
                       <label>素材位置:</label>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left" aria-hidden="true" class=""></span>
-                          <span class="glyphicon glyphicon-align-center" aria-hidden="true" class=""></span>
-                          <span class="glyphicon glyphicon-align-right" aria-hidden="true" class=""></span>
-                          <span class="glyphicon glyphicon-align-justify" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-left d-horizontal" aria-label="Center Left" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-center d-horizontal" aria-hidden="true" aria-label="Center Align" class=""></span>
+                          <span class="glyphicon glyphicon-align-right d-horizontal" aria-label="Right Align" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-justify d-horizontal" aria-hidden="true" class=""></span>
                         </h6>
                         <div class="fr mt5">
                           左边距:
@@ -114,10 +118,10 @@
                       </div>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left update_item" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-center update_item" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-right update_item" aria-hidden="true"></span> 
-                          <span class="glyphicon glyphicon-align-justify update_item" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-left update_item d-vertical" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-center update_item d-vertical" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-align-right update_item d-vertical" aria-hidden="true"></span> 
+                          <span class="glyphicon glyphicon-align-justify update_item d-vertical" aria-hidden="true"></span>
                         </h6>
                         <div class="fr mt5">
                           右边距:
@@ -215,7 +219,7 @@
                     </li>
                     <li>
                       <label>动画设置:</label>
-                      <button class="animation-btn" >修改动画</button>
+                      <button data-toggle="modal" data-target="#animateModel" class="animation-btn">修改动画</button>
                       <div class="animation panel-body">
                         <p><i class="delay"></i>延迟0.5秒后出现</p>
                         <p><i class="fly"></i>左飞入出现</p>
@@ -257,7 +261,7 @@
                     <ul class="panel">
                       <li>
                         <label>素材1:</label>
-                        <button class="animation-btn" >修改动画</button>
+                        <button href='#animate_pop' class="animation-btn" data-toggle='animate_modal'>修改动画</button>
                         <div class="animation">
                           <p><i class="delay"></i>延迟0.5秒后出现</p>
                           <p><i class="fly"></i>左飞入出现</p>
@@ -406,7 +410,7 @@
                               </a>
                               <h4 class="pic-name">绘图.png</h4>
                               </div>
-                              <button class="fr pic-btn e_upload_pic" >替换</button>
+                              <button class="fr pic-btn" data-toggle="modal" data-target="#picModel">替换</button>
                             </div>                          
                             <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10 update_item" elementype="0" id="d-glass_trans" value="" />%
                           </div>
@@ -455,5 +459,56 @@
     <script src="public/js/form.js" type="text/javascript" charset="utf-8"></script>
     <!--<script type="text/javascript" src="public/js/drag.js"></script>
     <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>-->
+<div class="modal fade" id="animateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">动画设置</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存设置</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="musicModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">替换音乐</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存设置</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="picModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">替换图片</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存设置</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>

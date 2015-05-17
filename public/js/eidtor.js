@@ -313,6 +313,7 @@ var Editor = {
             }
         };
     },
+    //绘制右侧的数据中的元素信息
     renderElementInfo:function() {
         console.log('render Element method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
@@ -329,12 +330,15 @@ var Editor = {
                         $('#d-width').val(obj.width);
                         $('#d-hshift').val(obj.hshift);
                         $('#d-vshift').val(obj.vshift);
+                        $('.d-horizontal')[obj.horizontal].addClass('on');
+                        $('.d-vertical')[obj.vertical].addClass('on');                        
                     };                    
                 };
             }
             }
         };       
     },
+    //绘制右侧的数据中的页面信息,页面标题，页面动画设置
     renderPageInfo: function() {
         console.log('render page method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
@@ -349,8 +353,8 @@ var Editor = {
                 }
             }
         }; 
-
     },
+    //绘制右侧的数据中的产品信息
     renderGlobalInfo: function() {
         console.log('render global method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
