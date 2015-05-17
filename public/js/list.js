@@ -22,10 +22,10 @@ if ($ && jQuery) {
         var id = $(this).attr('id');
         window.location.href = 'form.html?id='+id+'';
     });
-
-    $('.e_publish').click(function () {
+    $('body').on('click','.e_publish',function () {
         Editor.publish();
     });
+
 
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局

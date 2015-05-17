@@ -30,7 +30,7 @@ var Editor = {
                     $('#create_product_test_result').text(JSON.stringify(result));
                     console.log('create_product_test returned:');
                     console.log(result);
-                    $('#v_product_list').append('<li id="' + result._id + '"><img data-holder-rendered="true" src="' + result.avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a id="' + result._id + '" data-toggle="modal" data-target="#publishModel">发布</a><a class="last e_delete" type="1" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
+                    $('#v_product_list').append('<li id="' + result._id + '"><img data-holder-rendered="true" src="' + result.avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a id="' + result._id + '" data-toggle="modal" data-target="#publishModel">发布</a><a class="last e_delete" type="0" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
                 },
                 error: function(err) {
                     $('#create_product_test_result').text(JSON.stringify(err));
@@ -187,7 +187,29 @@ var Editor = {
     },
     //发布
     publish: function() {
-        var product_id = $('#product_id').val();
+        var product_id = $('#product_id').val(),
+            token = localData.get('token');
+        $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/publish',
+            data: {
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                console.log('fetchList returned');
+                console.log(products);
+                alert('发布成功');
+                //Editor.renderList(products);
+            },
+            error: function(err) {
+                console.log('select_product_test err:');
+                console.log(err);
+            }
+        });        
     },
     //预览
     preview: function() {
