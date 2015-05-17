@@ -24,6 +24,8 @@
   </head>
   <body class="bg_y">
     <input type="hidden" id="product_id">
+    <input type="hidden" id="update_key">
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <ul class="navb navbar-nav navbar-right">
@@ -56,8 +58,8 @@
               <p>作品状态: <span class="status">未发布</span></p>              
               <p>创建日期:<span class="creat_time"></span></p>
               <p>最近修改:<span class="update_time"></span></p>
-              <p>作品名称:<input type="text" class="panel-text w100 ml10 product_name" placeholder="name" aria-describedby="basic-addon1" value=" "></p>
-              <p>作品描述:<span class="prodict_des"></span>></p>
+              <p>作品名称:<input type="text" class="panel-text w100 ml10 update_item" id="d-product" elementype="0" placeholder="name" aria-describedby="basic-addon1" value=" "></p>
+              <p>作品描述:<span class="prodict_des"></span></p>
               <p class="fr"><a class="btn btn-default e_publish" role="button">发布作品</a></p>
             </div>
           </div>
@@ -81,6 +83,34 @@
     <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/list.js" type="text/javascript" charset="utf-8"></script>
-    
+
+<div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发布设置</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>
+              <label>发布标题设置:</label>
+              <input class="panel-text w187"  type="text" value="">
+           </li>
+          <li>
+              <label>发布详细描述:</label>
+              <input class="panel-text w187" type="text" value="">
+           </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary e_publish">发布</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   </body>
 </html>

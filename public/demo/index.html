@@ -10,6 +10,7 @@
 		<div style="width:360px;height:640px;border:3px solid #aaa;position:relative;margin-left:300px" id="cnm">
 		<img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2"></img>
 		<img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="z-index:1;position:absolute;top:50px;right:50px" plane="0" vertical="0"></img>
+		<div style="z-index:2;position:absolute;top:100px;left:100px;width:50px;height:100px;overflow:hidden" plane="0" vertical="0" text="true">ddsa</div>
 			<div class="selector" style="display:none;z-index:9999"></div>
 		</div>
 		<input type="button" id="btn" value="左">
@@ -26,9 +27,34 @@
 </body>
 </html>
 <script type="text/javascript">
-var s;
+var s,te;
 $('#cnm').on('click',function(e){
 	s=Drag(e);
+	if ($(s[0]).attr('text')&&!$('.divtext').length){
+		te = $(s[0])
+		var sty = $(s[0]).attr('style');
+		var text = $('<textarea>');
+		var div = $(s[0]);
+		var plane = $(s[0]).attr('plane')
+		var vertical = $(s[0]).attr('vertical')
+		text.attr('style',sty).val(div.html()).attr('plane',plane).attr('vertical',vertical).attr('class','divtext');
+		div.hide();
+		$('#cnm').append(text)
+		text.focus()
+		 var len = text[0].value.length;
+	    if (document.selection) {
+	        var sel = text[0].createTextRange();
+	        sel.moveStart('character',len);
+	        sel.collapse();
+	        sel.select();
+	    } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
+	        text[0].selectionStart = text[0].selectionEnd = len;
+	    }
+	}else if(te){
+		te.html($('textarea').last().val())
+		te.show()
+		$('textarea').remove()
+	}
 	$('#btn,#btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7').unbind('click')
 	$('#btn').on('click',function(){
 		s.planeLeft();

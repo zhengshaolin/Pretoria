@@ -26,9 +26,11 @@
   <body class="bg_y" style="height:950px;">
   <input type="hidden" id="product_id">
   <input type="hidden" id="page_id" value="p_0">
+  <input type="hidden" id="page_server_id" value="">
   <input type="hidden" id="page_number">
   <input type="hidden" id="element_id" value="p_0_0">
-
+  <input type="hidden" id="element_server_id">
+  <input type="hidden" id="add_type" value="0">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
@@ -62,19 +64,14 @@
         <div class="col-md-6">
           <h1 class="tc"><span class="page-name">页面1</span></h1>
           <div class="page-edit">
-            <div id="v_page_edit cnm">
-               <div>
-                 
-                 
-               </div>
-                <img src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="position:absolute;top:50px;left:50px" plane="2" vertical="2"></img>
-          </div>
-
-          <p class="page-btn">
+              <div id="cnm" style="width:360px;height:640px;border:3px solid #aaa;position:relative;">
+                
+              </div>
+            <p class="page-btn">
             <button class="btn btn-default e_save">保存</button>
             <button class="btn btn-default e_preview">预览</button>
             <button class="btn btn-default e_publish">发布</button>
-          </p>
+            </p>
           </div>
         </div>
 
@@ -84,6 +81,7 @@
                 <li><a href='#tab2' data-toggle='tab'>页面动画</a></li>
                 <li><a href='#tab3' data-toggle='tab'>底图设置</a></li>
                 <li><a href='#tab4' data-toggle='tab'>背景音乐</a></li>
+                <li><a href='#tab6' data-toggle='tab'>页面设置</a></li>
                 <li><a href='#tab5' data-toggle='tab'>作品相关</a></li>
               </ul>              
               <div class='tab-content e_tab_content'>
@@ -93,14 +91,14 @@
                   <ul class="panel">
                     <li>
                       <label>素材名称:</label>
-                      <input class="panel-text w187 update_item" elementype="1" id="d-title" type="text" value="" />
+                      <input class="panel-text w187 update_item" elementype="2" id="d-title" type="text" value="" />
                     </li>
                     <li>
                       <label>素材大小:</label>
                       宽:
-                      <input class="panel-text w55 mr30 update_item" id="d-width" elementype="2" type="text" value="" />
+                      <input class="panel-text w55 mr30 update_item" id="d-width" elementype="2" type="text" value=""/>
                       高:
-                      <input class="panel-text w55 update_item" id="d-height" elementype="2"  type="text" value="" />
+                      <input class="panel-text w55 update_item" id="d-height" elementype="2"  type="text" value=""/>
                     </li>
                     <li>
                       <label>素材位置:</label>
@@ -113,7 +111,7 @@
                         </h6>
                         <div class="fr mt5">
                           左边距:
-                          <input class="panel-text w55 mr30 update_item" type="text"  elementype="2" id="d-d-hshift" value="" />
+                          <input class="panel-text w55 mr30 update_item" type="text"  elementype="2" id="d-hshift" value="" />
                         </div>
                       </div>
                       <div class="panel-body">
@@ -148,9 +146,9 @@
                       <div class="panel-body">
                         <div class="form-group">
                           字体大小:
-                          <select class="click-action ml10">
-                            <option>12</option>
-                            <option>14</option>
+                          <select class="click-action ml10 update_select" elementype="0" id="d-fts">
+                            <option value="12">12</option>
+                            <option value="14">14</option>
                           </select>
                         </div>
                         <div class="form-group">
@@ -171,7 +169,6 @@
                               <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
                               <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
                               <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
-                              <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                           </h6>
                         </div>
                       </div>                      
@@ -226,7 +223,7 @@
                         <p><i class="continue"></i>持续0.5秒</p>
                       </div>
                     </li>
-                    <li class="last">
+                    <li class="last hidden">
                       <label>点击动作:</label>
                       <select class="click-action">
                         <option>跳转页面</option>
@@ -258,34 +255,7 @@
                 <div class='tab-pane' id='tab2'>
                   <div class="tab-content">
                     <h1 class="edit-title"><i class="e-title"></i>页面动画设置<i class="e-close"></i></h1>
-                    <ul class="panel">
-                      <li>
-                        <label>素材1:</label>
-                        <button href='#animate_pop' class="animation-btn" data-toggle='animate_modal'>修改动画</button>
-                        <div class="animation">
-                          <p><i class="delay"></i>延迟0.5秒后出现</p>
-                          <p><i class="fly"></i>左飞入出现</p>
-                          <p><i class="continue"></i>持续0.5秒</p>
-                        </div>
-                      </li>
-                      <li>
-                        <label>素材2:</label>
-                        <button class="animation-btn" >修改动画</button>
-                        <div class="animation">
-                          <p><i class="delay"></i>延迟0.5秒后出现</p>
-                          <p><i class="fly"></i>左飞入出现</p>
-                          <p><i class="continue"></i>持续0.5秒</p>
-                        </div>
-                      </li>
-                      <li class="last">
-                        <label>素材2:</label>
-                        <button class="animation-btn" >修改动画</button>
-                        <div class="animation">
-                          <p><i class="delay"></i>延迟0.5秒后出现</p>
-                          <p><i class="fly"></i>左飞入出现</p>
-                          <p><i class="continue"></i>持续0.5秒</p>
-                        </div>
-                      </li>
+                    <ul class="panel" id="v_page_animate">
                     </ul>
                   </div>
                 </div>
@@ -321,7 +291,7 @@
                       <li>
                         <label>音乐资源:<small class="fn ml10 red">请选择3.5M以下MP3格式</small></label>
                         <div class="panel-body">
-                          <button class="audio-btn e_upload_music">替换音频</button>
+                          <button class="audio-btn" data-toggle="modal" data-target="#musicModel">替换音频</button>
                           <div class="mt10" id="v_upload_music">
                             <p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><span class="ml10">试听资源1</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
                           </div>
@@ -440,6 +410,23 @@
                      </ul>
                   </div>  
                 </div>
+                <div class='tab-pane' id='tab6'>
+                  <div class="tab-content">
+                     <h1 class="edit-title"><i class="e-title"></i>页面动画转换设置<i class="e-close"></i></h1>
+                     <ul class="panel">
+                        <li>
+                          <label>页面切换下一页方式:</label>
+                          <div class="panel-body">
+                            <select class="click-action update_select" elementype="1" id="d-animate_effect">
+                              <option value="flash">flash</option>
+                              <option value="jello">jello</option>
+                              <option value="bounceIn">bounceIn</option>
+                            </select>
+                          </div>
+                        </li>
+                     </ul>
+                  </div>  
+                </div>                
               </div>
         </div>
       </div>
@@ -457,8 +444,10 @@
     <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/form.js" type="text/javascript" charset="utf-8"></script>
-    <!--<script type="text/javascript" src="public/js/drag.js"></script>
-    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>-->
+    <script type="text/javascript" src="public/js/drag.js"></script>
+    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
+
+    <!-- dialog -->
 <div class="modal fade" id="animateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

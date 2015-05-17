@@ -17,16 +17,22 @@
 	"pry":"2",//基数
 	"music_pos":"1",//音乐设置位置
 	"music_option":"1",//音乐设置选择
-	"product_background":"",//底图设置背景
-	"product_background_img":"",//底图设置背景填充
+	"background_type":"",//底图设置背景
+	"background_color":"",//底图设置背景
+	"background_img":"",//底图设置背景填充
 	"pages":[
 			{
 				"_id":"p_1", //场景ID
 				"title":"dfdfdf",//
 				"order":1// 排序
+				"background_type":"0", // 0=color,1=img
+				"background_color":"",
+				"background_img":"",
+				"animate_effect":"slider",//动画效果
 				"elements":[ //场景元素合集
 					{
 						"_id":"p_1_1",//元素ID
+						"title":"素材",
 						"z-index":4//z-index
 						"element_type":"0"//元素类型 0 1 2
 						"width":"300",//element width
@@ -49,7 +55,7 @@
 					},
 					{
 						"id":"p_1_2",//元素ID
-						"type":"0"//元素类型
+						"element_type":"0"//元素类型 0 1 2
 						"width":"300",//element width
 						"height":"300",//element height
 						"palne":"1",//水平
