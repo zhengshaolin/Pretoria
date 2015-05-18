@@ -407,6 +407,9 @@ var Editor = {
                                 $('.d-vertical').removeClass('glyphicon_on');
                                 $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
                                 $('#d-fts').val(obj.fts);
+                                $('#d-animate_effect').val(obj.animate_effect);
+                                $('#d-animate_delay').val(obj.animate_delay);
+                                $('#d-animate_duration').val(obj.animate_duration);
                             };
                         };
 

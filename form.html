@@ -219,9 +219,24 @@
                       <label>动画设置:</label>
                       <button data-toggle="modal" data-target="#animateModel" class="animation-btn">修改动画</button>
                       <div class="animation panel-body">
-                        <p><i class="delay"></i>延迟0.5秒后出现</p>
-                        <p><i class="fly"></i>左飞入出现</p>
-                        <p><i class="continue"></i>持续0.5秒</p>
+                        <p>动画效果<select class="click-action ml10 update_select" elementype="2" id="d-animate_effect">
+                  <option value="0">效果0</option>
+                  <option value="1">效果1</option>
+                  <option value="2">效果2</option>
+                  <option value="3">效果3</option>
+              </select></p>
+                        <p>延迟时间<select class="click-action ml10 update_select" elementype="2" id="d-animate_delay">
+                  <option value="1000">1000毫秒</option>
+                  <option value="2000">2000毫秒</option>
+                  <option value="3000">3000毫秒</option>
+                  <option value="4000">4000毫秒</option>
+              </select></p>
+                        <p>持续时间<select class="click-action ml10 update_select" elementype="2" id="d-animate_duration">
+                  <option value="1000">1000毫秒</option>
+                  <option value="2000">2000毫秒</option>
+                  <option value="3000">3000毫秒</option>
+                  <option value="4000">4000毫秒</option>
+              </select></p>
                       </div>
                     </li>
                     <li class="last hidden">
