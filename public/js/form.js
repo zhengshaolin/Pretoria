@@ -91,6 +91,10 @@ if ($ && jQuery) {
             Editor.update(type,key,val);
     });
 
+    $("#modal").on("click",".update_select", function () { 
+        alert(111);
+    });
+
     $('.e_publish').click(function() {
         Editor.publish();
     });
@@ -171,7 +175,6 @@ $('#cnm').on('mousedown',function(e){
         Editor.update(2,'text',$(this).text());
         Editor.update(2,'z-index',$(this).css('z-index'));
         Editor.update(2,'width',$(this).css('width'));
-        $('#d-width').val($(this).css('width'));
         Editor.update(2,'height',$(this).css('height'));
         Editor.update(2,'horizontal',$(this).attr('plane'));
         Editor.update(2,'vertical',$(this).attr('vertical'));
