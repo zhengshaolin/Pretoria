@@ -43,6 +43,19 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
     });
 
+    $('.d-horizontal').click(function(){
+        var val = $(this).index();
+        $(this).siblings().removeClass('glyphicon_on');
+        $(this).addClass('glyphicon_on');
+        Editor.update(2,'horizontal',val);
+    });
+
+    $('.d-vertical').click(function(){
+        var val = $(this).index();
+        $(this).siblings().removeClass('glyphicon_on');
+        $(this).addClass('glyphicon_on');
+        Editor.update(2,'vertical',val)
+    });
 
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局

@@ -6,7 +6,7 @@ function Drag(e) {
 }
 Drag.prototype.init = function(e) {
     var btn;
-    if (e.target != $('.selector')[0] && e.target != $('#cnm')[0] && e.target != $('.rb')[0] && e.target != $('.rt')[0] && e.target != $('.lt')[0] && e.target != $('.lb')[0]) {
+    if (e.target != $('.selector')[0] && e.target != $('#cnm')[0] && e.target != $('.x_rb')[0] && e.target != $('.x_rt')[0] && e.target != $('.x_lt')[0] && e.target != $('.x_lb')[0]) {
         this.clean();
         this[0] = (function(e) {
             dragcache = e.target;
@@ -39,7 +39,6 @@ Drag.prototype.render = function() {
         stack3 = $('<div style="position:absolute;bottom:-4px;left:-4px;width:8px;height:8px;background:black" class="x_lb"></div>'),
         stack4 = $('<div style="position:absolute;bottom:-4px;right:-4px;width:8px;height:8px;background:black" class="x_rb"></div>');
     if (($('.x_lt').length + $('.x_rt').length + $('.x_lb').length + $('.x_rb').length) == 0) {
-    	console.log(1)
         html.append(stack1).append(stack2).append(stack3).append(stack4)
         html.show()
         this.dragDiv()
@@ -99,6 +98,7 @@ Drag.prototype.dragger = function(btn) {
                 window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
             }
             document.onmousemove = function(e) {
+
                 var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - parseInt(html.css('border')),
                     ty = page.pageY(e) - y - htmltop - $('#cnm').offset().top - parseInt(html.css('border'));
                 if ($(_this).hasClass('x_rb')) {

@@ -84,7 +84,8 @@ var Editor = {
                     console.log(result);
                     if (add_type == 0) {
                         //添加文字素材
-                        $('#cnm').append('<div id="' + page_id + '_' + parseInt($('#cnm').find('.item').length) + '"  class="item" elementype="0" style="z-index:2;position:absolute;top:100px;left:100px;width:50px;height:100px;overflow:hidden" plane="0" vertical="0" text="true">ddsa</div>');
+                        Editor.fetchForm();
+
                     } else if (add_type == 1) {
                         //添加图片素材
                         $('#v_page_list').append();
@@ -362,7 +363,7 @@ var Editor = {
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + ';height:' + obj.height + ';overflow:hidden;font-size:'+obj.fts+'px; color:'+obj.ftc+';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" "text="true">' + obj.text + '</div>');
                         }
                     };
                 }
@@ -401,9 +402,11 @@ var Editor = {
                                 $('#d-height').val(obj.height);
                                 $('#d-hshift').val(obj.hshift);
                                 $('#d-vshift').val(obj.vshift);
+                                $('.d-horizontal').removeClass('glyphicon_on');
                                 $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
+                                $('.d-vertical').removeClass('glyphicon_on');
                                 $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
-                                $('#d-fts').val(data.fts);
+                                $('#d-fts').val(obj.fts);
                             };
                         };
 

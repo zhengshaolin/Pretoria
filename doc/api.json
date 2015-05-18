@@ -52,6 +52,7 @@
 						"slider":"http://1,http://2,http://3,http://4",//轮播
 						"pic":"http://1.jpg",//图片资源
 						"click_action":"1"//点击动作
+						"text":"13132323",
 					},
 					{
 						"id":"p_1_2",//元素ID
