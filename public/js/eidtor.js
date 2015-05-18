@@ -478,14 +478,15 @@ var Editor = {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
             page_id = $('#page_id').val(),
-            page_server_id = $('#page_sever_id').val(),
+            page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
-
         if (page_server_id == '') {
-            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
         };
-
+        if (element_server_id == '') {
+            element_server_id = $('#cnm').find('.item').eq(0).attr('mid');
+        };
         if (type == 0) {
             console.log('update type 0 start');
             console.log('update_product_test sended');
@@ -536,6 +537,7 @@ var Editor = {
             });
         } else if (type == 2) {
             console.log('update_product_test sended');
+            console.log("2343434",page_server_id);
             var data = { 
                     'type': 2,
                     'product_id': product_id,

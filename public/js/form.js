@@ -90,8 +90,8 @@ var s,te;
 $('#cnm').on('click',function(e){
     s=Drag(e);
     s[0].func=function(){
-        $('#element_server_id').val($(this).attr('mid'));
-        $('#element_id').val($(this).attr('eid'));
+        $('#element_server_id').val($(s[0]).attr('mid'));
+        $('#element_id').val($(s[0]).attr('id'));
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -152,9 +152,8 @@ $('#cnm').on('click',function(e){
     })
 })
 $('#cnm').on('mousedown',function(e){
-    $('#element_server_id').val($(this).attr('mid'));
-    $('#element_id').val($(this).attr('eid'));
-    console.log($(this).attr('id'));
+    $('#element_server_id').val($(s[0]).attr('mid'));
+    $('#element_id').val($(s[0]).attr('id'));
         Editor.update(2,'element_type',0);
         Editor.update(2,'text',$(this).text());
         Editor.update(2,'z-index',$(this).css('z-index'));
