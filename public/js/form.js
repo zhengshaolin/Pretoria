@@ -89,8 +89,8 @@ var s,te;
 $('#cnm').on('click',function(e){
     s=Drag(e);
     s[0].func=function(){
-        $('#element_server_id').val($(s[0]).attr('mid'));
-        $('#element_id').val($(s[0]).attr('id'));
+        $('#element_server_id').val($(this).attr('mid'));
+        $('#element_id').val($(this).attr('id'));
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -151,8 +151,16 @@ $('#cnm').on('click',function(e){
     })
 })
 $('#cnm').on('mousedown',function(e){
-    $('#element_server_id').val($(s[0]).attr('mid'));
-    $('#element_id').val($(s[0]).attr('id'));
+    $('#element_server_id').val($(this).attr('mid'));
+    $('#element_id').val($(this).attr('id'));
+        Editor.update(2,'element_type',0);
+        Editor.update(2,'text',$(this).text());
+        Editor.update(2,'z-index',$(this).css('z-index'));
+        Editor.update(2,'width',$(this).css('width'));
+        $('#d-width').val($(this).css('width'));
+        Editor.update(2,'height',$(this).css('height'));
+        Editor.update(2,'horizontal',$(this).attr('plane'));
+        Editor.update(2,'vertical',$(this).attr('vertical'));
     if(e.which==3){
         $(this).smartMenu([[{
             text:'浮动到最上层',

@@ -482,6 +482,10 @@ var Editor = {
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
 
+        if (page_server_id == '') {
+            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+        };
+
         if (type == 0) {
             console.log('update type 0 start');
             console.log('update_product_test sended');

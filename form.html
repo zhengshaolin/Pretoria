@@ -44,7 +44,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navb navbar-nav navbar-right">
             <li class="break-up-r"><i class="list"></i><a href="#">作品列表</a></li>
-            <li class="w120 mr40"><i class="publish"></i><a class="e_publish">发布作品</a></li>
+            <li class="w120 mr40"><i class="publish"></i><a data-toggle="modal" data-target="#publishModel">发布作品</a></li>
             <li class="user"><a href="" target="_blank">王大力</a></li>
             <li><a href="#">退出</a></li>
           </ul>
@@ -70,7 +70,7 @@
             <p class="page-btn">
             <button class="btn btn-default e_save">保存</button>
             <button class="btn btn-default e_preview">预览</button>
-            <button class="btn btn-default e_publish">发布</button>
+            <button class="btn btn-default" data-toggle="modal" data-target="#publishModel">发布</button>
             </p>
           </div>
         </div>
@@ -448,7 +448,33 @@
     <script type="text/javascript" src="public/js/drag.js"></script>
     <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
 
-    <!-- dialog -->
+<!-- dialog -->
+<div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发布设置</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>
+              <label>发布标题设置:</label>
+              <input class="panel-text w187"  type="text" value="">
+           </li>
+          <li>
+              <label>发布详细描述:</label>
+              <input class="panel-text w187" type="text" value="">
+           </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary e_publish">发布</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="animateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
