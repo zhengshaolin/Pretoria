@@ -397,6 +397,9 @@ var Editor = {
 
                                 var obj = data[i].elements[j];
                                 //render operation
+                                $('#d-ftb').removeClass('glyphicon_on');
+                                $('#d-fti').removeClass('glyphicon_on');
+                                $('#d-ftu').removeClass('glyphicon_on');
                                 $('#d-title').val(obj.title);
                                 $('#d-width').val(obj.width);
                                 $('#d-height').val(obj.height);
@@ -406,6 +409,18 @@ var Editor = {
                                 $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
                                 $('.d-vertical').removeClass('glyphicon_on');
                                 $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
+                                console.log(obj.ftb);
+
+                                if (obj.ftb == 1) {
+                                    $('#d-ftb').addClass('glyphicon_on');
+                                };
+                                if (obj.fti == 1) {
+                                    $('#d-fti').addClass('glyphicon_on');
+                                };
+                                if (obj.ftu == 1) {
+                                    $('#d-ftu').addClass('glyphicon_on');
+                                };
+                                $('#d-ftc').val(obj.ftc);
                                 $('#d-fts').val(obj.fts);
                                 $('#d-animate_effect').val(obj.animate_effect);
                                 $('#d-animate_delay').val(obj.animate_delay);

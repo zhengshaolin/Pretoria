@@ -91,6 +91,20 @@ if ($ && jQuery) {
             Editor.update(type,key,val);
     });
 
+    $('.update_span').click(function(){
+        console.log("update span start");
+        $(this).addClass('glyphicon_on');
+        if ($(this).hasClass('glyphicon_on')) {
+            //$(this).removeClass('glyphicon_on');
+            var val = 0;
+        }else{
+            var val = 1;
+        }
+        var type = $(this).attr('elementype'),
+            key = $(this).attr('id').split('-')[1];
+        Editor.update(type,key,val);
+    });
+
     $("#modal").on("click",".update_select", function () { 
         alert(111);
     });
