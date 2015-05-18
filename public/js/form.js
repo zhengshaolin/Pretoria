@@ -187,12 +187,12 @@ $('#cnm').on('mousedown',function(e){
     $('#element_server_id').val($(s[0]).attr('mid'));
     $('#element_id').val($(s[0]).attr('id'));
         Editor.update(2,'element_type',0);
-        Editor.update(2,'text',$(this).text());
-        Editor.update(2,'z-index',$(this).css('z-index'));
-        Editor.update(2,'width',$(this).css('width'));
-        Editor.update(2,'height',$(this).css('height'));
-        Editor.update(2,'horizontal',$(this).attr('plane'));
-        Editor.update(2,'vertical',$(this).attr('vertical'));
+        Editor.update(2,'text',$(s[0]).text());
+        Editor.update(2,'z-index',$(s[0]).css('z-index'));
+        Editor.update(2,'width',$(s[0]).css('width'));
+        Editor.update(2,'height',$(s[0]).css('height'));
+        Editor.update(2,'horizontal',$(s[0]).attr('plane'));
+        Editor.update(2,'vertical',$(s[0]).attr('vertical'));
     if(e.which==3){
         $(this).smartMenu([[{
             text:'浮动到最上层',
