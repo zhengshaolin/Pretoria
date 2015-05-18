@@ -444,7 +444,7 @@ var Editor = {
     renderGlobalInfo: function() {
         console.log('render global method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
-        console.log("sdsd",data);
+        console.log("global info",data);
         if (data != undefined) {
             //box5
             $('#d-product').val(data.product);

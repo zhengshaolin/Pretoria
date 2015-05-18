@@ -71,6 +71,7 @@ if ($ && jQuery) {
         }
     });
     $('.update_select').change(function(){
+        console.log("update select start");
         var type = $(this).attr('elementype'),
             key = $(this).attr('id').split('-')[1];
             val = $(this).children('option:selected').val();
@@ -90,7 +91,7 @@ $('#cnm').on('click',function(e){
     s=Drag(e);
     s[0].func=function(){
         $('#element_server_id').val($(this).attr('mid'));
-        $('#element_id').val($(this).attr('id'));
+        $('#element_id').val($(this).attr('eid'));
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -152,7 +153,8 @@ $('#cnm').on('click',function(e){
 })
 $('#cnm').on('mousedown',function(e){
     $('#element_server_id').val($(this).attr('mid'));
-    $('#element_id').val($(this).attr('id'));
+    $('#element_id').val($(this).attr('eid'));
+    console.log($(this).attr('id'));
         Editor.update(2,'element_type',0);
         Editor.update(2,'text',$(this).text());
         Editor.update(2,'z-index',$(this).css('z-index'));

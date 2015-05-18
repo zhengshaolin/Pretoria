@@ -449,6 +449,7 @@
     <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
 
 <!-- dialog -->
+<!--发布弹窗-->
 <div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -475,6 +476,7 @@
     </div>
   </div>
 </div>
+<!--动画设置弹窗-->
 <div class="modal fade" id="animateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -483,15 +485,44 @@
         <h4 class="modal-title" id="myModalLabel">动画设置</h4>
       </div>
       <div class="modal-body">
-        ...
+        <ul>
+          <li>
+              <label>动画效果设置:</label>
+              <select class="click-action ml10 update_select" elementype="2" id="d-animate_effect">
+                  <option value="0">效果0</option>
+                  <option value="1">效果1</option>
+                  <option value="2">效果2</option>
+                  <option value="3">效果3</option>
+              </select>
+           </li>
+          <li>
+              <label>动画延迟设置:</label>
+              <select class="click-action ml10 update_select" elementype="2" id="d-animate_delay">
+                  <option value="1000">1000毫秒</option>
+                  <option value="2000">2000毫秒</option>
+                  <option value="3000">3000毫秒</option>
+                  <option value="4000">4000毫秒</option>
+              </select>
+           </li>
+          <li>
+              <label>动画持续时间设置:</label>
+              <select class="click-action ml10 update_select" elementype="2" id="d-animate_duration">
+                  <option value="1000">1000毫秒</option>
+                  <option value="2000">2000毫秒</option>
+                  <option value="3000">3000毫秒</option>
+                  <option value="4000">4000毫秒</option>
+              </select>
+           </li>
+        </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存设置</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal"form>保存设置</button>
       </div>
     </div>
   </div>
 </div>
+<!--音乐设置弹窗-->
 <div class="modal fade" id="musicModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -509,6 +540,7 @@
     </div>
   </div>
 </div>
+<!--图片设置弹窗-->
 <div class="modal fade" id="picModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
