@@ -410,7 +410,6 @@ var Editor = {
                                 $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
                                 $('.d-vertical').removeClass('glyphicon_on');
                                 $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
-                                console.log(obj.ftb);
 
                                 if (obj.ftb == 1) {
                                     $('#d-ftb').addClass('glyphicon_on');

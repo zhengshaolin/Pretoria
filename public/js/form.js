@@ -150,49 +150,34 @@ $('#cnm').on('click',function(e){
         te.show()
         $('textarea').remove()
     }
-    $('#btn,#btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7').unbind('click')
-    $('#btn').on('click',function(){
-        s.planeLeft();
-    })
-    $('#btn1').on('click',function(){
-        console.log(s)
-        s.planeMiddle()
-    })
-    $('#btn2').on('click',function(){
-        console.log(s)
-        s.planeRight()
-    })
-    $('#btn3').on('click',function(){
-        console.log(s)
-        s.planeFull()
-    })
-    $('#btn4').on('click',function(){
-        console.log(s)
-        s.verticalTop()
-    })
-    $('#btn5').on('click',function(){
-        console.log(s)
-        s.verticalMiddle()
-    })
-    $('#btn6').on('click',function(){
-        console.log(s)
-        s.verticalBottom()
-    })
-    $('#btn7').on('click',function(){
-        console.log(s)
-        s.verticalFull()
-    })
+
 })
 $('#cnm').on('mousedown',function(e){
     $('#element_server_id').val($(s[0]).attr('mid'));
     $('#element_id').val($(s[0]).attr('id'));
+        setTimeout(function(){
+        var vshift,hshift;
+        if(Math.abs(parseInt($(s[0]).css('top')))+1){
+            vshift = $(s[0]).css('top')
+        }else{
+            vshift = $(s[0]).css('bottom')
+        } 
+        if(Math.abs(parseInt($(s[0]).css('left')))+1){
+            hshift = $(s[0]).css('left')
+        }else{
+            hshift = $(s[0]).css('right')
+        };
         Editor.update(2,'element_type',0);
-        Editor.update(2,'text',$(s[0]).text());
+        Editor.update(2,'text',$(s[0]).html());
         Editor.update(2,'z-index',$(s[0]).css('z-index'));
         Editor.update(2,'width',$(s[0]).css('width'));
         Editor.update(2,'height',$(s[0]).css('height'));
         Editor.update(2,'horizontal',$(s[0]).attr('plane'));
         Editor.update(2,'vertical',$(s[0]).attr('vertical'));
+        Editor.update(2,'vshift',vshift);
+        Editor.update(2,'hshift',hshift);
+        }, 3000)
+
     if(e.which==3){
         $(this).smartMenu([[{
             text:'浮动到最上层',
