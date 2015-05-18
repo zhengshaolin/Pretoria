@@ -303,6 +303,7 @@ var Editor = {
                     Editor.store(JSON.stringify(result));
                     console.log('delete_element_test returned:');
                     console.log(result);
+                    Editor.fetchForm();
                 },
                 error: function(err) {
                     $('#delete_element_test_result').text(JSON.stringify(err));

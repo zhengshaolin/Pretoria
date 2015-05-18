@@ -57,6 +57,7 @@ if ($ && jQuery) {
         Editor.update(2,'vertical',val)
     });
 
+    //可更新ipput
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
@@ -68,6 +69,7 @@ if ($ && jQuery) {
         Editor.update(type,key,val);
     });
 
+    //单选按钮，可更新模块
     $('.update_radio').on('click', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
@@ -83,6 +85,8 @@ if ($ && jQuery) {
             return false;
         }
     });
+
+    //下拉列表，可更新数据模块
     $('.update_select').change(function(){
         console.log("update select start");
         var type = $(this).attr('elementype'),
@@ -90,7 +94,7 @@ if ($ && jQuery) {
             val = $(this).children('option:selected').val();
             Editor.update(type,key,val);
     });
-
+    // update span模块
     $('.update_span').click(function(){
         console.log("update span start");
         $(this).addClass('glyphicon_on');
@@ -104,18 +108,15 @@ if ($ && jQuery) {
             key = $(this).attr('id').split('-')[1];
         Editor.update(type,key,val);
     });
-
-    $("#modal").on("click",".update_select", function () { 
-        alert(111);
-    });
-
+    // 发布
     $('.e_publish').click(function() {
         Editor.publish();
     });
-
+    // 预览
     $('.e_preview').click(function () {
         Editor.preview();
     });
+
 
 var s,te;
 $('#cnm').on('click',function(e){
