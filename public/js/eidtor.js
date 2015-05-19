@@ -364,7 +364,7 @@ var Editor = {
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + ';height:' + obj.height + ';overflow:hidden;font-size:'+obj.fts+'px; color:'+obj.ftc+';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:'+obj.fts+'px; color:'+obj.ftc+';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
                         }
                     };
                 }
