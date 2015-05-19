@@ -14,7 +14,10 @@ Drag.prototype.init = function(e) {
         })(e);
         btn = this.render();
         this.dragger(btn)
-    } else {
+    } else if(e.target == $('#cnm')[0]){
+        this[0] = $('#cnm')[0];
+        $('.selector').hide()
+    }else{
         this[0] = dragcache
     }
 }
