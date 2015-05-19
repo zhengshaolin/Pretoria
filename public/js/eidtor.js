@@ -384,7 +384,6 @@ var Editor = {
             page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
-        console.log("23343434", element_server_id);
         if (page_server_id != '' && element_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             if (data != undefined) {
