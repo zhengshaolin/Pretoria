@@ -2,7 +2,7 @@ var Editor = {
     // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
-        localData.set('token','554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
+        localData.set('token', '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
         window.href.reload();
     },
     //add method for administor creat product,page or elements
@@ -212,7 +212,7 @@ var Editor = {
                 console.log('select_product_test err:');
                 console.log(err);
             }
-        });        
+        });
     },
     //预览
     preview: function() {
@@ -353,25 +353,28 @@ var Editor = {
             page_server_id = $('#page_server_id').val();
         //console.log(page_id);
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
-        if (page_server_id == '') {
-            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-        };
-        $('.page-name').empty().text("页面" + num);
-        $('#cnm').empty();
-        $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
-        if (data != undefined) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i]._id == page_server_id) {
-                    //console.log(data[i].elements);
-                    for (var j = 0; j < data[i].elements.length; j++) {
-                        var obj = data[i].elements[j];
-                        if (obj.element_type == 0) {
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:'+obj.fts+'px; color:'+obj.ftc+';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
-                        }
-                    };
+        if (page_server_id != '') {
+            // var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('.page-name').empty().text("页面" + num);
+            $('#cnm').empty();
+            $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
+            if (data != undefined) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]._id == page_server_id) {
+                        //console.log(data[i].elements);
+                        for (var j = 0; j < data[i].elements.length; j++) {
+                            var obj = data[i].elements[j];
+                            if (obj.element_type == 0) {
+                                $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            }
+                        };
+                    }
                 }
-            }
-        };
+            };
+        } else {
+            return false;
+        }
+
     },
     //绘制右侧的数据中的元素信息
     renderElementInfo: function() {
@@ -382,58 +385,56 @@ var Editor = {
             page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
+            console.log("23343434",element_server_id);
+        if (page_server_id != '' && element_server_id != '') {
+            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            if (data != undefined) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]._id == page_server_id) {
+                        for (var j = 0; j < data[i].elements.length; j++) {
+                            //console.log("sds",element_server_id);
+                            if (data[i].elements[j]._id != undefined || element_server_id != undefined) {
+                                if (data[i].elements[j]._id == element_server_id) {
 
-        if (page_server_id == '') {
-            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-        };
-        if (element_server_id == '') {
-            var element_server_id = $('#cnm').find('.item').eq(0).attr('mid');
-        };
+                                    var obj = data[i].elements[j];
+                                    //render operation
+                                    $('#d-ftb').removeClass('glyphicon_on');
+                                    $('#d-fti').removeClass('glyphicon_on');
+                                    $('#d-ftu').removeClass('glyphicon_on');
+                                    $('#d-title').val(obj.title);
+                                    $('#d-width').val(obj.width);
+                                    $('#d-height').val(obj.height);
+                                    $('#d-hshift').val(obj.hshift);
+                                    $('#d-vshift').val(obj.vshift);
+                                    $('.d-horizontal').removeClass('glyphicon_on');
+                                    $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
+                                    $('.d-vertical').removeClass('glyphicon_on');
+                                    $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
 
-        if (data != undefined) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i]._id == page_server_id) {
-                    for (var j = 0; j < data[i].elements.length; j++) {
-                        //console.log("sds",element_server_id);
-                        if (data[i].elements[j]._id != undefined || element_server_id != undefined) {
-                            if (data[i].elements[j]._id == element_server_id) {
-
-                                var obj = data[i].elements[j];
-                                //render operation
-                                $('#d-ftb').removeClass('glyphicon_on');
-                                $('#d-fti').removeClass('glyphicon_on');
-                                $('#d-ftu').removeClass('glyphicon_on');
-                                $('#d-title').val(obj.title);
-                                $('#d-width').val(obj.width);
-                                $('#d-height').val(obj.height);
-                                $('#d-hshift').val(obj.hshift);
-                                $('#d-vshift').val(obj.vshift);
-                                $('.d-horizontal').removeClass('glyphicon_on');
-                                $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
-                                $('.d-vertical').removeClass('glyphicon_on');
-                                $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
-
-                                if (obj.ftb == 1) {
-                                    $('#d-ftb').addClass('glyphicon_on');
+                                    if (obj.ftb == 1) {
+                                        $('#d-ftb').addClass('glyphicon_on');
+                                    };
+                                    if (obj.fti == 1) {
+                                        $('#d-fti').addClass('glyphicon_on');
+                                    };
+                                    if (obj.ftu == 1) {
+                                        $('#d-ftu').addClass('glyphicon_on');
+                                    };
+                                    $('#d-ftc').val(obj.ftc);
+                                    $('#d-fts').val(obj.fts);
+                                    $('#d-animate_effect').val(obj.animate_effect);
+                                    $('#d-animate_delay').val(obj.animate_delay);
+                                    $('#d-animate_duration').val(obj.animate_duration);
                                 };
-                                if (obj.fti == 1) {
-                                    $('#d-fti').addClass('glyphicon_on');
-                                };
-                                if (obj.ftu == 1) {
-                                    $('#d-ftu').addClass('glyphicon_on');
-                                };
-                                $('#d-ftc').val(obj.ftc);
-                                $('#d-fts').val(obj.fts);
-                                $('#d-animate_effect').val(obj.animate_effect);
-                                $('#d-animate_delay').val(obj.animate_delay);
-                                $('#d-animate_duration').val(obj.animate_duration);
                             };
-                        };
 
-                    };
+                        };
+                    }
                 }
-            }
-        };
+            };
+        } else {
+            return false;
+        }
     },
     //绘制右侧的数据中的页面动画设置
     renderPageAnimate: function() {
@@ -445,20 +446,20 @@ var Editor = {
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
 
-        if (page_server_id == '') {
-            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-        };
-        $('#v_page_animate').empty();
+        if (page_server_id != '') {
+            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_page_animate').empty();
 
-        if (data != undefined) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i]._id == page_server_id) {
-                    
-                    for (var j = 0; j < data[i].elements.length; j++) {
-                        var obj = data[i].elements[j];
-                        $('#v_page_animate').append('<li><label>'+obj.title+':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="'+obj._id+'">修改动画</button><div class="animation"><p><i class="delay"></i>延迟'+obj.animate_effect+'秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟'+obj.animate_delay+'秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟'+obj.animate_duration+'秒后出现</p></div></li>');
+            if (data != undefined) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]._id == page_server_id) {
+
+                        for (var j = 0; j < data[i].elements.length; j++) {
+                            var obj = data[i].elements[j];
+                            $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_effect + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_duration + '秒后出现</p></div></li>');
+                        };
+
                     };
-
                 };
             };
         };
@@ -467,7 +468,7 @@ var Editor = {
     renderGlobalInfo: function() {
         console.log('render global method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
-        console.log("global info",data);
+        console.log("global info", data);
         if (data != undefined) {
             //box5
             $('#d-product').val(data.product);
@@ -496,6 +497,7 @@ var Editor = {
     //type 0 product global element
     //tyoe 1 page element
     //type 2 elements
+    //type 4 drag elements
     update: function(type, key, val) {
         console.log('update method start');
         var token = localData.get('token'),
@@ -513,8 +515,11 @@ var Editor = {
         if (type == 0) {
             console.log('update type 0 start');
             console.log('update_product_test sended');
-            var data = { 'type': 0, 'product_id':product_id};
-                data[key] = val;
+            var data = {
+                'type': 0,
+                'product_id': product_id
+            };
+            data[key] = val;
             $.ajax({
                 type: 'PUT',
                 url: 'http://115.29.32.105:8080/api',
@@ -534,12 +539,12 @@ var Editor = {
             });
         } else if (type == 1) {
             console.log('update_product_test sended');
-            var data = { 
-                    'type': 1,
-                    'product_id': product_id,
-                    'page_id': page_server_id
-                };
-                data[key] = val;
+            var data = {
+                'type': 1,
+                'product_id': product_id,
+                'page_id': page_server_id
+            };
+            data[key] = val;
             $.ajax({
                 type: 'PUT',
                 url: 'http://115.29.32.105:8080/api',
@@ -560,14 +565,14 @@ var Editor = {
             });
         } else if (type == 2) {
             console.log('update_product_test sended');
-            console.log("2343434",page_server_id);
-            var data = { 
-                    'type': 2,
-                    'product_id': product_id,
-                    'page_id': page_server_id,
-                    'element_id': element_server_id
-                };
-                data[key] = val;
+            console.log("2343434", page_server_id);
+            var data = {
+                'type': 2,
+                'product_id': product_id,
+                'page_id': page_server_id,
+                'element_id': element_server_id
+            };
+            data[key] = val;
             $.ajax({
                 type: 'PUT',
                 url: 'http://115.29.32.105:8080/api',
@@ -586,10 +591,37 @@ var Editor = {
                     console.log(err);
                 }
             });
+        } else if (type == 3) {
+            console.log('update_product_test sended');
+            console.log("2343434", page_server_id);
+            var data = {
+                'type': 2,
+                'product_id': product_id,
+                'page_id': page_server_id,
+                'element_id': element_server_id
+            };
+            data[key] = val;
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: data,
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('update drag update returned:');
+                    console.log(result);
+                    Editor.renderElementInfo();
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
         }
     },
-    upPage: function() {
-    },
+    upPage: function() {},
     uplodad: function() {
         return url;
     }

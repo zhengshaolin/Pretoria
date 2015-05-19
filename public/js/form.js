@@ -125,6 +125,7 @@ $('#cnm').on('click',function(e){
     s[0].func=function(){
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
+        Editor.renderArena();
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -168,15 +169,16 @@ $('#cnm').on('mousedown',function(e){
         }else{
             hshift = $(s[0]).css('right')
         };
-        Editor.update(2,'element_type',0);
-        Editor.update(2,'text',$(s[0]).html());
-        Editor.update(2,'z-index',$(s[0]).css('z-index'));
-        Editor.update(2,'width',$(s[0]).css('width'));
-        Editor.update(2,'height',$(s[0]).css('height'));
-        Editor.update(2,'horizontal',$(s[0]).attr('plane'));
-        Editor.update(2,'vertical',$(s[0]).attr('vertical'));
-        Editor.update(2,'vshift',vshift);
-        Editor.update(2,'hshift',hshift);
+        Editor.renderArena();
+        Editor.update(3,'element_type',0);
+        Editor.update(3,'text',$(s[0]).html());
+        Editor.update(3,'z-index',$(s[0]).css('z-index'));
+        Editor.update(3,'width',$(s[0]).css('width'));
+        Editor.update(3,'height',$(s[0]).css('height'));
+        Editor.update(3,'horizontal',$(s[0]).attr('plane'));
+        Editor.update(3,'vertical',$(s[0]).attr('vertical'));
+        Editor.update(3,'vshift',vshift);
+        Editor.update(3,'hshift',hshift);
         }, 3000)
 
     if(e.which==3){
