@@ -353,27 +353,26 @@ var Editor = {
             page_server_id = $('#page_server_id').val();
         //console.log(page_id);
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
-        if (page_server_id != '') {
-            // var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-            $('.page-name').empty().text("页面" + num);
-            $('#cnm').empty();
-            $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
-            if (data != undefined) {
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i]._id == page_server_id) {
-                        //console.log(data[i].elements);
-                        for (var j = 0; j < data[i].elements.length; j++) {
-                            var obj = data[i].elements[j];
-                            if (obj.element_type == 0) {
-                                $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
-                            }
-                        };
-                    }
+        if (page_server_id == '') {
+            var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+        };
+        $('.page-name').empty().text("页面" + num);
+        $('#cnm').empty();
+        $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
+        if (data != undefined) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._id == page_server_id) {
+                    //console.log(data[i].elements);
+                    for (var j = 0; j < data[i].elements.length; j++) {
+                        var obj = data[i].elements[j];
+                        if (obj.element_type == 0) {
+                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                        }
+                    };
                 }
-            };
-        } else {
-            return false;
-        }
+            }
+        };
+
 
     },
     //绘制右侧的数据中的元素信息
@@ -385,7 +384,7 @@ var Editor = {
             page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
-            console.log("23343434",element_server_id);
+        console.log("23343434", element_server_id);
         if (page_server_id != '' && element_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             if (data != undefined) {
