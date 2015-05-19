@@ -109,9 +109,10 @@ if ($ && jQuery) {
         Editor.update(type,key,val);
     });
     // 发布
-    $('.e_publish').click(function() {
+    $('body').on('click','.e_publish',function () {
         Editor.publish();
     });
+
     // 预览
     $('.e_preview').click(function () {
         Editor.preview();
