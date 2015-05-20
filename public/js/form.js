@@ -123,10 +123,53 @@ if ($ && jQuery) {
 var s,te;
 $('#cnm').on('click',function(e){
     s=Drag(e);
+    //console.log(s)
     s[0].func=function(){
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
+        $('#element_server_id').val($(s[0]).attr('mid'));
+    $('#element_id').val($(s[0]).attr('id'));
+        //setTimeout(function(){
+        var vshift,hshift;
+        if(Math.abs(parseInt($(s[0]).css('top')))+1){
+            vshift = $(s[0]).css('top')
+        }else{
+            vshift = $(s[0]).css('bottom')
+        } 
+        if(Math.abs(parseInt($(s[0]).css('left')))+1){
+            hshift = $(s[0]).css('left')
+        }else{
+            hshift = $(s[0]).css('right')
+        };
+        //console.log(vshift,hshift)
         //Editor.renderArena();
+        Editor.update(3,'element_type',0);
+        Editor.update(3,'text',$(s[0]).html());
+        Editor.update(3,'z-index',$(s[0]).css('z-index'));
+        Editor.update(3,'width',parseInt($(s[0]).css('width')));
+        Editor.update(3,'height',parseInt($(s[0]).css('height')));
+        Editor.update(3,'horizontal',$(s[0]).attr('plane'));
+        Editor.update(3,'vertical',$(s[0]).attr('vertical'));
+        Editor.update(3,'vshift',parseInt(vshift));
+        Editor.update(3,'hshift',parseInt(hshift));
+        //Editor.renderArena();
+        //}, 3000)
+
+    if(e.which==3){
+        $(this).smartMenu([[{
+            text:'浮动到最上层',
+            func:function(){
+                //$(s[0]).css('zIndex',)
+            }
+        }],[{
+            text:'删除选中层',
+            func:function(){
+                $(s[0]).remove();
+                $('.selector').hide();
+                Editor.remove(2);
+            }
+        }]],{offsetX:2,offsetY:2,name:''})
+    }
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -155,47 +198,5 @@ $('#cnm').on('click',function(e){
     }
 
 })
-$('#cnm').on('mousedown',function(e){
-    $('#element_server_id').val($(s[0]).attr('mid'));
-    $('#element_id').val($(s[0]).attr('id'));
-        //setTimeout(function(){
-        var vshift,hshift;
-        if(Math.abs(parseInt($(s[0]).css('top')))+1){
-            vshift = $(s[0]).css('top')
-        }else{
-            vshift = $(s[0]).css('bottom')
-        } 
-        if(Math.abs(parseInt($(s[0]).css('left')))+1){
-            hshift = $(s[0]).css('left')
-        }else{
-            hshift = $(s[0]).css('right')
-        };
-        Editor.renderArena();
-        Editor.update(3,'element_type',0);
-        Editor.update(3,'text',$(s[0]).html());
-        Editor.update(3,'z-index',$(s[0]).css('z-index'));
-        Editor.update(3,'width',$(s[0]).css('width'));
-        Editor.update(3,'height',$(s[0]).css('height'));
-        Editor.update(3,'horizontal',$(s[0]).attr('plane'));
-        Editor.update(3,'vertical',$(s[0]).attr('vertical'));
-        Editor.update(3,'vshift',vshift);
-        Editor.update(3,'hshift',hshift);
-        //}, 3000)
 
-    if(e.which==3){
-        $(this).smartMenu([[{
-            text:'浮动到最上层',
-            func:function(){
-                //$(s[0]).css('zIndex',)
-            }
-        }],[{
-            text:'删除选中层',
-            func:function(){
-                $(s[0]).remove();
-                $('.selector').hide();
-                Editor.remove(2);
-            }
-        }]],{offsetX:2,offsetY:2,name:''})
-    }
-});
 };
