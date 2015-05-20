@@ -22,11 +22,10 @@ if ($ && jQuery) {
         $('#element_id').val($(this).attr('id')+'_0');
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
-        
+        Editor.renderArena();
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
-        Editor.renderArena();
         Editor.fetchForm(1);
     });
 
@@ -144,7 +143,7 @@ $('#cnm').on('click',function(e){
             hshift = $(s[0]).css('right')
         };
         //console.log(vshift,hshift)
-        
+        //Editor.renderArena();
         Editor.update(3,'element_type',0);
         Editor.update(3,'text',$(s[0]).html());
         Editor.update(3,'z-index',$(s[0]).css('z-index'));
@@ -180,7 +179,7 @@ $('#cnm').on('click',function(e){
         var div = $(s[0]);
         var plane = $(s[0]).attr('plane')
         var vertical = $(s[0]).attr('vertical')
-        text.attr('style',sty).val(div.html()).attr('plane',plane).attr('vertical',vertical).attr('class','divtext');
+        text.attr('style',sty).val(div.html().replace(/<br>/ig,'\r\n')).attr('plane',plane).attr('vertical',vertical).attr('class','divtext');
         div.hide();
         $('#cnm').append(text)
         text.focus()
@@ -194,7 +193,7 @@ $('#cnm').on('click',function(e){
             text[0].selectionStart = text[0].selectionEnd = len;
         }
     }else if(te){
-        te.html($('textarea').last().val())
+        te.html($('textarea').last().val().replace(/[\r\n]/ig,'<br \/>'))
         te.show()
         $('textarea').remove()
     }
