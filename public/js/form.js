@@ -20,7 +20,8 @@ if ($ && jQuery) {
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
         $('#element_id').val($(this).attr('id')+'_0');
-
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
         Editor.renderArena();
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
@@ -125,7 +126,7 @@ $('#cnm').on('click',function(e){
     s[0].func=function(){
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
-        Editor.renderArena();
+        //Editor.renderArena();
     }
     if ($(s[0]).attr('text')&&!$('.divtext').length){
         te = $(s[0])
@@ -157,7 +158,7 @@ $('#cnm').on('click',function(e){
 $('#cnm').on('mousedown',function(e){
     $('#element_server_id').val($(s[0]).attr('mid'));
     $('#element_id').val($(s[0]).attr('id'));
-        setTimeout(function(){
+        //setTimeout(function(){
         var vshift,hshift;
         if(Math.abs(parseInt($(s[0]).css('top')))+1){
             vshift = $(s[0]).css('top')
@@ -179,7 +180,7 @@ $('#cnm').on('mousedown',function(e){
         Editor.update(3,'vertical',$(s[0]).attr('vertical'));
         Editor.update(3,'vshift',vshift);
         Editor.update(3,'hshift',hshift);
-        }, 3000)
+        //}, 3000)
 
     if(e.which==3){
         $(this).smartMenu([[{

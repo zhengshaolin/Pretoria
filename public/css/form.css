@@ -157,3 +157,5 @@ li.user{margin-left:20px;margin-right:10px;}
 .add-lbPic{width:64px;height:64px;background-color: #e5e5e5;text-align: center; cursor: pointer;}
 
 .bg_y{background: #f0efef;}
+
+.page-list li.active .page-img{border:2px solid #93db70;}
