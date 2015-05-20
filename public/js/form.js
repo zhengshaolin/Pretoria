@@ -22,10 +22,12 @@ if ($ && jQuery) {
         $('#element_id').val($(this).attr('id')+'_0');
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
-        Editor.renderArena();
+        
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
+        Editor.renderArena();
+        Editor.fetchForm(1);
     });
 
     $("#v_page_list").on("click",".e_delete", function () { 
@@ -142,7 +144,7 @@ $('#cnm').on('click',function(e){
             hshift = $(s[0]).css('right')
         };
         //console.log(vshift,hshift)
-        //Editor.renderArena();
+        
         Editor.update(3,'element_type',0);
         Editor.update(3,'text',$(s[0]).html());
         Editor.update(3,'z-index',$(s[0]).css('z-index'));

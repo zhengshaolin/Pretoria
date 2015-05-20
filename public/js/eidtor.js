@@ -86,7 +86,7 @@ var Editor = {
                     console.log(result);
                     if (add_type == 0) {
                         //添加文字素材
-                        Editor.fetchForm();
+                        Editor.fetchForm(0);
 
                     } else if (add_type == 1) {
                         //添加图片素材
@@ -133,11 +133,12 @@ var Editor = {
         });
     },
     //获取表单信息
-    fetchForm: function() {
+    fetchForm: function(type) {
         console.log('fetchForm method start');
         var token = localData.get('token'),
             product_id = $('#product_id').val();
-        $.ajax({
+        if (type == 0) {
+            $.ajax({
             type: 'GET',
             url: 'http://115.29.32.105:8080/api',
             data: {
@@ -169,7 +170,43 @@ var Editor = {
                 console.log('fetchForm err:');
                 console.log(err);
             }
-        });
+            });
+        }else if(type == 1){
+            $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/api',
+            data: {
+                'type': 0,
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                console.log('fetchForm returned');
+                console.log(products);
+                //保存数据到本地
+                Editor.store(JSON.stringify(products));
+                //渲染左侧列表
+                //Editor.renderPage();
+                //渲染中间操作层
+                Editor.renderArena();
+                //渲染右侧页面元素元素信息
+                Editor.renderPageAnimate();
+                //渲染右侧元素元素信息
+                Editor.renderElementInfo();
+                //无参数，渲染右侧产品公共信息
+                Editor.renderGlobalInfo();
+            },
+            error: function(err) {
+                // $('#select_product_test_result').text(JSON.stringify(err));
+                console.log('fetchForm err:');
+                console.log(err);
+            }
+            });            
+        }
+
     },
     //初始化列表页
     initList: function() {
@@ -183,7 +220,7 @@ var Editor = {
     initForm: function() {
         $('#product_id').val(window.location.href.split('?')[1].split('=')[1]);
         if (localData.get('token') != null) {
-            this.fetchForm();
+            this.fetchForm(0);
         } else {
             this.auth();
         }
@@ -204,8 +241,10 @@ var Editor = {
             },
             success: function(products) {
                 console.log('fetchList returned');
-                console.log(products);
-                alert('发布成功');
+                console.log(products.path);
+                $('#publishModel').modal('hide');
+                alert("发布地址为:" +products.path);
+                //alert('发布成功')
                 //Editor.renderList(products);
             },
             error: function(err) {
@@ -305,7 +344,7 @@ var Editor = {
                     Editor.store(JSON.stringify(result));
                     console.log('delete_element_test returned:');
                     console.log(result);
-                    Editor.fetchForm();
+                    Editor.fetchForm(0);
                 },
                 error: function(err) {
                     $('#delete_element_test_result').text(JSON.stringify(err));
@@ -368,7 +407,7 @@ var Editor = {
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + ';left:' + obj.hshift + ';width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
                         }
                     };
                 }
@@ -556,7 +595,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm();
+                    Editor.fetchForm(0);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
@@ -584,7 +623,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm();
+                    Editor.fetchForm(0);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
