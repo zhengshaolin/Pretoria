@@ -3,8 +3,7 @@ var Editor = {
     auth: function() {
         console.log('auth method start');
         localData.set('token', '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
-        //window.href.reload();
-        this.fetchForm();
+        window.location.reload();
     },
     //add method for administor creat product,page or elements
     //type 0 product
