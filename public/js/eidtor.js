@@ -408,6 +408,10 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                        }else if(obj.element_type == 1){
+                            $('#cnm').append('<img src="'+obj.pic+'" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
+                        }else if(obj.element_type == 2){
+                         $('#cnm').append('<img src="'+obj.pic+'" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
                         }
                     };
                 }
