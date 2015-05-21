@@ -129,32 +129,67 @@ $('#cnm').on('click',function(e){
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
         $('#element_server_id').val($(s[0]).attr('mid'));
-    $('#element_id').val($(s[0]).attr('id'));
+        $('#element_id').val($(s[0]).attr('id'));
         //setTimeout(function(){
-        var vshift,hshift;
-        if(Math.abs(parseInt($(s[0]).css('top')))+1){
-            vshift = $(s[0]).css('top')
-        }else{
-            vshift = $(s[0]).css('bottom')
-        } 
-        if(Math.abs(parseInt($(s[0]).css('left')))+1){
-            hshift = $(s[0]).css('left')
-        }else{
-            hshift = $(s[0]).css('right')
-        };
-        //console.log(vshift,hshift)
-        //Editor.renderArena();
-        Editor.update(3,'element_type',0);
-        Editor.update(3,'text',$(s[0]).html());
-        Editor.update(3,'z-index',$(s[0]).css('z-index'));
-        Editor.update(3,'width',parseInt($(s[0]).css('width')));
-        Editor.update(3,'height',parseInt($(s[0]).css('height')));
-        Editor.update(3,'horizontal',$(s[0]).attr('plane'));
-        Editor.update(3,'vertical',$(s[0]).attr('vertical'));
-        Editor.update(3,'vshift',parseInt(vshift));
-        Editor.update(3,'hshift',parseInt(hshift));
-        //Editor.renderArena();
-        //}, 3000)
+
+        var vshift,hshift,
+            element = $s[0].attr('elementype');
+        if (element == 0) {
+            //文字元素
+            if(Math.abs(parseInt($(s[0]).css('top')))+1){
+                vshift = $(s[0]).css('top')
+            }else{
+                vshift = $(s[0]).css('bottom')
+            } 
+            if(Math.abs(parseInt($(s[0]).css('left')))+1){
+                hshift = $(s[0]).css('left')
+            }else{
+                hshift = $(s[0]).css('right')
+            };
+            $('.d_0').show();
+            $('.d_1').hide();
+            $('.d_2').hide();
+            //console.log(vshift,hshift)
+            //Editor.renderArena();
+            Editor.update(3,'element_type',0);
+            Editor.update(3,'text',$(s[0]).html());
+            Editor.update(3,'z-index',$(s[0]).css('z-index'));
+            Editor.update(3,'width',parseInt($(s[0]).css('width')));
+            Editor.update(3,'height',parseInt($(s[0]).css('height')));
+            Editor.update(3,'horizontal',$(s[0]).attr('plane'));
+            Editor.update(3,'vertical',$(s[0]).attr('vertical'));
+            Editor.update(3,'vshift',parseInt(vshift));
+            Editor.update(3,'hshift',parseInt(hshift));           
+        }else if(elemntype == 1){
+            //图片元素
+            $('.d_0').hide();
+            $('.d_1').show();
+            $('.d_2').hide();
+            Editor.update(3,'element_type',1);
+            //Editor.update(3,'text',$(s[0]).html());
+            Editor.update(3,'z-index',$(s[0]).css('z-index'));
+            Editor.update(3,'width',parseInt($(s[0]).css('width')));
+            Editor.update(3,'height',parseInt($(s[0]).css('height')));
+            Editor.update(3,'horizontal',$(s[0]).attr('plane'));
+            Editor.update(3,'vertical',$(s[0]).attr('vertical'));
+            Editor.update(3,'vshift',parseInt(vshift));
+            Editor.update(3,'hshift',parseInt(hshift));
+        }else if(elementype == 2){
+            //轮播元素
+            Editor.update(3,'element_type',2);
+            //Editor.update(3,'text',$(s[0]).html());
+            Editor.update(3,'z-index',$(s[0]).css('z-index'));
+            Editor.update(3,'width',parseInt($(s[0]).css('width')));
+            Editor.update(3,'height',parseInt($(s[0]).css('height')));
+            Editor.update(3,'horizontal',$(s[0]).attr('plane'));
+            Editor.update(3,'vertical',$(s[0]).attr('vertical'));
+            Editor.update(3,'vshift',parseInt(vshift));
+            Editor.update(3,'hshift',parseInt(hshift));
+            $('.d_0').hide();
+            $('.d_1').hide();
+            $('.d_2').show();
+        }
+
 
     if(e.which==3){
         $(this).smartMenu([[{
