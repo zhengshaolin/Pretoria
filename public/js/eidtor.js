@@ -105,7 +105,7 @@ var Editor = {
                     console.log(err);
                 }
             });
-        } else if (type == 3){
+        } else if (type == 3) {
             //创建图片
             console.log('create element word sended');
             if (page_server_id == '') {
@@ -118,7 +118,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'element_type':1
+                    'element_type': 1
                 },
                 dataType: 'json',
                 headers: {
@@ -135,7 +135,7 @@ var Editor = {
                     console.log(err);
                 }
             });
-        } else if (type == 4){
+        } else if (type == 4) {
             //创建轮播
             console.log('create element word sended');
             if (page_server_id == '') {
@@ -148,7 +148,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'element_type':2
+                    'element_type': 2
                 },
                 dataType: 'json',
                 headers: {
@@ -164,7 +164,7 @@ var Editor = {
                     console.log('create_element_test err:');
                     console.log(err);
                 }
-            });            
+            });
         }
     },
     downPage: function() {
@@ -202,72 +202,72 @@ var Editor = {
             product_id = $('#product_id').val();
         if (type == 0) {
             $.ajax({
-            type: 'GET',
-            url: 'http://115.29.32.105:8080/api',
-            data: {
-                'type': 0,
-                'product_id': product_id
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': token
-            },
-            success: function(products) {
-                console.log('fetchForm returned');
-                console.log(products);
-                //保存数据到本地
-                Editor.store(JSON.stringify(products));
-                //渲染左侧列表
-                Editor.renderPage();
-                //渲染中间操作层
-                Editor.renderArena();
-                //渲染右侧页面元素元素信息
-                Editor.renderPageAnimate();
-                //渲染右侧元素元素信息
-                Editor.renderElementInfo();
-                //无参数，渲染右侧产品公共信息
-                Editor.renderGlobalInfo();
-            },
-            error: function(err) {
-                // $('#select_product_test_result').text(JSON.stringify(err));
-                console.log('fetchForm err:');
-                console.log(err);
-            }
+                type: 'GET',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 0,
+                    'product_id': product_id
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(products) {
+                    console.log('fetchForm returned');
+                    console.log(products);
+                    //保存数据到本地
+                    Editor.store(JSON.stringify(products));
+                    //渲染左侧列表
+                    Editor.renderPage();
+                    //渲染中间操作层
+                    Editor.renderArena();
+                    //渲染右侧页面元素元素信息
+                    Editor.renderPageAnimate();
+                    //渲染右侧元素元素信息
+                    Editor.renderElementInfo();
+                    //无参数，渲染右侧产品公共信息
+                    Editor.renderGlobalInfo();
+                },
+                error: function(err) {
+                    // $('#select_product_test_result').text(JSON.stringify(err));
+                    console.log('fetchForm err:');
+                    console.log(err);
+                }
             });
-        }else if(type == 1){
+        } else if (type == 1) {
             $.ajax({
-            type: 'GET',
-            url: 'http://115.29.32.105:8080/api',
-            data: {
-                'type': 0,
-                'product_id': product_id
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': token
-            },
-            success: function(products) {
-                console.log('fetchForm returned');
-                console.log(products);
-                //保存数据到本地
-                Editor.store(JSON.stringify(products));
-                //渲染左侧列表
-                //Editor.renderPage();
-                //渲染中间操作层
-                Editor.renderArena();
-                //渲染右侧页面元素元素信息
-                Editor.renderPageAnimate();
-                //渲染右侧元素元素信息
-                Editor.renderElementInfo();
-                //无参数，渲染右侧产品公共信息
-                Editor.renderGlobalInfo();
-            },
-            error: function(err) {
-                // $('#select_product_test_result').text(JSON.stringify(err));
-                console.log('fetchForm err:');
-                console.log(err);
-            }
-            });            
+                type: 'GET',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 0,
+                    'product_id': product_id
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(products) {
+                    console.log('fetchForm returned');
+                    console.log(products);
+                    //保存数据到本地
+                    Editor.store(JSON.stringify(products));
+                    //渲染左侧列表
+                    //Editor.renderPage();
+                    //渲染中间操作层
+                    Editor.renderArena();
+                    //渲染右侧页面元素元素信息
+                    Editor.renderPageAnimate();
+                    //渲染右侧元素元素信息
+                    Editor.renderElementInfo();
+                    //无参数，渲染右侧产品公共信息
+                    Editor.renderGlobalInfo();
+                },
+                error: function(err) {
+                    // $('#select_product_test_result').text(JSON.stringify(err));
+                    console.log('fetchForm err:');
+                    console.log(err);
+                }
+            });
         }
 
     },
@@ -306,7 +306,7 @@ var Editor = {
                 console.log('fetchList returned');
                 console.log(products.path);
                 $('#publishModel').modal('hide');
-                alert("发布地址为:" +products.path);
+                alert("发布地址为:" + products.path);
                 //alert('发布成功')
                 //Editor.renderList(products);
             },
@@ -466,7 +466,7 @@ var Editor = {
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id == page_server_id) {
                     //console.log(data[i].elements);
-                    $('#cnm').css('background-color',data[i].background_color);
+                    $('#cnm').css('background-color', data[i].background_color);
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
@@ -477,10 +477,10 @@ var Editor = {
                             //font-weight
                             //font-style
                             $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;text-align:center;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
-                        }else if(obj.element_type == 1){
-                            $('#cnm').append('<img src="'+obj.pic+'" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
-                        }else if(obj.element_type == 2){
-                         $('#cnm').append('<img src="'+obj.pic+'" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
+                        } else if (obj.element_type == 1) {
+                            $('#cnm').append('<img src="' + obj.pic + '" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
+                        } else if (obj.element_type == 2) {
+                            $('#cnm').append('<img src="' + obj.pic + '" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
                         }
                     };
                 }
@@ -567,8 +567,8 @@ var Editor = {
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i]._id == page_server_id) {
-                            $("input[name='background_type']")[data[i].background_type].checked = true;
-                            $('#d-background_color').val(data[i].background_color);
+                        $("input[name='background_type']")[data[i].background_type].checked = true;
+                        $('#d-background_color').val(data[i].background_color);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
 
@@ -581,31 +581,30 @@ var Editor = {
         };
     },
     //绘制图片库
-    renderPicBox:function() {
+    renderPicBox: function() {
+        console.log("render picbox start");
+        var product_id = $('#product_id').val(),
+            token = localData.get('token');
         $.ajax({
-                type: 'POST',
-                url: 'http://115.29.32.105:8080/api',
-                data: {
-                    'type': 2,
-                    'product_id': product_id,
-                    'page_id': page_server_id,
-                    'element_type':2
-                },
-                dataType: 'json',
-                headers: {
-                    'Access-Token': token
-                },
-                success: function(result) {
-                    console.log('create_element_test returned:');
-                    console.log(result);
-                    Editor.fetchForm(0);
-                },
-                error: function(err) {
-                    $('#create_element_test_result').text(JSON.stringify(err));
-                    console.log('create_element_test err:');
-                    console.log(err);
-                }
-        });  
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/api',
+            data: {
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                //v_pic_box
+                console.log('select_product_test returned:');
+                console.log(products);
+            },
+            error: function(err) {
+                console.log('select_product_test err:');
+                console.log(err);
+            }
+        });
     },
     //绘制右侧的数据中的产品信息
     renderGlobalInfo: function() {
