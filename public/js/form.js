@@ -311,81 +311,36 @@ if ($ && jQuery) {
             $('textarea').remove()
         }
     });
-    $.fn.ajaxUpload = function(options) {
-        var that = $(this),
-            tarImg = options.tarimg || '',
-            action = options.action || 'upload',
-            name = options.name || 'Filename',
-            genre = options.genre || 'img',
-            size = options.size || 2048 * 1024,
-            type = options.type || 'logo',
-            data = options.data || {
-                'product_id': $('#product_id').val(),
-                'access_token': localData.get('token')
-            },
-            arrType = { //for picture appear
-                'picture': $("#pictureUpload").find("img"),
-                'logo': $("[rel='img-target-logo']"),
-                'card': $("[rel='img-target']"),
-                'avatar': $("[rel='img-target-avatar']"),
-                'album': $("[rel='img-taget-album']")
-            },
-            text = that.text();
-        new AjaxUpload(that, {
-            action: action,
-            name: name,
-            data: data,
-            validation: {
-                sizeLimit: size
-            },
-            onSubmit: function(file, extension) {
-                that.val('loading...');
-                that.attr('disabled', 'disabled');
-                tarImg = arrType[type];
-                if (genre === 'img') {
-                    if (extension && /^(jpg|png|mep3|gif|JPG|PNG|GIF)$/.test(extension)) {
-                        if (type === 'picture') {
-                            var activeCount = tarImg.length;
-                            if (activeCount === 8) {
-                                alert('您已上传了截图');
-                                that.text(text);
-                                that.removeAttr('disabled');
-                                return false;
-                            }
-                        }
-                    } else {
-                        alert('上传的图片仅限gif,jpg,png!');
-                        that.text(text);
-                        that.removeAttr('disabled');
-                        return false;
-                    }
-                }
-                return true;
-            },
-            onComplete: function(file, res) {
-                that.val('选择图片');
-                if (typeof res == 'object')
-                    res = res;
-                else
-                    res = $.parseJSON(res);
-                that.removeAttr('disabled');
-                options.callback.call(this, res);
-            }
-        });
-    };
-    // $('.e_uplodad').ajaxUpload({
-    //      action:'http://115.29.32.105:8080/upload',
-    //      callback:function(res) {
-    //         console.log("121212",res);
-    //      }
-    // });
-    $(document).on('click','.e_uplodad',function () {
+    var uploader = WebUploader.create({
+    swf: 'public/js/Webuploader/Uploader.swf',
+    // 文件接收服务端。
+    server: 'http://115.29.32.105:8080/upload',
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: '#picker',
+    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    resize: false,
+    accept: {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png',
+        mimeTypes: 'image/*'
+    }
+});
+    uploader.on( 'fileQueued', function( file ) {
+        console.log(file)
+    $list.append( '<div id="' + file.product_id + '" class="item">' +
+        '<h4 class="info">' + file.access_token + '</h4>' +
+        '<p class="state">等待上传...</p>' +
+    '</div>' );
+});
 
-        $(this).ajaxUpload({
-         action:'http://115.29.32.105:8080/upload',
-         callback:function(res) {
-            console.log("121212",res);
-         }
-        });
-    })
+    uploader.on( 'uploadSuccess', function( file ) {
+    $( '#'+file.id ).find('p.state').text('已上传');
+});
+
+uploader.on( 'uploadError', function( file ) {
+    $( '#'+file.id ).find('p.state').text('上传出错');
+});
+
+
 };

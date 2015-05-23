@@ -444,7 +444,8 @@
     <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript" src="public/js/drag.js"></script>
     <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
-    <script type="text/javascript" src="public/js/ajaxUpload.js"></script>
+    <link type="text/css" href="public/js/webuploader/webuploader.css"></link>
+    <script type="text/javascript" src="public/js/webuploader/webuploader.js"></script>
     <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/form.js" type="text/javascript" charset="utf-8"></script>
@@ -551,7 +552,15 @@
         <h4 class="modal-title" id="myModalLabel">替换图片</h4>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary e_uplodad">上传图片</button>
+        <div id="uploader" class="wu-example">
+    <!--用来存放文件信息-->
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+        <button id="ctlBtn" class="btn btn-default e_upload">开始上传</button>
+    </div>
+</div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

@@ -580,6 +580,33 @@ var Editor = {
             };
         };
     },
+    //绘制图片库
+    renderPicBox:function() {
+        $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 2,
+                    'product_id': product_id,
+                    'page_id': page_server_id,
+                    'element_type':2
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('create_element_test returned:');
+                    console.log(result);
+                    Editor.fetchForm(0);
+                },
+                error: function(err) {
+                    $('#create_element_test_result').text(JSON.stringify(err));
+                    console.log('create_element_test err:');
+                    console.log(err);
+                }
+        });  
+    },
     //绘制右侧的数据中的产品信息
     renderGlobalInfo: function() {
         console.log('render global method start');
