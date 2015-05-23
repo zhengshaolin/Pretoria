@@ -384,7 +384,7 @@ var Editor = {
         };
         $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
     },
-    //绘制中间操作区
+    //绘制中间操作区,不存在，新增或者初始化
     renderArena: function() {
         console.log('render arena method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
@@ -407,7 +407,13 @@ var Editor = {
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            var template;
+                            //水平 2 取right
+                            //垂直 2 取bottom
+                            //text-align
+                            //font-weight
+                            //font-style
+                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;text-align:center;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
                         }else if(obj.element_type == 1){
                             $('#cnm').append('<img src="'+obj.pic+'" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
                         }else if(obj.element_type == 2){
