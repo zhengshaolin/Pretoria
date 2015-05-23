@@ -45,38 +45,19 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
     });
 
-    //水平
-    $('.d-horizontal').click(function(){
+    $('.d-horizontal').click(function() {
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (val == 0) {
-            s.planeLeft();
-        }else if(val ==1){
-            s.planeMiddle()
-        }else if(val == 2){
-            s.planeRight()
-        }else if(val == 3){
-            s.planeFull();
-        }
-        Editor.update(2,'horizontal',val);
+        Editor.update(2, 'horizontal', val);
     });
-    //垂直
-    $('.d-vertical').click(function(){
+
+    $('.d-vertical').click(function() {
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (val == 0) {
-            s.verticalTop();
-        }else if(val ==1){
-            s.verticalMiddle();
-        }else if(val == 2){
-            s.verticalBottom();
-        }else if(val == 3){
-            s.verticalFull();
-        }
-        Editor.update(2,'vertical',val)
-
+        Editor.update(2, 'vertical', val)
+    });
 
     //可更新ipput
     $('.update_item').on('blur', function() {

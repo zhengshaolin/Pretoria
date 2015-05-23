@@ -44,7 +44,7 @@ if ($ && jQuery) {
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
     });
-
+<<<<<<< HEAD
     //水平
     $('.d-horizontal').click(function(){
         var val = $(this).index();
@@ -76,7 +76,22 @@ if ($ && jQuery) {
             s.verticalFull();
         }
         Editor.update(2,'vertical',val)
+=======
 
+    $('.d-horizontal').click(function() {
+        var val = $(this).index();
+        $(this).siblings().removeClass('glyphicon_on');
+        $(this).addClass('glyphicon_on');
+        Editor.update(2, 'horizontal', val);
+    });
+
+    $('.d-vertical').click(function() {
+        var val = $(this).index();
+        $(this).siblings().removeClass('glyphicon_on');
+        $(this).addClass('glyphicon_on');
+        Editor.update(2, 'vertical', val)
+>>>>>>> bdd35a7b1f224fb4c713d14a7eac663f4f7fd104
+    });
 
     //可更新ipput
     $('.update_item').on('blur', function() {
