@@ -76,7 +76,7 @@ if ($ && jQuery) {
             s.verticalFull();
         }
         Editor.update(2,'vertical',val)
-
+    });
 
     //可更新ipput
     $('.update_item').on('blur', function() {
@@ -139,9 +139,7 @@ if ($ && jQuery) {
         Editor.preview();
     });
 
-    $('.e_uplodad').ajaxUpload({
-        action:'http://115.29.32.105:8080/upload'
-    });
+
 
 
     var s, te;
@@ -156,7 +154,7 @@ if ($ && jQuery) {
             //setTimeout(function(){
 
             var vshift, hshift,
-                element = $s[0].attr('elementype');
+                element = $(s[0]).attr('elementype');
             if (element == 0) {
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
@@ -262,7 +260,7 @@ if ($ && jQuery) {
             te.show()
             $('textarea').remove()
         }
-    })
+    });
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
             tarImg = options.tarimg || '',
@@ -324,5 +322,8 @@ if ($ && jQuery) {
                 options.callback.call(this, res);
             }
         });
-    }
+    };
+    // $('.e_uplodad').ajaxUpload({
+    //     action:'http://115.29.32.105:8080/upload'
+    // });
 };
