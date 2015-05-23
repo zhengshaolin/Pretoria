@@ -26,7 +26,6 @@ if ($ && jQuery) {
         Editor.publish();
     });
 
-
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性

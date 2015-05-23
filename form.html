@@ -37,8 +37,8 @@
           <ul class="navb navbar-nav navbar-right">
             <li class="yl"><i  class="yulan"></i><a href="#">预览</a></li>
             <li class="break-up"><i class="add-text"></i><a class="e_creat" type="2" element="0">添加文本素材</a></li>
-            <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="2" element="1">添加图片素材</a></li>
-            <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="2" element="2">添加轮播素材</a></li>
+            <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="3" element="1">添加图片素材</a></li>
+            <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="4" element="2">添加轮播素材</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -217,26 +217,11 @@
                     </li>
                     <li>
                       <label>动画设置:</label>
-                      <button data-toggle="modal" data-target="#animateModel" class="animation-btn hidden">修改动画</button>
+                      <button class="animation-btn e_store_animate">修改动画</button>
                       <div class="animation panel-body">
-                        <p>动画效果<select class="click-action ml10 update_select" elementype="2" id="d-animate_effect">
-                  <option value="0">效果0</option>
-                  <option value="1">效果1</option>
-                  <option value="2">效果2</option>
-                  <option value="3">效果3</option>
-              </select></p>
-                        <p>延迟时间<select class="click-action ml10 update_select" elementype="2" id="d-animate_delay">
-                  <option value="1000">1000毫秒</option>
-                  <option value="2000">2000毫秒</option>
-                  <option value="3000">3000毫秒</option>
-                  <option value="4000">4000毫秒</option>
-              </select></p>
-                        <p>持续时间<select class="click-action ml10 update_select" elementype="2" id="d-animate_duration">
-                  <option value="1000">1000毫秒</option>
-                  <option value="2000">2000毫秒</option>
-                  <option value="3000">3000毫秒</option>
-                  <option value="4000">4000毫秒</option>
-              </select></p>
+                        <p>动画效果<span class="d-animate_effect"></span></p>
+                        <p>延迟时间<span class="d-animate_delay"></span></p>
+                        <p>持续时间<span class="d-animate_duration"></span></p>
                       </div>
                     </li>
                     <li class="last hidden">
@@ -457,12 +442,13 @@
     <script src="public/bootstrap/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
-
+<script type="text/javascript" src="public/js/drag.js"></script>
+    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
+    <script type="text/javascript" src="public/js/ajaxUpload.js"></script>
     <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
     <script src="public/js/form.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="public/js/drag.js"></script>
-    <script type="text/javascript" src="public/js/jquery-smartMenu.js"></script>
+    
 
 <!-- dialog -->
 <!--发布弹窗-->
@@ -504,7 +490,7 @@
         <ul>
           <li>
               <label>动画效果设置:</label>
-              <select class="click-action ml10 update_select" elementype="2" id="d-animate_effect">
+              <select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect">
                   <option value="slide">slide</option>
                   <option value="flash">flash</option>
                   <option value="jello">jello</option>
@@ -513,7 +499,7 @@
            </li>
           <li>
               <label>动画延迟设置:</label>
-              <select class="click-action ml10 update_select" elementype="2" id="d-animate_delay">
+              <select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay">
                   <option value="1000">1000毫秒</option>
                   <option value="2000">2000毫秒</option>
                   <option value="3000">3000毫秒</option>
@@ -522,7 +508,7 @@
            </li>
           <li>
               <label>动画持续时间设置:</label>
-              <select class="click-action ml10 update_select" elementype="2" id="d-animate_duration">
+              <select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration">
                   <option value="1000">1000毫秒</option>
                   <option value="2000">2000毫秒</option>
                   <option value="3000">3000毫秒</option>
@@ -565,11 +551,11 @@
         <h4 class="modal-title" id="myModalLabel">替换图片</h4>
       </div>
       <div class="modal-body">
-        ...
+        <button type="button" class="btn btn-primary e_uplodad">上传图片</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存设置</button>
+        <button type="button" class="btn btn-primary e_store_pic">保存设置</button>
       </div>
     </div>
   </div>

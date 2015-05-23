@@ -42,6 +42,8 @@ var Editor = {
             });
         } else if (type == 1) {
             console.log('create_page_test sended');
+            //图片弹出框出现
+
             $.ajax({
                 type: 'POST',
                 url: 'http://115.29.32.105:8080/api',
@@ -65,7 +67,8 @@ var Editor = {
                 }
             });
         } else if (type == 2) {
-            console.log('create_element_test sended');
+            //创建文字
+            console.log('create element word sended');
             if (page_server_id == '') {
                 var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             };
@@ -102,6 +105,66 @@ var Editor = {
                     console.log(err);
                 }
             });
+        } else if (type == 3){
+            //创建图片
+            console.log('create element word sended');
+            if (page_server_id == '') {
+                var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            };
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 2,
+                    'product_id': product_id,
+                    'page_id': page_server_id,
+                    'element_type':1
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('create_element_test returned:');
+                    console.log(result);
+                    Editor.fetchForm(0);
+                },
+                error: function(err) {
+                    $('#create_element_test_result').text(JSON.stringify(err));
+                    console.log('create_element_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type == 4){
+            //创建轮播
+            console.log('create element word sended');
+            if (page_server_id == '') {
+                var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            };
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 2,
+                    'product_id': product_id,
+                    'page_id': page_server_id,
+                    'element_type':2
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('create_element_test returned:');
+                    console.log(result);
+                    Editor.fetchForm(0);
+                },
+                error: function(err) {
+                    $('#create_element_test_result').text(JSON.stringify(err));
+                    console.log('create_element_test err:');
+                    console.log(err);
+                }
+            });            
         }
     },
     downPage: function() {
@@ -467,11 +530,15 @@ var Editor = {
                                     if (obj.ftu == 1) {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
+                                    //console.log("232323",obj.animate_effect);
                                     $('#d-ftc').val(obj.ftc);
                                     $('#d-fts').val(obj.fts);
-                                    $('#d-animate_effect').val(obj.animate_effect);
-                                    $('#d-animate_delay').val(obj.animate_delay);
+                                    $('.d-animate_effect').val(obj.animate_effect);
+                                    $('.d-animate_effect').html(obj.animate_effect);
+                                    $('.d-animate_delay').val(obj.animate_delay);
+                                    $('.d-animate_delay').html(obj.animate_delay);
                                     $('#d-animate_duration').val(obj.animate_duration);
+                                    $('#d-animate_duration').html(obj.animate_duration);
                                 };
                             };
 

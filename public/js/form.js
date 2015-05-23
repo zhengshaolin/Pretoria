@@ -13,7 +13,13 @@ if ($ && jQuery) {
         var type = $(this).attr('type'),
             element = $(this).attr('element');
         $('#add_type').val(element);
-        Editor.add(type);
+        if(element == 0){
+            Editor.add(type);
+        }else if(element == 1){
+            $('#picModel').modal('show');
+        }else if(element == 2){
+            $('#picModel').modal('show');
+        }
     });
 
     $("#v_page_list").on("click", "li", function() {
@@ -108,13 +114,15 @@ if ($ && jQuery) {
     });
 
     //下拉列表，可更新数据模块
-    $('.update_select').change(function() {
+    $(document).on('change','.update_select',function() {
         console.log("update select start");
         var type = $(this).attr('elementype'),
+            element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
-        val = $(this).children('option:selected').val();
-        Editor.update(type, key, val);
+            val = $(this).children('option:selected').val();
+            Editor.update(type, key, val); 
     });
+
     // update span模块
     $('.update_span').click(function() {
         console.log("update span start");
@@ -134,17 +142,59 @@ if ($ && jQuery) {
         Editor.publish();
     });
 
+    //调取动画保存
+    $(document).on('click','.e_store_animate',function(){
+        if ($('#element_server_id').val() == '' || $('#page_server_id').val() == ''){
+            alert("请选择page和element");
+        }else{
+            $('#animateModel').modal('show');
+        }
+    });
+
     // 预览
     $('.e_preview').click(function() {
         Editor.preview();
     });
 
 
+    //图片保存设置
+    $(document).on('click','.e_store_pic',function (e) {
+        e.preventDefault();
+        $('#picModel').modal('hide');
+        // todo 
+    });
 
 
     var s, te;
     $('#cnm').on('click', function(e) {
         s = Drag(e);
+            $('#element_server_id').val($(s[0]).attr('mid'));
+            $('#element_id').val($(s[0]).attr('id'));
+            $('#element_server_id').val($(s[0]).attr('mid'));
+            $('#element_id').val($(s[0]).attr('id'));
+            var vshift, hshift,
+                element = $(s[0]).attr('elementype');
+            if (element == 0) {
+                //文字元素
+                $('.d_0').show();
+                $('.d_1').hide();
+                $('.d_2').hide();
+                Editor.renderElementInfo();
+                Editor.renderPageAnimate();
+                Editor.renderGlobalInfo();
+            } else if (element == 1) {
+                //图片元素
+                $('.d_0').hide();
+                $('.d_1').show();
+                $('.d_2').hide();
+                Editor.renderElementInfo();
+            } else if (element == 2) {
+                //轮播元素
+                $('.d_0').hide();
+                $('.d_1').hide();
+                $('.d_2').show();
+                Editor.renderElementInfo();
+            }            
         //console.log(s)
         s[0].func = function() {
             $('#element_server_id').val($(s[0]).attr('mid'));
@@ -324,6 +374,18 @@ if ($ && jQuery) {
         });
     };
     // $('.e_uplodad').ajaxUpload({
-    //     action:'http://115.29.32.105:8080/upload'
+    //      action:'http://115.29.32.105:8080/upload',
+    //      callback:function(res) {
+    //         console.log("121212",res);
+    //      }
     // });
+    $(document).on('click','.e_uplodad',function () {
+
+        $(this).ajaxUpload({
+         action:'http://115.29.32.105:8080/upload',
+         callback:function(res) {
+            console.log("121212",res);
+         }
+        });
+    })
 };
