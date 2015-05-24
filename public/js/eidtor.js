@@ -650,7 +650,7 @@ var Editor = {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
             } else {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
-            }
+            };
             $("input[name='music_pos']").eq([data.music_pos]).checked = true;
             $("input[name='music_option']").eq([data.music_option]).checked = true;
             //box3
