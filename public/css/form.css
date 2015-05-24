@@ -99,7 +99,7 @@ li.user{margin-left:20px;margin-right:10px;}
 .add-newpage{float:left;width: 120px;height:214px; border:1px solid #e5e5e5; background:url(../image/add-page.png) center no-repeat #fff;display: block;cursor: pointer;}
 .add-newpage:hover{background:url(../image/add-pagehover.png) center no-repeat #fff;border:1px solid #d0d0d0;}
 .tc{text-align: center;font-size: 18px;line-height: 70px;}
-.page-edit{position: relative;left:22.5%;border:3px solid #fff;box-shadow: 0px 0px 8px #ababab;width:366px; height:646px;}
+.page-edit{position: relative;left:22.5%;border:3px solid #fff;box-shadow: 0px 0px 8px #ababab;width:366px; height:646px; overflow: hidden;}
 .page-btn{position: absolute;bottom: -1.5%;right:-25%;width:62px;}
 .page-btn .btn-default{margin-top: 10px;width:62px;}
 

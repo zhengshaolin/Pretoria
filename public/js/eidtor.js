@@ -563,7 +563,6 @@ var Editor = {
         if (page_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             $('#v_page_animate').empty();
-
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i]._id == page_server_id) {
@@ -571,8 +570,8 @@ var Editor = {
                         $('#d-background_color').val(data[i].background_color);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-
-                            $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_effect + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_duration + '秒后出现</p></div></li>');
+                            console.log("12121212",obj);
+                            $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
                     };
@@ -614,7 +613,7 @@ var Editor = {
         if (data != undefined) {
             //box5
             $('#d-product').val(data.product);
-            $("input[name='glass']")[data.music_pos].checked = true;
+            $("input[name='glass']").eq([data.music_pos]).checked = true;
             $('#d-glass_url').attr('src', data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
@@ -622,8 +621,13 @@ var Editor = {
             $('d-switch_type').val(data.switch_type);
             //box4
             //音乐列表
-            $("input[name='music_pos']")[data.music_pos].checked = true;
-            $("input[name='music_option']")[data.music_option].checked = true;
+            if (data.music == '') {
+                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
+            }else{
+                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="'+data.music+'">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
+            }
+            $("input[name='music_pos']").eq([data.music_pos]).checked = true;
+            $("input[name='music_option']").eq([data.music_option]).checked = true;
             //box3
             //box2
             //box1           
