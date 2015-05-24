@@ -550,6 +550,31 @@ var Editor = {
             return false;
         }
     },
+    //绘制动画弹出框内内容
+    renderAnimateModel: function() {
+        console.log("render animate model start");
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
+            page_server_id = $('#page_server_id').val(),
+            element_server_id = $('#element_server_id').val();
+            if (page_server_id != '') {
+                //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+                $('#v_animate_box').empty();
+                if (data != undefined) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i]._id == page_server_id) {
+                            for (var j = 0; j < data[i].elements.length; j++) {
+                                if (element_server_id == data[i].elements[j]._id) {
+                                    var obj = data[i].elements[j];
+                                    $('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
+                                };
+                            };
+
+                        };
+                    };
+                };
+            };
+        $('#animateModel').modal('show');
+    },
     //绘制右侧的数据中的页面动画设置
     renderPageAnimate: function() {
         console.log('render page animate method start');
@@ -570,7 +595,7 @@ var Editor = {
                         $('#d-background_color').val(data[i].background_color);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-                            console.log("12121212",obj);
+                            console.log("12121212", obj);
                             $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
@@ -623,8 +648,8 @@ var Editor = {
             //音乐列表
             if (data.music == '') {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
-            }else{
-                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="'+data.music+'">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
+            } else {
+                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
             }
             $("input[name='music_pos']").eq([data.music_pos]).checked = true;
             $("input[name='music_option']").eq([data.music_option]).checked = true;

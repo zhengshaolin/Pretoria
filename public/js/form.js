@@ -144,12 +144,13 @@ if ($ && jQuery) {
 
     //调取动画保存
     $(document).on('click','.e_store_animate',function(){
-        if ($('#element_server_id').val() == '' || $('#page_server_id').val() == ''){
+        if($(this).attr('mid') != undefined && $(this).attr('mid') != ''){
+            $('#element_server_id').val($(this).attr('mid'));
+            Editor.renderAnimateModel();
+        }else if ($('#element_server_id').val() == '' || $('#page_server_id').val() == ''){
             alert("请选择page和element");
-        }else if($(this).attr('mid') != undefined && $(this).attr('mid') != ''){
-            $('#animateModel').modal('show');
         }else{
-            $('#animateModel').modal('show');
+            Editor.renderAnimateModel();
         }
     });
 
