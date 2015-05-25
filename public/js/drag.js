@@ -100,6 +100,7 @@ Drag.prototype.dragger = function(btn) {
             } else if (window.captureEvents) {
                 window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
             }
+            function lock(){}
             document.onmousemove = function(e) {
 
                 var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - parseInt(html.css('border')),
@@ -143,6 +144,18 @@ Drag.prototype.selreset = function() {
         top: top,
         left: left
     })
+}
+Drag.prototype.readStyle=function(){
+    console.log($(this[0]).attr('style'))
+    var old = $(this[0]).attr('style').split(';');
+    var newS = {};
+    for(var i=0;i<old.length;i++){
+        var tem = old[i].split(':');
+        if(tem[0]){
+            newS[$.trim(tem[0])]=$.trim(tem[1])
+        }
+    }
+    return newS;
 }
 Drag.prototype.tagreset = function(x, y) {
     var that = $(this[0]);
@@ -248,7 +261,7 @@ Drag.prototype.tagreset = function(x, y) {
             }
         }
     }
-    switch (x.toString() + y.toString()) {
+    switch (x.toString() + y.toString()) { 
         case '00':
             correct()
             break; //左 上
@@ -261,21 +274,15 @@ Drag.prototype.tagreset = function(x, y) {
             break; //居中 上
         case '20':
             var right = mainWidth - targetWidth - parseInt(sel.css('left')),
-                top = sel.css('top'),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: height,
-                position: 'absolute',
-                right: right + 'px',
-                top: top,
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='left'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('right',right + 'px')
+                }
+            }
             correct()
             break; //右 上
         case '30':
@@ -306,20 +313,15 @@ Drag.prototype.tagreset = function(x, y) {
         case '21':
             var top = (mainHeight - targetHeight) / 2,
                 right = mainWidth - targetWidth - parseInt(sel.css('left')),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: height,
-                position: 'absolute',
-                right: right + 'px',
-                top: top,
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='left'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('right',right + 'px')
+                }
+            }
             sel.css('top', top + 'px')
             correct()
             break; //右中
@@ -331,79 +333,56 @@ Drag.prototype.tagreset = function(x, y) {
             break; //满中
         case '02':
             var bottom = mainHeight - targetHeight - (parseInt(sel.css('top'))),
-                left = sel.css('left'),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: height,
-                position: 'absolute',
-                left: left,
-                bottom: bottom + 'px',
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='top'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('bottom',bottom + 'px')
+                }
+            }
             correct()
             break; //左下
         case '12':
             var bottom = mainHeight - targetHeight - (parseInt(sel.css('top'))),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                height = that.height(),
-                overflow = that.css('overflow') || 'auto',
+                sty = this.readStyle(),
                 left = (mainWidth - targetWidth) / 2;
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: height,
-                position: 'absolute',
-                left: left,
-                bottom: bottom + 'px',
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='top'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('bottom',bottom + 'px')
+                }
+            }
             sel.css('top', top + 'px').css('left', left + 'px')
             correct()
             break; //中下
         case '22':
             var bottom = mainHeight - targetHeight - (parseInt(sel.css('top'))),
-                right = mainWidth - targetWidth - parseInt(sel.css('left')),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: height,
-                position: 'absolute',
-                right: right + 'px',
-                bottom: bottom + 'px',
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='top'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('bottom',bottom + 'px')
+                }
+            }
             correct()
             break; //右下
         case '32':
             var bottom = mainHeight - targetHeight - (parseInt(sel.css('top'))),
-                right = mainWidth - targetWidth - (parseInt(sel.css('left'))),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
-            that.css({
-                zIndex: zIndex,
-                width: mainWidth,
-                height: height,
-                position: 'absolute',
-                left: 0,
-                bottom: bottom + 'px',
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='top'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('bottom',bottom + 'px')
+                }
+            }
             sel.css('width', mainWidth).css('left', 0)
             correct()
             break; //满下
@@ -421,21 +400,16 @@ Drag.prototype.tagreset = function(x, y) {
             break; //中满
         case '23':
             var right = mainWidth - targetWidth - parseInt(sel.css('left')),
-                width = that.width(),
-                zIndex = that.css('zIndex') || 0,
-                overflow = that.css('overflow') || 'auto',
-                height = that.height();
+                sty = this.readStyle();
             that.removeAttr('style');
             sel.css('height', mainHeight).css('top', 0)
-            that.css({
-                zIndex: zIndex,
-                width: width,
-                height: mainHeight,
-                position: 'absolute',
-                right: right + 'px',
-                top: 0,
-                overflow: overflow
-            })
+            for(var i in sty){
+                if(i!='left'){
+                    that.css(i,sty[i])
+                }else{
+                    that.css('right',right + 'px')
+                }
+            }
             correct()
             break; //右满
         case '33':
@@ -450,7 +424,7 @@ Drag.prototype.tagreset = function(x, y) {
                 height: mainHeight,
                 top: 0,
                 left: 0
-            })
+            });
             correct()
             break; //满满
     }
@@ -481,7 +455,13 @@ Drag.prototype.dragDiv = function() {
                 targetWidth = that.width(),
                 targetHeight = that.height(),
                 y = y2 - y1;
-            if (parseInt(_this.style.left) == 0 || parseInt(_this.style.left)) {
+                function lock(){
+                    this.lockPlane=dragLeft;
+                    this.lockVertical=dragTop;
+                }
+                var loc = new lock();
+                //plane:左0中1右2满3
+            if (parseInt(_this.style.left) == 0 || parseInt(_this.style.left)) {//elements have left style
                 if (dragLeft + x >= 0 && dragLeft + x + targetWidth <= mainWidth) {
                     _this.style.left = (dragLeft + x) + 'px';
                     html[0].style.left = (dragLeft + x) + 'px';
@@ -492,8 +472,12 @@ Drag.prototype.dragDiv = function() {
                     _this.style.left = '0px'
                     html[0].style.left = '0px'
                 }
+                if(that.attr('plane')==1||that.attr('plane')==3){
+                    _this.style.left = loc.lockPlane+'px'
+                    html[0].style.left = loc.lockPlane+'px'
+                }
             } else {
-                if (mainWidth - dragLeft - x - parseInt(targetWidth) > 0 && mainWidth - dragLeft - x <= mainWidth) {
+                if (mainWidth - dragLeft - x - parseInt(targetWidth) > 0 && mainWidth - dragLeft - x <= mainWidth) {//elements have right style
                     _this.style.right = (mainWidth - dragLeft - x - parseInt(targetWidth)) + 'px'
                     html[0].style.left = (dragLeft + x) + 'px';
                 } else if (mainWidth - dragLeft - x > mainWidth) {
@@ -503,8 +487,13 @@ Drag.prototype.dragDiv = function() {
                     _this.style.right = '0px'
                     html[0].style.left = mainWidth - that.width()
                 }
+                if(that.attr('plane')==1||that.attr('plane')==3){
+                    _this.style.right = mainWidth - loc.lockPlane+'px'
+                    html[0].style.left = loc.lockPlane+'px'
+                }
             }
-            if (parseInt(_this.style.top) == 0 || parseInt(_this.style.top)) {
+            //virtal:上0中1下2满3
+            if (parseInt(_this.style.top) == 0 || parseInt(_this.style.top)) {//elements have top style
                 if (dragTop + y >= 0 && dragTop + y + targetHeight <= mainHeight) {
                     _this.style.top = (dragTop + y) + 'px';
                     html[0].style.top = (dragTop + y) + 'px';
@@ -515,8 +504,12 @@ Drag.prototype.dragDiv = function() {
                     _this.style.top = '0px'
                     html[0].style.top = '0px'
                 }
+                if(that.attr('vertical')==1||that.attr('vertical')==3){
+                    _this.style.top = loc.lockVertical+'px'
+                    html[0].style.top = loc.lockVertical+'px'
+                }
             } else {
-                if (mainHeight - dragTop - y - parseInt(targetHeight) > 0 && mainHeight - dragTop - y <= mainHeight) {
+                if (mainHeight - dragTop - y - parseInt(targetHeight) > 0 && mainHeight - dragTop - y <= mainHeight) {//elements have bottom style
                     _this.style.bottom = (mainHeight - dragTop - y - parseInt(targetHeight)) + 'px'
                     html[0].style.top = (dragTop + y) + 'px';
                 } else if (mainHeight - dragTop - y > mainHeight) {
@@ -526,12 +519,16 @@ Drag.prototype.dragDiv = function() {
                     _this.style.bottom = '0px'
                     html[0].style.top = mainHeight - that.height()
                 }
+                if(that.attr('vertical')==1||that.attr('vertical')==3){
+                    _this.style.bottom = mainHeight - loc.lockVertical+'px'
+                    html[0].style.top = loc.lockVertical+'px'
+                }
             }
         }
         document.onmouseup = function() {
-        	if(_this.func){
-        		_this.func.call(_this)
-        	}
+            if(_this.func){
+                _this.func.call(_this)
+            }
             this.onmousemove = null;
             this.onmouseup = null;
         }
@@ -584,30 +581,26 @@ Drag.prototype.planeRight = function() {
     var targetWidth = that.width(),
         mainWidth = $('#cnm').width(),
         targetHeight = that.height(),
-        zIndex = that.css('zIndex') || 0,
-        flag = (parseInt(that.css('top')) == 0 || parseInt(that.css('top'))),
-        overflow = that.css('overflow') || 'auto',
-        y = flag ? that.css('top') : that.css('bottom');
-    that.removeAttr('style');
+        sty = this.readStyle();
     that.attr('plane', '2')
+    console.log(sty)
     this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
-    that.css({
-        position: 'absolute',
-        width: targetWidth,
-        height: targetHeight,
-        right: 0,
-        zIndex: zIndex,
-        overflow: overflow
-    })
+    for(var i in sty){
+        if(i!='left'){
+            that.css(i,sty[i])
+        }else{
+            that.css('right',0)
+        }
+    }
     sel.css({
         left: (mainWidth - targetWidth) + 'px',
         width: targetWidth
     })
-    if (flag) {
-        that.css('top', y)
-    } else {
-        that.css('bottom', y)
-    }
+    // if (flag) {
+    //     that.css('top', y)
+    // } else {
+    //     that.css('bottom', y)
+    // }
 }
 Drag.prototype.planeFull = function() {
     var that = $(this[0]);
@@ -661,27 +654,20 @@ Drag.prototype.verticalBottom = function() {
         mainWidth = $('#cnm').width(),
         mainHeight = $('#cnm').height(),
         targetHeight = that.height(),
-        zIndex = that.css('zIndex') || 0,
-        flag = (parseInt(that.css('left')) == 0 || parseInt(that.css('left'))),
-        overflow = that.css('overflow') || 'auto',
-        y = flag ? that.css('left') : that.css('right');
+        sty = this.readStyle();
     that.removeAttr('style');
-    that.css({
-        position: 'absolute',
-        width: targetWidth,
-        height: targetHeight,
-        bottom: 0,
-        zIndex: zIndex,
-        overflow: overflow
-    })
+    console.log(sty)
+    for(var i in sty){
+        if(i!='top'){
+            console.log(i)
+            that.css(i,sty[i])
+        }else{
+            that.css('bottom',0)
+        }
+    }
     sel.css({
         top: mainHeight - targetHeight
     })
-    if (flag) {
-        that.css('left', y)
-    } else {
-        that.css('right', y)
-    }
     that.attr('vertical', '2')
     this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
 }
