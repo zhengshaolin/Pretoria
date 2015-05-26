@@ -88,7 +88,7 @@ li.user{margin-left:20px;margin-right:10px;}
 .add-page > i.add-btn{background-position: 0 -180px;width:40px;height:40px;position: absolute;left:41%;}
 .add-page > a{position: absolute;width: 100%;top: 60%;text-align: center;color: #3f3f3f;text-decoration: none;}
 .add-page:hover{background-color: #f3f3f3;}
-.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;margin-top: 97px;overflow-y:scroll;}
+.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;margin-top: 97px;overflow-y:scroll;background-color: #fff;}
 .page-list > li{position: relative; display: inline-block;margin-top: 20px;}
 .page-num{float: left;margin:0 10px;}
 .page-img{float:left;width:120px;height:214px;border:1px solid #fff;box-shadow: 0px 0px 8px #ababab;}
