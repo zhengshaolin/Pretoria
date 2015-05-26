@@ -82,12 +82,13 @@ li.user{margin-left:20px;margin-right:10px;}
 /*form*/
 
 /*左侧页面*/
-.col-md-2{padding:0px;overflow-y:scroll;overflow-x:hidden;}
-.add-page{position:relative;width:213px;height: 97px;background-color: #fff;border-bottom: 1px solid #d0d0d0;cursor: pointer;}
+.col-md-2{padding:0px;}
+.page-side{width: 214px;background-color: #fff;overflow-x:hidden;margin-right: 20px;}
+.add-page{position:fixed;z-index: 999;width:213px;height: 97px;background-color: #f8f8f8;border-bottom: 1px solid #d0d0d0;cursor: pointer;}
 .add-page > i.add-btn{background-position: 0 -180px;width:40px;height:40px;position: absolute;left:41%;}
 .add-page > a{position: absolute;width: 100%;top: 60%;text-align: center;color: #3f3f3f;text-decoration: none;}
 .add-page:hover{background-color: #f3f3f3;}
-.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;}
+.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;margin-top: 97px;overflow-y:scroll;}
 .page-list > li{position: relative; display: inline-block;margin-top: 20px;}
 .page-num{float: left;margin:0 10px;}
 .page-img{float:left;width:120px;height:214px;border:1px solid #fff;box-shadow: 0px 0px 8px #ababab;}
@@ -159,3 +160,10 @@ li.user{margin-left:20px;margin-right:10px;}
 .bg_y{background: #f0efef;}
 
 .page-list li.active .page-img{border:2px solid #93db70;}
+.page-name{height: 30px;text-align: center;}
+.t-v{background: url(../image/t-v.png) left no-repeat;width: 18px; height: 18px; cursor: text;}
+.t-v-top{background-position: 2px 0;}
+.t-v-middle{background-position: -16px 0;}
+.t-v-bottom{background-position: -34px 0;}
+.t-v-justify{background-position: -52px 0;}
+.glyphicon_on{background-color: #ccc;}

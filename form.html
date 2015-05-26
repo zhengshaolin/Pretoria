@@ -52,17 +52,20 @@
     </nav>   
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2" style="height:950px;">
+        <div class="col-md-2 page-side">
           <div class="add-page">
             <i class="add-btn"></i>
             <a type="1" class="e_creat">添加新页面</a>
           </div>
-          <ul class="page-list" id="v_page_list">
+          <ul class="page-list" id="v_page_list"  style="height:590px;">
+            <li id="p_0" pid="5561cdb2764f78423f500ad0" class="active"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
+            <li id="p_0" pid="5561cdb2764f78423f500ad0"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
+            <li id="p_0" pid="5561cdb2764f78423f500ad0"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
           </ul>          
         </div>
 
         <div class="col-md-6">
-          <h1 class="tc"><span class="page-name">页面1</span></h1>
+          <h1 class="tc"><input type="text"  class="page-name" value="页面1" /></h1>
           <div class="page-edit">
               <div id="cnm" style="width:360px;height:640px;border:3px solid #aaa;position:relative;">
                 
@@ -96,9 +99,11 @@
                     <li>
                       <label>素材大小:</label>
                       宽:
-                      <input class="panel-text w55 mr30 update_item" id="d-width" elementype="2" type="text" value="px"/>
+                      <input class="panel-text w55 update_item" id="d-width" elementype="2" type="text" value=""/>
+                      <span class="mr5">px</span>
                       高:
-                      <input class="panel-text w55 update_item" id="d-height" elementype="2"  type="text" value="px"/>
+                      <input class="panel-text w55 update_item" id="d-height" elementype="2"  type="text" value=""/>
+                      <span>px</span>
                     </li>
                     <li>
                       <label>素材位置:</label>
@@ -116,10 +121,10 @@
                       </div>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left d-vertical" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-center d-vertical" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-right d-vertical" aria-hidden="true"></span> 
-                          <span class="glyphicon glyphicon-align-justify d-vertical" aria-hidden="true"></span>
+                          <span class="glyphicon d-horizontal t-v t-v-top" aria-hidden="true"></span>
+                          <span class="glyphicon d-horizontal t-v t-v-middle" aria-hidden="true"></span>
+                          <span class="glyphicon d-horizontal t-v t-v-bottom" aria-hidden="true"></span> 
+                          <span class="glyphicon d-horizontal t-v t-v-justify" aria-hidden="true"></span>
                         </h6>
                         <div class="fr mt5">
                           右边距:
