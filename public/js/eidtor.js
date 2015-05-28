@@ -458,7 +458,7 @@ var Editor = {
         if (page_server_id == '') {
             var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
         };
-        $('.page-name').empty().text("页面" + num);
+        //$('.page-name').empty().text("页面" + num);
         $('#cnm').empty();
 
         $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
@@ -593,9 +593,10 @@ var Editor = {
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
+                        $('.page-name').val(data[i].title);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-                            console.log("12121212", obj);
+                            //console.log("12121212", obj);
                             $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
@@ -646,6 +647,7 @@ var Editor = {
             $('d-switch_type').val(data.switch_type);
             //box4
             //音乐列表
+            $('#v_upload_music').empty();
             if (data.music == '') {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
             } else {
