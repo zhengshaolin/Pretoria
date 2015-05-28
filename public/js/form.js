@@ -4,11 +4,7 @@ if ($ && jQuery) {
         Editor.initForm();
     });
 
-    $("#v_page_list").on("click", ".e_creat", function() {
-        var type = $(this).attr('type');
-        Editor.add(type);
-    });
-
+    //导航条新建3种素材
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
             element = $(this).attr('element');
@@ -21,7 +17,13 @@ if ($ && jQuery) {
             $('#picModel').modal('show');
         }
     });
-
+    //左侧
+    //左侧新建page 
+    $("#v_page_list").on("click", ".e_creat", function() {
+        var type = $(this).attr('type');
+        Editor.add(type);
+    });
+    //左侧page选中功能
     $("#v_page_list").on("click", "li", function() {
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
@@ -34,7 +36,7 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
         Editor.fetchForm(1);
     });
-
+    //左侧page删除功能
     $("#v_page_list").on("click", ".e_delete", function() {
         var type = $(this).attr('type');
         $('#page_id').val($(this).attr('id'));
@@ -42,6 +44,8 @@ if ($ && jQuery) {
         Editor.remove(type);
     });
 
+    //展示区
+    //展示区元素选中功能
     $("#v_page_edit").on("click", ".item", function() {
         var element_current_id = $(this).attr('id');
         $('#element_id').val(element_current_id);
@@ -51,7 +55,22 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
     });
 
-    //水平
+
+    //右侧
+    //右侧替换图片功能
+    $(".e_tab_content").on("click", ".e_creat", function() {
+        var type = $(this).attr('type'),
+            element = $(this).attr('element');
+        $('#add_type').val(element);
+        if(element == 0){
+            Editor.add(type);
+        }else if(element == 1){
+            $('#picModel').modal('show');
+        }else if(element == 2){
+            $('#picModel').modal('show');
+        }
+    });
+    //右侧水平操作
     $('.d-horizontal').click(function(){
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
@@ -67,7 +86,7 @@ if ($ && jQuery) {
         }
         Editor.update(2,'horizontal',val);
     });
-    //垂直
+    //右侧垂直操作
     $('.d-vertical').click(function(){
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
@@ -83,8 +102,7 @@ if ($ && jQuery) {
         }
         Editor.update(2,'vertical',val)
     });
-
-    //可更新ipput
+    //右侧可更新ipput
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
@@ -95,8 +113,7 @@ if ($ && jQuery) {
         val = $(this).val();
         Editor.update(type, key, val);
     });
-
-    //单选按钮，可更新模块
+    //右侧单选按钮，可更新模块
     $('.update_radio').on('click', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
@@ -112,8 +129,7 @@ if ($ && jQuery) {
             return false;
         }
     });
-
-    //下拉列表，可更新数据模块
+    //右侧下拉列表，可更新数据模块
     $(document).on('change','.update_select',function() {
         console.log("update select start");
         var type = $(this).attr('elementype'),
@@ -122,8 +138,7 @@ if ($ && jQuery) {
             val = $(this).children('option:selected').val();
             Editor.update(type, key, val); 
     });
-
-    // update span模块
+    // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
         $(this).addClass('glyphicon_on');
@@ -137,12 +152,26 @@ if ($ && jQuery) {
             key = $(this).attr('id').split('-')[1];
         Editor.update(type, key, val);
     });
-    // 发布
+
+
+    //产品
+    // 产品预览
+    $('.e_preview').click(function() {
+        Editor.preview();
+    });
+    // 产品发布
     $('body').on('click', '.e_publish', function() {
         Editor.publish();
     });
 
-    //调取动画保存
+    //弹出框
+    //弹窗框图片保存设置
+    $(document).on('click','.e_store_pic',function (e) {
+        e.preventDefault();
+        $('#picModel').modal('hide');
+        // todo 
+    });
+    //弹出框调取动画保存
     $(document).on('click','.e_store_animate',function(){
         if($(this).attr('mid') != undefined && $(this).attr('mid') != ''){
             $('#element_server_id').val($(this).attr('mid'));
@@ -154,20 +183,8 @@ if ($ && jQuery) {
         }
     });
 
-    // 预览
-    $('.e_preview').click(function() {
-        Editor.preview();
-    });
 
-
-    //图片保存设置
-    $(document).on('click','.e_store_pic',function (e) {
-        e.preventDefault();
-        $('#picModel').modal('hide');
-        // todo 
-    });
-
-
+    //拖拽插件
     var s, te;
     $('#cnm').on('click', function(e) {
         s = Drag(e);
@@ -314,6 +331,7 @@ if ($ && jQuery) {
             $('textarea').remove()
         }
     });
+    //上传控件
     var uploader = WebUploader.create({
     swf: 'public/js/Webuploader/Uploader.swf',
     // 文件接收服务端。

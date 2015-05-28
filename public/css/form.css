@@ -83,7 +83,10 @@ li.user{margin-left:20px;margin-right:10px;}
 
 /*左侧页面*/
 .col-md-2{padding:0px;}
-.page-side{width: 214px;background-color: #fff;overflow-x:hidden;margin-right: 20px;}
+/*.page-side{width: 214px;background-color: #fff;overflow-x:hidden;margin-right: 20px;}
+*/
+.page-side{background-color: #fff;overflow-x:hidden;}
+
 .add-page{position:fixed;z-index: 999;width:213px;height: 97px;background-color: #f8f8f8;border-bottom: 1px solid #d0d0d0;cursor: pointer;}
 .add-page > i.add-btn{background-position: 0 -180px;width:40px;height:40px;position: absolute;left:41%;}
 .add-page > a{position: absolute;width: 100%;top: 60%;text-align: center;color: #3f3f3f;text-decoration: none;}
@@ -167,3 +170,8 @@ li.user{margin-left:20px;margin-right:10px;}
 .t-v-bottom{background-position: -34px 0;}
 .t-v-justify{background-position: -52px 0;}
 .glyphicon_on{background-color: #ccc;}
+
+#v_pic_box{width: 100%; height: auto; margin:10px 0px;}
+#v_pic_box ul{display: inline-block; height: auto; width: 100%;}
+#v_pic_box ul li{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer;}
+#v_pic_box ul li img{width: 80px; height: 80px;}

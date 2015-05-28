@@ -284,6 +284,7 @@ var Editor = {
         $('#product_id').val(window.location.href.split('?')[1].split('=')[1]);
         if (localData.get('token') != null) {
             this.fetchForm(0);
+            this.renderPicBox();
         } else {
             this.auth();
         }
@@ -593,7 +594,7 @@ var Editor = {
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
-                        $('.page-name').val(data[i].title);
+                        $('#dp-title').val(data[i].title);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
                             //console.log("12121212", obj);
@@ -621,12 +622,16 @@ var Editor = {
                 'Access-Token': token
             },
             success: function(products) {
-                //v_pic_box
-                console.log('select_product_test returned:');
-                console.log(products);
+                $('#v_pic_box').empty();
+                if (products.length == 0) {
+                      $('#v_pic_box').append('<li>暂无照片</li>');
+                }else{
+                    for (var i = 0; i < products.length; i++) {
+                        $('#v_pic_box').append('<li><img src="'+products[i].src+'"></li></li>');
+                    }                   
+                }
             },
             error: function(err) {
-                console.log('select_product_test err:');
                 console.log(err);
             }
         });
@@ -646,7 +651,7 @@ var Editor = {
             $('#d-pry').val(data.pry);
             $('d-switch_type').val(data.switch_type);
             //box4
-            //音乐列表
+            //音乐列表dp-title
             $('#v_upload_music').empty();
             if (data.music == '') {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
@@ -659,7 +664,6 @@ var Editor = {
             //box2
             //box1           
         };
-
     },
     //保存数据
     store: function(data) {
