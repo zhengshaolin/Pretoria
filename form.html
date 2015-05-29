@@ -172,9 +172,9 @@
                         <div class="form-group mb10">
                           字体对齐:
                           <h6 class="inb ml10">
-                              <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                              <span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
-                              <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+                              <span class="glyphicon glyphicon-align-left d-align" aria-hidden="true" ta="left"></span>
+                              <span class="glyphicon glyphicon-align-center d-align" aria-hidden="true" ta="center"></span>
+                              <span class="glyphicon glyphicon-align-right d-align" aria-hidden="true" ta="right"></span>
                           </h6>
                         </div>
                       </div>                      
@@ -182,42 +182,7 @@
                     <li class="hidden d_2"> 
                       <!-- 轮播素材 -->
                       <label>轮播资源:</label>
-                      <div class="panel-body">
-                        <div class="clearfix lb">
-                          <div class="mt10">
-                            <p>1.<span class="ml10">轮播图片1</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
-                          </div>
-                          <div class="fl">
-                            <a href="#">
-                              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
-                            </a>
-                            <h4 class="pic-name">绘图.png</h4>
-                          </div>
-                            <button class="e_creat pic-btn fr" type="3" element="1">替换</button>
-                        </div>
-                        <div class="clearfix lb">
-                          <div class="mt10">
-                            <p>2.<span class="ml10">轮播图片2</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>
-                          </div>
-                          <div class="fl">
-                            <a href="#">
-                              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
-                            </a>
-                            <h4 class="pic-name">绘图.png</h4>
-                          </div>
-                            <button class="e_creat pic-btn fr" type="3" element="1">替换</button>
-                        </div>
-                        <div class="clearfix">
-                          <div class="mt10">
-                            <p>新增轮播图片</p>
-                          </div>
-                          <div class="fl">
-                            <div class="add-lbPic">      
-                              <em class="glyphicon glyphicon-plus mt25"></em>
-                            </div>
-                          </div>
-                        </div>
-                        
+                      <div class="panel-body">                        
                       </div>                      
                     </li>
                     <li>
@@ -513,7 +478,7 @@
         <h4 class="modal-title" id="myModalLabel">替换音乐</h4>
       </div>
       <div class="modal-body">
-        ...
+          <button type="button" class="btn btn-primary e_upload_music">上传音乐</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

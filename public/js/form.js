@@ -50,12 +50,17 @@ if ($ && jQuery) {
     //展示区
     //展示区元素选中功能
     $("#v_page_edit").on("click", ".item", function() {
-        var element_current_id = $(this).attr('id');
+        var element_current_id = $(this).attr('id'),
+            element_type = $(this).attr('element_type');
         $('#element_id').val(element_current_id);
         Editor.renderArena();
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
+        $('.d_1').hide();
+        $('.d_2').hide();
+        $('.d_3').hide();
+        $('.d_'+element_type+'').show();
     });
     //右侧
     //右侧替换图片功能
@@ -103,6 +108,22 @@ if ($ && jQuery) {
         }
         Editor.update(2,'vertical',val)
     });
+    $('.d-align').click(function(){
+        var key = $(this).index(),
+            val = $(this).attr('ta').
+
+        $(this).siblings().removeClass('glyphicon_on');
+        $(this).addClass('glyphicon_on');
+        if (key == 0) {
+            
+        }else if(key ==1){
+            
+        }else if(key == 2){
+            s.verticalBottom();
+        }
+        Editor.update(2,'vertical',val)
+    });
+
     //右侧可更新ipput
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局
@@ -191,6 +212,8 @@ if ($ && jQuery) {
             Editor.renderAnimateModel();
         }
     });
+
+
 
 
     //拖拽插件

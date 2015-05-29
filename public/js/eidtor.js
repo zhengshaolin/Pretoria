@@ -446,9 +446,10 @@ var Editor = {
         console.log('render arena method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
             page_id = $('#page_id').val(),
-            page_server_id = $('#page_server_id').val();
+            page_server_id = $('#page_server_id').val(),
+            template_word,template_pic,template_slider;
         //console.log(page_id);
-        num = parseInt(page_id.split('_')[1]) + parseInt(1);
+        num = parseInt(page_id.split('_')[1]) + parseInt(1);                    
         if (page_server_id == '') {
             var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
         };
@@ -459,22 +460,49 @@ var Editor = {
         if (data != undefined) {
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id == page_server_id) {
-                    //console.log(data[i].elements);
+                    console.log("element data:",data[i].elements);
                     $('#cnm').css('background-color', data[i].background_color);
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            var template;
-                            //水平 2 取right
-                            //垂直 2 取bottom
-                            //text-align
-                            //font-weight
-                            //font-style
-                            $('#cnm').append('<div class="item" elementype="0" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;text-align:center;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '" text="true">' + obj.text + '</div>');
+                            template_word +="<div class='item' elementype='0' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            if (obj.horizontal == 2) {
+                                template_word +="right:" + obj.hshift + "px;'"+obj.text+"</div>";
+                            }else{
+                                template_word +="left:" + obj.hshift + "px;'"+obj.text+"</div>";
+                            }
+                            if (obj.vertical == 2) {
+                                template_word +="bottom:" + obj.vshift + "px;'"+obj.text+"</div>";
+                            }else{
+                                template_word +="top:" + obj.vshift + "px;'"+obj.text+"</div>"; 
+                            }
+                            $('#cnm').append(template_word);
                         } else if (obj.element_type == 1) {
-                            $('#cnm').append('<img src="' + obj.pic + '" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
+                            template_pic +="<img class='item' elementype='1' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' src='"+obj.pic+"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            if (obj.horizontal == 2) {
+                                template_pic +="right:" + obj.hshift + "px;'</img>";
+                            }else{
+                                template_pic +="left:" + obj.hshift + "px;'</img>";
+                            }
+                            if (obj.vertical == 2) {
+                                template_pic +="bottom:" + obj.vshift + "px;'</img>";
+                            }else{
+                                template_pic +="top:" + obj.vshift + "px;'</img>";
+                            }
+                            $('#cnm').append(template_pic);
                         } else if (obj.element_type == 2) {
-                            $('#cnm').append('<img src="' + obj.pic + '" class="item" elementype="1" id="' + page_id + '_' + j + '" mid="' + obj._id + '" style="z-index:' + j + ';position:absolute;top:' + obj.vshift + 'px;left:' + obj.hshift + 'px;width:' + obj.width + 'px;height:' + obj.height + 'px;overflow:hidden;font-size:' + obj.fts + 'px; color:' + obj.ftc + ';" plane="' + obj.horizontal + '" vertical="' + obj.vertical + '"></img>');
+                            template_slider +="<img class='item' elementype='1' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' src='"+obj.slider[0]+"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            if (obj.horizontal == 2) {
+                                template_slider +="right:" + obj.hshift + "px;'</img>";
+                            }else{
+                                template_slider +="left:" + obj.hshift + "px;'</img>";
+                            }
+                            if (obj.vertical == 2) {
+                                template_slider +="bottom:" + obj.vshift + "px;'</img>";
+                            }else{
+                                template_slider +="top:" + obj.vshift + "px;'</img>";
+                            }
+                            $('#cnm').append(template_slider);
                         }
                     };
                 }
@@ -514,7 +542,7 @@ var Editor = {
                                     $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
                                     $('.d-vertical').removeClass('glyphicon_on');
                                     $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
-
+                                    $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
                                     if (obj.ftb == 1) {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
@@ -524,6 +552,13 @@ var Editor = {
                                     if (obj.ftu == 1) {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
+                                    var slider = obj.slider.split(',');
+                                    if (slider.length) {
+                                        $('.d_2').show();
+                                        for (var k = 0; k < slider.length; k++) {
+                                            $('.d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>'+parseInt(k+1)+'.<span class="ml10">轮播图片'+parseInt(k+1)+'</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="'+slider[k]+'" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_creat pic-btn fr" type="3" element="2" key="'+k+'">替换</button></div>');
+                                        }
+                                    }
                                     //console.log("232323",obj.animate_effect);
                                     $('#d-ftc').val(obj.ftc);
                                     $('#d-fts').val(obj.fts);
