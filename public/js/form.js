@@ -7,19 +7,20 @@ if ($ && jQuery) {
     //导航条新建3种素材
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
-        //添加元素的类型
-        element = $(this).attr('element');
+            //添加元素的类型
+            element = $(this).attr('element');
         //type保存，为添加图片功能预留参数
         $('#add_type').val(element);
 
-        if(element == 0){
+        if (element == 0) {
             Editor.add(type);
-        }else if(element == 1){
+        } else if (element == 1) {
             $('#picModel').modal('show');
-        }else if(element == 2){
+        } else if (element == 2) {
             $('#picModel').modal('show');
         }
     });
+
     //左侧
     //左侧新建page 
     $("#v_page_list").on("click", ".e_creat", function() {
@@ -60,70 +61,71 @@ if ($ && jQuery) {
         $('.d_1').hide();
         $('.d_2').hide();
         $('.d_3').hide();
-        $('.d_'+element_type+'').show();
+        $('.d_' + element_type + '').show();
     });
+
     //右侧
     //右侧替换图片功能
     $(".e_tab_content").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
             element = $(this).attr('element');
         $('#add_type').val(element);
-        if(element == 0){
+        if (element == 0) {
             Editor.add(type);
-        }else if(element == 1){
+        } else if (element == 1) {
             $('#picModel').modal('show');
-        }else if(element == 2){
+        } else if (element == 2) {
             $('#picModel').modal('show');
         }
     });
     //右侧水平操作
-    $('.d-horizontal').click(function(){
+    $('.d-horizontal').click(function() {
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
             s.planeLeft();
-        }else if(val ==1){
+        } else if (val == 1) {
             s.planeMiddle()
-        }else if(val == 2){
+        } else if (val == 2) {
             s.planeRight()
-        }else if(val == 3){
+        } else if (val == 3) {
             s.planeFull();
         }
-        Editor.update(2,'horizontal',val);
+        Editor.update(2, 'horizontal', val);
     });
     //右侧垂直操作
-    $('.d-vertical').click(function(){
+    $('.d-vertical').click(function() {
         var val = $(this).index();
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
             s.verticalTop();
-        }else if(val ==1){
+        } else if (val == 1) {
             s.verticalMiddle();
-        }else if(val == 2){
+        } else if (val == 2) {
             s.verticalBottom();
-        }else if(val == 3){
+        } else if (val == 3) {
             s.verticalFull();
         }
-        Editor.update(2,'vertical',val)
+        Editor.update(2, 'vertical', val)
     });
-    $('.d-align').click(function(){
+    //右侧对齐操作
+    $('.d-align').click(function() {
         var key = $(this).index(),
             val = $(this).attr('ta').
 
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (key == 0) {
-            
-        }else if(key ==1){
-            
-        }else if(key == 2){
+
+        } else if (key == 1) {
+
+        } else if (key == 2) {
             s.verticalBottom();
         }
-        Editor.update(2,'vertical',val)
+        Editor.update(2, 'vertical', val)
     });
-
     //右侧可更新ipput
     $('.update_item').on('blur', function() {
         //elementype 0 产品全局
@@ -152,13 +154,13 @@ if ($ && jQuery) {
         }
     });
     //右侧下拉列表，可更新数据模块
-    $(document).on('change','.update_select',function() {
+    $(document).on('change', '.update_select', function() {
         console.log("update select start");
         var type = $(this).attr('elementype'),
             element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
-            val = $(this).children('option:selected').val();
-            Editor.update(type, key, val); 
+        val = $(this).children('option:selected').val();
+        Editor.update(type, key, val);
     });
     // 右侧update span模块
     $('.update_span').click(function() {
@@ -175,7 +177,6 @@ if ($ && jQuery) {
         Editor.update(type, key, val);
     });
 
-
     //产品
     // 产品预览
     $('.e_preview').click(function() {
@@ -188,65 +189,63 @@ if ($ && jQuery) {
 
     //弹出框
     //弹窗框图片保存设置
-    $(document).on('click','.e_store_pic',function (e) {
+    $(document).on('click', '.e_store_pic', function(e) {
         e.preventDefault();
         var type = $('#add_type').val();
         Editor.add(type);
     });
+
     //图库选中功能
-    $('#v_pic_box').on('click','li',function  () {
-       var pic = $(this).find('img').attr("src");
-       $('#upload_img_src').val(pic);
-       $(this).siblings().removeClass();
-       $(this).addClass('active');
+    $('#v_pic_box').on('click', 'li', function() {
+        var pic = $(this).find('img').attr("src");
+        $('#upload_img_src').val(pic);
+        $(this).siblings().removeClass();
+        $(this).addClass('active');
     });
 
     //弹出框调取动画保存
-    $(document).on('click','.e_store_animate',function(){
-        if($(this).attr('mid') != undefined && $(this).attr('mid') != ''){
+    $(document).on('click', '.e_store_animate', function() {
+        if ($(this).attr('mid') != undefined && $(this).attr('mid') != '') {
             $('#element_server_id').val($(this).attr('mid'));
             Editor.renderAnimateModel();
-        }else if ($('#element_server_id').val() == '' || $('#page_server_id').val() == ''){
+        } else if ($('#element_server_id').val() == '' || $('#page_server_id').val() == '') {
             alert("请选择page和element");
-        }else{
+        } else {
             Editor.renderAnimateModel();
         }
     });
-
-
-
 
     //拖拽插件
     var s, te;
     $('#cnm').on('click', function(e) {
         s = Drag(e);
-            $('#element_server_id').val($(s[0]).attr('mid'));
-            $('#element_id').val($(s[0]).attr('id'));
-            $('#element_server_id').val($(s[0]).attr('mid'));
-            $('#element_id').val($(s[0]).attr('id'));
-            var vshift, hshift,
-                element = $(s[0]).attr('elementype');
-            if (element == 0) {
-                //文字元素
-                $('.d_0').show();
-                $('.d_1').hide();
-                $('.d_2').hide();
-                Editor.renderElementInfo();
-                Editor.renderPageAnimate();
-                Editor.renderGlobalInfo();
-            } else if (element == 1) {
-                //图片元素
-                $('.d_0').hide();
-                $('.d_1').show();
-                $('.d_2').hide();
-                Editor.renderElementInfo();
-            } else if (element == 2) {
-                //轮播元素
-                $('.d_0').hide();
-                $('.d_1').hide();
-                $('.d_2').show();
-                Editor.renderElementInfo();
-            }            
+        $('#element_server_id').val($(s[0]).attr('mid'));
+        $('#element_id').val($(s[0]).attr('id'));
+        $('#element_server_id').val($(s[0]).attr('mid'));
+        $('#element_id').val($(s[0]).attr('id'));
+        var vshift, hshift,
+            element = $(s[0]).attr('elementype');
+        if (element == 0) {
+            //文字元素
+            $('.d_0').show();
+            $('.d_1').hide();
+            $('.d_2').hide();
+            Editor.renderElementInfo();
+            Editor.renderPageAnimate();
+            Editor.renderGlobalInfo();
+        } else if (element == 1) {
+            //图片元素
+            $('.d_0').hide();
+            $('.d_1').show();
+            $('.d_2').hide();
+            Editor.renderElementInfo();
+        } else if (element == 2) {
+            //轮播元素
+            $('.d_0').hide();
+            $('.d_1').hide();
+            $('.d_2').show();
+            Editor.renderElementInfo();
+        }
         //console.log(s)
         s[0].func = function() {
             $('#element_server_id').val($(s[0]).attr('mid'));
@@ -364,36 +363,36 @@ if ($ && jQuery) {
         }
     });
     //上传控件
-    var uploader = WebUploader.create({
-    swf: 'public/js/Webuploader/Uploader.swf',
-    // 文件接收服务端。
-    server: 'http://115.29.32.105:8080/upload',
-    // 选择文件的按钮。可选。
-    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-    pick: '#picker',
-    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-    resize: false,
-    accept: {
-        title: 'Images',
-        extensions: 'gif,jpg,jpeg,bmp,png',
-        mimeTypes: 'image/*'
-    }
-});
-    uploader.on( 'fileQueued', function( file ) {
-        console.log(file)
-    $list.append( '<div id="' + file.product_id + '" class="item">' +
-        '<h4 class="info">' + file.access_token + '</h4>' +
-        '<p class="state">等待上传...</p>' +
-    '</div>' );
-});
+    // var uploader = WebUploader.create({
+    //     swf: 'public/js/Webuploader/Uploader.swf',
+    //     // 文件接收服务端。
+    //     server: 'http://115.29.32.105:8080/upload',
+    //     // 选择文件的按钮。可选。
+    //     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    //     pick: '#picker',
+    //     // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    //     resize: false,
+    //     accept: {
+    //         title: 'Images',
+    //         extensions: 'gif,jpg,jpeg,bmp,png',
+    //         mimeTypes: 'image/*'
+    //     }
+    // });
+    // uploader.on('fileQueued', function(file) {
+    //     console.log(file)
+    //     $list.append('<div id="' + file.product_id + '" class="item">' +
+    //         '<h4 class="info">' + file.access_token + '</h4>' +
+    //         '<p class="state">等待上传...</p>' +
+    //         '</div>');
+    // });
 
-    uploader.on( 'uploadSuccess', function( file ) {
-    $( '#'+file.id ).find('p.state').text('已上传');
-});
+    // uploader.on('uploadSuccess', function(file) {
+    //     $('#' + file.id).find('p.state').text('已上传');
+    // });
 
-uploader.on( 'uploadError', function( file ) {
-    $( '#'+file.id ).find('p.state').text('上传出错');
-});
+    // uploader.on('uploadError', function(file) {
+    //     $('#' + file.id).find('p.state').text('上传出错');
+    // });
 
 
 };
