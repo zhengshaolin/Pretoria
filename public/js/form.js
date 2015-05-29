@@ -7,8 +7,11 @@ if ($ && jQuery) {
     //导航条新建3种素材
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
-            element = $(this).attr('element');
+        //添加元素的类型
+        element = $(this).attr('element');
+        //type保存，为添加图片功能预留参数
         $('#add_type').val(element);
+
         if(element == 0){
             Editor.add(type);
         }else if(element == 1){
@@ -54,8 +57,6 @@ if ($ && jQuery) {
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
     });
-
-
     //右侧
     //右侧替换图片功能
     $(".e_tab_content").on("click", ".e_creat", function() {
@@ -168,9 +169,17 @@ if ($ && jQuery) {
     //弹窗框图片保存设置
     $(document).on('click','.e_store_pic',function (e) {
         e.preventDefault();
-        $('#picModel').modal('hide');
-        // todo 
+        var type = $('#add_type').val();
+        Editor.add(type);
     });
+    //图库选中功能
+    $('#v_pic_box').on('click','li',function  () {
+       var pic = $(this).find('img').attr("src");
+       $('#upload_img_src').val(pic);
+       $(this).siblings().removeClass();
+       $(this).addClass('active');
+    });
+
     //弹出框调取动画保存
     $(document).on('click','.e_store_animate',function(){
         if($(this).attr('mid') != undefined && $(this).attr('mid') != ''){

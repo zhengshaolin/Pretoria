@@ -15,6 +15,8 @@ var Editor = {
             page_id = $('#page_id').val(),
             page_server_id = $('#page_server_id').val(),
             element_num = $('#v_page_list').find('.item').length,
+            pic = $('#upload_img_src').val(),
+            slider,
             add_type = $('#add_type').val();
         if (type == 0) {
             console.log('add type 0 method start');
@@ -87,17 +89,8 @@ var Editor = {
                 success: function(result) {
                     console.log('create_element_test returned:');
                     console.log(result);
-                    if (add_type == 0) {
                         //添加文字素材
                         Editor.fetchForm(0);
-
-                    } else if (add_type == 1) {
-                        //添加图片素材
-                        $('#v_page_list').append();
-                    } else if (add_type == 2) {
-                        //添加轮播素材
-                        $('#v_page_list').append();
-                    };
                 },
                 error: function(err) {
                     $('#create_element_test_result').text(JSON.stringify(err));
@@ -107,7 +100,7 @@ var Editor = {
             });
         } else if (type == 3) {
             //创建图片
-            console.log('create element word sended');
+            console.log('create element pic sended');
             if (page_server_id == '') {
                 var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             };
@@ -118,6 +111,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
+                    'pic':pic,
                     'element_type': 1
                 },
                 dataType: 'json',
@@ -125,9 +119,8 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    console.log('create_element_test returned:');
-                    console.log(result);
                     Editor.fetchForm(0);
+                    $('#picModel').modal('hide');
                 },
                 error: function(err) {
                     $('#create_element_test_result').text(JSON.stringify(err));
@@ -137,7 +130,7 @@ var Editor = {
             });
         } else if (type == 4) {
             //创建轮播
-            console.log('create element word sended');
+            console.log('create element slider sended');
             if (page_server_id == '') {
                 var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             };
@@ -148,6 +141,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
+                    'slider':slider,
                     'element_type': 2
                 },
                 dataType: 'json',
@@ -155,9 +149,8 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    console.log('create_element_test returned:');
-                    console.log(result);
                     Editor.fetchForm(0);
+                    $('#picModel').modal('hide');
                 },
                 error: function(err) {
                     $('#create_element_test_result').text(JSON.stringify(err));
@@ -611,30 +604,30 @@ var Editor = {
         console.log("render picbox start");
         var product_id = $('#product_id').val(),
             token = localData.get('token');
-        $.ajax({
-            type: 'GET',
-            url: 'http://115.29.32.105:8080/api',
-            data: {
-                'product_id': product_id
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': token
-            },
-            success: function(products) {
-                $('#v_pic_box').empty();
-                if (products.length == 0) {
-                      $('#v_pic_box').append('<li>暂无照片</li>');
-                }else{
-                    for (var i = 0; i < products.length; i++) {
-                        $('#v_pic_box').append('<li><img src="'+products[i].src+'"></li></li>');
-                    }                   
-                }
-            },
-            error: function(err) {
-                console.log(err);
-            }
-        });
+        // $.ajax({
+        //     type: 'GET',
+        //     url: 'http://115.29.32.105:8080/api',
+        //     data: {
+        //         'product_id': product_id
+        //     },
+        //     dataType: 'json',
+        //     headers: {
+        //         'Access-Token': token
+        //     },
+        //     success: function(products) {
+        //         $('#v_pic_box').empty();
+        //         if (products.length == 0) {
+        //               $('#v_pic_box').append('<li>暂无照片</li>');
+        //         }else{
+        //             for (var i = 0; i < products.length; i++) {
+        //                 $('#v_pic_box').append('<li><img src="'+products[i].src+'"></li></li>');
+        //             }                   
+        //         }
+        //     },
+        //     error: function(err) {
+        //         console.log(err);
+        //     }
+        // });
     },
     //绘制右侧的数据中的产品信息
     renderGlobalInfo: function() {
