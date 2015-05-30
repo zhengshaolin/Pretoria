@@ -19,6 +19,7 @@ var Editor = {
             slider,
             add_type = $('#add_type').val();
         if (type == 0) {
+            //添加产品
             console.log('add type 0 method start');
             $.ajax({
                 type: 'POST',
@@ -44,8 +45,7 @@ var Editor = {
             });
         } else if (type == 1) {
             console.log('create_page_test sended');
-            //图片弹出框出现
-
+            //添加page
             $.ajax({
                 type: 'POST',
                 url: 'http://115.29.32.105:8080/api',
@@ -80,7 +80,8 @@ var Editor = {
                 data: {
                     'type': 2,
                     'product_id': product_id,
-                    'page_id': page_server_id
+                    'page_id': page_server_id,
+                    'element_type': 0
                 },
                 dataType: 'json',
                 headers: {
@@ -89,8 +90,8 @@ var Editor = {
                 success: function(result) {
                     console.log('create_element_test returned:');
                     console.log(result);
-                        //添加文字素材
-                        Editor.fetchForm(0);
+                    //添加文字素材
+                    Editor.fetchForm(1);
                 },
                 error: function(err) {
                     $('#create_element_test_result').text(JSON.stringify(err));
@@ -111,7 +112,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'pic':pic,
+                    'pic': pic,
                     'element_type': 1
                 },
                 dataType: 'json',
@@ -119,7 +120,7 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    Editor.fetchForm(0);
+                    Editor.fetchForm(1);
                     $('#picModel').modal('hide');
                 },
                 error: function(err) {
@@ -141,7 +142,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'slider':slider,
+                    'slider': slider,
                     'element_type': 2
                 },
                 dataType: 'json',
@@ -149,7 +150,7 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    Editor.fetchForm(0);
+                    Editor.fetchForm(1);
                     $('#picModel').modal('hide');
                 },
                 error: function(err) {
@@ -189,6 +190,8 @@ var Editor = {
         });
     },
     //获取表单信息
+    //0不绘制操作区
+    //1绘制操作区
     fetchForm: function(type) {
         console.log('fetchForm method start');
         var token = localData.get('token'),
@@ -213,7 +216,7 @@ var Editor = {
                     //渲染左侧列表
                     Editor.renderPage();
                     //渲染中间操作层
-                    Editor.renderArena();
+                    //Editor.renderArena();
                     //渲染右侧页面元素元素信息
                     Editor.renderPageAnimate();
                     //渲染右侧元素元素信息
@@ -446,10 +449,10 @@ var Editor = {
         console.log('render arena method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
             page_id = $('#page_id').val(),
-            page_server_id = $('#page_server_id').val(),
-            template_word,template_pic,template_slider;
+            page_server_id = $('#page_server_id').val();
+
         //console.log(page_id);
-        num = parseInt(page_id.split('_')[1]) + parseInt(1);                    
+        num = parseInt(page_id.split('_')[1]) + parseInt(1);
         if (page_server_id == '') {
             var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
         };
@@ -458,51 +461,62 @@ var Editor = {
 
         $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
         if (data != undefined) {
+            var template_word = "";
+            var template_pic = "";
+            var template_slider = "";
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id == page_server_id) {
-                    console.log("element data:",data[i].elements);
+                    console.log("element data:", data[i].elements);
                     $('#cnm').css('background-color', data[i].background_color);
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            template_word +="<div class='item' elementype='0' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            //console.log("2323232323",obj.vertical)
+                            template_word += "<div class='item' elementype='0' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:#" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
-                                template_word +="right:" + obj.hshift + "px;'"+obj.text+"</div>";
-                            }else{
-                                template_word +="left:" + obj.hshift + "px;'"+obj.text+"</div>";
+                                template_word += "right:" + obj.hshift + "px;";
+                            } else {
+                                template_word += "left:" + obj.hshift + "px;";
                             }
                             if (obj.vertical == 2) {
-                                template_word +="bottom:" + obj.vshift + "px;'"+obj.text+"</div>";
-                            }else{
-                                template_word +="top:" + obj.vshift + "px;'"+obj.text+"</div>"; 
+                                template_word += "bottom:" + obj.vshift + "px;";
+                            } else {
+                                template_word += "top:" + obj.vshift + "px;";
                             }
+                            template_word += "'>" + obj.text + "</div>";
+                            console.log("223232332",template_word);
                             $('#cnm').append(template_word);
+                            template_word = '';
                         } else if (obj.element_type == 1) {
-                            template_pic +="<img class='item' elementype='1' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' src='"+obj.pic+"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
-                                template_pic +="right:" + obj.hshift + "px;'</img>";
-                            }else{
-                                template_pic +="left:" + obj.hshift + "px;'</img>";
+                                template_pic += "right:" + obj.hshift + "px;'";
+                            } else {
+                                template_pic += "left:" + obj.hshift + "px;'";
                             }
                             if (obj.vertical == 2) {
-                                template_pic +="bottom:" + obj.vshift + "px;'</img>";
-                            }else{
-                                template_pic +="top:" + obj.vshift + "px;'</img>";
+                                template_pic += "bottom:" + obj.vshift + "px;'";
+                            } else {
+                                template_pic += "top:" + obj.vshift + "px;'";
                             }
+                            template_pic += "></img>";
                             $('#cnm').append(template_pic);
+                            template_pic = '';
                         } else if (obj.element_type == 2) {
-                            template_slider +="<img class='item' elementype='1' id='"+ page_id + "_" + j + "' mid='"+ obj._id +"' src='"+obj.slider[0]+"' style='z-index:" + j + ";position:absolute;with:"+obj.width+";height:"+obj.height+";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='"+ obj.vertical + ";text-align:"+obj.text_align+";font-weight:"+obj.font_weight+";font-style:"+obj.font_style+";";
+                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.slider[0] + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
-                                template_slider +="right:" + obj.hshift + "px;'</img>";
-                            }else{
-                                template_slider +="left:" + obj.hshift + "px;'</img>";
+                                template_slider += "right:" + obj.hshift + "px;'";
+                            } else {
+                                template_slider += "left:" + obj.hshift + "px;'";
                             }
                             if (obj.vertical == 2) {
-                                template_slider +="bottom:" + obj.vshift + "px;'</img>";
-                            }else{
-                                template_slider +="top:" + obj.vshift + "px;'</img>";
+                                template_slider += "bottom:" + obj.vshift + "px;'";
+                            } else {
+                                template_slider += "top:" + obj.vshift + "px;'";
                             }
+                            template_slider += "></img>";
                             $('#cnm').append(template_slider);
+                            template_slider='';
                         }
                     };
                 }
@@ -554,9 +568,10 @@ var Editor = {
                                     };
                                     var slider = obj.slider.split(',');
                                     if (slider.length) {
+                                        localData.set(data[i].elements[j]._id + "_slider", slider);
                                         $('.d_2').show();
                                         for (var k = 0; k < slider.length; k++) {
-                                            $('.d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>'+parseInt(k+1)+'.<span class="ml10">轮播图片'+parseInt(k+1)+'</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="'+slider[k]+'" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_creat pic-btn fr" type="3" element="2" key="'+k+'">替换</button></div>');
+                                            $('.d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_creat pic-btn fr" type="3" element="2" key="' + k + '">替换</button></div>');
                                         }
                                     }
                                     //console.log("232323",obj.animate_effect);
@@ -585,23 +600,23 @@ var Editor = {
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
             page_server_id = $('#page_server_id').val(),
             element_server_id = $('#element_server_id').val();
-            if (page_server_id != '') {
-                //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-                $('#v_animate_box').empty();
-                if (data != undefined) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i]._id == page_server_id) {
-                            for (var j = 0; j < data[i].elements.length; j++) {
-                                if (element_server_id == data[i].elements[j]._id) {
-                                    var obj = data[i].elements[j];
-                                    $('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
-                                };
+        if (page_server_id != '') {
+            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_animate_box').empty();
+            if (data != undefined) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]._id == page_server_id) {
+                        for (var j = 0; j < data[i].elements.length; j++) {
+                            if (element_server_id == data[i].elements[j]._id) {
+                                var obj = data[i].elements[j];
+                                $('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
                             };
-
                         };
+
                     };
                 };
             };
+        };
         $('#animateModel').modal('show');
     },
     //绘制右侧的数据中的页面动画设置
@@ -639,30 +654,30 @@ var Editor = {
         console.log("render picbox start");
         var product_id = $('#product_id').val(),
             token = localData.get('token');
-        // $.ajax({
-        //     type: 'GET',
-        //     url: 'http://115.29.32.105:8080/api',
-        //     data: {
-        //         'product_id': product_id
-        //     },
-        //     dataType: 'json',
-        //     headers: {
-        //         'Access-Token': token
-        //     },
-        //     success: function(products) {
-        //         $('#v_pic_box').empty();
-        //         if (products.length == 0) {
-        //               $('#v_pic_box').append('<li>暂无照片</li>');
-        //         }else{
-        //             for (var i = 0; i < products.length; i++) {
-        //                 $('#v_pic_box').append('<li><img src="'+products[i].src+'"></li></li>');
-        //             }                   
-        //         }
-        //     },
-        //     error: function(err) {
-        //         console.log(err);
-        //     }
-        // });
+        $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/api',
+            data: {
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                $('#v_pic_box').empty();
+                if (products.length == 0) {
+                    $('#v_pic_box').append('<li>暂无照片</li>');
+                } else {
+                    for (var i = 0; i < products.length; i++) {
+                        $('#v_pic_box').append('<li><img src="' + products[i].src + '"></li></li>');
+                    }
+                }
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
     },
     //绘制右侧的数据中的产品信息
     renderGlobalInfo: function() {

@@ -129,7 +129,6 @@ Drag.prototype.dragger = function(btn) {
                 document.onmousemove = null;
                 document.onmouseup = null;
                 thatall.selreset()
-                //console.log($(that).attr('plane'), $(that).attr('vertical'))
                 thatall.tagreset($(that).attr('plane'), $(that).attr('vertical'))
             }
         })
@@ -140,10 +139,10 @@ Drag.prototype.selreset = function() {
     $(this[0]).css('height', $('.selector').height());
     var top = $('.selector').css('top'),
         left = $('.selector').css('left');
-    $(this[0]).css({
-        top: top,
-        left: left
-    })
+    // $(this[0]).css({
+    //     top: top,
+    //     left: left
+    // })
 }
 Drag.prototype.readStyle=function(){
     console.log($(this[0]).attr('style'))
@@ -263,6 +262,12 @@ Drag.prototype.tagreset = function(x, y) {
     }
     switch (x.toString() + y.toString()) { 
         case '00':
+        var top = $('.selector').css('top'),
+        left = $('.selector').css('left');
+        $(this[0]).css({
+            top: top,
+            left: left
+        })
             correct()
             break; //左 上
         case '10':
@@ -322,6 +327,7 @@ Drag.prototype.tagreset = function(x, y) {
                     that.css('right',right + 'px')
                 }
             }
+            that.css('top', top + 'px')
             sel.css('top', top + 'px')
             correct()
             break; //右中
@@ -364,6 +370,7 @@ Drag.prototype.tagreset = function(x, y) {
                 sty = this.readStyle();
             that.removeAttr('style');
             for(var i in sty){
+                console.log(i)
                 if(i!='top'){
                     that.css(i,sty[i])
                 }else{
@@ -542,24 +549,18 @@ Drag.prototype.planeLeft = function() {
         zIndex = that.css('zIndex') || 0,
         flag = (parseInt(that.css('top')) == 0 || parseInt(that.css('top'))),
         overflow = that.css('overflow') || 'auto',
-        y = flag ? that.css('top') : that.css('bottom');
+        sty = this.readStyle();
     that.removeAttr('style');
-    that.css({
-        position: 'absolute',
-        width: targetWidth,
-        height: targetHeight,
-        left: 0,
-        zIndex: zIndex,
-        overflow: overflow
-    })
+    for(var i in sty){
+        if(i!='right'){
+            that.css(i,sty[i])
+        }else{
+            that.css('left',0)
+        }
+    }
     sel.css({
         left: 0
     })
-    if (flag) {
-        that.css('top', y)
-    } else {
-        that.css('bottom', y)
-    }
     that.attr('plane', '0')
     this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
 }
@@ -583,8 +584,7 @@ Drag.prototype.planeRight = function() {
         targetHeight = that.height(),
         sty = this.readStyle();
     that.attr('plane', '2')
-    console.log(sty)
-    this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
+    that.removeAttr('style');
     for(var i in sty){
         if(i!='left'){
             that.css(i,sty[i])
@@ -596,6 +596,7 @@ Drag.prototype.planeRight = function() {
         left: (mainWidth - targetWidth) + 'px',
         width: targetWidth
     })
+    this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
     // if (flag) {
     //     that.css('top', y)
     // } else {
@@ -656,7 +657,6 @@ Drag.prototype.verticalBottom = function() {
         targetHeight = that.height(),
         sty = this.readStyle();
     that.removeAttr('style');
-    console.log(sty)
     for(var i in sty){
         if(i!='top'){
             console.log(i)
