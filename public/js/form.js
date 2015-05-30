@@ -305,7 +305,6 @@ if ($ && jQuery) {
             var vshift, hshift,
                 elementype = $(s[0]).attr('elementype');
             console.log("drag element type",elementype);
-            alert(000);
             if (elementype == 0) {
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
@@ -333,7 +332,6 @@ if ($ && jQuery) {
                 Editor.update(3, 'vshift', parseInt(vshift));
                 Editor.update(3, 'hshift', parseInt(hshift));
             } else if (elementype == 1) {
-                alert(11111);
                 //图片元素
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').removeClass('hidden').show();
