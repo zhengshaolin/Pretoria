@@ -163,14 +163,14 @@ if ($ && jQuery) {
         console.log("select type",val);
         if (element_server_id == '') {
             alert("请选择页面或者元素");
+            return false;
         }else{
             if (val == "page") {
-                $('#v_page').removeClass("hidden");
-                $('#v_url').addClass('hidden');
-                Editor.renderAnimateModel();
+                $('#v_page').removeClass('hidden').show();
+                $('#v_url').addClass('hidden').hide();
             }else if(val == "url"){
-                $('#v_url').removeClass("hidden");
-                $('#v_page').addClass('hidden');
+                $('#v_url').removeClass('hidden').show();
+                $('#v_page').addClass('hidden').hide();
             }else{
                 return false;
             };
