@@ -39,7 +39,7 @@
             <li class="yl"><i  class="yulan"></i><a href="#">预览</a></li>
             <li class="break-up"><i class="add-text"></i><a class="e_creat" type="2" element="2">添加文本素材</a></li>
             <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="3" element="3">添加图片素材</a></li>
-            <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="4" element="4">添加轮播素材</a></li>
+            <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="3" element="3">添加轮播素材</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -194,31 +194,24 @@
                         <p>持续时间<span class="d-animate_duration"></span></p>
                       </div>
                     </li>
-                    <li class="last hidden">
+                    <li class="last">
                       <label>点击动作:</label>
-                      <select class="click-action">
-                        <option>跳转页面</option>
+                       <select class="click-action update_select" elementype="2" id="d-click_method">
+                        <option value="page">跳转内部页面页面</option>
+                        <option value="url">跳转外部页面</option>
                       </select>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">首页</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">末页</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">上一页</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">下一页</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">指定页</label>
-                        <select class="click-action">
-                          <option>页面2</option>
-                          <option>页面3</option>
-                          <option>页面4</option>
+                      <!-- 内部 -->
+                      <div class="" id="v_url">
+                        <label>指定页</label>
+                       <select class="click-action update_select" elementype="2" id="d-click_action">
                         </select>
                       </div>
+                      <!-- 外部 -->
+                        <div class="hidden" id="v_page">
+                        <label>url</label>
+                        <input type="text" class="panel-text ml10 update_item" elementype="2" id="d-click_action" aria-label="...">
+                      </div>
+
                     </li>                    
                   </ul>
                   </div>
@@ -434,11 +427,11 @@
         <ul>
           <li>
               <label>发布标题设置:</label>
-              <input class="panel-text w187"  type="text" value="">
+              <input class="panel-text w187 update_item"  type="text" value="" elementype="0" id="d-weixin_share_title">
            </li>
           <li>
               <label>发布详细描述:</label>
-              <input class="panel-text w187" type="text" value="">
+              <input class="panel-text w187 update_item" type="text" value="" elementype="0" id="d-weixin_share_desc">
            </li>
         </ul>
       </div>
@@ -482,7 +475,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存设置</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">保存设置</button>
       </div>
     </div>
   </div>

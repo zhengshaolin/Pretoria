@@ -171,8 +171,8 @@ li.user{margin-left:20px;margin-right:10px;}
 .t-v-justify{background-position: -52px 0;}
 .glyphicon_on{background-color: #ccc;}
 
-#v_pic_box{width: 100%; height: auto; margin:10px 0px;}
-#v_pic_box ul{display: inline-block; height: auto; width: 100%;}
-#v_pic_box ul li{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer; border: 1px solid #fff;}
-#v_pic_box ul li.active{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer; border: 1px solid #000;}
-#v_pic_box ul li img,#v_pic_box ul li.active img{width: 80px; height: 80px;}
+#v_pic_box{width: 100%; height: auto; margin:10px 0px; display: inline-block;}
+#v_pic_box{display: inline-block; height: auto; width: 100%;}
+#v_pic_box li{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer; border: 1px solid #fff;}
+#v_pic_box li.active{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer; border: 1px solid #000;}
+#v_pic_box li img,#v_pic_box li.active img{width: 80px; height: 80px; overflow: hidden;}

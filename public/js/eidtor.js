@@ -488,7 +488,7 @@ var Editor = {
                             $('#cnm').append(template_word);
                             template_word = '';
                         } else if (obj.element_type == 1) {
-                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + "px;height:" + obj.height + "px;color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;'";
                             } else {
@@ -631,6 +631,7 @@ var Editor = {
 
         if (page_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_url').find('select').empty();
             $('#v_page_animate').empty();
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
@@ -640,7 +641,7 @@ var Editor = {
                         $('#dp-title').val(data[i].title);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-                            //console.log("12121212", obj);
+                                $('#v_url').find('select').append('<option value="'+obj._id+'">'+obj.title+'</option>');
                             $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
@@ -665,12 +666,13 @@ var Editor = {
                 'Access-Token': token
             },
             success: function(products) {
+                //console.log("1223232332",products);
                 $('#v_pic_box').empty();
                 if (products.length == 0) {
                     $('#v_pic_box').append('<li>暂无照片</li>');
                 } else {
                     for (var i = 0; i < products.length; i++) {
-                        $('#v_pic_box').append('<li><img src="' + products[i].src + '"></li></li>');
+                        $('#v_pic_box').append('<li><img src="' + products[i].path + '"></li></li>');
                     }
                 }
             },
@@ -699,7 +701,7 @@ var Editor = {
             if (data.music == '') {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
             } else {
-                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
+                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close e_close_music" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
             };
             $("input[name='music_pos']").eq([data.music_pos]).attr('checked',true);
             $("input[name='music_option']").eq([data.music_option]).attr('checked',true);
@@ -775,7 +777,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm(0);
+                    Editor.fetchForm(1);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
@@ -803,7 +805,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm(0);
+                    Editor.fetchForm(1);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');

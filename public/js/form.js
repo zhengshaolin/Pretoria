@@ -1,5 +1,4 @@
 if ($ && jQuery) {
-
     $(document).ready(function() {
         Editor.initForm();
     });
@@ -11,7 +10,6 @@ if ($ && jQuery) {
             element = $(this).attr('element');
         //type保存，为添加图片功能预留参数
         $('#add_type').val(element);
-
         if (element == 2) {
             Editor.add(element);
         } else if (element == 3) {
@@ -40,6 +38,7 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
         Editor.fetchForm(1);
     });
+
     //左侧page删除功能
     $("#v_page_list").on("click", ".e_delete", function() {
         var type = $(this).attr('type');
@@ -161,8 +160,24 @@ if ($ && jQuery) {
             element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
         val = $(this).children('option:selected').val();
-        Editor.update(type, key, val);
+        console.log("select type",val);
+        if (element_server_id == '') {
+            alert("请选择页面或者元素");
+        }else{
+            if (val == "page") {
+                $('#v_page').removeClass("hidden");
+                $('#v_url').addClass('hidden');
+                Editor.renderAnimateModel();
+            }else if(val == "url"){
+                $('#v_url').removeClass("hidden");
+                $('#v_page').addClass('hidden');
+            }else{
+                return false;
+            };
+            Editor.update(type, key, val);            
+        }
     });
+
     // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
@@ -185,6 +200,7 @@ if ($ && jQuery) {
     });
     // 产品发布
     $('body').on('click', '.e_publish', function() {
+        //更新title,更新des，更新icon
         Editor.publish();
     });
 
@@ -197,11 +213,14 @@ if ($ && jQuery) {
     });
 
     //图库选中功能
-    $('#v_pic_box').on('click', 'li', function() {
+    $(document).on('click', '#v_pic_box li', function() {
         var pic = $(this).find('img').attr("src");
-        $('#upload_img_src').val(pic);
         $(this).siblings().removeClass();
         $(this).addClass('active');
+        if (pic != undefined) {
+            $('#upload_img_src').val(pic);
+
+        };
     });
 
     //弹出框调取动画保存
@@ -256,8 +275,9 @@ if ($ && jQuery) {
             //setTimeout(function(){
 
             var vshift, hshift,
-                element = $(s[0]).attr('elementype');
-            if (element == 0) {
+                elementype = $(s[0]).attr('elementype');
+            console.log("3434343434",elementype)
+            if (elementype == 0) {
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
                     vshift = $(s[0]).css('top')
@@ -397,7 +417,7 @@ if ($ && jQuery) {
                 that.attr('disabled', 'disabled');
                 tarImg = arrType[type];
                 if (genre === 'img') {
-                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF)$/.test(extension)) {
+                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF|mp3)$/.test(extension)) {
                         if (type === 'picture') {
                             var activeCount = tarImg.length;
                             if (activeCount === 8) {
@@ -408,7 +428,7 @@ if ($ && jQuery) {
                             }
                         }
                     } else {
-                        alert('上传的图片仅限gif,jpg,png!');
+                        alert('上传的图片仅限gif,jpg,png,mp3!');
                         that.text(text);
                         that.removeAttr('disabled');
                         return false;
@@ -418,6 +438,7 @@ if ($ && jQuery) {
             },
             onComplete: function(file, res) {
                 that.val('选择图片');
+                console.log(res)
                 if (typeof res == 'object')
                     res = res;
                 else
@@ -427,15 +448,38 @@ if ($ && jQuery) {
             }
         });
     };
+
+    // 上传功能
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
             action: 'http://115.29.32.105:8080/upload',
             type:0,
-            callback:function () {
-                console.log("123233434");
+            callback:function (data) {
+                //data.path;
+                Editor.renderPicBox();
             }
         });
     });
+    // 上传功能
+    $(document).on('click', '.e_upload_music', function() {
+        $(this).ajaxUpload({
+            action: 'http://115.29.32.105:8080/upload',
+            type:1,
+            callback:function (data) {
+                //data.path;
+                $('#musicModel').modal('hide');
+                Editor.update(0,'music',data.path);
+                
+            }
+        });
+    });
+
+    // 上传功能
+    $(document).on('click', '.e_close_music', function() {
+         Editor.update(0,'music','');
+         Editor.fetchForm(1);
+    });
+
 
 
 
