@@ -138,11 +138,11 @@
                       <div class="panel-body">
                         <div class="fl">
                         <a href="#">
-                          <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                          <img id="d-element_pic" data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
                         </a>
                         <h4 class="pic-name">绘图.png</h4>
                         </div>
-                        <button class="e_creat pic-btn fr" type="3" element="1">替换</button>
+                        <button class="animation-btn fr e_open_box" replaceType="1">替换</button>
                       </div>                      
                     </li>
                     <li class="d_0"> 
@@ -238,11 +238,11 @@
                           <div class="panel-body">
                             <div class="fl mt10">
                             <a href="#">
-                              <img data-holder-rendered="true" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjk1ODMzMzk2OTExNjIxMSIgeT0iMzIiIHN0eWxlPSJmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MTBwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj42NHg2NDwvdGV4dD48L2c+PC9zdmc+" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                              <img id="" data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
                             </a>
                             <h4 class="pic-name">绘图.png</h4>
                             </div>
-                            <button class="e_creat pic-btn fr" type="3" element="1">替换</button>
+                             <button class="pic-btn fr e_open_box" replacetype="3">替换</button>
                           </div>
                       </li>
                     </ul>
@@ -344,7 +344,7 @@
                               </a>
                               <h4 class="pic-name">绘图.png</h4>
                               </div>
-                            <button class="e_creat pic-btn fr" type="3" element="1">替换</button>
+                            <button class="btn e_open_box" replacetype="4">替换</button>
                             </div>                          
                             <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10 update_item" elementype="0" id="d-glass_trans" value="" />%
                           </div>
@@ -433,6 +433,15 @@
               <label>发布详细描述:</label>
               <input class="panel-text w187 update_item" type="text" value="" elementype="0" id="d-weixin_share_desc">
            </li>
+          <li class="d_1"> 
+                      <label>图片资源:</label>
+                      <div class="panel-body">
+                        <div class="fl">
+                          <img id="d-weixin_share_icon" data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                        <button class="btn e_open_box" replacetype="2">替换</button>
+                        </div>
+                      </div>                      
+                    </li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -492,12 +501,12 @@
           <button type="button" class="btn btn-primary e_upload_pic">上传图片</button>
       </div>
       <div class="modal-body">
-          <ul id="v_pic_box">
+          <ul class="v_pic_box" type="0">
           </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary e_store_pic">保存设置</button>
+        <button type="button" class="btn btn-primary e_store_pic" replaceType="0">保存设置</button>
       </div>
     </div>
   </div>

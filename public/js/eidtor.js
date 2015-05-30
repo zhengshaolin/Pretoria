@@ -484,7 +484,7 @@ var Editor = {
                                 template_word += "top:" + obj.vshift + "px;";
                             }
                             template_word += "'>" + obj.text + "</div>";
-                            console.log("223232332",template_word);
+                            //console.log("223232332",template_word);
                             $('#cnm').append(template_word);
                             template_word = '';
                         } else if (obj.element_type == 1) {
@@ -566,6 +566,7 @@ var Editor = {
                                     if (obj.ftu == 1) {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
+                                    $('#d-element_pic').attr('src',obj.pic);
                                     var slider = obj.slider.split(',');
                                     if (slider.length) {
                                         localData.set(data[i].elements[j]._id + "_slider", slider);
@@ -668,12 +669,12 @@ var Editor = {
             },
             success: function(products) {
                 //console.log("1223232332",products);
-                $('#v_pic_box').empty();
+                $('.v_pic_box').empty();
                 if (products.length == 0) {
-                    $('#v_pic_box').append('<li>暂无照片</li>');
+                    $('.v_pic_box').append('<li>暂无照片</li>');
                 } else {
                     for (var i = 0; i < products.length; i++) {
-                        $('#v_pic_box').append('<li><img src="' + products[i].path + '"></li></li>');
+                        $('.v_pic_box').append('<li><img src="' + products[i].path + '"></li></li>');
                     }
                 }
             },
@@ -695,9 +696,9 @@ var Editor = {
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
             $('#d-pry').val(data.pry);
-            $('d-switch_type').val(data.switch_type);
-            $('d-weixin_share_title').val(data.weixin_share_title);
-            $('d-weixin_share_desc').val(data.weixin_share_desc);
+            $('#d-switch_type').val(data.switch_type);
+            $('#d-weixin_share_title').val(data.weixin_share_title);
+            $('#d-weixin_share_desc').val(data.weixin_share_desc);
             //box4
             //音乐列表dp-title
             $('#v_upload_music').empty();

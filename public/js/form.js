@@ -13,8 +13,10 @@ if ($ && jQuery) {
         if (element == 2) {
             Editor.add(element);
         } else if (element == 3) {
+            $('.e_store_pic').attr('replaceType',0);
             $('#picModel').modal('show');
         } else if (element == 4) {
+            $('.e_store_pic').attr('replaceType',0);
             $('#picModel').modal('show');
         }
     });
@@ -203,22 +205,49 @@ if ($ && jQuery) {
         Editor.publish();
     });
 
+    $(document).on('click','.e_open_box',function (argument) {
+        var replaceType = $(this).attr('replaceType');
+        $('.e_store_pic').attr('replaceType',replaceType);
+        $('#picModel').modal('show');
+    });
+
     //弹出框
     //弹窗框图片保存设置
+    //type 0 新建添加
+    //type 1 元素详情替换
+    //type 2 微信活动icon
+    //type 3 页面背景图片替换
+    //type 4 产品背景图片替换
     $(document).on('click', '.e_store_pic', function(e) {
         e.preventDefault();
-        var type = $('#add_type').val();
-        Editor.add(type);
+        var type = $('#add_type').val(),
+            replaceType = $(this).attr('replaceType'),
+            pic = $(this).find('img').attr("src");
+            if (replaceType == 0) {
+                Editor.add(type);
+            }else if(replaceType == 1){
+                Editor.update(2, 'pic', pic);
+                Editor.fetchForm(0);
+                $('#picReplaceModel').modal('hide');
+            }else if(replaceType == 2){
+                Editor.update(0, 'weixin_share_icon', pic);
+                $('#d-weixin_share_icon').attr('src',pic);
+            }else if(replaceType == 3){
+                Editor.update(1, 'background_img', pic);
+                Editor.fetchForm(0);
+            }else if(replaceType == 4){
+                Editor.update(0, 'background_img', pic);
+                Editor.fetchForm(0);
+            }
     });
 
     //图库选中功能
-    $(document).on('click', '#v_pic_box li', function() {
+    $(document).on('click', '.v_pic_box li', function() {
         var pic = $(this).find('img').attr("src");
         $(this).siblings().removeClass();
         $(this).addClass('active');
         if (pic != undefined) {
             $('#upload_img_src').val(pic);
-
         };
     });
 
@@ -246,23 +275,23 @@ if ($ && jQuery) {
             element = $(s[0]).attr('elementype');
         if (element == 0) {
             //文字元素
-            $('.d_0').show();
-            $('.d_1').hide();
-            $('.d_2').hide();
+                $('.d_0').removeClass('hidden').show();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
             Editor.renderPageAnimate();
             Editor.renderGlobalInfo();
         } else if (element == 1) {
             //图片元素
-            $('.d_0').hide();
-            $('.d_1').show();
-            $('.d_2').hide();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         } else if (element == 2) {
             //轮播元素
-            $('.d_0').hide();
-            $('.d_1').hide();
-            $('.d_2').show();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         }
         //console.log(s)
@@ -274,6 +303,8 @@ if ($ && jQuery) {
             //setTimeout(function(){
             var vshift, hshift,
                 elementype = $(s[0]).attr('elementype');
+            console.log("drag element type",elementype);
+            alert(000);
             if (elementype == 0) {
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
@@ -286,9 +317,9 @@ if ($ && jQuery) {
                 } else {
                     hshift = $(s[0]).css('right')
                 };
-                $('.d_0').show();
-                $('.d_1').hide();
-                $('.d_2').hide();
+                $('.d_0').removeClass('hidden').show();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
                 //Editor.renderArena();
                 Editor.update(3, 'element_type', 0);
@@ -300,11 +331,12 @@ if ($ && jQuery) {
                 Editor.update(3, 'vertical', $(s[0]).attr('vertical'));
                 Editor.update(3, 'vshift', parseInt(vshift));
                 Editor.update(3, 'hshift', parseInt(hshift));
-            } else if (elemntype == 1) {
+            } else if (elementype == 1) {
+                alert(11111);
                 //图片元素
-                $('.d_0').hide();
-                $('.d_1').show();
-                $('.d_2').hide();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
                 Editor.update(3, 'element_type', 1);
                 //Editor.update(3,'text',$(s[0]).html());
                 Editor.update(3, 'z-index', $(s[0]).css('z-index'));
@@ -315,6 +347,9 @@ if ($ && jQuery) {
                 Editor.update(3, 'vshift', parseInt(vshift));
                 Editor.update(3, 'hshift', parseInt(hshift));
             } else if (elementype == 2) {
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').removeClass('hidden').show();
                 //轮播元素
                 Editor.update(3, 'element_type', 2);
                 //Editor.update(3,'text',$(s[0]).html());
@@ -457,6 +492,7 @@ if ($ && jQuery) {
             }
         });
     });
+
     // 上传功能
     $(document).on('click', '.e_upload_music', function() {
         $(this).ajaxUpload({
@@ -476,9 +512,6 @@ if ($ && jQuery) {
          Editor.update(0,'music','');
          Editor.fetchForm(1);
     });
-
-
-
 
     $('.selector').on('dblclick', function() {
         $(this).hide()
