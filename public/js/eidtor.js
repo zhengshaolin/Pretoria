@@ -638,7 +638,8 @@ var Editor = {
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
-                        $('#dp-title').val(data[i].title);
+                        console.log("223232323",data[i].title);
+                        $('#dp-title').val(data[i].title).attr('placeholder',data[i].title);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
                                 $('#v_url').find('select').append('<option value="'+obj._id+'">'+obj.title+'</option>');
@@ -695,6 +696,8 @@ var Editor = {
             $('#d-orign_mum').val(data.orign_num);
             $('#d-pry').val(data.pry);
             $('d-switch_type').val(data.switch_type);
+            $('d-weixin_share_title').val(data.weixin_share_title);
+            $('d-weixin_share_desc').val(data.weixin_share_desc);
             //box4
             //音乐列表dp-title
             $('#v_upload_music').empty();
@@ -842,8 +845,5 @@ var Editor = {
             });
         }
     },
-    upPage: function() {},
-    uplodad: function() {
-        return url;
-    }
+    upPage: function() {}
 };

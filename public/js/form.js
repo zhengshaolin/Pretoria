@@ -53,7 +53,6 @@ if ($ && jQuery) {
         var element_current_id = $(this).attr('id'),
             element_type = $(this).attr('element_type');
         $('#element_id').val(element_current_id);
-        console.log(11111);
         Editor.renderArena();
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
@@ -127,7 +126,7 @@ if ($ && jQuery) {
         Editor.update(2, 'vertical', val)
     });
     //右侧可更新ipput
-    $('.update_item').on('blur', function() {
+    $(document).on('blur', '.update_item', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
         //elementype 2 元素属性
@@ -273,10 +272,8 @@ if ($ && jQuery) {
             $('#element_server_id').val($(s[0]).attr('mid'));
             $('#element_id').val($(s[0]).attr('id'));
             //setTimeout(function(){
-
             var vshift, hshift,
                 elementype = $(s[0]).attr('elementype');
-            console.log("3434343434",elementype)
             if (elementype == 0) {
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
@@ -438,7 +435,7 @@ if ($ && jQuery) {
             },
             onComplete: function(file, res) {
                 that.val('选择图片');
-                console.log(res)
+                //console.log(res);
                 if (typeof res == 'object')
                     res = res;
                 else
