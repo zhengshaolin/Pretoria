@@ -218,6 +218,7 @@ if ($ && jQuery) {
     //type 2 微信活动icon
     //type 3 页面背景图片替换
     //type 4 产品背景图片替换
+    //type 5 轮播图片
     $(document).on('click', '.e_store_pic', function(e) {
         e.preventDefault();
         var type = $('#add_type').val(),

@@ -636,14 +636,16 @@ var Editor = {
             $('#v_page_animate').empty();
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
+                        $('#v_url').find('select').append('<option value="'+data[i]._id+'">'+data[i].title+'</option>');
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
                         console.log("223232323",data[i].title);
                         $('#dp-title').val(data[i].title).attr('placeholder',data[i].title);
+
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-                                $('#v_url').find('select').append('<option value="'+obj._id+'">'+obj.title+'</option>');
+
                             $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
