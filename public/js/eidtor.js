@@ -450,7 +450,6 @@ var Editor = {
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
             page_id = $('#page_id').val(),
             page_server_id = $('#page_server_id').val();
-
         //console.log(page_id);
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
         if (page_server_id == '') {
@@ -458,7 +457,6 @@ var Editor = {
         };
         //$('.page-name').empty().text("页面" + num);
         $('#cnm').empty();
-
         $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
         if (data != undefined) {
             var template_word = "";
