@@ -687,7 +687,7 @@ var Editor = {
         if (data != undefined) {
             //box5
             $('#d-product').val(data.product);
-            $("input[name='glass']").eq([data.music_pos]).checked = true;
+            $("input[name='glass']").eq([data.glass]).attr('checked',true);
             $('#d-glass_url').attr('src', data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
@@ -701,9 +701,8 @@ var Editor = {
             } else {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
             };
-            $("input[name='music_pos']").eq([data.music_pos]).checked = true;
-            $("input[name='music_option']").eq([data.music_option]).checked = true;
-            //box3
+            $("input[name='music_pos']").eq([data.music_pos]).attr('checked',true);
+            $("input[name='music_option']").eq([data.music_option]).attr('checked',true);
             //box2
             //box1           
         };
