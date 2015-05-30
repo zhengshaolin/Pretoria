@@ -161,9 +161,6 @@ var Editor = {
             });
         }
     },
-    downPage: function() {
-
-    },
     //获取列表信息
     fetchList: function() {
         console.log('fetchList method start');
@@ -265,7 +262,6 @@ var Editor = {
                 }
             });
         }
-
     },
     //初始化列表页
     initList: function() {
@@ -845,6 +841,5 @@ var Editor = {
                 }
             });
         }
-    },
-    upPage: function() {}
+    }
 };
