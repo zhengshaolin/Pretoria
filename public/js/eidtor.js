@@ -580,7 +580,7 @@ var Editor = {
                                     $('.d-horizontal').removeClass('glyphicon_on');
                                     $('.d-horizontal').eq(obj.horizontal).addClass('glyphicon_on');
                                     $('.d-vertical').removeClass('glyphicon_on');
-                                    $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
+                                    $('.d-vertical').eq(obj.vertical).addClass('glyphicon_on');
                                     $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
                                     $('.d_page_backimg').attr('src',obj.background_img);
                                     if (obj.ftb == 1) {
