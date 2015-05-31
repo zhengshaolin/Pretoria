@@ -58,7 +58,7 @@
             <i class="add-btn"></i>
             <a type="1" class="e_creat">添加新页面</a>
           </div>
-          <ul class="page-list" id="v_page_list"  style="height:590px;">
+          <ul class="page-list" id="v_page_list"  style="height:560px;">
             <li id="p_0" pid="5561cdb2764f78423f500ad0" class="active"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
             <li id="p_0" pid="5561cdb2764f78423f500ad0"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
             <li id="p_0" pid="5561cdb2764f78423f500ad0"><span class="page-num">1</span><i pid="5561cdb2764f78423f500ad0" id="p_0" type="1" class="del e_delete"></i><img class="page-img" src="http://115.29.32.105:8080/public/newpage.png" data-holder-rendered="true"></li>
@@ -84,7 +84,7 @@
                 <li><a href='#tab2' data-toggle='tab'>页面动画</a></li>
                 <li><a href='#tab3' data-toggle='tab'>底图设置</a></li>
                 <li><a href='#tab4' data-toggle='tab'>背景音乐</a></li>
-                <li><a href='#tab6' data-toggle='tab'>页面设置</a></li>
+                <li><a href='#tab6' data-toggle='tab' class="hidden">页面设置</a></li>
                 <li><a href='#tab5' data-toggle='tab'>作品相关</a></li>
               </ul>              
               <div class='tab-content e_tab_content'>
@@ -121,10 +121,10 @@
                       </div>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon d-horizontal t-v t-v-top" aria-hidden="true"></span>
-                          <span class="glyphicon d-horizontal t-v t-v-middle" aria-hidden="true"></span>
-                          <span class="glyphicon d-horizontal t-v t-v-bottom" aria-hidden="true"></span> 
-                          <span class="glyphicon d-horizontal t-v t-v-justify" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-top" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-middle" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-bottom" aria-hidden="true"></span> 
+                          <span class="glyphicon d-vertical t-v t-v-justify" aria-hidden="true"></span>
                         </h6>
                         <div class="fr mt5">
                           右边距:
@@ -189,9 +189,9 @@
                       <label>动画设置:</label>
                       <button class="animation-btn e_store_animate">修改动画</button>
                       <div class="animation panel-body">
-                        <p>动画效果<span class="d-animate_effect"></span></p>
-                        <p>延迟时间<span class="d-animate_delay"></span></p>
-                        <p>持续时间<span class="d-animate_duration"></span></p>
+                        <p>动画效果：<span class="d-animate_effect"></span></p>
+                        <p>延迟时间：<span class="d-animate_delay"></span></p>
+                        <p>持续时间：<span class="d-animate_duration"></span></p>
                       </div>
                     </li>
                     <li class="last">
@@ -353,9 +353,10 @@
                           <label>页面切换方式:</label>
                           <div class="panel-body">
                             <select class="click-action update_select" elementype="0" id="d-switch_type">
-                              <option value="0">原页面打开</option>
-                              <option value="1">新页面打开</option>
-                              <option value="2">页面4</option>
+                              <option value="0">不设置</option>
+                              <option value="slide">平移出现</option>
+                              <option value="1">放大出现</option>
+                              <option value="2">不出现</option>
                             </select>
                           </div>
                         </li>
@@ -366,7 +367,7 @@
                             <h6>1）在相应页面添加文本框素材</h6>
                             <h6>2）按照格式输入：</h6>
                             <h6>3）数值设置：</h6>
-                            <h6>起始值<input type="text" class="panel-text ml27 update_item" aria-describedby="basic-addon1" id="d-orign_mum" elementype="0" value=""></h6>
+                            <h6>起始值<input type="text" class="panel-text ml27 update_item" aria-describedby="basic-addon1" id="d-orign_num" elementype="0" value=""></h6>
                             <h6>+</h6>
                             <h6>实际人数*<input type="text" class="panel-text ml10 update_item" elementype="0" id="d-pry" aria-describedby="basic-addon1" value=" "></h6>
                           </div>
@@ -374,7 +375,7 @@
                      </ul>
                   </div>  
                 </div>
-                <div class='tab-pane' id='tab6'>
+                <div class='tab-pane hidden' id='tab6'>
                   <div class="tab-content">
                      <h1 class="edit-title"><i class="e-title"></i>页面动画转换设置<i class="e-close"></i></h1>
                      <ul class="panel">
@@ -461,7 +462,33 @@
       </div>
       <div class="modal-body">
         <ul id="v_animate_box">
-
+        <li>
+          <label>动画效果设置:</label>
+          <select class="click-action ml10 update_select ds-animate_effect" elementype="2" id="ds-animate_effect">
+            <option value="slide">slide</option>
+            <option value="flash">flash</option>
+            <option value="jello">jello</option>
+            <option value="bounceIn">bounceIn</option>
+          </select>
+        </li>
+        <li>
+          <label>动画延迟设置:</label>
+          <select class="click-action ml10 update_select ds-animate_delay" elementype="2" id="d-animate_delay">
+            <option value="1000">1000毫秒</option>
+            <option value="2000">2000毫秒</option>
+            <option value="3000">3000毫秒</option>
+            <option value="4000">4000毫秒</option>
+          </select>
+        </li>
+        <li>
+          <label>动画持续时间设置:</label>
+          <select class="click-action ml10 update_select ds-animate_duration" elementype="2" id="d-animate_duration">
+            <option value="1000">1000毫秒</option>
+            <option value="2000">2000毫秒</option>
+            <option value="3000">3000毫秒</option>
+            <option value="4000">4000毫秒</option>
+          </select>
+        </li>
         </ul>
       </div>
       <div class="modal-footer">

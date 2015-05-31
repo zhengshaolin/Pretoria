@@ -59,9 +59,10 @@ var Editor = {
                 },
                 success: function(result) {
                     console.log('create_page_test returned:');
-                    console.log(result);
                     Editor.store(JSON.stringify(result));
                     Editor.renderPage();
+                    $('#v_page_list').find('li').last().prev().trigger('click');
+
                 },
                 error: function(err) {
                     console.log('create_page_test err:');
@@ -453,7 +454,7 @@ var Editor = {
         };
         //$('.page-name').empty().text("页面" + num);
         $('#cnm').empty();
-        $('#cnm').append('<div class="selector" style="display:none;z-index:9999"></div>');
+        $('#cnm').append('<div class="selector" style="display:none;z-index:899"></div>');
         if (data != undefined) {
             var template_word = "";
             var template_pic = "";
@@ -466,7 +467,7 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
-                            template_word += "<div class='item' elementype='0' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:#" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_word += "<div class='item' elementype='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:#" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -576,8 +577,8 @@ var Editor = {
                                     $('.d-animate_effect').html(obj.animate_effect);
                                     $('.d-animate_delay').val(obj.animate_delay);
                                     $('.d-animate_delay').html(obj.animate_delay);
-                                    $('#d-animate_duration').val(obj.animate_duration);
-                                    $('#d-animate_duration').html(obj.animate_duration);
+                                    $('.d-animate_duration').val(obj.animate_duration);
+                                    $('.d-animate_duration').html(obj.animate_duration);
                                 };
                             };
 
@@ -597,15 +598,21 @@ var Editor = {
             element_server_id = $('#element_server_id').val();
         if (page_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-            $('#v_animate_box').empty();
+            //$('#v_animate_box').empty();
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i]._id == page_server_id) {
                         for (var j = 0; j < data[i].elements.length; j++) {
                             if (element_server_id == data[i].elements[j]._id) {
                                 var obj = data[i].elements[j];
-                                $('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
+                                //$('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
+                            //$('#ds-animate_effect').find("option[value='"+obj.animate_effect+"']").attr("selected",true);
+                            //$('#ds-animate_effect').find("option[value='jello']")[0].selected;
+                            $('#ds-animate_effect').val(obj.animate_effect);
+                            $('#ds-animate_delay').val(obj.animate_delay);
+                            $('#ds-animate_duration').val(obj.animate_duration);
                             };
+
                         };
 
                     };

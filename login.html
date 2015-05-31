@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>H5后台-列表页</title>
+    <!-- Bootstrap core CSS -->
+    <link href="public/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="public/bootstrap/dashboard.css" rel="stylesheet">
+    <link href="public/css/form.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="public/bootstrap/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="bg_y">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <h1 class="login-head">编辑器</h1>
+        </div>
+    </nav>
+    <div class="login-main">
+        <h3 class="login-title">登录</h3>
+        <div><label>用户名：</label><input type="text"  placeholder="请输入用户名" class="ipt-txt name" ></div>
+        <div><label>密码：</label><input type="password" placeholder="请输入密码" class="ipt-txt password"></div>
+        <button class="login-btn submit">提交</button>
+    </div>
+
+    <!-- 嵌在弹窗里 -->
+
+    <div class="share">
+      <h3>恭喜您发布成功</h3>
+      <p>扫一扫，分享至朋友圈</p>
+      <div><img src="11.jpg" width="120" height="120"/></div>
+      <div><a href="#">复制网址</a></div>
+      <button class="ipt-btn">完成</button>
+      <button class="ipt-btn">还需编辑</button>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="public/bootstrap/jquery.min.js"></script>
+    <script src="public/bootstrap/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="public/bootstrap/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
+
+
+    <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/list.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+  </body>
+  <script type="text/javascript">
+$('.submit').on('click',function(e){
+  $.ajax({
+    type:'post',
+    url:'http://115.29.32.105:8080/login',
+    data:{user:$('.name').val(),pass:$('.password').val()},
+    success:function(data){
+      if(data.access_token){
+        localStorage.token = data.access_token
+      }else{
+        alert(data.error)
+      }
+    }
+  })
+})
+</script>
+</html>
