@@ -81,7 +81,7 @@ if ($ && jQuery) {
     });
     //右侧水平操作
     $('.d-horizontal').click(function() {
-        var val = $(this).index();
+        var val = $(this).index(),hshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -92,12 +92,20 @@ if ($ && jQuery) {
             s.planeRight()
         } else if (val == 3) {
             s.planeFull();
+             Editor.update(3, 'width', parseInt($(s[0]).css('width')));
         }
+        
+                if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
+                    hshift = $(s[0]).css('left')
+                } else {
+                    hshift = $(s[0]).css('right')
+                };
+        Editor.update(2, 'hshift', parseInt(hshift));
         Editor.update(2, 'horizontal', val);
     });
     //右侧垂直操作
     $('.d-vertical').click(function() {
-        var val = $(this).index();
+        var val = $(this).index(),vshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -108,24 +116,25 @@ if ($ && jQuery) {
             s.verticalBottom();
         } else if (val == 3) {
             s.verticalFull();
+                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
+            
         }
+        if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
+                    vshift = $(s[0]).css('top')
+                } else {
+                    vshift = $(s[0]).css('bottom')
+                }
+        Editor.update(2, 'vshift', parseInt(vshift));
         Editor.update(2, 'vertical', val)
     });
     //右侧对齐操作
     $('.d-align').click(function() {
         var key = $(this).index(),
-            val = $(this).attr('ta').
-
+            val = $(this).attr('ta');
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (key == 0) {
-
-        } else if (key == 1) {
-
-        } else if (key == 2) {
-            s.verticalBottom();
-        }
-        Editor.update(2, 'vertical', val)
+        console.log("text-align",val);
+        Editor.update(2, 'text_align', val)
     });
     //右侧可更新ipput
     $(document).on('blur', '.update_item', function() {
@@ -173,7 +182,7 @@ if ($ && jQuery) {
                 $('#v_url').removeClass('hidden').show();
                 $('#v_page').addClass('hidden').hide();
             }
-            console,log("select test",type,key,val);
+            console.log("select test",type,key,val);
             Editor.update(type, key, val);            
         }
     });
@@ -195,14 +204,25 @@ if ($ && jQuery) {
 
     //产品
     // 产品预览
-    $('.e_preview').click(function() {
+    $('body').on('click', '.e_preview', function() {
+        //更新title,更新des，更新icon
         Editor.preview();
+    });
+    $('body').on('click', '.e_up_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.prevPage();
+    });
+    $('body').on('click', '.e_down_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.nextPage();
     });
     // 产品发布
     $('body').on('click', '.e_publish', function() {
         //更新title,更新des，更新icon
         Editor.publish();
     });
+
+
 
     $(document).on('click','.e_open_box',function (argument) {
         var replaceType = $(this).attr('replaceType');
@@ -222,7 +242,7 @@ if ($ && jQuery) {
         e.preventDefault();
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
-            pic = $(this).find('img').attr("src");
+            pic = $('#upload_img_src').val();
             if (replaceType == 0) {
                 Editor.add(type);
             }else if(replaceType == 1){
@@ -233,12 +253,14 @@ if ($ && jQuery) {
                 Editor.update(0, 'weixin_share_icon', pic);
                 $('#d-weixin_share_icon').attr('src',pic);
             }else if(replaceType == 3){
+                console.log("replace 3",pic);
                 Editor.update(1, 'background_img', pic);
                 Editor.fetchForm(0);
             }else if(replaceType == 4){
-                Editor.update(0, 'background_img', pic);
+                Editor.update(0, 'glass_url', pic);
                 Editor.fetchForm(0);
             }
+            $('#picModel').modal('hide');
     });
 
     //图库选中功能
@@ -486,7 +508,7 @@ if ($ && jQuery) {
             action: 'http://115.29.32.105:8080/upload',
             type:0,
             callback:function (data) {
-                //data.path;
+                //render picbox
                 Editor.renderPicBox();
             }
         });
@@ -498,10 +520,12 @@ if ($ && jQuery) {
             action: 'http://115.29.32.105:8080/upload',
             type:1,
             callback:function (data) {
-                //data.path;
+                //close modal
                 $('#musicModel').modal('hide');
+                //update
                 Editor.update(0,'music',data.path);
-                
+                // 更新右侧公共信息
+                Editor.renderGlobalInfo(); 
             }
         });
     });
