@@ -289,6 +289,7 @@ if ($ && jQuery) {
     //拖拽插件
     var s, te;
     $('#cnm').on('click', function(e) {
+        e.stopPropagation()
         s = Drag(e);
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
@@ -515,8 +516,10 @@ if ($ && jQuery) {
         Editor.fetchForm(1);
     });
 
-    $('.selector').on('dblclick', function() {
-        $(this).hide()
-    });
+    $('.col-md-6').on('click',function(e){
+        e.stopPropagation();
+        console.log(22222)
+        $('.selector').hide()
+    })
 
 };

@@ -16,7 +16,6 @@ Drag.prototype.init = function(e) {
         this.dragger(btn)
     } else if(e.target == $('#cnm')[0]){
         this[0] = $('#cnm')[0];
-        $('.selector').hide()
     }else{
         this[0] = dragcache
     }
@@ -30,13 +29,14 @@ Drag.prototype.render = function() {
         top = $(that).offset().top - $('#cnm').offset().top - border,
         left = $(that).offset().left - $('#cnm').offset().left - border;
     html.css({
-        border: '2px dashed #000',
+        border: '2px dashed #0000ff',
         width: width,
         height: height,
         position: 'absolute',
         left: left,
         top: top
     });
+    console.log(html.css('width'))
     var stack1 = $('<div style="position:absolute;top:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lt"></div>'),
         stack2 = $('<div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background: #0000ff" class="x_rt"></div>'),
         stack3 = $('<div style="position:absolute;bottom:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lb"></div>'),
@@ -102,20 +102,21 @@ Drag.prototype.dragger = function(btn) {
             }
             function lock(){}
             document.onmousemove = function(e) {
-                var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - parseInt(html.css('border')),
-                    ty = page.pageY(e) - y - htmltop - $('#cnm').offset().top - parseInt(html.css('border'));
+                var border = parseInt(html.css('border'));
+                var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - border,
+                    ty = page.pageY(e) - y - htmltop - $('#cnm').offset().top - border;
                 if(!e.ctrlKey){
                     if ($(_this).hasClass('x_rb')) {
-                        html.css('width', tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
+                        html.css('width', tx - beginx + beginwidth -4).css('height', ty - beginy + beginheight -4)
                     } else if ($(_this).hasClass('x_lb')) {
-                        html.css('width', -tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
+                        html.css('width', -tx - beginx + beginwidth -4).css('height', ty - beginy + beginheight -4)
                         html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
                     } else if ($(_this).hasClass('x_lt')) {
-                        html.css('width', -tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
+                        html.css('width', -tx - beginx + beginwidth -4).css('height', -ty - beginy + beginheight-4 )
                         html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
                         html.css('top', htmltop + ty + parseInt($(_this).css('top')))
                     } else if ($(_this).hasClass('x_rt')) {
-                        html.css('width', tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
+                        html.css('width', tx - beginx + beginwidth -4).css('height', -ty - beginy + beginheight-4)
                         html.css('top', htmltop + ty + parseInt($(_this).css('top')))
                     }
                 }
