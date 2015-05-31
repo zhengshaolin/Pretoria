@@ -91,7 +91,7 @@ li.user{margin-left:20px;margin-right:10px;}
 .add-page > i.add-btn{background-position: 0 -180px;width:40px;height:40px;position: absolute;left:41%;}
 .add-page > a{position: absolute;width: 100%;top: 60%;text-align: center;color: #3f3f3f;text-decoration: none;}
 .add-page:hover{background-color: #f3f3f3;}
-.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;margin-top: 97px;overflow-y:scroll;background-color: #fff;}
+.page-list{list-style: none;width: 214px;overflow: hidden;padding:10px;margin-top: 97px;overflow-y:scroll;background-color: #fff; position: fixed;}
 .page-list > li{position: relative; display: inline-block;margin-top: 20px;}
 .page-num{float: left;margin:0 10px;}
 .page-img{float:left;width:120px;height:214px;border:1px solid #fff;box-shadow: 0px 0px 8px #ababab;}
@@ -104,7 +104,7 @@ li.user{margin-left:20px;margin-right:10px;}
 .add-newpage:hover{background:url(../image/add-pagehover.png) center no-repeat #fff;border:1px solid #d0d0d0;}
 .tc{text-align: center;font-size: 18px;line-height: 70px;}
 .page-edit{position: relative;left:22.5%;border:3px solid #fff;box-shadow: 0px 0px 8px #ababab;width:366px; height:646px; overflow: hidden;}
-.page-btn{position: absolute;bottom: -1.5%;right:-25%;width:62px;}
+.page-btn{position: absolute;bottom: -1.5%;right:3%;width:62px;}
 .page-btn .btn-default{margin-top: 10px;width:62px;}
 
 /*页面右侧栏*/
@@ -188,9 +188,3 @@ li.user{margin-left:20px;margin-right:10px;}
 .login-btn{width:95px;height:30px;background-color: #e5e5e5;border:1px solid #b5b5b5;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius:3px;margin-top: 20px;margin-left: 155px;}
 .login-btn:hover{background-color: #d0d0d0;}
 .share{width: 500px; background-color: #fff;padding: 20px;text-align: center;}
-
-
-
-
-
-

@@ -130,18 +130,11 @@ if ($ && jQuery) {
     //右侧对齐操作
     $('.d-align').click(function() {
         var key = $(this).index(),
-            val = $(this).attr('ta').
-
+            val = $(this).attr('ta');
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (key == 0) {
-
-        } else if (key == 1) {
-
-        } else if (key == 2) {
-            s.verticalBottom();
-        }
-        Editor.update(2, 'vertical', val)
+        console.log("text-align",val);
+        Editor.update(2, 'text_align', val)
     });
     //右侧可更新ipput
     $(document).on('blur', '.update_item', function() {
@@ -189,7 +182,7 @@ if ($ && jQuery) {
                 $('#v_url').removeClass('hidden').show();
                 $('#v_page').addClass('hidden').hide();
             }
-            console,log("select test",type,key,val);
+            console.log("select test",type,key,val);
             Editor.update(type, key, val);            
         }
     });
@@ -211,14 +204,25 @@ if ($ && jQuery) {
 
     //产品
     // 产品预览
-    $('.e_preview').click(function() {
+    $('body').on('click', '.e_preview', function() {
+        //更新title,更新des，更新icon
         Editor.preview();
+    });
+    $('body').on('click', '.e_up_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.prevPage();
+    });
+    $('body').on('click', '.e_down_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.nextPage();
     });
     // 产品发布
     $('body').on('click', '.e_publish', function() {
         //更新title,更新des，更新icon
         Editor.publish();
     });
+
+
 
     $(document).on('click','.e_open_box',function (argument) {
         var replaceType = $(this).attr('replaceType');
@@ -516,8 +520,7 @@ if ($ && jQuery) {
             callback:function (data) {
                 //data.path;
                 $('#musicModel').modal('hide');
-                Editor.update(0,'music',data.path);
-                
+                Editor.update(0,'music',data.path); 
             }
         });
     });

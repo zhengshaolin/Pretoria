@@ -312,7 +312,37 @@ var Editor = {
     },
     //预览
     preview: function() {
-        var product_id = $('#product_id').val();
+        var product_id = $('#product_id').val(),
+            page_server_id = $('#page_server_id').val(),
+            token = localData.get('token'),
+            src;
+        $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/publish',
+            data: {
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                console.log(products.path);
+                if (page_server_id != '') {
+                    var src = products.path +'#'+page_server_id;
+                    console.log('preview src',src);
+                    $('#v_preview_src').attr('src',src);
+                    $('#showModel').modal('show');
+                };
+                
+                //alert('发布成功')
+                //Editor.renderList(products);
+            },
+            error: function(err) {
+                console.log('select_product_test err:');
+                console.log(err);
+            }
+        });
     },
     //remove method for administor delete product,page or elements
     //type 0 product
@@ -467,7 +497,7 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
-                            template_word += "<div class='item' elementype='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:#" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_word += "<div class='item' elementype='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -483,7 +513,7 @@ var Editor = {
                             $('#cnm').append(template_word);
                             template_word = '';
                         } else if (obj.element_type == 1) {
-                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + "px;height:" + obj.height + "px;color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + "px;height:" + obj.height + "px;color:" + obj.ftc + "; text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;'";
                             } else {
@@ -498,7 +528,7 @@ var Editor = {
                             $('#cnm').append(template_pic);
                             template_pic = '';
                         } else if (obj.element_type == 2) {
-                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.slider[0] + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px; color:" + obj.ftc + " plane='" + obj.horizontal + "' vertical='" + obj.vertical + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.slider[0] + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px;  text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_slider += "right:" + obj.hshift + "px;'";
                             } else {
@@ -759,6 +789,7 @@ var Editor = {
                 success: function(result) {
                     console.log(result);
                     Editor.initList();
+                    Editor.fetchForm(1);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
