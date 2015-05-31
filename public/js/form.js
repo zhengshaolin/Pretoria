@@ -5,6 +5,7 @@ if ($ && jQuery) {
     });
 
     //导航条新建3种素材
+    //导航条新建3种素材
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
             //添加元素的类型
@@ -14,28 +15,15 @@ if ($ && jQuery) {
         if (element == 2) {
             Editor.add(element);
         } else if (element == 3) {
+            $('.e_store_pic').attr('replaceType', 0);
             $('#picModel').modal('show');
-                //$(document).on('click', '.e_upload_pic', function() {
-                    console.log($('.e_upload_pic'))
-        $('.e_upload_pic').ajaxUpload({
-            action: 'http://115.29.32.105:8080/upload',
-            type:0,
-            callback:function () {
-                console.log("123233434");
-            }
-        });
-    //});
         } else if (element == 4) {
+            $('.e_store_pic').attr('replaceType', 0);
             $('#picModel').modal('show');
-            $('.e_upload_pic').ajaxUpload({
-            action: 'http://115.29.32.105:8080/upload',
-            type:0,
-            callback:function () {
-                console.log("123233434");
-            }
-        });
         }
     });
+
+
     //左侧
     //左侧新建page 
     $("#v_page_list").on("click", ".e_creat", function() {
@@ -112,20 +100,21 @@ if ($ && jQuery) {
             s.planeRight()
         } else if (val == 3) {
             s.planeFull();
-             Editor.update(3, 'width', parseInt($(s[0]).css('width')));
+            Editor.update(3, 'width', parseInt($(s[0]).css('width')));
         }
-        
-                if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
-                    hshift = $(s[0]).css('left')
-                } else {
-                    hshift = $(s[0]).css('right')
-                };
+
+        if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
+            hshift = $(s[0]).css('left')
+        } else {
+            hshift = $(s[0]).css('right')
+        };
         Editor.update(2, 'hshift', parseInt(hshift));
         Editor.update(2, 'horizontal', val);
     });
     //右侧垂直操作
     $('.d-vertical').click(function() {
-        var val = $(this).index(),vshift;
+        var val = $(this).index(),
+            vshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -136,14 +125,14 @@ if ($ && jQuery) {
             s.verticalBottom();
         } else if (val == 3) {
             s.verticalFull();
-                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-            
+            Editor.update(3, 'height', parseInt($(s[0]).css('height')));
+
         }
         if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
-                    vshift = $(s[0]).css('top')
-                } else {
-                    vshift = $(s[0]).css('bottom')
-                }
+            vshift = $(s[0]).css('top')
+        } else {
+            vshift = $(s[0]).css('bottom')
+        }
         Editor.update(2, 'vshift', parseInt(vshift));
         Editor.update(2, 'vertical', val)
     });
@@ -151,7 +140,6 @@ if ($ && jQuery) {
     $('.d-align').click(function() {
         var key = $(this).index(),
             val = $(this).attr('ta').
-
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (key == 0) {
@@ -161,7 +149,7 @@ if ($ && jQuery) {
         } else if (key == 2) {
             s.verticalBottom();
         }
-        Editor.update(2, 'vertical', val)
+        Editor.update(2, 'text_align', val)
     });
     //右侧可更新ipput
     $('.update_item').on('blur', function() {
@@ -174,6 +162,7 @@ if ($ && jQuery) {
         val = $(this).val();
         Editor.update(type, key, val);
     });
+    
     //右侧单选按钮，可更新模块
     $('.update_radio').on('click', function() {
         //elementype 0 产品全局
@@ -197,21 +186,21 @@ if ($ && jQuery) {
             element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
         val = $(this).children('option:selected').val();
-        console.log("select type",val);
+        console.log("select type", val);
         if (element_server_id == '') {
             alert("请选择页面或者元素");
             return false;
-        }else{
+        } else {
             if (val == "page") {
                 $('#v_url').removeClass('hidden').show();
                 $('#v_page').addClass('hidden').hide();
-            }else if(val == "url"){
+            } else if (val == "url") {
                 $('#v_page').removeClass('hidden').show();
                 $('#v_url').addClass('hidden').hide();
 
             }
-            console,log("select test",type,key,val);
-            Editor.update(type, key, val);            
+            console, log("select test", type, key, val);
+            Editor.update(type, key, val);
         }
     });
     // 右侧update span模块
@@ -241,18 +230,43 @@ if ($ && jQuery) {
 
     //弹出框
     //弹窗框图片保存设置
+    //type 0 新建添加
+    //type 1 元素详情替换
+    //type 2 微信活动icon
+    //type 3 页面背景图片替换
+    //type 4 产品背景图片替换
+    //type 5 轮播图片
     $(document).on('click', '.e_store_pic', function(e) {
         e.preventDefault();
-        var type = $('#add_type').val();
-        Editor.add(type);
+        var type = $('#add_type').val(),
+            replaceType = $(this).attr('replaceType'),
+            pic = $(this).find('img').attr("src");
+        if (replaceType == 0) {
+            Editor.add(type);
+        } else if (replaceType == 1) {
+            Editor.update(2, 'pic', pic);
+            Editor.fetchForm(0);
+            $('#picReplaceModel').modal('hide');
+        } else if (replaceType == 2) {
+            Editor.update(0, 'weixin_share_icon', pic);
+            $('#d-weixin_share_icon').attr('src', pic);
+        } else if (replaceType == 3) {
+            Editor.update(1, 'background_img', pic);
+            Editor.fetchForm(0);
+        } else if (replaceType == 4) {
+            Editor.update(0, 'background_img', pic);
+            Editor.fetchForm(0);
+        }
     });
 
     //图库选中功能
-    $('#v_pic_box').on('click', 'li', function() {
+    $(document).on('click', '.v_pic_box li', function() {
         var pic = $(this).find('img').attr("src");
-        $('#upload_img_src').val(pic);
         $(this).siblings().removeClass();
         $(this).addClass('active');
+        if (pic != undefined) {
+            $('#upload_img_src').val(pic);
+        };
     });
 
     //弹出框调取动画保存
@@ -390,30 +404,30 @@ if ($ && jQuery) {
             $('textarea').remove()
         }
     });
-    $('#cnm').on('mousedown',function(e){
-            if (e.which == 3) {
-                $(this).smartMenu([
-                    // [{
-                    //     text: '浮动到最上层',
-                    //     func: function() {
-                    //         //$(s[0]).css('zIndex',)
-                    //     }
-                    // }],
-                    [{
-                        text: '删除选中层',
-                        func: function() {
-                            $(s[0]).remove();
-                            $('.selector').hide();
-                            Editor.remove(2);
-                        }
-                    }]
-                ], {
-                    offsetX: 2,
-                    offsetY: 2,
-                    name: ''
-                })
-            }
-        })
+    $('#cnm').on('mousedown', function(e) {
+        if (e.which == 3) {
+            $(this).smartMenu([
+                // [{
+                //     text: '浮动到最上层',
+                //     func: function() {
+                //         //$(s[0]).css('zIndex',)
+                //     }
+                // }],
+                [{
+                    text: '删除选中层',
+                    func: function() {
+                        $(s[0]).remove();
+                        $('.selector').hide();
+                        Editor.remove(2);
+                    }
+                }]
+            ], {
+                offsetX: 2,
+                offsetY: 2,
+                name: ''
+            })
+        }
+    })
     //上传控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
@@ -480,8 +494,31 @@ if ($ && jQuery) {
         });
     };
 
+    // 上传功能
+    $(document).on('click', '.e_upload_pic', function() {
+        $(this).ajaxUpload({
+            action: 'http://115.29.32.105:8080/upload',
+            type: 0,
+            callback: function(data) {
+                //data.path;
+                Editor.renderPicBox();
+            }
+        });
+    });
 
+    // 上传功能
+    $(document).on('click', '.e_upload_music', function() {
+        $(this).ajaxUpload({
+            action: 'http://115.29.32.105:8080/upload',
+            type: 1,
+            callback: function(data) {
+                //data.path;
+                $('#musicModel').modal('hide');
+                Editor.update(0, 'music', data.path);
 
+            }
+        });
+    });
 
     $('.selector').on('dblclick', function() {
         $(this).hide()
