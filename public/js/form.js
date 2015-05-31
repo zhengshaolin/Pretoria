@@ -13,10 +13,10 @@ if ($ && jQuery) {
         if (element == 2) {
             Editor.add(element);
         } else if (element == 3) {
-            $('.e_store_pic').attr('replaceType',0);
+            $('.e_store_pic').attr('replaceType', 0);
             $('#picModel').modal('show');
         } else if (element == 4) {
-            $('.e_store_pic').attr('replaceType',0);
+            $('.e_store_pic').attr('replaceType', 0);
             $('#picModel').modal('show');
         }
     });
@@ -81,7 +81,8 @@ if ($ && jQuery) {
     });
     //右侧水平操作
     $('.d-horizontal').click(function() {
-        var val = $(this).index(),hshift;
+        var val = $(this).index(),
+            hshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -92,20 +93,20 @@ if ($ && jQuery) {
             s.planeRight()
         } else if (val == 3) {
             s.planeFull();
-             Editor.update(3, 'width', parseInt($(s[0]).css('width')));
+            Editor.update(2, 'width', parseInt($(s[0]).css('width')));
         }
-        
-                if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
-                    hshift = $(s[0]).css('left')
-                } else {
-                    hshift = $(s[0]).css('right')
-                };
+        if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
+            hshift = $(s[0]).css('left')
+        } else {
+            hshift = $(s[0]).css('right')
+        };
         Editor.update(2, 'hshift', parseInt(hshift));
         Editor.update(2, 'horizontal', val);
     });
     //右侧垂直操作
     $('.d-vertical').click(function() {
-        var val = $(this).index(),vshift;
+        var val = $(this).index(),
+            vshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -116,14 +117,14 @@ if ($ && jQuery) {
             s.verticalBottom();
         } else if (val == 3) {
             s.verticalFull();
-                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-            
+            Editor.update(2, 'height', parseInt($(s[0]).css('height')));
+
         }
         if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
-                    vshift = $(s[0]).css('top')
-                } else {
-                    vshift = $(s[0]).css('bottom')
-                }
+            vshift = $(s[0]).css('top')
+        } else {
+            vshift = $(s[0]).css('bottom')
+        }
         Editor.update(2, 'vshift', parseInt(vshift));
         Editor.update(2, 'vertical', val)
     });
@@ -133,7 +134,7 @@ if ($ && jQuery) {
             val = $(this).attr('ta');
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        console.log("text-align",val);
+        console.log("text-align", val);
         Editor.update(2, 'text_align', val)
     });
     //右侧可更新ipput
@@ -170,20 +171,20 @@ if ($ && jQuery) {
             element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
         val = $(this).children('option:selected').val();
-        console.log("select type",val);
+        console.log("select type", val);
         if (element_server_id == '') {
             alert("请选择页面或者元素");
             return false;
-        }else{
+        } else {
             if (val == "page") {
                 $('#v_page').removeClass('hidden').show();
                 $('#v_url').addClass('hidden').hide();
-            }else if(val == "url"){
+            } else if (val == "url") {
                 $('#v_url').removeClass('hidden').show();
                 $('#v_page').addClass('hidden').hide();
             }
-            console.log("select test",type,key,val);
-            Editor.update(type, key, val);            
+            console.log("select test", type, key, val);
+            Editor.update(type, key, val);
         }
     });
 
@@ -224,9 +225,9 @@ if ($ && jQuery) {
 
 
 
-    $(document).on('click','.e_open_box',function (argument) {
+    $(document).on('click', '.e_open_box', function(argument) {
         var replaceType = $(this).attr('replaceType');
-        $('.e_store_pic').attr('replaceType',replaceType);
+        $('.e_store_pic').attr('replaceType', replaceType);
         $('#picModel').modal('show');
     });
 
@@ -243,24 +244,24 @@ if ($ && jQuery) {
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
             pic = $('#upload_img_src').val();
-            if (replaceType == 0) {
-                Editor.add(type);
-            }else if(replaceType == 1){
-                Editor.update(2, 'pic', pic);
-                Editor.fetchForm(0);
-                $('#picReplaceModel').modal('hide');
-            }else if(replaceType == 2){
-                Editor.update(0, 'weixin_share_icon', pic);
-                $('#d-weixin_share_icon').attr('src',pic);
-            }else if(replaceType == 3){
-                console.log("replace 3",pic);
-                Editor.update(1, 'background_img', pic);
-                Editor.fetchForm(0);
-            }else if(replaceType == 4){
-                Editor.update(0, 'glass_url', pic);
-                Editor.fetchForm(0);
-            }
-            $('#picModel').modal('hide');
+        if (replaceType == 0) {
+            Editor.add(type);
+        } else if (replaceType == 1) {
+            Editor.update(2, 'pic', pic);
+            Editor.fetchForm(0);
+            $('#picReplaceModel').modal('hide');
+        } else if (replaceType == 2) {
+            Editor.update(0, 'weixin_share_icon', pic);
+            $('#d-weixin_share_icon').attr('src', pic);
+        } else if (replaceType == 3) {
+            console.log("replace 3", pic);
+            Editor.update(1, 'background_img', pic);
+            Editor.fetchForm(0);
+        } else if (replaceType == 4) {
+            Editor.update(0, 'glass_url', pic);
+            Editor.fetchForm(0);
+        }
+        $('#picModel').modal('hide');
     });
 
     //图库选中功能
@@ -297,23 +298,23 @@ if ($ && jQuery) {
             element = $(s[0]).attr('elementype');
         if (element == 0) {
             //文字元素
-                $('.d_0').removeClass('hidden').show();
-                $('.d_1').addClass('hidden').hide();
-                $('.d_2').addClass('hidden').hide();
+            $('.d_0').removeClass('hidden').show();
+            $('.d_1').addClass('hidden').hide();
+            $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
             Editor.renderPageAnimate();
             Editor.renderGlobalInfo();
         } else if (element == 1) {
             //图片元素
-                $('.d_0').addClass('hidden').hide();
-                $('.d_1').removeClass('hidden').show();
-                $('.d_2').addClass('hidden').hide();
+            $('.d_0').addClass('hidden').hide();
+            $('.d_1').removeClass('hidden').show();
+            $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         } else if (element == 2) {
             //轮播元素
-                $('.d_0').addClass('hidden').hide();
-                $('.d_1').removeClass('hidden').show();
-                $('.d_2').addClass('hidden').hide();
+            $('.d_0').addClass('hidden').hide();
+            $('.d_1').removeClass('hidden').show();
+            $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         }
         //console.log(s)
@@ -325,18 +326,18 @@ if ($ && jQuery) {
             //setTimeout(function(){
             var vshift, hshift,
                 elementype = $(s[0]).attr('element_type');
-            console.log("drag element type",elementype);
-                //文字元素
-                if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
-                    vshift = $(s[0]).css('top')
-                } else {
-                    vshift = $(s[0]).css('bottom')
-                }
-                if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
-                    hshift = $(s[0]).css('left')
-                } else {
-                    hshift = $(s[0]).css('right')
-                };
+            console.log("drag element type", elementype);
+            //文字元素
+            if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
+                vshift = $(s[0]).css('top')
+            } else {
+                vshift = $(s[0]).css('bottom')
+            }
+            if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
+                hshift = $(s[0]).css('left')
+            } else {
+                hshift = $(s[0]).css('right')
+            };
             if (elementype == 0) {
                 //文字元素
                 $('.d_0').removeClass('hidden').show();
@@ -344,25 +345,25 @@ if ($ && jQuery) {
                 $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
                 //Editor.renderArena();
-                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift','text'],
-                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
-                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift),$(s[0]).html()])
+                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift', 'text'], [2, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift), $(s[0]).html()
+                ])
             } else if (elementype == 1) {
                 //图片元素
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').removeClass('hidden').show();
                 $('.d_2').addClass('hidden').hide();
-                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift'],
-                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
-                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift)])
+                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [2, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
+                ])
             } else if (elementype == 2) {
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').removeClass('hidden').show();
                 //轮播元素
-                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift'],
-                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
-                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift)])
+                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [2, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
+                ])
                 $('.d_0').hide();
                 $('.d_1').hide();
                 $('.d_2').show();
@@ -388,36 +389,36 @@ if ($ && jQuery) {
             } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
                 text[0].selectionStart = text[0].selectionEnd = len;
             }
-        } else if (te&&$('textarea').last().val()) {
+        } else if (te && $('textarea').last().val()) {
             te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
             te.show()
             $('textarea').remove()
         }
     });
-    $('#cnm').on('mousedown',function(e){
-            if (e.which == 3) {
-                $(this).smartMenu([
-                    // [{
-                    //     text: '浮动到最上层',
-                    //     func: function() {
-                    //         //$(s[0]).css('zIndex',)
-                    //     }
-                    // }],
-                    [{
-                        text: '删除选中层',
-                        func: function() {
-                            $(s[0]).remove();
-                            $('.selector').hide();
-                            Editor.remove(2);
-                        }
-                    }]
-                ], {
-                    offsetX: 2,
-                    offsetY: 2,
-                    name: ''
-                })
-            }
-        })
+    $('#cnm').on('mousedown', function(e) {
+        if (e.which == 3) {
+            $(this).smartMenu([
+                // [{
+                //     text: '浮动到最上层',
+                //     func: function() {
+                //         //$(s[0]).css('zIndex',)
+                //     }
+                // }],
+                [{
+                    text: '删除选中层',
+                    func: function() {
+                        $(s[0]).remove();
+                        $('.selector').hide();
+                        Editor.remove(2);
+                    }
+                }]
+            ], {
+                offsetX: 2,
+                offsetY: 2,
+                name: ''
+            })
+        }
+    })
     //上传控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
@@ -488,8 +489,8 @@ if ($ && jQuery) {
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
             action: 'http://115.29.32.105:8080/upload',
-            type:0,
-            callback:function (data) {
+            type: 0,
+            callback: function(data) {
                 //render picbox
                 Editor.renderPicBox();
             }
@@ -500,22 +501,22 @@ if ($ && jQuery) {
     $(document).on('click', '.e_upload_music', function() {
         $(this).ajaxUpload({
             action: 'http://115.29.32.105:8080/upload',
-            type:1,
-            callback:function (data) {
+            type: 1,
+            callback: function(data) {
                 //close modal
                 $('#musicModel').modal('hide');
                 //update
-                Editor.update(0,'music',data.path);
+                Editor.update(0, 'music', data.path);
                 // 更新右侧公共信息
-                Editor.renderGlobalInfo(); 
+                Editor.renderGlobalInfo();
             }
         });
     });
 
     // 上传功能
     $(document).on('click', '.e_close_music', function() {
-         Editor.update(0,'music','');
-         Editor.fetchForm(1);
+        Editor.update(0, 'music', '');
+        Editor.fetchForm(1);
     });
 
     $('.selector').on('dblclick', function() {
