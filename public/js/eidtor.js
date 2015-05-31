@@ -910,6 +910,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update drag update returned:');
                     console.log(result);
+                    Editor.store(JSON.stringify(result));
                     Editor.renderElementInfo();
                 },
                 error: function(err) {
