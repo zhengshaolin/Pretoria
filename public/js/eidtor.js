@@ -300,9 +300,9 @@ var Editor = {
                 console.log('fetchList returned');
                 console.log(products.path);
                 $('#publishModel').modal('hide');
-                alert("发布地址为:" + products.path);
-                //alert('发布成功')
-                //Editor.renderList(products);
+                
+                $('#v_qCode').append('<p>url:'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
+                $('#qCodeModel').modal('show');
             },
             error: function(err) {
                 console.log('select_product_test err:');
