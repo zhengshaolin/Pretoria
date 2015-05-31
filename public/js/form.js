@@ -341,7 +341,7 @@ if ($ && jQuery) {
                 $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
                 //Editor.renderArena();
-                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift', 'text'], [0, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                Editor.batchupdate(['z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift', 'text'], [$(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift), $(s[0]).html()
                 ])
             } else if (elementype == 1) {
@@ -349,7 +349,7 @@ if ($ && jQuery) {
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').removeClass('hidden').show();
                 $('.d_2').addClass('hidden').hide();
-                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [1, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                Editor.batchupdate(['z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [$(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
                 ])
             } else if (elementype == 2) {
@@ -357,7 +357,7 @@ if ($ && jQuery) {
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').removeClass('hidden').show();
                 //轮播元素
-                Editor.batchupdate(['element_type', 'z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [2, $(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
+                Editor.batchupdate(['z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [$(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
                 ])
                 $('.d_0').hide();
