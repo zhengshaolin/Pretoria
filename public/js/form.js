@@ -506,7 +506,7 @@ if ($ && jQuery) {
             action: 'http://115.29.32.105:8080/upload',
             type:0,
             callback:function (data) {
-                //data.path;
+                //render picbox
                 Editor.renderPicBox();
             }
         });
@@ -518,9 +518,12 @@ if ($ && jQuery) {
             action: 'http://115.29.32.105:8080/upload',
             type:1,
             callback:function (data) {
-                //data.path;
+                //close modal
                 $('#musicModel').modal('hide');
-                Editor.update(0,'music',data.path); 
+                //update
+                Editor.update(0,'music',data.path);
+                // 更新右侧公共信息
+                Editor.renderGlobalInfo(); 
             }
         });
     });
