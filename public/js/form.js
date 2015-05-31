@@ -242,7 +242,7 @@ if ($ && jQuery) {
         e.preventDefault();
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
-            pic = $(this).find('img').attr("src");
+            pic = $('#upload_img_src').val();
             if (replaceType == 0) {
                 Editor.add(type);
             }else if(replaceType == 1){
@@ -253,12 +253,14 @@ if ($ && jQuery) {
                 Editor.update(0, 'weixin_share_icon', pic);
                 $('#d-weixin_share_icon').attr('src',pic);
             }else if(replaceType == 3){
+                console.log("replace 3",pic);
                 Editor.update(1, 'background_img', pic);
                 Editor.fetchForm(0);
             }else if(replaceType == 4){
-                Editor.update(0, 'background_img', pic);
+                Editor.update(0, 'glass_url', pic);
                 Editor.fetchForm(0);
             }
+            $('#picModel').modal('hide');
     });
 
     //图库选中功能

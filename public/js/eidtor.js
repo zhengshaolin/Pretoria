@@ -582,6 +582,7 @@ var Editor = {
                                     $('.d-vertical').removeClass('glyphicon_on');
                                     $('.d-vertical').eq(obj.horizontal).addClass('glyphicon_on');
                                     $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
+                                    $('.d_page_backimg').attr('src',obj.background_img);
                                     if (obj.ftb == 1) {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
@@ -725,7 +726,7 @@ var Editor = {
             //box5
             $('#d-product').val(data.product);
             $("input[name='glass']").eq([data.glass]).attr('checked',true);
-            $('#d-glass_url').attr('src', data.glass_url);
+            $('#d-glass_url').attr('src',data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
             $('#d-pry').val(data.pry);
