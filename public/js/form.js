@@ -292,10 +292,8 @@ if ($ && jQuery) {
         s = Drag(e);
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
-        $('#element_server_id').val($(s[0]).attr('mid'));
-        $('#element_id').val($(s[0]).attr('id'));
         var vshift, hshift,
-            element = $(s[0]).attr('elementype');
+            element = $(s[0]).attr('elemen_type');
         if (element == 0) {
             //文字元素
             $('.d_0').removeClass('hidden').show();
@@ -319,8 +317,6 @@ if ($ && jQuery) {
         }
         //console.log(s)
         s[0].func = function() {
-            $('#element_server_id').val($(s[0]).attr('mid'));
-            $('#element_id').val($(s[0]).attr('id'));
             $('#element_server_id').val($(s[0]).attr('mid'));
             $('#element_id').val($(s[0]).attr('id'));
             //setTimeout(function(){
