@@ -1,10 +1,8 @@
 if ($ && jQuery) {
-
     $(document).ready(function() {
         Editor.initForm();
     });
 
-    //导航条新建3种素材
     //导航条新建3种素材
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
@@ -15,14 +13,13 @@ if ($ && jQuery) {
         if (element == 2) {
             Editor.add(element);
         } else if (element == 3) {
-            $('.e_store_pic').attr('replaceType', 0);
+            $('.e_store_pic').attr('replaceType',0);
             $('#picModel').modal('show');
         } else if (element == 4) {
-            $('.e_store_pic').attr('replaceType', 0);
+            $('.e_store_pic').attr('replaceType',0);
             $('#picModel').modal('show');
         }
     });
-
 
     //左侧
     //左侧新建page 
@@ -43,6 +40,7 @@ if ($ && jQuery) {
         Editor.renderGlobalInfo();
         Editor.fetchForm(1);
     });
+
     //左侧page删除功能
     $("#v_page_list").on("click", ".e_delete", function() {
         var type = $(this).attr('type');
@@ -65,11 +63,6 @@ if ($ && jQuery) {
         $('.d_2').hide();
         $('.d_3').hide();
         $('.d_' + element_type + '').show();
-        $('.nav-right').find('li').removeClass('active');
-        $('.nav-right').find('li').eq(0).addClass('active');
-        $('.tab-content').find('.tab-pane').removeClass('active');
-        $('.tab-content').find('#tab1').addClass('active');
-
     });
 
     //右侧
@@ -88,8 +81,7 @@ if ($ && jQuery) {
     });
     //右侧水平操作
     $('.d-horizontal').click(function() {
-        var val = $(this).index(),
-            hshift;
+        var val = $(this).index(),hshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -100,21 +92,20 @@ if ($ && jQuery) {
             s.planeRight()
         } else if (val == 3) {
             s.planeFull();
-            Editor.update(3, 'width', parseInt($(s[0]).css('width')));
+             Editor.update(3, 'width', parseInt($(s[0]).css('width')));
         }
-
-        if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
-            hshift = $(s[0]).css('left')
-        } else {
-            hshift = $(s[0]).css('right')
-        };
+        
+                if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
+                    hshift = $(s[0]).css('left')
+                } else {
+                    hshift = $(s[0]).css('right')
+                };
         Editor.update(2, 'hshift', parseInt(hshift));
         Editor.update(2, 'horizontal', val);
     });
     //右侧垂直操作
     $('.d-vertical').click(function() {
-        var val = $(this).index(),
-            vshift;
+        var val = $(this).index(),vshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
@@ -125,14 +116,14 @@ if ($ && jQuery) {
             s.verticalBottom();
         } else if (val == 3) {
             s.verticalFull();
-            Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-
+                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
+            
         }
         if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
-            vshift = $(s[0]).css('top')
-        } else {
-            vshift = $(s[0]).css('bottom')
-        }
+                    vshift = $(s[0]).css('top')
+                } else {
+                    vshift = $(s[0]).css('bottom')
+                }
         Editor.update(2, 'vshift', parseInt(vshift));
         Editor.update(2, 'vertical', val)
     });
@@ -140,6 +131,7 @@ if ($ && jQuery) {
     $('.d-align').click(function() {
         var key = $(this).index(),
             val = $(this).attr('ta').
+
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (key == 0) {
@@ -149,10 +141,10 @@ if ($ && jQuery) {
         } else if (key == 2) {
             s.verticalBottom();
         }
-        Editor.update(2, 'text_align', val)
+        Editor.update(2, 'vertical', val)
     });
     //右侧可更新ipput
-    $('.update_item').on('blur', function() {
+    $(document).on('blur', '.update_item', function() {
         //elementype 0 产品全局
         //elementype 1 页面属性
         //elementype 2 元素属性
@@ -162,7 +154,6 @@ if ($ && jQuery) {
         val = $(this).val();
         Editor.update(type, key, val);
     });
-    
     //右侧单选按钮，可更新模块
     $('.update_radio').on('click', function() {
         //elementype 0 产品全局
@@ -186,23 +177,23 @@ if ($ && jQuery) {
             element_server_id = $('#element_server_id').val(),
             key = $(this).attr('id').split('-')[1];
         val = $(this).children('option:selected').val();
-        console.log("select type", val);
+        console.log("select type",val);
         if (element_server_id == '') {
             alert("请选择页面或者元素");
             return false;
-        } else {
+        }else{
             if (val == "page") {
-                $('#v_url').removeClass('hidden').show();
-                $('#v_page').addClass('hidden').hide();
-            } else if (val == "url") {
                 $('#v_page').removeClass('hidden').show();
                 $('#v_url').addClass('hidden').hide();
-
+            }else if(val == "url"){
+                $('#v_url').removeClass('hidden').show();
+                $('#v_page').addClass('hidden').hide();
             }
-            console, log("select test", type, key, val);
-            Editor.update(type, key, val);
+            console,log("select test",type,key,val);
+            Editor.update(type, key, val);            
         }
     });
+
     // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
@@ -225,7 +216,14 @@ if ($ && jQuery) {
     });
     // 产品发布
     $('body').on('click', '.e_publish', function() {
+        //更新title,更新des，更新icon
         Editor.publish();
+    });
+
+    $(document).on('click','.e_open_box',function (argument) {
+        var replaceType = $(this).attr('replaceType');
+        $('.e_store_pic').attr('replaceType',replaceType);
+        $('#picModel').modal('show');
     });
 
     //弹出框
@@ -241,22 +239,22 @@ if ($ && jQuery) {
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
             pic = $(this).find('img').attr("src");
-        if (replaceType == 0) {
-            Editor.add(type);
-        } else if (replaceType == 1) {
-            Editor.update(2, 'pic', pic);
-            Editor.fetchForm(0);
-            $('#picReplaceModel').modal('hide');
-        } else if (replaceType == 2) {
-            Editor.update(0, 'weixin_share_icon', pic);
-            $('#d-weixin_share_icon').attr('src', pic);
-        } else if (replaceType == 3) {
-            Editor.update(1, 'background_img', pic);
-            Editor.fetchForm(0);
-        } else if (replaceType == 4) {
-            Editor.update(0, 'background_img', pic);
-            Editor.fetchForm(0);
-        }
+            if (replaceType == 0) {
+                Editor.add(type);
+            }else if(replaceType == 1){
+                Editor.update(2, 'pic', pic);
+                Editor.fetchForm(0);
+                $('#picReplaceModel').modal('hide');
+            }else if(replaceType == 2){
+                Editor.update(0, 'weixin_share_icon', pic);
+                $('#d-weixin_share_icon').attr('src',pic);
+            }else if(replaceType == 3){
+                Editor.update(1, 'background_img', pic);
+                Editor.fetchForm(0);
+            }else if(replaceType == 4){
+                Editor.update(0, 'background_img', pic);
+                Editor.fetchForm(0);
+            }
     });
 
     //图库选中功能
@@ -293,23 +291,23 @@ if ($ && jQuery) {
             element = $(s[0]).attr('elementype');
         if (element == 0) {
             //文字元素
-            $('.d_0').show();
-            $('.d_1').hide();
-            $('.d_2').hide();
+                $('.d_0').removeClass('hidden').show();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
             Editor.renderPageAnimate();
             Editor.renderGlobalInfo();
         } else if (element == 1) {
             //图片元素
-            $('.d_0').hide();
-            $('.d_1').show();
-            $('.d_2').hide();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         } else if (element == 2) {
             //轮播元素
-            $('.d_0').hide();
-            $('.d_1').hide();
-            $('.d_2').show();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
         }
         //console.log(s)
@@ -319,10 +317,9 @@ if ($ && jQuery) {
             $('#element_server_id').val($(s[0]).attr('mid'));
             $('#element_id').val($(s[0]).attr('id'));
             //setTimeout(function(){
-
             var vshift, hshift,
-                element = $(s[0]).attr('elementype');
-            if (element == 0) {
+                elementype = $(s[0]).attr('elementype');
+            console.log("drag element type",elementype);
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
                     vshift = $(s[0]).css('top')
@@ -334,9 +331,11 @@ if ($ && jQuery) {
                 } else {
                     hshift = $(s[0]).css('right')
                 };
-                $('.d_0').show();
-                $('.d_1').hide();
-                $('.d_2').hide();
+            if (elementype == 0) {
+                //文字元素
+                $('.d_0').removeClass('hidden').show();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
                 //Editor.renderArena();
                 Editor.update(3, 'element_type', 0);
@@ -348,11 +347,11 @@ if ($ && jQuery) {
                 Editor.update(3, 'vertical', $(s[0]).attr('vertical'));
                 Editor.update(3, 'vshift', parseInt(vshift));
                 Editor.update(3, 'hshift', parseInt(hshift));
-            } else if (elemntype == 1) {
+            } else if (elementype == 1) {
                 //图片元素
-                $('.d_0').hide();
-                $('.d_1').show();
-                $('.d_2').hide();
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').removeClass('hidden').show();
+                $('.d_2').addClass('hidden').hide();
                 Editor.update(3, 'element_type', 1);
                 //Editor.update(3,'text',$(s[0]).html());
                 Editor.update(3, 'z-index', $(s[0]).css('z-index'));
@@ -363,6 +362,9 @@ if ($ && jQuery) {
                 Editor.update(3, 'vshift', parseInt(vshift));
                 Editor.update(3, 'hshift', parseInt(hshift));
             } else if (elementype == 2) {
+                $('.d_0').addClass('hidden').hide();
+                $('.d_1').addClass('hidden').hide();
+                $('.d_2').removeClass('hidden').show();
                 //轮播元素
                 Editor.update(3, 'element_type', 2);
                 //Editor.update(3,'text',$(s[0]).html());
@@ -404,30 +406,30 @@ if ($ && jQuery) {
             $('textarea').remove()
         }
     });
-    $('#cnm').on('mousedown', function(e) {
-        if (e.which == 3) {
-            $(this).smartMenu([
-                // [{
-                //     text: '浮动到最上层',
-                //     func: function() {
-                //         //$(s[0]).css('zIndex',)
-                //     }
-                // }],
-                [{
-                    text: '删除选中层',
-                    func: function() {
-                        $(s[0]).remove();
-                        $('.selector').hide();
-                        Editor.remove(2);
-                    }
-                }]
-            ], {
-                offsetX: 2,
-                offsetY: 2,
-                name: ''
-            })
-        }
-    })
+    $('#cnm').on('mousedown',function(e){
+            if (e.which == 3) {
+                $(this).smartMenu([
+                    // [{
+                    //     text: '浮动到最上层',
+                    //     func: function() {
+                    //         //$(s[0]).css('zIndex',)
+                    //     }
+                    // }],
+                    [{
+                        text: '删除选中层',
+                        func: function() {
+                            $(s[0]).remove();
+                            $('.selector').hide();
+                            Editor.remove(2);
+                        }
+                    }]
+                ], {
+                    offsetX: 2,
+                    offsetY: 2,
+                    name: ''
+                })
+            }
+        })
     //上传控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
@@ -462,7 +464,7 @@ if ($ && jQuery) {
                 that.attr('disabled', 'disabled');
                 tarImg = arrType[type];
                 if (genre === 'img') {
-                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF)$/.test(extension)) {
+                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF|mp3)$/.test(extension)) {
                         if (type === 'picture') {
                             var activeCount = tarImg.length;
                             if (activeCount === 8) {
@@ -473,7 +475,7 @@ if ($ && jQuery) {
                             }
                         }
                     } else {
-                        alert('上传的图片仅限gif,jpg,png!');
+                        alert('上传的图片仅限gif,jpg,png,mp3!');
                         that.text(text);
                         that.removeAttr('disabled');
                         return false;
@@ -483,7 +485,7 @@ if ($ && jQuery) {
             },
             onComplete: function(file, res) {
                 that.val('选择图片');
-                console.log(res)
+                //console.log(res);
                 if (typeof res == 'object')
                     res = res;
                 else
@@ -498,8 +500,8 @@ if ($ && jQuery) {
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
             action: 'http://115.29.32.105:8080/upload',
-            type: 0,
-            callback: function(data) {
+            type:0,
+            callback:function (data) {
                 //data.path;
                 Editor.renderPicBox();
             }
@@ -510,14 +512,20 @@ if ($ && jQuery) {
     $(document).on('click', '.e_upload_music', function() {
         $(this).ajaxUpload({
             action: 'http://115.29.32.105:8080/upload',
-            type: 1,
-            callback: function(data) {
+            type:1,
+            callback:function (data) {
                 //data.path;
                 $('#musicModel').modal('hide');
-                Editor.update(0, 'music', data.path);
-
+                Editor.update(0,'music',data.path);
+                
             }
         });
+    });
+
+    // 上传功能
+    $(document).on('click', '.e_close_music', function() {
+         Editor.update(0,'music','');
+         Editor.fetchForm(1);
     });
 
     $('.selector').on('dblclick', function() {
