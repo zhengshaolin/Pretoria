@@ -59,6 +59,7 @@ var Editor = {
                 },
                 success: function(result) {
                     console.log('create_page_test returned:');
+                    console.log(result);
                     Editor.store(JSON.stringify(result));
                     Editor.renderPage();
                     $('#v_page_list').find('li').last().prev().trigger('click');
@@ -300,9 +301,9 @@ var Editor = {
                 console.log('fetchList returned');
                 console.log(products.path);
                 $('#publishModel').modal('hide');
-                
-                $('#v_qCode').append('<p>url:'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
-                $('#qCodeModel').modal('show');
+                alert("发布地址为:" + products.path);
+                //alert('发布成功')
+                //Editor.renderList(products);
             },
             error: function(err) {
                 console.log('select_product_test err:');
@@ -513,11 +514,12 @@ var Editor = {
                             $('#cnm').append(template_word);
                             template_word = '';
                         } else if (obj.element_type == 1) {
-                            template_pic += "<img class='item' elemen_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + "px;height:" + obj.height + "px;color:" + obj.ftc + "; text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            console.log(obj.pic,21312321321312)
+                            template_pic += "<img class='item' elemen_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
-                                template_pic += "right:" + obj.hshift + "px;'";
+                                template_pic += "right:" + obj.hshift + "px;";
                             } else {
-                                template_pic += "left:" + obj.hshift + "px;'";
+                                template_pic += "left:" + obj.hshift + "px;";
                             }
                             if (obj.vertical == 2) {
                                 template_pic += "bottom:" + obj.vshift + "px;'";
@@ -528,11 +530,11 @@ var Editor = {
                             $('#cnm').append(template_pic);
                             template_pic = '';
                         } else if (obj.element_type == 2) {
-                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.slider[0] + "' style='z-index:" + j + ";position:absolute;with:" + obj.width + ";height:" + obj.height + ";font-size:" + obj.fts + "px;  text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";font-size:" + obj.fts + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
-                                template_slider += "right:" + obj.hshift + "px;'";
+                                template_slider += "right:" + obj.hshift + "px;";
                             } else {
-                                template_slider += "left:" + obj.hshift + "px;'";
+                                template_slider += "left:" + obj.hshift + "px;";
                             }
                             if (obj.vertical == 2) {
                                 template_slider += "bottom:" + obj.vshift + "px;'";
@@ -643,7 +645,6 @@ var Editor = {
                             $('#ds-animate_delay').val(obj.animate_delay);
                             $('#ds-animate_duration').val(obj.animate_duration);
                             };
-
                         };
 
                     };
@@ -726,7 +727,7 @@ var Editor = {
             //box5
             $('#d-product').val(data.product);
             $("input[name='glass']").eq([data.glass]).attr('checked',true);
-            $('#d-glass_url').attr('src',data.glass_url);
+            $('#d-glass_url').attr('src', data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
             $('#d-pry').val(data.pry);
@@ -881,7 +882,6 @@ var Editor = {
             });
         }
     },
-    //drag elements bacth update
     batchupdate:function (key,val) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
