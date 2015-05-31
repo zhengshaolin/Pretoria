@@ -51,19 +51,19 @@ if ($ && jQuery) {
 
     //展示区
     //展示区元素选中功能
-    $("#v_page_edit").on("click", ".item", function() {
-        var element_current_id = $(this).attr('id'),
-            element_type = $(this).attr('element_type');
-        $('#element_id').val(element_current_id);
-        Editor.renderArena();
-        Editor.renderPageAnimate();
-        Editor.renderElementInfo();
-        Editor.renderGlobalInfo();
-        $('.d_1').hide();
-        $('.d_2').hide();
-        $('.d_3').hide();
-        $('.d_' + element_type + '').show();
-    });
+    // $("#v_page_edit").on("click", ".item", function() {
+    //     var element_current_id = $(this).attr('id'),
+    //         element_type = $(this).attr('element_type');
+    //     $('#element_id').val(element_current_id);
+    //     Editor.renderArena();
+    //     Editor.renderPageAnimate();
+    //     Editor.renderElementInfo();
+    //     Editor.renderGlobalInfo();
+    //     $('.d_1').hide();
+    //     $('.d_2').hide();
+    //     $('.d_3').hide();
+    //     $('.d_' + element_type + '').show();
+    // });
 
     //右侧
     //右侧替换图片功能
@@ -293,7 +293,7 @@ if ($ && jQuery) {
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
         var vshift, hshift,
-            element = $(s[0]).attr('elemen_type');
+            element = $(s[0]).attr('element_type');
         if (element == 0) {
             //文字元素
             $('.d_0').removeClass('hidden').show();
