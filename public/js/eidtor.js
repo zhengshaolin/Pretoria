@@ -7,8 +7,10 @@ var Editor = {
     },
     //add method for administor creat product,page or elements
     //type 0 product
-    //tyoe 1 page
-    //type 2 elements
+    //type 1 page
+    //tyoe 2 文字元素
+    //type 3 图片元素
+    //type 4 轮播元素
     add: function(type) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
@@ -144,7 +146,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'slider': slider,
+                    'slider': pic,
                     'element_type': 2
                 },
                 dataType: 'json',
@@ -301,9 +303,8 @@ var Editor = {
                 console.log('fetchList returned');
                 console.log(products.path);
                 $('#publishModel').modal('hide');
-                alert("发布地址为:" + products.path);
-                //alert('发布成功')
-                //Editor.renderList(products);
+                $('#qCodeModel').modal('show');
+                $('#v_qCode').append('<p>线上地址为：'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
             },
             error: function(err) {
                 console.log('select_product_test err:');
@@ -568,7 +569,6 @@ var Editor = {
                             //console.log("sds",element_server_id);
                             if (data[i].elements[j]._id != undefined || element_server_id != undefined) {
                                 if (data[i].elements[j]._id == element_server_id) {
-
                                     var obj = data[i].elements[j];
                                     //render operation
                                     $('#d-ftb').removeClass('glyphicon_on');
@@ -852,34 +852,6 @@ var Editor = {
                     console.log(err);
                 }
             });
-        } else if (type == 3) {
-            console.log('update_product_test sended');
-            console.log("2343434", page_server_id);
-            var data = {
-                'type': 2,
-                'product_id': product_id,
-                'page_id': page_server_id,
-                'element_id': element_server_id
-            };
-            data[key] = val;
-            $.ajax({
-                type: 'PUT',
-                url: 'http://115.29.32.105:8080/api',
-                data: data,
-                dataType: 'json',
-                headers: {
-                    'Access-Token': token
-                },
-                success: function(result) {
-                    console.log('update drag update returned:');
-                    console.log(result);
-                    Editor.renderElementInfo();
-                },
-                error: function(err) {
-                    console.log('update_product_test err:');
-                    console.log(err);
-                }
-            });
         }
     },
     batchupdate:function (key,val) {
@@ -918,5 +890,18 @@ var Editor = {
                     console.log(err);
                 }
             });
+    },
+    getSlider:function  () {
+        var slider = $('.d_2').find('.panel-body').find('.pic_slider'),
+            sliderLen = slider.length,
+            sliderArr=[];
+        if (sliderLen == 0) {
+            return false;
+        }else{
+            for (var i = 0; i < slider.length; i++) {
+                sliderArr.push(slider.attr('src'));
+            };
+            return sliderArr.join(",");
+        }
     }
 };

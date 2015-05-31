@@ -4,6 +4,11 @@ if ($ && jQuery) {
     });
 
     //导航条新建3种素材
+    //type 2 新增文字元素
+    //type 3 新增图片元素
+    //type 4 新增轮播元素
+    //type 5 轮播图片右侧新增
+    //type 6 轮播图片替换
     $(".navbar-header").on("click", ".e_creat", function() {
         var type = $(this).attr('type'),
             //添加元素的类型
@@ -16,8 +21,15 @@ if ($ && jQuery) {
             $('.e_store_pic').attr('replaceType', 0);
             $('#picModel').modal('show');
         } else if (element == 4) {
-            $('.e_store_pic').attr('replaceType', 0);
+            $('.e_store_pic').attr('replaceType', 5);
             $('#picModel').modal('show');
+        }else if(element == 5){
+            $('.e_store_pic').attr('replaceType', 6);
+            $('#picModel').modal('show'); 
+        }else if(element == 6){
+            $('.e_store_pic').attr('replaceType', 7);
+            //$('#slider_replace_index').val();
+            $('#picModel').modal('show'); 
         }
     });
 
@@ -48,22 +60,6 @@ if ($ && jQuery) {
         $('#page_server_id').val($(this).attr('pid'));
         Editor.remove(type);
     });
-
-    //展示区
-    //展示区元素选中功能
-    // $("#v_page_edit").on("click", ".item", function() {
-    //     var element_current_id = $(this).attr('id'),
-    //         element_type = $(this).attr('element_type');
-    //     $('#element_id').val(element_current_id);
-    //     Editor.renderArena();
-    //     Editor.renderPageAnimate();
-    //     Editor.renderElementInfo();
-    //     Editor.renderGlobalInfo();
-    //     $('.d_1').hide();
-    //     $('.d_2').hide();
-    //     $('.d_3').hide();
-    //     $('.d_' + element_type + '').show();
-    // });
 
     //右侧
     //右侧替换图片功能
@@ -238,7 +234,9 @@ if ($ && jQuery) {
     //type 2 微信活动icon
     //type 3 页面背景图片替换
     //type 4 产品背景图片替换
-    //type 5 轮播图片
+    //type 5 轮播图片初始化新增
+    //type 6 轮播图片右侧新增
+    //type 7 轮播图片替换
     $(document).on('click', '.e_store_pic', function(e) {
         e.preventDefault();
         var type = $('#add_type').val(),
@@ -260,6 +258,19 @@ if ($ && jQuery) {
         } else if (replaceType == 4) {
             Editor.update(0, 'glass_url', pic);
             Editor.fetchForm(0);
+        } else if (replaceType == 5) {
+            Editor.add(type);
+        } else if (replaceType == 6) {
+            if (Editor.getSlider() != false) {
+                var slider = Editor.getSlider();
+                Editor.update(2, 'slider', slider);
+                $('.d_2').find('.panel-bod').append('');
+                $('#picReplaceModel').modal('hide');
+            } else {
+                return false;
+            }
+        } else if (replaceType == 7) {
+            //$('#d-weixin_share_icon').attr('src', pic);
         }
         $('#picModel').modal('hide');
     });
@@ -516,7 +527,7 @@ if ($ && jQuery) {
         Editor.fetchForm(1);
     });
 
-    $('.col-md-6').on('click',function(e){
+    $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
         console.log(22222)
         $('.selector').hide()
