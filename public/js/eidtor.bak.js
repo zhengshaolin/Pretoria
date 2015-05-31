@@ -756,7 +756,7 @@ var Editor = {
     //type 0 product global element
     //tyoe 1 page element
     //type 2 elements
-    //type 4 drag elements
+    //type 3 drag elements 废弃
     update: function(type, key, val) {
         console.log('update method start');
         var token = localData.get('token'),
@@ -881,6 +881,7 @@ var Editor = {
             });
         }
     },
+    //drag elements bacth update
     batchupdate:function (key,val) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),

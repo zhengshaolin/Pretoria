@@ -37,10 +37,10 @@ Drag.prototype.render = function() {
         left: left,
         top: top
     });
-    var stack1 = $('<div style="position:absolute;top:-4px;left:-4px;width:8px;height:8px;background:black" class="x_lt"></div>'),
-        stack2 = $('<div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background:black" class="x_rt"></div>'),
-        stack3 = $('<div style="position:absolute;bottom:-4px;left:-4px;width:8px;height:8px;background:black" class="x_lb"></div>'),
-        stack4 = $('<div style="position:absolute;bottom:-4px;right:-4px;width:8px;height:8px;background:black" class="x_rb"></div>');
+    var stack1 = $('<div style="position:absolute;top:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lt"></div>'),
+        stack2 = $('<div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background: #0000ff" class="x_rt"></div>'),
+        stack3 = $('<div style="position:absolute;bottom:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lb"></div>'),
+        stack4 = $('<div style="position:absolute;bottom:-4px;right:-4px;width:8px;height:8px;background: #0000ff" class="x_rb"></div>');
     if (($('.x_lt').length + $('.x_rt').length + $('.x_lb').length + $('.x_rb').length) == 0) {
         html.append(stack1).append(stack2).append(stack3).append(stack4)
         html.show()
@@ -102,23 +102,40 @@ Drag.prototype.dragger = function(btn) {
             }
             function lock(){}
             document.onmousemove = function(e) {
-
                 var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - parseInt(html.css('border')),
                     ty = page.pageY(e) - y - htmltop - $('#cnm').offset().top - parseInt(html.css('border'));
-                if ($(_this).hasClass('x_rb')) {
-                    html.css('width', tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
-                } else if ($(_this).hasClass('x_lb')) {
-                    html.css('width', -tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
-                    html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
-                } else if ($(_this).hasClass('x_lt')) {
-                    html.css('width', -tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
-                    html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
-                    html.css('top', htmltop + ty + parseInt($(_this).css('top')))
-                } else if ($(_this).hasClass('x_rt')) {
-                    html.css('width', tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
-                    html.css('top', htmltop + ty + parseInt($(_this).css('top')))
-
+                if(!e.ctrlKey){
+                    if ($(_this).hasClass('x_rb')) {
+                        html.css('width', tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
+                    } else if ($(_this).hasClass('x_lb')) {
+                        html.css('width', -tx - beginx + beginwidth + 2).css('height', ty - beginy + beginheight + 2)
+                        html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
+                    } else if ($(_this).hasClass('x_lt')) {
+                        html.css('width', -tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
+                        html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
+                        html.css('top', htmltop + ty + parseInt($(_this).css('top')))
+                    } else if ($(_this).hasClass('x_rt')) {
+                        html.css('width', tx - beginx + beginwidth + 2).css('height', -ty - beginy + beginheight + 2)
+                        html.css('top', htmltop + ty + parseInt($(_this).css('top')))
+                    }
                 }
+                // else if(e.ctrlKey){
+                //     console.log(1)
+                //     var t = beginwidth/beginheight;
+                //     if ($(_this).hasClass('x_rb')) {
+                //         html.css('width', (tx - beginx + beginwidth + 2)*beginwidth/beginheight).css('height', ty - beginy + beginheight + 2)
+                //     } else if ($(_this).hasClass('x_lb')) {
+                //         html.css('width', (-tx - beginx + beginwidth + 2)*beginwidth/beginheight).css('height', ty - beginy + beginheight + 2)
+                //         html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
+                //     } else if ($(_this).hasClass('x_lt')) {
+                //         html.css('width', (-tx - beginx + beginwidth + 2)*beginwidth/beginheight).css('height', -ty - beginy + beginheight + 2)
+                //         html.css('left', htmlleft + tx + parseInt($(_this).css('left')))
+                //         html.css('top', htmltop + ty + parseInt($(_this).css('top')))
+                //     } else if ($(_this).hasClass('x_rt')) {
+                //         html.css('width', (tx - beginx + beginwidth + 2)*beginwidth/beginheight).css('height', -ty - beginy + beginheight + 2)
+                //         html.css('top', htmltop + ty + parseInt($(_this).css('top')))
+                //     }
+                // }
             }
             document.onmouseup = function() {
                 if (_this.releaseCapture) {
@@ -130,6 +147,9 @@ Drag.prototype.dragger = function(btn) {
                 document.onmouseup = null;
                 thatall.selreset()
                 thatall.tagreset($(that).attr('plane'), $(that).attr('vertical'))
+                if(that.func){
+                    that.func.call(that)
+                }
             }
         })
     })
@@ -137,12 +157,19 @@ Drag.prototype.dragger = function(btn) {
 Drag.prototype.selreset = function() {
     $(this[0]).css('width', $('.selector').width())
     $(this[0]).css('height', $('.selector').height());
-    var top = $('.selector').css('top'),
-        left = $('.selector').css('left');
-    // $(this[0]).css({
-    //     top: top,
-    //     left: left
-    // })
+    if (Math.abs(parseInt($(this[0]).css('top'))) + 1) {
+        $(this[0]).css('top',$('.selector').css('top'))
+    } else {
+        vshift = parseInt($('#cnm').css('height'))-parseInt($('.selector').css('top'))-$(this[0]).height()
+        $(this[0]).css('bottom',vshift+'px')
+    }
+    if (Math.abs(parseInt($(this[0]).css('left'))) + 1) {
+        $(this[0]).css('left',$('.selector').css('left'))
+    } else {
+        hshift = parseInt($('#cnm').css('width'))-parseInt($('.selector').css('left'))-$(this[0]).width()
+        $(this[0]).css('right',hshift+'px')
+        console.log(hshift,$(this[0]).width())
+    };
 }
 Drag.prototype.readStyle=function(){
     console.log($(this[0]).attr('style'))
@@ -555,9 +582,9 @@ Drag.prototype.planeLeft = function() {
         if(i!='right'){
             that.css(i,sty[i])
         }else{
-            that.css('left',0)
         }
     }
+    that.css('left',0)
     sel.css({
         left: 0
     })
@@ -589,9 +616,12 @@ Drag.prototype.planeRight = function() {
         if(i!='left'){
             that.css(i,sty[i])
         }else{
-            that.css('right',0)
+            
         }
+        
     }
+    console.log(that.css('width'),that.css('height'),21321413513412321);
+    that.css('right',0)
     sel.css({
         left: (mainWidth - targetWidth) + 'px',
         width: targetWidth
@@ -659,12 +689,12 @@ Drag.prototype.verticalBottom = function() {
     that.removeAttr('style');
     for(var i in sty){
         if(i!='top'){
-            console.log(i)
             that.css(i,sty[i])
         }else{
-            that.css('bottom',0)
+            
         }
     }
+    that.css('bottom',0)
     sel.css({
         top: mainHeight - targetHeight
     })

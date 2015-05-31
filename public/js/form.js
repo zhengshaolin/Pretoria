@@ -324,7 +324,7 @@ if ($ && jQuery) {
             $('#element_id').val($(s[0]).attr('id'));
             //setTimeout(function(){
             var vshift, hshift,
-                elementype = $(s[0]).attr('elementype');
+                elementype = $(s[0]).attr('element_type');
             console.log("drag element type",elementype);
                 //文字元素
                 if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
@@ -344,43 +344,25 @@ if ($ && jQuery) {
                 $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
                 //Editor.renderArena();
-                Editor.update(3, 'element_type', 0);
-                Editor.update(3, 'text', $(s[0]).html());
-                Editor.update(3, 'z-index', $(s[0]).css('z-index'));
-                Editor.update(3, 'width', parseInt($(s[0]).css('width')));
-                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-                Editor.update(3, 'horizontal', $(s[0]).attr('plane'));
-                Editor.update(3, 'vertical', $(s[0]).attr('vertical'));
-                Editor.update(3, 'vshift', parseInt(vshift));
-                Editor.update(3, 'hshift', parseInt(hshift));
+                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift','text'],
+                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift),$(s[0]).html()])
             } else if (elementype == 1) {
                 //图片元素
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').removeClass('hidden').show();
                 $('.d_2').addClass('hidden').hide();
-                Editor.update(3, 'element_type', 1);
-                //Editor.update(3,'text',$(s[0]).html());
-                Editor.update(3, 'z-index', $(s[0]).css('z-index'));
-                Editor.update(3, 'width', parseInt($(s[0]).css('width')));
-                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-                Editor.update(3, 'horizontal', $(s[0]).attr('plane'));
-                Editor.update(3, 'vertical', $(s[0]).attr('vertical'));
-                Editor.update(3, 'vshift', parseInt(vshift));
-                Editor.update(3, 'hshift', parseInt(hshift));
+                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift'],
+                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift)])
             } else if (elementype == 2) {
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').removeClass('hidden').show();
                 //轮播元素
-                Editor.update(3, 'element_type', 2);
-                //Editor.update(3,'text',$(s[0]).html());
-                Editor.update(3, 'z-index', $(s[0]).css('z-index'));
-                Editor.update(3, 'width', parseInt($(s[0]).css('width')));
-                Editor.update(3, 'height', parseInt($(s[0]).css('height')));
-                Editor.update(3, 'horizontal', $(s[0]).attr('plane'));
-                Editor.update(3, 'vertical', $(s[0]).attr('vertical'));
-                Editor.update(3, 'vshift', parseInt(vshift));
-                Editor.update(3, 'hshift', parseInt(hshift));
+                Editor.batchupdate(['element_type','z-index','width','height','horizontal','vertical','vshift','hshift'],
+                    [2,$(s[0]).css('z-index'),parseInt($(s[0]).css('width')),parseInt($(s[0]).css('height')),$(s[0]).attr('plane'),
+                    $(s[0]).attr('vertical'),parseInt(vshift),parseInt(hshift)])
                 $('.d_0').hide();
                 $('.d_1').hide();
                 $('.d_2').show();
@@ -406,7 +388,7 @@ if ($ && jQuery) {
             } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
                 text[0].selectionStart = text[0].selectionEnd = len;
             }
-        } else if (te) {
+        } else if (te&&$('textarea').last().val()) {
             te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
             te.show()
             $('textarea').remove()
