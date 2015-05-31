@@ -498,7 +498,7 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
-                            template_word += "<div class='item' elemen_type='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -515,7 +515,7 @@ var Editor = {
                             template_word = '';
                         } else if (obj.element_type == 1) {
                             console.log(obj.pic,21312321321312)
-                            template_pic += "<img class='item' elemen_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
                             } else {
