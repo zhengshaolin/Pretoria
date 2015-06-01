@@ -615,9 +615,9 @@ var Editor = {
                                     $('#d-fts').val(obj.fts);
                                     $('.d-animate_effect').val(obj.animate_effect);
                                     $('.d-animate_effect').html(obj.animate_effect);
-                                    $('.d-animate_delay').val(obj.animate_delay);
+                                    $('.d-animate_delay').html(obj.animate_delay);
                                     //$('.d-animate_delay').html(obj.animate_delay);
-                                    $('.d-animate_duration').val(obj.animate_duration);
+                                    $('.d-animate_duration').html(obj.animate_duration);
                                     //$('.d-animate_duration').html(obj.animate_duration);
                                 };
                             };
