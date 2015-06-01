@@ -287,12 +287,12 @@ var Editor = {
             this.auth();
         }
     },
-    setUsername:function () {
+    setUsername: function () {
         var name = localData.get('username');
         $('.v_username').html(name);
     },
-    quite:function() {
-        localData.get('token','');
+    quite: function() {
+        localData.set('token','');
         window.location.href = 'login.html';
     },
     //发布
