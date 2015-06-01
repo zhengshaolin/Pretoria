@@ -237,7 +237,7 @@ if ($ && jQuery) {
     $('.e_preview').on('click',function(){
         Editor.preview();
     });
-    
+
     $('.e_publish_toggle').on('click',function(){
         $('#publishModel').modal('show');
     });
@@ -592,7 +592,7 @@ if ($ && jQuery) {
         e.stopPropagation();
         if(!$(e.target).hasClass('btn')){
             $('.selector').hide();
-            if($('cnm').find('textarea').length){
+            if($('#cnm').find('textarea').length){
                 $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
                 $(s[0]).show()
                 $('textarea').remove()
