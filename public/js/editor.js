@@ -1,3 +1,4 @@
+//window.select_area='';
 var Editor = {
     // authority method for unlogin cutomer, return unique token
     auth: function() {
@@ -7,8 +8,10 @@ var Editor = {
     },
     //add method for administor creat product,page or elements
     //type 0 product
-    //tyoe 1 page
-    //type 2 elements
+    //type 1 page
+    //tyoe 2 文字元素
+    //type 3 图片元素
+    //type 4 轮播元素
     add: function(type) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
@@ -144,7 +147,7 @@ var Editor = {
                     'type': 2,
                     'product_id': product_id,
                     'page_id': page_server_id,
-                    'slider': slider,
+                    'slider': pic,
                     'element_type': 2
                 },
                 dataType: 'json',
@@ -299,11 +302,10 @@ var Editor = {
             },
             success: function(products) {
                 console.log('fetchList returned');
-                console.log(products.path);
+                console.log("publish data:",products);
                 $('#publishModel').modal('hide');
-                alert("发布地址为:" + products.path);
-                //alert('发布成功')
-                //Editor.renderList(products);
+                $('#qCodeModel').modal('show');
+                $('#v_qCode').append('<p>线上地址为：'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
             },
             error: function(err) {
                 console.log('select_product_test err:');
@@ -313,6 +315,7 @@ var Editor = {
     },
     //预览
     preview: function() {
+        console.log("preview method start");
         var product_id = $('#product_id').val(),
             page_server_id = $('#page_server_id').val(),
             token = localData.get('token'),
@@ -335,6 +338,9 @@ var Editor = {
                     $('#v_preview_src').attr('src',src);
                     $('#showModel').modal('show');
                 };
+                
+                //alert('发布成功')
+                //Editor.renderList(products);
             },
             error: function(err) {
                 console.log('select_product_test err:');
@@ -462,12 +468,17 @@ var Editor = {
     renderPage: function() {
         console.log('render page method start');
         $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')),
+            page_server_id = $('#page_server_id').val();
         $('#page_number').val(parseInt(data.pages.length + 1));
         for (var i = 0; i < data.pages.length; i++) {
             $('#v_page_list').append('<li pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
         };
         $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
+        if (page_server_id == '') {
+            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_page_list').find('li').first().trigger('click');
+        };
     },
     //绘制中间操作区,不存在，新增或者初始化
     renderArena: function() {
@@ -479,6 +490,8 @@ var Editor = {
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
         if (page_server_id == '') {
             var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_page_list').find('li').first().trigger('click');
+
         };
         //$('.page-name').empty().text("页面" + num);
         $('#cnm').empty();
@@ -495,7 +508,8 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
-                            template_word += "<div class='item' elementype='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            console.log("33232323",obj.ftb);
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -512,7 +526,7 @@ var Editor = {
                             template_word = '';
                         } else if (obj.element_type == 1) {
                             console.log(obj.pic,21312321321312)
-                            template_pic += "<img class='item' elementype='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
                             } else {
@@ -527,7 +541,7 @@ var Editor = {
                             $('#cnm').append(template_pic);
                             template_pic = '';
                         } else if (obj.element_type == 2) {
-                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";font-size:" + obj.fts + "px;text-align:" + obj.text_align + ";font-weight:" + obj.font_weight + ";font-style:" + obj.font_style + ";";
+                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";";
                             if (obj.horizontal == 2) {
                                 template_slider += "right:" + obj.hshift + "px;";
                             } else {
@@ -543,6 +557,9 @@ var Editor = {
                             template_slider='';
                         }
                     };
+                    // if(window.select_area){
+                    //     $(select_area[0]).trigger('click')
+                    // }
                 }
             }
         };
@@ -565,7 +582,6 @@ var Editor = {
                             //console.log("sds",element_server_id);
                             if (data[i].elements[j]._id != undefined || element_server_id != undefined) {
                                 if (data[i].elements[j]._id == element_server_id) {
-
                                     var obj = data[i].elements[j];
                                     //render operation
                                     $('#d-ftb').removeClass('glyphicon_on');
@@ -582,22 +598,21 @@ var Editor = {
                                     $('.d-vertical').eq(obj.vertical).addClass('glyphicon_on');
                                     $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
                                     $('.d_page_backimg').attr('src',obj.background_img);
-                                    if (obj.ftb == 1) {
+                                    if (obj.ftb == 'bold') {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
-                                    if (obj.fti == 1) {
+                                    if (obj.fti == 'italic') {
                                         $('#d-fti').addClass('glyphicon_on');
                                     };
-                                    if (obj.ftu == 1) {
+                                    if (obj.ftu == 'underline') {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
                                     $('#d-element_pic').attr('src',obj.pic);
                                     var slider = obj.slider.split(',');
                                     if (slider.length) {
-                                        localData.set(data[i].elements[j]._id + "_slider", slider);
-                                        $('.d_2').show();
+                                        $('#v_d_2').show();
                                         for (var k = 0; k < slider.length; k++) {
-                                            $('.d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_creat pic-btn fr" type="3" element="2" key="' + k + '">替换</button></div>');
+                                            $('#v_d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="animation-btn fr e_open_box" replacetype="6" key="' + k + '">替换</button></div>');
                                         }
                                     }
                                     //console.log("232323",obj.animate_effect);
@@ -605,10 +620,10 @@ var Editor = {
                                     $('#d-fts').val(obj.fts);
                                     $('.d-animate_effect').val(obj.animate_effect);
                                     $('.d-animate_effect').html(obj.animate_effect);
-                                    $('.d-animate_delay').val(obj.animate_delay);
                                     $('.d-animate_delay').html(obj.animate_delay);
-                                    $('.d-animate_duration').val(obj.animate_duration);
+                                    //$('.d-animate_delay').html(obj.animate_delay);
                                     $('.d-animate_duration').html(obj.animate_duration);
+                                    //$('.d-animate_duration').html(obj.animate_duration);
                                 };
                             };
 
@@ -737,7 +752,7 @@ var Editor = {
             if (data.music == '') {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
             } else {
-                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" href="' + data.music + '">音乐资源</a></span><button type="button" class="close e_close_music" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
+                $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" path="' + data.music + '">音乐资源</a></span><button type="button" class="close e_close_music" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
             };
             $("input[name='music_pos']").eq([data.music_pos]).attr('checked',true);
             $("input[name='music_option']").eq([data.music_option]).attr('checked',true);
@@ -849,34 +864,6 @@ var Editor = {
                     console.log(err);
                 }
             });
-        } else if (type == 3) {
-            console.log('update_product_test sended');
-            console.log("2343434", page_server_id);
-            var data = {
-                'type': 2,
-                'product_id': product_id,
-                'page_id': page_server_id,
-                'element_id': element_server_id
-            };
-            data[key] = val;
-            $.ajax({
-                type: 'PUT',
-                url: 'http://115.29.32.105:8080/api',
-                data: data,
-                dataType: 'json',
-                headers: {
-                    'Access-Token': token
-                },
-                success: function(result) {
-                    console.log('update drag update returned:');
-                    console.log(result);
-                    Editor.renderElementInfo();
-                },
-                error: function(err) {
-                    console.log('update_product_test err:');
-                    console.log(err);
-                }
-            });
         }
     },
     batchupdate:function (key,val) {
@@ -907,6 +894,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update drag update returned:');
                     console.log(result);
+                    Editor.store(JSON.stringify(result));
                     Editor.renderElementInfo();
                 },
                 error: function(err) {
@@ -914,5 +902,18 @@ var Editor = {
                     console.log(err);
                 }
             });
+    },
+    getSlider:function  () {
+        var slider = $('.d_2').find('.panel-body').find('.pic_slider'),
+            sliderLen = slider.length,
+            sliderArr=[];
+        if (sliderLen == 0) {
+            return false;
+        }else{
+            for (var i = 0; i < slider.length; i++) {
+                sliderArr.push(slider.attr('src'));
+            };
+            return sliderArr.join(",");
+        }
     }
 };

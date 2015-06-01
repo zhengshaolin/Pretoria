@@ -606,10 +606,9 @@ var Editor = {
                                     $('#d-element_pic').attr('src',obj.pic);
                                     var slider = obj.slider.split(',');
                                     if (slider.length) {
-                                        localData.set(data[i].elements[j]._id + "_slider", slider);
-                                        $('.d_2').show();
+                                        $('#v_d_2').show();
                                         for (var k = 0; k < slider.length; k++) {
-                                            $('.d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_creat pic-btn fr" type="3" element="2" key="' + k + '">替换</button></div>');
+                                            $('#v_d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="animation-btn fr e_open_box" replacetype="6" key="' + k + '">替换</button></div>');
                                         }
                                     }
                                     //console.log("232323",obj.animate_effect);

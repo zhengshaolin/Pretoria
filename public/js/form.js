@@ -233,10 +233,27 @@ if ($ && jQuery) {
 
     //产品
     // 产品预览
-    $('body').on('click', '.e_preview', function() {
-        //更新title,更新des，更新icon
+    // 产品发布
+    $('.e_preview').on('click',function(){
         Editor.preview();
     });
+    
+    $('.e_publish_toggle').on('click',function(){
+        $('#publishModel').modal('show');
+    });
+
+
+    $('.e_publish_box').on('click',function(){
+        Editor.preview();
+    });
+
+    $('body').on('click','.e_publish',function(){
+        Editor.publish();
+    })
+    // $('.e_publish').on('click',function(){
+    //     conosle.log(1)
+    //     Editor.publish();
+    // });
     $('body').on('click', '.e_up_page', function() {
         //更新title,更新des，更新icon
         window.frames['v_preview_src'].nyx.prevPage();
@@ -245,11 +262,7 @@ if ($ && jQuery) {
         //更新title,更新des，更新icon
         window.frames['v_preview_src'].nyx.nextPage();
     });
-    // 产品发布
-    $('body').on('click', '.e_publish', function() {
-        //更新title,更新des，更新icon
-        Editor.publish();
-    });
+    
 
     $('body').on('click','#v_upload_music a',function () {
          var path = $(this).attr('path');
@@ -309,7 +322,6 @@ if ($ && jQuery) {
             if (Editor.getSlider() != false) {
                 var slider = Editor.getSlider();
                 Editor.update(2, 'slider', slider);
-                $('.d_2').find('.panel-bod').append('');
                 $('#picReplaceModel').modal('hide');
             } else {
                 return false;
@@ -347,6 +359,7 @@ if ($ && jQuery) {
     $('#cnm').on('click', function(e) {
         e.stopPropagation()
         s = Drag(e);
+        //window.select_area = s;
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
         var vshift, hshift,
@@ -432,6 +445,7 @@ if ($ && jQuery) {
             var plane = $(s[0]).attr('plane')
             var vertical = $(s[0]).attr('vertical')
             text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
+            text.css('background','#abcdef')
             div.hide();
             $('#cnm').append(text)
             text.focus()
@@ -576,7 +590,14 @@ if ($ && jQuery) {
 
     $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
-        $('.selector').hide()
+        if(!$(e.target).hasClass('btn')){
+            $('.selector').hide();
+            if($('cnm').find('textarea').length){
+                $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
+                $(s[0]).show()
+                $('textarea').remove()
+            }
+        }
     })
 
 };

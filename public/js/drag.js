@@ -36,7 +36,6 @@ Drag.prototype.render = function() {
         left: left,
         top: top
     });
-    console.log(html.css('width'))
     var stack1 = $('<div style="position:absolute;top:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lt"></div>'),
         stack2 = $('<div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background: #0000ff" class="x_rt"></div>'),
         stack3 = $('<div style="position:absolute;bottom:-4px;left:-4px;width:8px;height:8px;background: #0000ff" class="x_lb"></div>'),
@@ -169,11 +168,9 @@ Drag.prototype.selreset = function() {
     } else {
         hshift = parseInt($('#cnm').css('width'))-parseInt($('.selector').css('left'))-$(this[0]).width()
         $(this[0]).css('right',hshift+'px')
-        console.log(hshift,$(this[0]).width())
     };
 }
 Drag.prototype.readStyle=function(){
-    console.log($(this[0]).attr('style'))
     var old = $(this[0]).attr('style').split(';');
     var newS = {};
     for(var i=0;i<old.length;i++){
@@ -398,7 +395,6 @@ Drag.prototype.tagreset = function(x, y) {
                 sty = this.readStyle();
             that.removeAttr('style');
             for(var i in sty){
-                console.log(i)
                 if(i!='top'){
                     that.css(i,sty[i])
                 }else{
@@ -621,7 +617,6 @@ Drag.prototype.planeRight = function() {
         }
         
     }
-    console.log(that.css('width'),that.css('height'),21321413513412321);
     that.css('right',0)
     sel.css({
         left: (mainWidth - targetWidth) + 'px',
