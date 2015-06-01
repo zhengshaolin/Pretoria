@@ -157,6 +157,7 @@ if ($ && jQuery) {
             if (key == "background_type") {
                 if (val == 0) {
                     Editor.update(1, 'background_color', '');
+                    Editor.update(1, 'background_img', '');
                     Editor.update(type, key, val);
                 }else{
                     Editor.update(type, key, val);
