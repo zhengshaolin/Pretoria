@@ -507,6 +507,7 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
+                            console.log("33232323",obj.ftb);
                             template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";

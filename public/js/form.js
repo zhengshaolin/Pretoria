@@ -200,32 +200,34 @@ if ($ && jQuery) {
     // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
-        $(this).addClass('glyphicon_on');
-        var type = $('this').attr('id');
+        
+        var type = $(this).attr('elementype'),
+            key = $(this).attr('id').split('-')[1];
         if ($(this).hasClass('glyphicon_on')) {
-
-            if (key == 'd-ftb') {
+            if (key == 'ftb') {
                 var val = '';
-            }else if(key == 'd-fti'){
+            }else if(key == 'fti'){
                 var val = '';
-            }else if(key == 'd-ftu'){
+            }else if(key == 'ftu'){
                 var val = '';
             }else{
                 var val = 1;
             }
         } else {
-            if (key == 'd-ftb') {
+            if (key == 'ftb') {
                 var val = 'bold';
-            }else if(key == 'd-fti'){
+                $(this).addClass('glyphicon_on');
+            }else if(key == 'fti'){
                 var val = 'italic';
-            }else if(key == 'd-ftu'){
+                $(this).addClass('glyphicon_on');
+            }else if(key == 'ftu'){
                 var val = 'underline';
+                $(this).addClass('glyphicon_on');
             }else{
                 var val = 0;
+                $(this).addClass('glyphicon_on');
             }
         }
-        var type = $(this).attr('elementype'),
-            key = $(this).attr('id').split('-')[1];
         Editor.update(type, key, val);
     });
 
