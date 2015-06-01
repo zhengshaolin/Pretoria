@@ -270,6 +270,7 @@ var Editor = {
     //初始化列表页
     initList: function() {
         if (localData.get('token') != null) {
+            this.setUsername():
             this.fetchList();
         } else {
             this.auth();
@@ -279,11 +280,20 @@ var Editor = {
     initForm: function() {
         $('#product_id').val(window.location.href.split('?')[1].split('=')[1]);
         if (localData.get('token') != null) {
+            this.setUsername():
             this.fetchForm(0);
             this.renderPicBox();
         } else {
             this.auth();
         }
+    },
+    setUsername:function () {
+        var name = localData.get('username');
+        $('.v_username').html(name);
+    },
+    quite:function() {
+        localData.get('token','');
+        window.location.href
     },
     //发布
     publish: function() {
