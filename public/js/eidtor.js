@@ -2,8 +2,8 @@ var Editor = {
     // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
-        localData.set('token', '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
-        window.location.reload();
+        //localData.set('token', '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
+        window.location.href = 'login.html';
     },
     //add method for administor creat product,page or elements
     //type 0 product
@@ -304,6 +304,7 @@ var Editor = {
                 console.log("publish data:",products);
                 $('#publishModel').modal('hide');
                 $('#qCodeModel').modal('show');
+                $('#v_qCode').empty();
                 $('#v_qCode').append('<p>线上地址为：'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
             },
             error: function(err) {
