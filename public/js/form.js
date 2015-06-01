@@ -188,11 +188,28 @@ if ($ && jQuery) {
     $('.update_span').click(function() {
         console.log("update span start");
         $(this).addClass('glyphicon_on');
+        var type = $('this').attr('id');
         if ($(this).hasClass('glyphicon_on')) {
-            //$(this).removeClass('glyphicon_on');
-            var val = 0;
+
+            if (key == 'd-ftb') {
+                var val = '';
+            }else if(key == 'd-fti'){
+                var val = '';
+            }else if(key == 'd-ftu'){
+                var val = '';
+            }else{
+                var val = 1;
+            }
         } else {
-            var val = 1;
+            if (key == 'd-ftb') {
+                var val = 'bold';
+            }else if(key == 'd-fti'){
+                var val = 'italic';
+            }else if(key == 'd-ftu'){
+                var val = 'underline';
+            }else{
+                var val = 0;
+            }
         }
         var type = $(this).attr('elementype'),
             key = $(this).attr('id').split('-')[1];
@@ -219,12 +236,25 @@ if ($ && jQuery) {
         Editor.publish();
     });
 
-
+    $('body').on('click','#v_upload_music a'.function () {
+         var path = $(this).attr('path');
+         window.location.href = 'form.html?path='+path+'';
+    })
 
     $(document).on('click', '.e_open_box', function(argument) {
         var replaceType = $(this).attr('replaceType');
-        $('.e_store_pic').attr('replaceType', replaceType);
-        $('#picModel').modal('show');
+
+        if (replaceType == 3) {
+            if ($("input[name='background_type']").eq(2).attr('checked') != 'checked') {
+                alert("请选择图片上传选项");
+            }else{
+                $('.e_store_pic').attr('replaceType', replaceType);
+                $('#picModel').modal('show');                   
+            }
+        }else{
+            $('.e_store_pic').attr('replaceType', replaceType);
+            $('#picModel').modal('show');   
+        }
     });
 
     //弹出框
@@ -529,7 +559,6 @@ if ($ && jQuery) {
 
     $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
-        console.log(22222)
         $('.selector').hide()
     })
 

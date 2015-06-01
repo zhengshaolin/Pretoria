@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Test 2 - audio.js</title>
+    <style>
+      p { clear: both; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="public/js/audiojs/index.css">
+     <script src="public/js/audiojs/audio.min.js"></script>
+    <script src="public/bootstrap/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      var audio_src = window.location.href.split('?')[1].split('=')[1];
+       $('#audio_src').attr("src",audio_src);
+    });
+
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });
+    </script>
+  </head>
+  <body>
+    <audio id="audio_src" src="" preload="auto"></audio>
+  </body>
+</html>
