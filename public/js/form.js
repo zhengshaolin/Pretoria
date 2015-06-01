@@ -236,10 +236,10 @@ if ($ && jQuery) {
         Editor.publish();
     });
 
-    $('body').on('click','#v_upload_music a'.function () {
+    $('body').on('click','#v_upload_music a',function () {
          var path = $(this).attr('path');
          window.location.href = 'form.html?path='+path+'';
-    })
+    });
 
     $(document).on('click', '.e_open_box', function(argument) {
         var replaceType = $(this).attr('replaceType');
