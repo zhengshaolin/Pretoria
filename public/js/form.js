@@ -185,11 +185,12 @@ if ($ && jQuery) {
             return false;
         } else {
             if (val == "page") {
-                $('#v_page').removeClass('hidden').show();
-                $('#v_url').addClass('hidden').hide();
-            } else if (val == "url") {
                 $('#v_url').removeClass('hidden').show();
                 $('#v_page').addClass('hidden').hide();
+            } else if (val == "url") {
+                $('#v_page').removeClass('hidden').show();
+                $('#v_url').addClass('hidden').hide();
+
             }
             console.log("select test", type, key, val);
             Editor.update(type, key, val);
