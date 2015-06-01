@@ -293,7 +293,7 @@ var Editor = {
     },
     quite:function() {
         localData.get('token','');
-        window.location.href
+        window.location.href = 'login.html';
     },
     //发布
     publish: function() {

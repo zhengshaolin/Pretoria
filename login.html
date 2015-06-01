@@ -68,7 +68,7 @@ $('.submit').on('click',function(e){
     success:function(data){
       if(data.access_token){
         localStorage.token = data.access_token;
-        localStorage.username = $('.name').val()
+        localStorage.username = $('.name').val();
       }else{
         alert(data.error)
       }

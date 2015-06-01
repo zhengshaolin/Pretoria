@@ -22,6 +22,9 @@ if ($ && jQuery) {
         var id = $(this).attr('id');
         window.location.href = 'form.html?id='+id+'';
     });
+    $('.e_quite').click(function () {
+       Editor.quite();
+    });
     $('body').on('click','.e_publish',function () {
         Editor.publish();
     });

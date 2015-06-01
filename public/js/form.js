@@ -33,6 +33,10 @@ if ($ && jQuery) {
         }
     });
 
+    $('.e_quite').click(function () {
+       Editor.quite();
+    });
+
     //左侧
     //左侧新建page 
     $("#v_page_list").on("click", ".e_creat", function() {
