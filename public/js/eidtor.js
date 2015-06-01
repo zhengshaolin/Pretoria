@@ -301,7 +301,7 @@ var Editor = {
             },
             success: function(products) {
                 console.log('fetchList returned');
-                console.log(products.path);
+                console.log("publish data:",products);
                 $('#publishModel').modal('hide');
                 $('#qCodeModel').modal('show');
                 $('#v_qCode').append('<p>线上地址为：'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');

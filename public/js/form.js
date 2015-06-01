@@ -348,6 +348,8 @@ if ($ && jQuery) {
         $('#element_id').val($(s[0]).attr('id'));
         var vshift, hshift,
             element = $(s[0]).attr('element_type');
+        $('.nav-right').find('li').eq(0).addClass("active");
+        $('.e_tab_content').find('#tab1').addClass("active");
         if (element == 0) {
             //文字元素
             $('.d_0').removeClass('hidden').show();
