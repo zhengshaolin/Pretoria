@@ -154,8 +154,19 @@ if ($ && jQuery) {
             var type = $(this).parents('.panel-body').attr('elementype'),
                 key = $(this).parents('.panel-body').attr('id').split('-')[1];
             val = $(this).val();
-            $(this).attr("checked", true);
-            Editor.update(type, key, val);
+            if (key == "background_type") {
+                if (val == 0) {
+                    Editor.update(1, 'background_color', '');
+                    Editor.update(type, key, val);
+                }else{
+                    Editor.update(type, key, val);
+                }
+                $(this).attr("checked", true);
+            }else{
+                $(this).attr("checked", true);
+                Editor.update(type, key, val);
+            }
+
         } else {
             return false;
         }
