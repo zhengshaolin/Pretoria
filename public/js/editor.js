@@ -335,9 +335,6 @@ var Editor = {
                     $('#v_preview_src').attr('src',src);
                     $('#showModel').modal('show');
                 };
-                
-                //alert('发布成功')
-                //Editor.renderList(products);
             },
             error: function(err) {
                 console.log('select_product_test err:');

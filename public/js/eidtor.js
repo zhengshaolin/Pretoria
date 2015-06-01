@@ -466,12 +466,17 @@ var Editor = {
     renderPage: function() {
         console.log('render page method start');
         $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val() + '_data'));
+        var data = JSON.parse(localData.get($('#product_id').val() + '_data')),
+            page_server_id = $('#page_server_id').val();
         $('#page_number').val(parseInt(data.pages.length + 1));
         for (var i = 0; i < data.pages.length; i++) {
             $('#v_page_list').append('<li pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
         };
         $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
+        if (page_server_id == '') {
+            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_page_list').find('li').first().trigger('click');
+        };
     },
     //绘制中间操作区,不存在，新增或者初始化
     renderArena: function() {
@@ -483,6 +488,8 @@ var Editor = {
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
         if (page_server_id == '') {
             var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+            $('#v_page_list').find('li').first().trigger('click');
+
         };
         //$('.page-name').empty().text("页面" + num);
         $('#cnm').empty();
@@ -609,9 +616,9 @@ var Editor = {
                                     $('.d-animate_effect').val(obj.animate_effect);
                                     $('.d-animate_effect').html(obj.animate_effect);
                                     $('.d-animate_delay').val(obj.animate_delay);
-                                    $('.d-animate_delay').html(obj.animate_delay);
+                                    //$('.d-animate_delay').html(obj.animate_delay);
                                     $('.d-animate_duration').val(obj.animate_duration);
-                                    $('.d-animate_duration').html(obj.animate_duration);
+                                    //$('.d-animate_duration').html(obj.animate_duration);
                                 };
                             };
 
