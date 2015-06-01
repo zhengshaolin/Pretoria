@@ -595,7 +595,8 @@ if ($ && jQuery) {
             if($('#cnm').find('textarea').length){
                 $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
                 $(s[0]).show()
-                $('textarea').remove()
+                $('textarea').remove();
+                s[0].func();
             }
         }
     })
