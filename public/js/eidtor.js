@@ -314,6 +314,7 @@ var Editor = {
     },
     //预览
     preview: function() {
+        console.log("preview method start");
         var product_id = $('#product_id').val(),
             page_server_id = $('#page_server_id').val(),
             token = localData.get('token'),
