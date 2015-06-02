@@ -2,7 +2,6 @@ if ($ && jQuery) {
     $(document).ready(function() {
         Editor.initForm();
     });
-
     //导航条新建3种素材
     //type 2 新增文字元素
     //type 3 新增图片元素
@@ -309,7 +308,6 @@ if ($ && jQuery) {
         } else if (replaceType == 1) {
             Editor.update(2, 'pic', pic);
             Editor.fetchForm(0);
-            $('#picReplaceModel').modal('hide');
         } else if (replaceType == 2) {
             Editor.update(0, 'weixin_share_icon', pic);
             $('#d-weixin_share_icon').attr('src', pic);
@@ -326,12 +324,18 @@ if ($ && jQuery) {
             if (Editor.getSlider() != false) {
                 var slider = Editor.getSlider();
                 Editor.update(2, 'slider', slider);
-                $('#picReplaceModel').modal('hide');
+                Eidtor.renderElementInfo();
             } else {
                 return false;
             }
         } else if (replaceType == 7) {
-            //$('#d-weixin_share_icon').attr('src', pic);
+            if (Editor.getSlider() != false) {
+                var slider = Editor.getSlider();
+                Editor.update(2, 'slider', slider);
+                Eidtor.renderElementInfo();
+            } else {
+                return false;
+            }
         }
         $('#picModel').modal('hide');
     });
