@@ -31,6 +31,29 @@ if ($ && jQuery) {
             $('#picModel').modal('show'); 
         }
     });
+    $(".page-side").on("click", ".e_creat", function() {
+        var type = $(this).attr('type'),
+            //添加元素的类型
+            element = $(this).attr('element');
+        //type保存，为添加图片功能预留参数
+        $('#add_type').val(element);
+        if (element == 2) {
+            Editor.add(element);
+        } else if (element == 3) {
+            $('.e_store_pic').attr('replaceType', 0);
+            $('#picModel').modal('show');
+        } else if (element == 4) {
+            $('.e_store_pic').attr('replaceType', 5);
+            $('#picModel').modal('show');
+        }else if(element == 5){
+            $('.e_store_pic').attr('replaceType', 6);
+            $('#picModel').modal('show'); 
+        }else if(element == 6){
+            $('.e_store_pic').attr('replaceType', 7);
+            //$('#slider_replace_index').val();
+            $('#picModel').modal('show'); 
+        }
+    });
 
     $('.e_quite').click(function () {
        Editor.quite();
@@ -38,7 +61,7 @@ if ($ && jQuery) {
 
     //左侧
     //左侧新建page 
-    $("#v_page_list").on("click", ".e_creat", function() {
+    $(".page-side").on("click", ".e_creat", function() {
         var type = $(this).attr('type');
         Editor.add(type);
     });
