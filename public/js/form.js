@@ -344,7 +344,7 @@ if ($ && jQuery) {
     });
 
     //图库选中功能
-    $(document).on('click', '.v_pic_box close', function() {
+    $(document).on('click', '.v_pic_box li', function() {
         var pic = $(this).find('img').attr("src");
         $(this).siblings().removeClass();
         $(this).addClass('active');
