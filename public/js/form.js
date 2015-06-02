@@ -319,7 +319,7 @@ if ($ && jQuery) {
             Editor.update(0, 'glass_url', pic);
             Editor.fetchForm(0);
         } else if (replaceType == 5) {
-            Editor.add(type);
+            Editor.add(4);
         } else if (replaceType == 6) {
             if (Editor.getSlider() != false) {
                 var slider = Editor.getSlider();
@@ -372,7 +372,9 @@ if ($ && jQuery) {
         $('#element_id').val($(s[0]).attr('id'));
         var vshift, hshift,
             element = $(s[0]).attr('element_type');
+        $('.nav-right').find('li').removeClass("active");
         $('.nav-right').find('li').eq(0).addClass("active");
+        $('.e_tab_content').find('.tab-pane').removeClass("active");
         $('.e_tab_content').find('#tab1').addClass("active");
         if (element == 0) {
             //文字元素
