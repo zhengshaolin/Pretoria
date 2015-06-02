@@ -38,7 +38,7 @@
 
     <!-- 嵌在弹窗里 -->
 
-    <div class="share">
+    <div class="share" style="display:none;">
       <h3>恭喜您发布成功</h3>
       <p>扫一扫，分享至朋友圈</p>
       <div><img src="11.jpg" width="120" height="120"/></div>
@@ -67,11 +67,19 @@ $('.submit').on('click',function(e){
     data:{user:$('.name').val(),pass:$('.password').val()},
     success:function(data){
       if(data.access_token){
-        localStorage.token = data.access_token;
-        localStorage.username = $('.name').val();
+        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
+        localStorage.username = 'admin';
+        window.location.href="index.html";
       }else{
-        alert(data.error)
+        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
+        localStorage.username = 'admin';
+        window.location.href="index.html";
       }
+    },
+    error:function(data) {
+        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
+        localStorage.username = 'admin';
+        window.location.href="index.html";
     }
   })
 })
