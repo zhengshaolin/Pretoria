@@ -21,14 +21,14 @@ if ($ && jQuery) {
             $('#picModel').modal('show');
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
-            $('#picModel').modal('show');
+            $('#picModel').modal('hide');
         }else if(element == 5){
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('show'); 
+            $('#picModel').modal('hide'); 
         }else if(element == 6){
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('show'); 
+            $('#picModel').modal('hide'); 
         }
     });
 
@@ -321,10 +321,12 @@ if ($ && jQuery) {
         } else if (replaceType == 5) {
             Editor.add(4);
         } else if (replaceType == 6) {
+            console.log("aaa",Editor.getSlider());
             if (Editor.getSlider() != false) {
-                var slider = Editor.getSlider();
+                var slider = Editor.addSlider(pic);
                 Editor.update(2, 'slider', slider);
-                Eidtor.renderElementInfo();
+                Editor.renderElementInfo();
+                $('#picModel').modal('hide');
             } else {
                 return false;
             }
@@ -332,7 +334,8 @@ if ($ && jQuery) {
             if (Editor.getSlider() != false) {
                 var slider = Editor.getSlider();
                 Editor.update(2, 'slider', slider);
-                Eidtor.renderElementInfo();
+                Editor.renderElementInfo();
+                $('#picModel').modal('hide');
             } else {
                 return false;
             }
@@ -341,7 +344,7 @@ if ($ && jQuery) {
     });
 
     //图库选中功能
-    $(document).on('click', '.v_pic_box li', function() {
+    $(document).on('click', '.v_pic_box close', function() {
         var pic = $(this).find('img').attr("src");
         $(this).siblings().removeClass();
         $(this).addClass('active');
@@ -349,6 +352,15 @@ if ($ && jQuery) {
             $('#upload_img_src').val(pic);
         };
     });
+
+    $(document).on('click', '#v_d_2 .close', function() {
+       $(this).parents('.clearfix').remove();
+       var slider = Editor.getSlider();
+        Editor.update(2, 'slider', slider);
+        Editor.renderElementInfo();
+
+    });
+
 
     //弹出框调取动画保存
     $(document).on('click', '.e_store_animate', function() {
@@ -393,8 +405,8 @@ if ($ && jQuery) {
         } else if (element == 2) {
             //轮播元素
             $('.d_0').addClass('hidden').hide();
-            $('.d_1').removeClass('hidden').show();
-            $('.d_2').addClass('hidden').hide();
+            $('.d_1').addClass('hidden').hide();
+            $('.d_2').removeClass('hidden').show();
             Editor.renderElementInfo();
         }
         //console.log(s)

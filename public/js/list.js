@@ -1,6 +1,5 @@
 if ($ && jQuery) {
     $(document).ready(function() {
-        console.log("232323");
         Editor.initList();
     });
 

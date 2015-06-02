@@ -288,12 +288,12 @@ var Editor = {
             this.auth();
         }
     },
-    setUsername: function () {
+    setUsername: function() {
         var name = localData.get('username');
         $('.v_username').html(name);
     },
     quite: function() {
-        localData.set('token','');
+        localData.set('token', '');
         window.location.href = 'login.html';
     },
     //发布
@@ -312,11 +312,11 @@ var Editor = {
             },
             success: function(products) {
                 console.log('fetchList returned');
-                console.log("publish data:",products);
+                console.log("publish data:", products);
                 $('#publishModel').modal('hide');
                 $('#qCodeModel').modal('show');
                 $('#v_qCode').empty();
-                $('#v_qCode').append('<p>线上地址为：'+products.path+'</p><p><img src="'+products.qrcode+'"></img></p>');
+                $('#v_qCode').append('<p>线上地址为：' + products.path + '</p><p><img src="' + products.qrcode + '"></img></p>');
             },
             error: function(err) {
                 console.log('select_product_test err:');
@@ -344,12 +344,12 @@ var Editor = {
             success: function(products) {
                 console.log(products.path);
                 if (page_server_id != '') {
-                    var src = products.path +'#'+page_server_id;
-                    console.log('preview src',src);
-                    $('#v_preview_src').attr('src',src);
+                    var src = products.path + '#' + page_server_id;
+                    console.log('preview src', src);
+                    $('#v_preview_src').attr('src', src);
                     $('#showModel').modal('show');
                 };
-                
+
                 //alert('发布成功')
                 //Editor.renderList(products);
             },
@@ -519,8 +519,8 @@ var Editor = {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
                             //console.log("2323232323",obj.vertical)
-                            console.log("33232323",obj.ftb);
-                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='"+obj._id+"' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
+                            console.log("33232323", obj.ftb);
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -536,7 +536,7 @@ var Editor = {
                             $('#cnm').append(template_word);
                             template_word = '';
                         } else if (obj.element_type == 1) {
-                            console.log(obj.pic,21312321321312)
+                            console.log(obj.pic, 21312321321312)
                             template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
@@ -552,21 +552,25 @@ var Editor = {
                             $('#cnm').append(template_pic);
                             template_pic = '';
                         } else if (obj.element_type == 2) {
-                            var show_pic = obj.slider.split(',')[0];
-                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";";
-                            if (obj.horizontal == 2) {
-                                template_slider += "right:" + obj.hshift + "px;";
-                            } else {
-                                template_slider += "left:" + obj.hshift + "px;";
-                            }
-                            if (obj.vertical == 2) {
-                                template_slider += "bottom:" + obj.vshift + "px;'";
-                            } else {
-                                template_slider += "top:" + obj.vshift + "px;'";
-                            }
-                            template_slider += "></img>";
-                            $('#cnm').append(template_slider);
-                            template_slider='';
+                            console.log('12121212',obj.slider);
+                            if (obj.slider != '') {
+                                var show_pic = obj.slider.split(',')[0];
+                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px" + ";";
+                                if (obj.horizontal == 2) {
+                                    template_slider += "right:" + obj.hshift + "px;";
+                                } else {
+                                    template_slider += "left:" + obj.hshift + "px;";
+                                }
+                                if (obj.vertical == 2) {
+                                    template_slider += "bottom:" + obj.vshift + "px;'";
+                                } else {
+                                    template_slider += "top:" + obj.vshift + "px;'";
+                                }
+                                template_slider += "></img>";
+                                $('#cnm').append(template_slider);
+                                template_slider = '';
+                            };
+
                         }
                     };
                 }
@@ -606,7 +610,7 @@ var Editor = {
                                     $('.d-vertical').removeClass('glyphicon_on');
                                     $('.d-vertical').eq(obj.vertical).addClass('glyphicon_on');
                                     $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
-                                    $('.d_page_backimg').attr('src',obj.background_img);
+                                    $('.d_page_backimg').attr('src', obj.background_img);
                                     if (obj.ftb == 'bold') {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
@@ -616,13 +620,20 @@ var Editor = {
                                     if (obj.ftu == 'underline') {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
-                                    $('#d-element_pic').attr('src',obj.pic);
+                                    $('#d-element_pic').attr('src', obj.pic);
                                     var slider = obj.slider.split(',');
-                                    if (slider.length) {
+                                    console.log("slider length",slider.length);
+                                    $('#v_d_2').empty();
+                                    if (slider.length == 1) {
+                                            
+                                            $('#v_d_2').append('<div class="clearfix lb"><div class="mt10"><p>1<span class="ml10">轮播图片1</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[0] + '" class="pic_slider"  style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_open_box" replacetype="7">替换</button></div>');
+                                            $('#v_d_2').show();
+                                    }else if(slider.length > 1){
                                         $('#v_d_2').show();
                                         for (var k = 0; k < slider.length; k++) {
-                                            $('#v_d_2').find('.panel-body').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="animation-btn fr e_open_box" replacetype="7" key="' + k + '">替换</button></div>');
-                                        }
+                                            $('#v_d_2').append('<div class="clearfix lb"><div class="mt10"><p>' + parseInt(k + 1) + '.<span class="ml10">轮播图片' + parseInt(k + 1) + '</span><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></p></div><div class="fl"><a><img data-holder-rendered="true" src="' + slider[k] + '" class="pic_slider" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64"></a><h4 class="pic-name">绘图.png</h4></div><button class="e_open_box" replacetype="7" key="' + k + '">替换</button></div>');
+                                        };
+                                        $('#v_d_2').show();
                                     }
                                     //console.log("232323",obj.animate_effect);
                                     $('#d-ftc').val(obj.ftc);
@@ -660,11 +671,11 @@ var Editor = {
                             if (element_server_id == data[i].elements[j]._id) {
                                 var obj = data[i].elements[j];
                                 //$('#v_animate_box').append('<li><label>动画效果设置:</label><select class="click-action ml10 update_select d-animate_effect" elementype="2" id="d-animate_effect"><option value="slide">slide</option><option value="flash">flash</option><option value="jello">jello</option><option value="bounceIn">bounceIn</option></select></li><li><label>动画延迟设置:</label><select class="click-action ml10 update_select d-animate_delay" elementype="2" id="d-animate_delay"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li><li><label>动画持续时间设置:</label><select class="click-action ml10 update_select d-animate_duration" elementype="2" id="d-animate_duration"><option value="1000">1000毫秒</option><option value="2000">2000毫秒</option><option value="3000">3000毫秒</option><option value="4000">4000毫秒</option></select></li>');
-                            //$('#ds-animate_effect').find("option[value='"+obj.animate_effect+"']").attr("selected",true);
-                            //$('#ds-animate_effect').find("option[value='jello']")[0].selected;
-                            $('#ds-animate_effect').val(obj.animate_effect);
-                            $('#ds-animate_delay').val(obj.animate_delay);
-                            $('#ds-animate_duration').val(obj.animate_duration);
+                                //$('#ds-animate_effect').find("option[value='"+obj.animate_effect+"']").attr("selected",true);
+                                //$('#ds-animate_effect').find("option[value='jello']")[0].selected;
+                                $('#ds-animate_effect').val(obj.animate_effect);
+                                $('#ds-animate_delay').val(obj.animate_delay);
+                                $('#ds-animate_duration').val(obj.animate_duration);
                             };
                         };
 
@@ -690,12 +701,12 @@ var Editor = {
             $('#v_page_animate').empty();
             if (data != undefined) {
                 for (var i = 0; i < data.length; i++) {
-                        $('#v_url').find('select').append('<option value="'+data[i]._id+'">'+data[i].title+'</option>');
+                    $('#v_url').find('select').append('<option value="' + data[i]._id + '">' + data[i].title + '</option>');
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
-                        console.log("223232323",data[i].title);
-                        $('#dp-title').val(data[i].title).attr('placeholder',data[i].title);
+                        console.log("223232323", data[i].title);
+                        $('#dp-title').val(data[i].title).attr('placeholder', data[i].title);
 
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
@@ -747,7 +758,7 @@ var Editor = {
         if (data != undefined) {
             //box5
             $('#d-product').val(data.product);
-            $("input[name='glass']").eq([data.glass]).attr('checked',true);
+            $("input[name='glass']").eq([data.glass]).attr('checked', true);
             $('#d-glass_url').attr('src', data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_mum').val(data.orign_num);
@@ -763,8 +774,8 @@ var Editor = {
             } else {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" path="' + data.music + '">音乐资源</a></span><button type="button" class="close e_close_music" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');
             };
-            $("input[name='music_pos']").eq([data.music_pos]).attr('checked',true);
-            $("input[name='music_option']").eq([data.music_option]).attr('checked',true);
+            $("input[name='music_pos']").eq([data.music_pos]).attr('checked', true);
+            $("input[name='music_option']").eq([data.music_option]).attr('checked', true);
             //box2
             //box1           
         };
@@ -875,53 +886,67 @@ var Editor = {
             });
         }
     },
-    batchupdate:function (key,val) {
+    batchupdate: function(key, val) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
             page_id = $('#page_id').val(),
             page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
             element_server_id = $('#element_server_id').val();
-            console.log('update drag sended');
-                var data = {
-                    'type':2,
-                    'product_id': product_id,
-                    'page_id': page_server_id,
-                    'element_id': element_server_id
-                };
-            for (var i = 0; i < key.length; i++) {
-                data[key[i]] = val[i];
-            };
-            $.ajax({
-                type: 'PUT',
-                url: 'http://115.29.32.105:8080/api',
-                data: data,
-                dataType: 'json',
-                headers: {
-                    'Access-Token': token
-                },
-                success: function(result) {
-                    console.log('update drag update returned:');
-                    console.log(result);
-                    Editor.store(JSON.stringify(result));
-                    Editor.renderElementInfo();
-                },
-                error: function(err) {
-                    console.log('update_product_test err:');
-                    console.log(err);
-                }
-            });
+        console.log('update drag sended');
+        var data = {
+            'type': 2,
+            'product_id': product_id,
+            'page_id': page_server_id,
+            'element_id': element_server_id
+        };
+        for (var i = 0; i < key.length; i++) {
+            data[key[i]] = val[i];
+        };
+        $.ajax({
+            type: 'PUT',
+            url: 'http://115.29.32.105:8080/api',
+            data: data,
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(result) {
+                console.log('update drag update returned:');
+                console.log(result);
+                Editor.store(JSON.stringify(result));
+                Editor.renderElementInfo();
+            },
+            error: function(err) {
+                console.log('update_product_test err:');
+                console.log(err);
+            }
+        });
     },
-    getSlider:function  () {
-        var slider = $('.d_2').find('.panel-body').find('.pic_slider'),
+    getSlider: function() {
+        var slider = $('#v_d_2').find('.pic_slider'),
             sliderLen = slider.length,
-            sliderArr=[];
+            sliderArr = [];
         if (sliderLen == 0) {
             return false;
-        }else{
+        } else if(sliderLen > 0){
             for (var i = 0; i < slider.length; i++) {
                 sliderArr.push(slider.attr('src'));
             };
+            return sliderArr.join(",");
+        }
+    },
+    addSlider: function(key) {
+        var slider = $('#v_d_2').find('.pic_slider'),
+            sliderLen = slider.length,
+            sliderArr = [];
+        if (sliderLen == 0) {
+            return false;
+        } else if(sliderLen > 0){
+            for (var i = 0; i < slider.length; i++) {
+                sliderArr.push(slider.attr('src'));
+            };
+            sliderArr.push(key);
             return sliderArr.join(",");
         }
     }
