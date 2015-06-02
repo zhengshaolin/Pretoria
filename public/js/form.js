@@ -24,11 +24,11 @@ if ($ && jQuery) {
             $('#picModel').modal('hide');
         }else if(element == 5){
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('hide'); 
+            $('#picModel').modal('show'); 
         }else if(element == 6){
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('hide'); 
+            $('#picModel').modal('show'); 
         }
     });
 
