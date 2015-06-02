@@ -21,7 +21,7 @@ if ($ && jQuery) {
             $('#picModel').modal('show');
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
-            $('#picModel').modal('hide');
+            $('#picModel').modal('show');
         }else if(element == 5){
             $('.e_store_pic').attr('replaceType', 6);
             $('#picModel').modal('show'); 
