@@ -269,6 +269,7 @@ var Editor = {
     },
     //初始化列表页
     initList: function() {
+        console.log("initList method start"):
         if (localData.get('token') != null) {
             this.setUsername();
             this.fetchList();
