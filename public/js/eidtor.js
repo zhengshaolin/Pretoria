@@ -551,7 +551,8 @@ var Editor = {
                             $('#cnm').append(template_pic);
                             template_pic = '';
                         } else if (obj.element_type == 2) {
-                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";";
+                            var show_pic = obj.slider.split(',')[0];
+                            template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height +"px"+ ";";
                             if (obj.horizontal == 2) {
                                 template_slider += "right:" + obj.hshift + "px;";
                             } else {
