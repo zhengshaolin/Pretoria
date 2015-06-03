@@ -1,3 +1,4 @@
+window.s_selector = '';
 var Editor = {
     // authority method for unlogin cutomer, return unique token
     auth: function() {
@@ -573,6 +574,15 @@ var Editor = {
 
                         }
                     };
+                    if(s_selector){
+                        for(var i in $('#cnm').children()){
+                            if($('#cnm').children().eq(i).attr('mid')==$(s_selector[0]).attr('mid')){
+                                //$('#cnm').children().eq(i).trigger('click');
+                                var obj = {target:$('#cnm').children().eq(i)[0]}
+                                s_selector = Drag(obj)
+                            }
+                        }
+                    }
                 }
             }
         };

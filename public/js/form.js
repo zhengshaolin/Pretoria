@@ -402,6 +402,7 @@ if ($ && jQuery) {
     $('#cnm').on('click', function(e) {
         e.stopPropagation()
         s = Drag(e);
+        s_selector = s
         //window.select_area = s;
         $('#element_server_id').val($(s[0]).attr('mid'));
         $('#element_id').val($(s[0]).attr('id'));
