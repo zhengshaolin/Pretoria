@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>H5后台-列表页</title>
+    <title>H5后台-登录页</title>
     <!-- Bootstrap core CSS -->
     <link href="public/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -33,24 +33,11 @@
         <h3 class="login-title">登录</h3>
         <div><label>用户名：</label><input type="text"  placeholder="请输入用户名" class="ipt-txt name" ></div>
         <div><label>密码：</label><input type="password" placeholder="请输入密码" class="ipt-txt password"></div>
-        <button class="login-btn submit">提交</button>
+        <button class="login-btn e_login_submit">提交</button>
+        <p class="error"></p>
+        <!-- <a class="btn btn-primary" href="register.html">注册</a> -->
     </div>
 
-    <!-- 嵌在弹窗里 -->
-
-    <div class="share" style="display:none;">
-      <h3>恭喜您发布成功</h3>
-      <p>扫一扫，分享至朋友圈</p>
-      <div><img src="11.jpg" width="120" height="120"/></div>
-      <div><a href="#">复制网址</a></div>
-      <button class="ipt-btn">完成</button>
-      <button class="ipt-btn">还需编辑</button>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
 
     <script src="public/bootstrap/jquery.min.js"></script>
     <script src="public/bootstrap/bootstrap.min.js"></script>
@@ -58,30 +45,7 @@
     <script src="public/bootstrap/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
+    <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/login.js"></script>
   </body>
-  <script type="text/javascript">
-$('.submit').on('click',function(e){
-  $.ajax({
-    type:'post',
-    url:'http://115.29.32.105:8080/login',
-    data:{user:$('.name').val(),pass:$('.password').val()},
-    success:function(data){
-      if(data.access_token){
-        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
-        localStorage.username = 'admin';
-        window.location.href="index.html";
-      }else{
-        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
-        localStorage.username = 'admin';
-        window.location.href="index.html";
-      }
-    },
-    error:function(data) {
-        localStorage.token = '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d';
-        localStorage.username = 'admin';
-        window.location.href="index.html";
-    }
-  })
-})
-</script>
 </html>

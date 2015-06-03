@@ -53,7 +53,8 @@ li.yl{width:180px;text-align: center;}
 li.break-up{width:160px;padding:0 10px;border-left: 1px solid #5b5a5a;}
 li.break-up-r{width:120px;border-left: 1px solid #5b5a5a;}
 li.w120{width:120px;}
-li.user{margin-left:20px;margin-right:10px;}
+li.user{margin-top:10px; widows: 120px;}
+.navb .user{margin-top: 10px;}
 /*index*/
 .navb li i.add-works{background-position: 0px -253px;margin-right:0px;}
 .navb li:hover i.add-works{background-position: -38px -253px;}

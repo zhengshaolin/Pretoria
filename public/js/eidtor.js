@@ -290,8 +290,12 @@ var Editor = {
         }
     },
     setUsername: function() {
-        var name = localData.get('username');
+        var name = localData.get('username'),
+            token = localData.get('token');
         $('.v_username').html(name);
+        if (name != "admin") {
+            $('.e_user').eq(1).parent('li').hide();
+        };
     },
     quite: function() {
         localData.set('token', '');
