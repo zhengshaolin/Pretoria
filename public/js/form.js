@@ -491,7 +491,7 @@ if ($ && jQuery) {
             var plane = $(s[0]).attr('plane')
             var vertical = $(s[0]).attr('vertical')
             text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
-            text.css('background','#abcdef')
+            text.css('background','transparent')
             div.hide();
             $('#cnm').append(text)
             text.focus()
