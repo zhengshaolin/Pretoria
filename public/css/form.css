@@ -189,3 +189,17 @@ li.user{margin-top:10px; widows: 120px;}
 .login-btn{width:95px;height:30px;background-color: #e5e5e5;border:1px solid #b5b5b5;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius:3px;margin-top: 20px;margin-left: 155px;}
 .login-btn:hover{background-color: #d0d0d0;}
 .share{width: 500px; background-color: #fff;padding: 20px;text-align: center;}
+
+.phonewrap{position: absolute;left:10%;top:0;height: 100%;}
+.phone-new{position: absolute;height: 579px;width: 400px;left: 180px;top: 10px;}
+.phone-header{position: absolute;width: 232px;height: 50px;top: 158px;left: 46px;z-index: 100;}
+.phone-header-img{position: absolute;width: 100%;height: 50px;}
+.phone-main-view{border: none;width: 232px;height: 362px;top: 208px;left: 46px;background-color: #fff;z-index: 999;position: absolute;}
+.phone-bg{width:325px;position:absolute;top:50px;}
+.phone-up{position: absolute;width: 61px;height: 61px; line-height:71px; text-align:center; font-size:30px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 110px;right: -20px;cursor: pointer;}
+.phone-down{position: absolute;width: 61px;height: 61px; line-height:71px; text-align:center; font-size:30px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 20px;right: -20px;cursor: pointer;}
+.phone-up:hover , .phone-down:hover{background-color: #449d44;}
+.qrcode-side{display: block;position: absolute;top: 40%;margin-top: -100px;left: 760px;}
+.qrcode-title{margin-bottom: 10px;font-size: 16px;}
+.app-set{margin-top: 10px;}
+.app-set > button{margin-bottom:10px;width:200px;}
