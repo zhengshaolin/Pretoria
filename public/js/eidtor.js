@@ -347,11 +347,12 @@ var Editor = {
                 'Access-Token': token
             },
             success: function(products) {
-                console.log(products.path);
+                console.log(products);
                 if (page_server_id != '') {
                     var src = products.path + '#' + page_server_id;
                     console.log('preview src', src);
                     $('#v_preview_src').attr('src', src);
+                    $('#v_qrcode_share').attr('src',products.qrcode);
                     $('#showModel').modal('show');
                 };
 

@@ -311,6 +311,11 @@ if ($ && jQuery) {
         }
     });
 
+    $(document).on('click', '.e_close_preview', function() {
+        $('#v_preview_src').attr('src', '');
+    });
+
+
     //弹出框
     //弹窗框图片保存设置
     //type 0 新建添加
