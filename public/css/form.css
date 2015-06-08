@@ -190,8 +190,8 @@ li.user{margin-top:10px; widows: 120px;}
 .login-btn:hover{background-color: #d0d0d0;}
 .share{width: 500px; background-color: #fff;padding: 20px;text-align: center;}
 
-.phonewrap{position: absolute;left:10%;top:0;height: 100%;}
-.phone-new{position: absolute;height: 579px;width: 400px;left: 180px;top: 10px;}
+.phonewrap{position: relative;left:10%;top:0;height: 100%;}
+.phone-new{position: relative;height: 579px;width: 400px;left: 180px;top: -72px;}
 .phone-header{position: absolute;width: 232px;height: 50px;top: 158px;left: 46px;z-index: 100;}
 .phone-header-img{position: absolute;width: 100%;height: 50px;}
 .phone-main-view{border: none;width: 232px;height: 362px;top: 208px;left: 46px;background-color: #fff;z-index: 999;position: absolute;}
