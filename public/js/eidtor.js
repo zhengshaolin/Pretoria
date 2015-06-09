@@ -785,6 +785,7 @@ var Editor = {
             //音乐列表dp-title
             $('#v_upload_music').empty();
             if (data.music == '') {
+                $('#v_upload_music').prev().html("添加音乐");
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em>暂无音乐资源</span></p>');
             } else {
                 $('#v_upload_music').append('<p><em class="glyphicon glyphicon-play-circle" style="top:2px;"></em><a class="ml10" path="' + data.music + '">音乐资源</a></span><button type="button" class="close e_close_music" aria-label="Close"><span aria-hidden="true">&times;</span></button></p>');

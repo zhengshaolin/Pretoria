@@ -59,6 +59,10 @@ if ($ && jQuery) {
        Editor.quite();
     });
 
+    $('.e-close').click(function () {
+       $('.e_tab_content').hide();
+    });
+
     //左侧
     //左侧新建page 
     $(".page-side").on("click", ".e_creat", function() {
@@ -101,6 +105,7 @@ if ($ && jQuery) {
             $('#picModel').modal('show');
         }
     });
+
     //右侧水平操作
     $('.d-horizontal').click(function() {
         var val = $(this).index(),
@@ -221,6 +226,24 @@ if ($ && jQuery) {
             console.log("select test", type, key, val);
             Editor.update(type, key, val);
         }
+    });
+
+    $('.nav-right li').click(function (){
+       var key = $(this).index(),
+           page_server_id = $('#page_server_id').val();
+       if (key == 0) {
+            return false;
+       }else if(key == 1){
+            if (page_server_id != null) {
+                $('.e_tab_content').show();
+            };
+       }else if(key == 2){
+        $('.e_tab_content').show();
+       }else if(key == 3){
+        $('.e_tab_content').show();
+       }else if(key == 4){
+        $('.e_tab_content').show();
+       }
     });
 
     // 右侧update span模块
@@ -417,6 +440,7 @@ if ($ && jQuery) {
         $('.nav-right').find('li').eq(0).addClass("active");
         $('.e_tab_content').find('.tab-pane').removeClass("active");
         $('.e_tab_content').find('#tab1').addClass("active");
+        $('.e_tab_content').show();
         if (element == 0) {
             //文字元素
             $('.d_0').removeClass('hidden').show();
@@ -446,6 +470,7 @@ if ($ && jQuery) {
             var vshift, hshift,
                 elementype = $(s[0]).attr('element_type');
             console.log("drag element type", elementype);
+            $('.e_tab_content').show();
             //文字元素
             if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
                 vshift = $(s[0]).css('top')
