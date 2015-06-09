@@ -88,8 +88,15 @@ if ($ && jQuery) {
         var type = $(this).attr('type');
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
+        $('#confirmModel').modal('show');
+        $('.e_delete_button').attr('key',type);
+    });
+
+    $(document).on('click', '.e_delete_button', function() {
+        var type = $(this).attr('key');
         Editor.remove(type);
     });
+
 
     //右侧
     //右侧替换图片功能
