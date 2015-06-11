@@ -120,12 +120,16 @@ if ($ && jQuery) {
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
+            $(this).parent().next().show();
             s.planeLeft();
         } else if (val == 1) {
+            $(this).parent().next().hide();
             s.planeMiddle()
         } else if (val == 2) {
+            $(this).parent().next().show();
             s.planeRight()
         } else if (val == 3) {
+            $(this).parent().next().hide();
             s.planeFull();
             Editor.update(2, 'width', parseInt($(s[0]).css('width')));
         }
@@ -144,12 +148,16 @@ if ($ && jQuery) {
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
         if (val == 0) {
+            $(this).parent().next().show();
             s.verticalTop();
         } else if (val == 1) {
+            $(this).parent().next().hide();
             s.verticalMiddle();
         } else if (val == 2) {
+            $(this).parent().next().show();
             s.verticalBottom();
         } else if (val == 3) {
+            $(this).parent().next().hide();
             s.verticalFull();
             Editor.update(2, 'height', parseInt($(s[0]).css('height')));
 
@@ -599,6 +607,10 @@ if ($ && jQuery) {
             data: data,
             validation: {
                 sizeLimit: size
+            },
+            onChange: function(file, extension){
+                that.val('上传中...');
+                that.attr('disabled', 'disabled');
             },
             onSubmit: function(file, extension) {
                 that.val('loading...');
