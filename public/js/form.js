@@ -194,8 +194,8 @@ if ($ && jQuery) {
             val = $(this).val();
             if (key == "background_type") {
                 if (val == 0) {
-                    Editor.update(1, 'background_color', '');
-                    Editor.update(1, 'background_img', '');
+                    //Editor.update(1, 'background_color', '');
+                    //Editor.update(1, 'background_img', '');
                     Editor.update(type, key, val);
                 }else{
                     Editor.update(type, key, val);
@@ -675,6 +675,7 @@ if ($ && jQuery) {
         e.stopPropagation();
         if(!$(e.target).hasClass('btn')){
             $('.selector').hide();
+            $('.e_tab_content').hide();
             if($('#cnm').find('textarea').length){
                 $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
                 $(s[0]).show()
