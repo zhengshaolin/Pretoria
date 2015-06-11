@@ -120,10 +120,10 @@
                       <label>素材位置:</label>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon glyphicon-align-left d-horizontal" aria-label="Center Left" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon-align-center d-horizontal" aria-hidden="true" aria-label="Center Align" class=""></span>
-                          <span class="glyphicon glyphicon-align-right d-horizontal" aria-label="Right Align" aria-hidden="true" class=""></span>
-                          <span class="glyphicon glyphicon-align-justify d-horizontal" aria-hidden="true" class=""></span>
+                          <span class="glyphicon glyphicon-align-left d-horizontal" aria-label="Center Left" aria-hidden="true"  title="左对齐"></span>
+                          <span class="glyphicon glyphicon-align-center d-horizontal" aria-hidden="true" aria-label="Center Align" title="水平居中" class=""></span>
+                          <span class="glyphicon glyphicon-align-right d-horizontal" aria-label="Right Align" aria-hidden="true" title="右对齐" class=""></span>
+                          <span class="glyphicon glyphicon-align-justify d-horizontal" aria-hidden="true" title="水平撑满" class=""></span>
                         </h6>
                         <div class="fr mt5">
                           水平边距:
@@ -132,10 +132,10 @@
                       </div>
                       <div class="panel-body">
                         <h6 class="fl">
-                          <span class="glyphicon d-vertical t-v t-v-top" aria-hidden="true"></span>
-                          <span class="glyphicon d-vertical t-v t-v-middle" aria-hidden="true"></span>
-                          <span class="glyphicon d-vertical t-v t-v-bottom" aria-hidden="true"></span> 
-                          <span class="glyphicon d-vertical t-v t-v-justify" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-top" title="上对齐" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-middle" title="垂直居中" aria-hidden="true"></span>
+                          <span class="glyphicon d-vertical t-v t-v-bottom" title="下对齐" aria-hidden="true"></span> 
+                          <span class="glyphicon d-vertical t-v t-v-justify" title="垂直撑满" aria-hidden="true"></span>
                         </h6>
                         <div class="fr mt5">
                           垂直边距:
@@ -451,6 +451,35 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-default btn-danger e_delete_button" data-dismiss="modal">确定删除</button>
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="userModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">用户设置</h4>
+      </div>
+      <div id="e_cpw" class="modal-body">
+
+
+        <div>旧密码：<input type="text"  placeholder="请输入旧密码" class="password" style="padding:5px 0"></div>
+        <div style="margin-top:20px">新密码：&nbsp;&nbsp;&nbsp;<input type="password" placeholder="请输入密码" class="newpassword" style="padding:12px 0;height:18px;"></div>
+        <div style="margin-top:20px">确认密码：&nbsp;&nbsp;&nbsp;<input type="password" placeholder="再次输入新密码" class="newpassword1" style="padding:12px 0;height:18px;"></div>
+        <button type="button" class="mt10 btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="mt10 btn btn-primary e_changepass">修改</button>
+      </div>
+      <div id="e_cau" class="modal-body hidden">
+        <button class="e_cau_button btn btn-primary">查看所有用户</button>
+        <button class="e_registerUser_button btn btn-primary">创建新用户</button>
+       
+        <table class="e_showUser mt10"></table>
+        <button type="button" class="mt10 btn btn-default" data-dismiss="modal">关闭</button>
+
+    </div>
+      </div>
+
     </div>
   </div>
 </div>
