@@ -322,7 +322,7 @@ if ($ && jQuery) {
 
     $('body').on('click','#v_upload_music a',function () {
          var path = $(this).attr('path');
-         window.location.href = 'form.html?path='+path+'';
+         window.location.href = 'http://115.29.32.105:8080/public/Pretoria/music.html?path='+path+'';
     });
 
     $(document).on('click', '.e_open_box', function(argument) {

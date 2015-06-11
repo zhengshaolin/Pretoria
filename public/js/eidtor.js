@@ -625,7 +625,7 @@ var Editor = {
                                     $('.d-vertical').removeClass('glyphicon_on');
                                     $('.d-vertical').eq(obj.vertical).addClass('glyphicon_on');
                                     $('.d-align').eq(obj.text_align).addClass('glyphicon_on');
-                                    $('.d_page_backimg').attr('src', obj.background_img);
+
                                     if (obj.ftb == 'bold') {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
@@ -720,12 +720,10 @@ var Editor = {
                     if (data[i]._id == page_server_id) {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
-                        console.log("223232323", data[i].title);
                         $('#dp-title').val(data[i].title).attr('placeholder', data[i].title);
-
+                        $('.d_page_backimg').attr('src', data[i].background_img);
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-
                             $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                         };
 
