@@ -171,7 +171,7 @@ li.user{margin-top:10px; widows: 120px;}
 .t-v-bottom{background-position: -34px 0;}
 .t-v-justify{background-position: -52px 0;}
 .glyphicon_on{background-color: #ccc;}
-.page_name{height: 24px; line-height: 24px;}
+.page_name{height: 24px; line-height: 24px; border:1px dotted #dedede;}
 .v_pic_box{width: 100%; height: auto; margin:10px 0px; display: inline-block;}
 .v_pic_box{display: inline-block; height: auto; width: 100%;}
 .v_pic_box li{width: 80px; height: 80px; float: left; overflow: hidden; margin: 5px; cursor:pointer; border: 1px solid #fff;}
