@@ -520,11 +520,15 @@ var Editor = {
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id == page_server_id) {
                     console.log("element data:", data[i].elements);
-                    if (data[i].background_type == 1) {
-                       $('#cnm').css('background-color', data[i].background_color); 
+                    if (data[i].background_type == 0) {
+                       $('#cnm').css('background-color','');
+                       $("#cnm").css("background-image",'')  
+                    }else if(data[i].background_type == 1){
+                        $('#cnm').css('background-color',data[i].background_img);
+                        $("#cnm").css("background-image",'') 
+                        // $('#cnm').css('background-image', "url("+data[i].background_img+")"); 
                     }else if(data[i].background_type == 2){
                         $('#cnm').css('background-color','');
-                        $("#id").css("background-image","url(1.img)") 
                         $('#cnm').css('background-image', "url("+data[i].background_img+")"); 
                     }
                     for (var j = 0; j < data[i].elements.length; j++) {
