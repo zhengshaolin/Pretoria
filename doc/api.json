@@ -27,7 +27,8 @@
 			{
 				"_id":"p_1", //场景ID
 				"title":"dfdfdf",//
-				"order":1// 排序
+				"order":1,// 排序
+				"pic":"",
 				"background_type":"0", // 0=color,1=img
 				"background_color":"",
 				"background_img":"",

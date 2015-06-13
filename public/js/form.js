@@ -296,8 +296,18 @@ if ($ && jQuery) {
     });
 
     //产品
+    //产品保存
+    $('.e_generate_pic').on('click',function(){
+        html2canvas(document.body).then(function(canvas) {
+            console.log("232323",canvas.toDataURL());
+            //var imgUrl = Editor.convertCanvasToImage(canvas);
+            //console.log("generate pic src",imgUrl);
+            //Editor.update(1, pic, canvas.toDataURL());
+            //document.body.appendChild(canvas);
+        });
+    });
     // 产品预览
-    // 产品发布
+    // 产品发布       
     $('.e_preview').on('click',function(){
         Editor.preview();
     });
