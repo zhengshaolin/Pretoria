@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>H5后台-列表页</title>
+    <!-- Bootstrap core CSS -->
+    <link href="public/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="public/bootstrap/dashboard.css" rel="stylesheet">
+    <link href="public/css/form.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="bg_y">
+    <input type="hidden" id="product_id">
+    <input type="hidden" id="update_key">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <ul class="navb navbar-nav navbar-right">
+            <li><i class="add-works"></i><a class="e_creat" type="0">创建新作品</a></li>
+          </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="navb navbar-nav navbar-right">
+            <li class="break-up-r"><i class="list"></i><a href="#">作品列表</a></li>
+            <li class="w120 mr40"><i class="publish"></i><a data-toggle="modal" data-target="#publishModel">发布作品</a></li>
+            <div class="btn-group user">
+            <button type="button" class="btn btn-primary v_username"></button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a class="e_user" key="cpw">修改密码</a></li>
+                <li><a class="e_user" key="cau">查看所有用户</a></li>
+                <li class="divider"></li>
+                <li><a class="e_user" key="quite">退出</a></li>
+              </ul>
+            </div>
+          </ul>
+
+        </div>
+    </nav>
+    <div class="">
+      <div class="title"><span class="glyphicon glyphicon-triangle-right mr5 fs10"></span>作品列表</div>
+        <div class="col-md-9">
+          <div class="row">
+            <ul class="works-list" id="v_product_list">
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 works" id='v_product_info'>
+          <div class="works-detail">
+            <div class="works-body">
+            <h3>作品信息</h3>
+            <img data-holder-rendered="true" class="avatar" src="" class="works-img" data-src="holder.js/100%x200" alt="100%x200">
+            <div class="caption">
+              <p>作品状态: <span class="status">未发布</span></p>              
+              <p>创建日期:<span class="creat_time"></span></p>
+              <p>最近修改:<span class="update_time"></span></p>
+              <p>作品名称:<input type="text" class="panel-text w100 ml10 update_item" id="d-product" elementype="0" placeholder="name" aria-describedby="basic-addon1" value=" "></p>
+              <p>作品描述:<span class="prodict_des"></span></p>
+              <p class="fr"><a class="btn btn-default" data-toggle="modal" data-target="#publishModel" role="button">发布作品</a></p>
+            </div>
+          </div>
+          </div>            
+        </div>
+
+        
+      </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="public/bootstrap/jquery.min.js"></script>
+    <script src="public/bootstrap/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="public/bootstrap/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="public/bootstrap/ie10-viewport-bug-workaround.js"></script>
+
+
+    <script src="public/js/eidtor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/localData.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/list.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/js/login.js"></script>
+    
+<div class="modal fade" id="userModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">用户设置</h4>
+      </div>
+      <div id="e_cpw" class="modal-body">
+        <div>旧密码：<input type="text"  placeholder="请输入旧密码" class="password" style="padding:5px 0"></div>
+        <div style="margin-top:20px">新密码：&nbsp;&nbsp;&nbsp;<input type="password" placeholder="请输入密码" class="newpassword" style="padding:12px 0;height:18px;"></div>
+        <div style="margin-top:20px">确认密码：&nbsp;&nbsp;&nbsp;<input type="password" placeholder="再次输入新密码" class="newpassword1" style="padding:12px 0;height:18px;"></div>
+        <button type="button" class="mt10 btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="mt10 btn btn-primary e_changepass">修改</button>
+      </div>
+      <div id="e_cau" class="modal-body hidden">
+        <button class="e_cau_button btn btn-primary">查看所有用户</button>
+        <button class="e_registerUser_button btn btn-primary">创建新用户</button>
+       
+        <table class="e_showUser mt10"></table>
+        <button type="button" class="mt10 btn btn-default" data-dismiss="modal">关闭</button>
+
+    </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">创建用户</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>
+              <label>用户名:</label>
+              <input class="panel-text w187 r_name"  placeholder="请输入用户名" type="text" value="">
+           </li>
+          <li>
+              <label>密码:</label>
+              <input class="panel-text w187 r_password" type="password" value="">
+           </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary e_registerUser">创建</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发布设置</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>
+              <label>发布标题设置:</label>
+              <input class="panel-text w187"  type="text" value="">
+           </li>
+          <li>
+              <label>发布详细描述:</label>
+              <input class="panel-text w187" type="text" value="">
+           </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary e_publish">发布</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>
