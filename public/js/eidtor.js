@@ -663,11 +663,26 @@ var Editor = {
                                     //console.log("232323",obj.animate_effect);
                                     $('#d-ftc').val(obj.ftc);
                                     $('#d-fts').val(obj.fts);
-                                    $('.d-animate_effect').val(obj.animate_effect);
-                                    $('.d-animate_effect').html(obj.animate_effect);
-                                    $('.d-animate_delay').html(obj.animate_delay);
+                                    // console.log("29999",obj.animate_effect);
+                                    if (obj.animate_effect == '') {
+                                        $('.d-animate_effect').html("没有效果");
+                                    }else{
+                                        $('.d-animate_effect').html(obj.animate_effect);
+                                    }
+                                    if (obj.animate_delay == '') {
+                                        $('.d-animate_delay').html("3000ms");
+                                    }else{
+                                        $('.d-animate_delay').html(obj.animate_delay);
+                                    }
+                                    if (obj.animate_duration == '') {
+                                        $('.d-animate_duration').html("1000ms");
+                                    }else{
+                                        $('.d-animate_duration').html(obj.animate_duration);
+                                    }                                    
+                                    //$('.d-animate_effect').html(obj.animate_effect);
                                     //$('.d-animate_delay').html(obj.animate_delay);
-                                    $('.d-animate_duration').html(obj.animate_duration);
+                                    //$('.d-animate_delay').html(obj.animate_delay);
+                                    //$('.d-animate_duration').html(obj.animate_duration);
                                     //$('.d-animate_duration').html(obj.animate_duration);
                                 };
                             };
