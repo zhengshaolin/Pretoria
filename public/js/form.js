@@ -657,6 +657,9 @@ if ($ && jQuery) {
             callback: function(data) {
                 //render picbox
                 Editor.renderPicBox();
+            },
+            change:function(){
+                console.log("正在上传中......");
             }
         });
     });
