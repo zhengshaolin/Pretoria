@@ -92,11 +92,47 @@ if ($ && jQuery) {
         $('.e_delete_button').attr('key',type);
     });
 
-    $(document).on('click', '.e_delete_button', function() {
-        var type = $(this).attr('key');
-        Editor.remove(type);
+    $(document).on('click', '.e_page_up', function() {
+        var origin_page_server_id = $(this).attr('pid'),
+            origin_order = $(this).attr('order'),
+            modify_page_server_id  = $(this).parent('li').prev('li').attr('pid'),
+            modify_order = $(this).attr('order');
+            console.log("origin_page_server_id",origin_page_server_id);
+            console.log("modify_page_server_id",modify_page_server_id);
+        if (origin_order == 0) {
+            alert("已经是第一页了！");
+        }else{
+            Editor.changePos(origin_page_server_id,parseInt(origin_order - 1));
+            Editor.changePos(modify_page_server_id,parseInt(modify_order + 1));
+            //Editor.update(1,order,modify_order); 
+            //Editor.update(1,order,modify_order);          
+        }
     });
-
+    $(document).on('click', '.e_page_down', function() {
+        var origin_page_server_id = $(this).attr('pid'),
+            origin_order = $(this).attr('order'),
+            modify_page_server_id  = $(this).parent('li').next('li').attr('pid'),
+            modify_order = $(this).attr('order');
+            console.log("origin_page_server_id",origin_page_server_id);
+            console.log("modify_page_server_id",modify_page_server_id);
+        if (origin_order == parseInt($('#v_page_list').find('li').length - 1)) {
+            alert("已经是最后一页了！");
+        }else{
+            Editor.changePos(origin_page_server_id,parseInt(origin_order + 1));
+            Editor.changePos(modify_page_server_id,parseInt(modify_order - 1));
+            //Editor.update(1,order,modify_order); 
+            //Editor.update(1,order,modify_order);          
+        }
+    });
+    //图库选中功能
+    $(document).on('click', '.v_pic_box li', function() {
+        var pic = $(this).find('img').attr("src");
+        $(this).siblings().removeClass();
+        $(this).addClass('active');
+        if (pic != undefined) {
+            $('#upload_img_src').val(pic);
+        };
+    });
 
     //右侧
     //右侧替换图片功能
@@ -298,8 +334,8 @@ if ($ && jQuery) {
     //产品
     //产品保存
     $('.e_generate_pic').on('click',function(){
-        html2canvas(document.body).then(function(canvas) {
-            console.log("232323",canvas.toDataURL());
+        html2canvas(document.getElementById('cnm')).then(function(canvas) {
+            //console.log("232323",canvas.toDataURL());
             var imgUrl = canvas.toDataURL();
             //console.log("generate pic src",imgUrl);
             //Editor.update(1, pic, canvas.toDataURL());
@@ -589,7 +625,31 @@ if ($ && jQuery) {
                 name: ''
             })
         }
-    })
+    });
+    // $('#v_page_list').on('mousedown', function(e) {
+    //     if (e.which == 3) {
+    //         $(this).smartMenu([
+    //             [{
+    //                 text: '上移',
+    //                 func: function() {
+    //                     console.log($(this).find('li').attr('order'));
+    //                     //Editor.batchupdate();
+    //                 }
+    //             }],
+    //             [{
+    //                 text: '下移',
+    //                 func: function() {
+    //                     console.log($(this).attr('order'));
+    //                     //Editor.batchupdate();
+    //                 }
+    //             }]
+    //         ], {
+    //             offsetX: 2,
+    //             offsetY: 2,
+    //             name: ''
+    //         })
+    //     }
+    // })
     //上传图片控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),

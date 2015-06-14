@@ -490,7 +490,7 @@ var Editor = {
             page_server_id = $('#page_server_id').val();
         $('#page_number').val(parseInt(data.pages.length + 1));
         for (var i = 0; i < data.pages.length; i++) {
-            $('#v_page_list').append('<li pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
+            $('#v_page_list').append('<li order="'+data.pages[i].order+'" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><span class="glyphicon glyphicon-arrow-down e_page_down" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
         };
         $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
         if (page_server_id == '') {
@@ -1007,10 +1007,38 @@ var Editor = {
         image.src = canvas.toDataURL();
         return canvas.toDataURL();
     },
-    upper:function (argument) {
-        // body...
-    },
-    downer:function(){
-        
+    changePos:function (id,val) {
+        var token = localData.get('token'),
+            product_id = $('#product_id').val(),
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: {
+                    'type': 1,
+                    'product_id': product_id,
+                    'page_id': id,
+                    'order': val
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('update_product_test returned:');
+                    console.log(result);
+                    Editor.fetchForm(1);
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
+
+        if (origin_order == 0) {
+            alert("已经是第一页了！");
+        }else{
+            //Editor.update(1,order,modify_order); 
+            //Editor.update(1,order,modify_order);          
+        }
     }
 };
