@@ -103,14 +103,14 @@ if ($ && jQuery) {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
             modify_page_server_id  = $(this).parent('li').prev('li').attr('pid'),
-            modify_order = $(this).attr('order');
+            modify_order = $(this).parent('li').prev('li').attr('order');
             console.log("origin_page_server_id",origin_page_server_id);
             console.log("modify_page_server_id",modify_page_server_id);
         if (origin_order == 0) {
             alert("已经是第一页了！");
         }else{
-            Editor.changePos(origin_page_server_id,parseInt(origin_order - 1));
-            Editor.changePos(modify_page_server_id,parseInt(modify_order + 1));
+            Editor.changePos(origin_page_server_id,modify_order);
+            Editor.changePos(modify_page_server_id,origin_order);
             //Editor.update(1,order,modify_order); 
             //Editor.update(1,order,modify_order);          
         }
@@ -120,14 +120,14 @@ if ($ && jQuery) {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
             modify_page_server_id  = $(this).parent('li').next('li').attr('pid'),
-            modify_order = $(this).attr('order');
+            modify_order = $(this).parent('li').next('li').attr('order');
             console.log("origin_page_server_id",origin_page_server_id);
             console.log("modify_page_server_id",modify_page_server_id);
         if (origin_order == parseInt($('#v_page_list').find('li').length - 1)) {
             alert("已经是最后一页了！");
         }else{
-            Editor.changePos(origin_page_server_id,parseInt(origin_order + 1));
-            Editor.changePos(modify_page_server_id,parseInt(modify_order - 1));
+            Editor.changePos(origin_page_server_id,modify_order);
+            Editor.changePos(modify_page_server_id,origin_order);
             //Editor.update(1,order,modify_order); 
             //Editor.update(1,order,modify_order);          
         }

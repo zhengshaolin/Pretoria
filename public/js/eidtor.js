@@ -1011,6 +1011,7 @@ var Editor = {
         return canvas.toDataURL();
     },
     changePos:function (id,val) {
+        console.log("change pos");
         var token = localData.get('token'),
             product_id = $('#product_id').val();
             $.ajax({
@@ -1029,7 +1030,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm(1);
+                    Editor.renderPage();
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
