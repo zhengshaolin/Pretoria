@@ -125,7 +125,7 @@
                           <span class="glyphicon glyphicon-align-right d-horizontal" aria-label="Right Align" aria-hidden="true" title="右对齐" class=""></span>
                           <span class="glyphicon glyphicon-align-justify d-horizontal" aria-hidden="true" title="水平撑满" class=""></span>
                         </h6>
-                        <div class="fr mt5">
+                        <div class="fr mt5 input_horizontal">
                           水平边距:
                           <input class="panel-text w55 mr30 update_item" type="text"  elementype="2" id="d-hshift" value="" />
                         </div>
@@ -137,7 +137,7 @@
                           <span class="glyphicon d-vertical t-v t-v-bottom" title="下对齐" aria-hidden="true"></span> 
                           <span class="glyphicon d-vertical t-v t-v-justify" title="垂直撑满" aria-hidden="true"></span>
                         </h6>
-                        <div class="fr mt5">
+                        <div class="fr mt5 input_vertical">
                           垂直边距:
                           <input class="panel-text w55 mr30 update_item" id="d-vshift" elementype="2" type="text" value="" />
                         </div>
@@ -211,8 +211,8 @@
                       <button class="animation-btn e_store_animate">修改动画</button>
                       <div class="animation panel-body">
                         <p>动画效果：<span class="d-animate_effect"></span></p>
-                        <p>延迟时间：<span class="d-animate_delay"></span></p>
-                        <p>持续时间：<span class="d-animate_duration"></span></p>
+                        <p>延迟时间：<span class="d-animate_delay"></span>毫秒</p>
+                        <p>持续时间：<span class="d-animate_duration"></span>毫秒</p>
                       </div>
                     </li>
                     <li class="last">
@@ -525,7 +525,7 @@
                 <div class="phone-header">
                     <img class="phone-header-img" src="public/image/signal-title.png">
                 </div>
-                 <iframe src="" id="v_preview_src" name="v_preview_src" class="phone-main-view" frameborder="0" style="width:232px; height:360px"></iframe>
+                 <iframe src="" id="v_preview_src" name="v_preview_src" class="phone-main-view" frameborder="0" style="width:180px; height:320px"></iframe>
                 <img class="phone-bg" src="public/image/iphone-preview.png">
                 <div class="phone-up e_up_page"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
                 <div class="phone-down e_down_page"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
@@ -575,26 +575,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">发布设置</h4>
       </div>
-      <div class="modal-body">
-        <ul>
-          <li>
-              <label>发布标题设置:</label>
-              <input class="panel-text w187 update_item"  type="text" value="" elementype="0" id="d-weixin_share_title">
-           </li>
-          <li>
-              <label>发布详细描述:</label>
-              <input class="panel-text w187 update_item" type="text" value="" elementype="0" id="d-weixin_share_desc">
-           </li>
-          <li class="d_1"> 
-                      <label>图片资源:</label>
-                      <div class="panel-body">
-                        <div class="fl">
-                          <img id="d-weixin_share_icon" data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
-                        <button class="btn e_open_box" replacetype="6">设置图片</button>
-                        </div>
-                      </div>                      
-                    </li>
-        </ul>
+      <div class="modal-body form-horizontal">
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">发布标题设置：</label>
+            <div class="col-md-8">
+              <input class="panel-text update_item form-control"  type="text" value="" elementype="0" id="d-weixin_share_title">
+            </div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">发布详细描述：</label>
+            <div class="col-md-8">
+              <input class="panel-text form-control update_item" type="text" value="" elementype="0" id="d-weixin_share_desc">
+            </div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-6">
+                <a><img id="d-weixin_share_icon" data-holder-rendered="true" src="" style="width: 64px; height: 64px;"  data-src="holder.js/64x64" alt="64x64"></a>
+                <button class="btn e_open_box col-md-6 animation-btn" replacetype="2">设置图片</button>
+            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -611,38 +611,44 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">动画设置</h4>
       </div>
-      <div class="modal-body">
-        <ul id="v_animate_box">
-        <li>
-          <label>动画效果设置:</label>
-          <select class="click-action ml10 update_select" elementype="2" id="ds-animate_effect">
-            <option value="">没有效果</option>
-            <option value="bounceInLeft">左飞入</option>
-            <option value="bounceInRight">右飞入</option>
-            <option value="bounceInUp">上飞入</option>
-            <option value="bounceInDown">下飞入</option>
-            <option value="zoomIn">放大出现</option>
-            <option value="flipInX">上下翻转</option>
-            <option value="flipInY">左右翻转</option>
-            <option value="rollIn">旋转飞入</option>
-            <option value="lightSpeedIn">刹车进入</option>
-            <option value="swing">摆动</option>
-            <option value="jello">抖动</option>
-            <option value="flash">闪烁</option>
-            <option value="bounce">弹跳</option>
-            <option value="shake">摇摆</option>
-            <option value="tada">振铃</option>
-        </li>
-        <li>
-          <label>动画延迟设置:</label>
-          <input id="ds-animate_delay" type="text" class="panel-text w187 update_item" elementype="2" value=""/>
-        </li>
-        <li>
-          <label>动画持续时间设置:</label>
-          <input id="ds-animate_duration" type="text" class="panel-text w187 update_item d-animate_effect" elementype="2" value=""/>
-        </li>
-        <br>
-        </ul>
+      <div class="modal-body form-horizontal">
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label" >动画效果设置：</label>
+            <div class="col-md-8">
+              <select class="click-action update_select form-control" elementype="2" id="ds-animate_effect">
+                <option value="">没有效果</option>
+                <option value="bounceInLeft">左飞入</option>
+                <option value="bounceInRight">右飞入</option>
+                <option value="bounceInUp">上飞入</option>
+                <option value="bounceInDown">下飞入</option>
+                <option value="zoomIn">放大出现</option>
+                <option value="flipInX">上下翻转</option>
+                <option value="flipInY">左右翻转</option>
+                <option value="rollIn">旋转飞入</option>
+                <option value="lightSpeedIn">刹车进入</option>
+                <option value="swing">摆动</option>
+                <option value="jello">抖动</option>
+                <option value="flash">闪烁</option>
+                <option value="bounce">弹跳</option>
+                <option value="shake">摇摆</option>
+                <option value="tada">振铃</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">动画延迟时间设置：</label>
+            <div class="col-md-7">
+              <input id="ds-animate_delay" type="text" class="form-control panel-text update_item" elementype="2" value=""/>
+            </div>
+            <div class="col-md-2">毫秒</div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">动画持续时间设置：</label>
+            <div class="col-md-7">
+              <input id="ds-animate_duration" type="text" class="form-control form-control panel-text update_item" elementype="2" value=""/>
+            </div>
+            <div class="col-md-2">毫秒</div>
+          </div>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -661,6 +667,9 @@
       </div>
       <div class="modal-body">
           <button type="button" class="btn btn-primary e_upload_music">上传音乐</button>
+          <ul class="e_load_area hide">
+            <li><img src="public/image/load.gif"></li>
+          </ul> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -683,6 +692,9 @@
       <div class="modal-body">
           <ul class="v_pic_box" type="0">
           </ul>
+          <ul class="e_load_area hide">
+            <li><img src="public/image/load.gif"></li>
+          </ul> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

@@ -340,7 +340,8 @@ var Editor = {
             type: 'GET',
             url: 'http://115.29.32.105:8080/publish',
             data: {
-                'product_id': product_id
+                'product_id': product_id,
+                'preview':1
             },
             dataType: 'json',
             headers: {
@@ -540,8 +541,14 @@ var Editor = {
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
                         if (obj.element_type == 0) {
-                            //console.log("2323232323",obj.vertical)
-                            console.log("33232323", obj.ftb);
+                            console.log("dsdsdsdsd",obj.horizontal)
+                            //console.log("33232323", obj.ftb);
+                            if(obj.horizontal == 1 || obj.horizontal == 3){
+                                $('.input_horizontal').hide();
+                            }
+                             if(obj.vertical == 1 || obj.vertical == 3){
+                                $('.input_vertical').hide();
+                            }                           
                             template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
@@ -671,20 +678,20 @@ var Editor = {
                                     $('#d-fts').val(obj.fts);
                                     // console.log("29999",obj.animate_effect);
                                     if (obj.animate_effect == '') {
-                                        $('.d-animate_effect').html("没有效果");
+                                        $('.d-animate_effect').html("无动画");
                                     }else{
                                         $('.d-animate_effect').html(obj.animate_effect);
                                     }
-                                    if (obj.animate_delay == '') {
-                                        $('.d-animate_delay').html("3000ms");
-                                    }else{
+                                    //if (obj.animate_delay == '') {
+                                        //$('.d-animate_delay').html("3000ms");
+                                    //}else{
                                         $('.d-animate_delay').html(obj.animate_delay);
-                                    }
-                                    if (obj.animate_duration == '') {
-                                        $('.d-animate_duration').html("1000ms");
-                                    }else{
+                                    //}
+                                    //if (obj.animate_duration == '') {
+                                        //$('.d-animate_duration').html("1000ms");
+                                    //}else{
                                         $('.d-animate_duration').html(obj.animate_duration);
-                                    }                                    
+                                    //}                                    
                                     //$('.d-animate_effect').html(obj.animate_effect);
                                     //$('.d-animate_delay').html(obj.animate_delay);
                                     //$('.d-animate_delay').html(obj.animate_delay);
@@ -805,7 +812,7 @@ var Editor = {
             $("input[name='glass']").eq([data.glass]).attr('checked', true);
             $('#d-glass_url').attr('src', data.glass_url);
             $('#d-glass_trans').val(data.glass_trans);
-            $('#d-orign_mum').val(data.orign_num);
+            $('#d-orign_num').val(data.orign_num);
             $('#d-pry').val(data.pry);
             $('#d-switch_type').val(data.switch_type);
             $('#d-weixin_share_title').val(data.weixin_share_title);
@@ -999,5 +1006,11 @@ var Editor = {
         var image = new Image();
         image.src = canvas.toDataURL();
         return canvas.toDataURL();
+    },
+    upper:function (argument) {
+        // body...
+    },
+    downer:function(){
+        
     }
 };

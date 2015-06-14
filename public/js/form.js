@@ -300,10 +300,11 @@ if ($ && jQuery) {
     $('.e_generate_pic').on('click',function(){
         html2canvas(document.body).then(function(canvas) {
             console.log("232323",canvas.toDataURL());
-            //var imgUrl = Editor.convertCanvasToImage(canvas);
+            var imgUrl = canvas.toDataURL();
             //console.log("generate pic src",imgUrl);
             //Editor.update(1, pic, canvas.toDataURL());
             //document.body.appendChild(canvas);
+            Editor.update(1, avatar, imgUrl);
         });
     });
     // 产品预览
@@ -397,7 +398,7 @@ if ($ && jQuery) {
         } else if (replaceType == 5) {
             Editor.add(4);
         } else if (replaceType == 6) {
-            console.log("aaa",Editor.getSlider());
+            //console.log("aaa",Editor.getSlider());
             if (Editor.getSlider() != false) {
                 var slider = Editor.addSlider(pic);
                 Editor.update(2, 'slider', slider);
@@ -589,7 +590,7 @@ if ($ && jQuery) {
             })
         }
     })
-    //上传控件
+    //上传图片控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
             tarImg = options.tarimg || '',
@@ -627,7 +628,7 @@ if ($ && jQuery) {
                 that.attr('disabled', 'disabled');
                 tarImg = arrType[type];
                 if (genre === 'img') {
-                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF|mp3)$/.test(extension)) {
+                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF)$/.test(extension)) {
                         if (type === 'picture') {
                             var activeCount = tarImg.length;
                             if (activeCount === 8) {
@@ -658,7 +659,75 @@ if ($ && jQuery) {
             }
         });
     };
-
+    //上传音乐控件
+    $.fn.ajaxMusicUpload = function(options) {
+        var that = $(this),
+            tarImg = options.tarimg || '',
+            action = options.action || 'upload',
+            name = options.name || 'Filename',
+            genre = options.genre || 'img',
+            size = options.size || 2048 * 1024,
+            type = options.type || 'logo',
+            data = options.data || {
+                'product_id': $('#product_id').val(),
+                'access_token': localData.get('token'),
+                type: options.type
+            },
+            arrType = { //for picture appear
+                'picture': $("#pictureUpload").find("img"),
+                'logo': $("[rel='img-target-logo']"),
+                'card': $("[rel='img-target']"),
+                'avatar': $("[rel='img-target-avatar']"),
+                'album': $("[rel='img-taget-album']")
+            },
+            text = that.text();
+        new ajaxMusicUpload(that, {
+            action: action,
+            name: name,
+            data: data,
+            validation: {
+                sizeLimit: size
+            },
+            onChange: function(file, extension){
+                that.val('上传中...');
+                that.attr('disabled', 'disabled');
+            },
+            onSubmit: function(file, extension) {
+                that.val('loading...');
+                that.attr('disabled', 'disabled');
+                tarImg = arrType[type];
+                if (genre === 'img') {
+                    if (extension && /^(mp3)$/.test(extension)) {
+                        if (type === 'picture') {
+                            var activeCount = tarImg.length;
+                            if (activeCount === 8) {
+                                alert('您已上传8张截图');
+                                that.text(text);
+                                that.removeAttr('disabled');
+                                return false;
+                            }
+                        }
+                    } else {
+                        alert('音乐请上传mp3格式!');
+                        that.text(text);
+                        that.removeAttr('disabled');
+                        return false;
+                    }
+                }
+                return true;
+            },
+            onComplete: function(file, res) {
+                that.val('选择图片');
+                //console.log(res);
+                if (typeof res == 'object')
+                    res = res;
+                else
+                    res = $.parseJSON(res);
+                that.removeAttr('disabled');
+                options.callback.call(this, res);
+            }
+        });
+    };
     // 上传功能
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
@@ -669,14 +738,15 @@ if ($ && jQuery) {
                 Editor.renderPicBox();
             },
             change:function(){
-                console.log("正在上传中......");
+                $('.e_load_area').show();
+                //console.log("正在上传中......");
             }
         });
     });
 
     // 上传功能
     $(document).on('click', '.e_upload_music', function() {
-        $(this).ajaxUpload({
+        $(this).ajaxMusicUpload({
             action: 'http://115.29.32.105:8080/upload',
             type: 1,
             callback: function(data) {
@@ -686,6 +756,9 @@ if ($ && jQuery) {
                 Editor.update(0, 'music', data.path);
                 // 更新右侧公共信息
                 Editor.renderGlobalInfo();
+            },
+            change:function () {
+                $('.e_load_area').show();
             }
         });
     });
