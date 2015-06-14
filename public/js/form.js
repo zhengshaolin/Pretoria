@@ -92,6 +92,13 @@ if ($ && jQuery) {
         $('.e_delete_button').attr('key',type);
     });
 
+    $(document).on('click', '.e_delete_button', function() {
+        var key = $(this).attr('key');
+        if (key == 1) {
+            Editor.remove(1);
+        }
+    });
+
     $(document).on('click', '.e_page_up', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
@@ -108,6 +115,7 @@ if ($ && jQuery) {
             //Editor.update(1,order,modify_order);          
         }
     });
+
     $(document).on('click', '.e_page_down', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),

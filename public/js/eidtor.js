@@ -371,6 +371,7 @@ var Editor = {
     //tyoe 1 page
     //type 2 elements
     remove: function(type) {
+        console.log("remove method start");
         var token = localData.get('token'),
             current_id = localData.get('current_id'),
             product_id = $('#product_id').val(),
@@ -428,6 +429,7 @@ var Editor = {
                     console.log(result);
                     Editor.store(JSON.stringify(result));
                     Editor.renderPage();
+                    $('#confirmModel').modal('hide');
                 },
                 error: function(err) {
                     console.log('delete_page_test err:');
@@ -521,13 +523,14 @@ var Editor = {
             for (var i = 0; i < data.length; i++) {
                 if (data[i]._id == page_server_id) {
                     console.log("element data:", data[i].elements);
-                    console.log("element background:", data[i].background_type);
+                    console.log("element background:", data[i].background_color);
                     if (data[i].background_type == 0) {
                         $('#cnm').css(
                             {"background-color":"",
                             "background-image":""
                         });
                     }else if(data[i].background_type == 1){
+                        
                         $('#cnm').css(
                             {"background-color":data[i].background_color,
                             "background-image":""
@@ -1009,7 +1012,7 @@ var Editor = {
     },
     changePos:function (id,val) {
         var token = localData.get('token'),
-            product_id = $('#product_id').val(),
+            product_id = $('#product_id').val();
             $.ajax({
                 type: 'PUT',
                 url: 'http://115.29.32.105:8080/api',
@@ -1033,12 +1036,5 @@ var Editor = {
                     console.log(err);
                 }
             });
-
-        if (origin_order == 0) {
-            alert("已经是第一页了！");
-        }else{
-            //Editor.update(1,order,modify_order); 
-            //Editor.update(1,order,modify_order);          
-        }
     }
 };
