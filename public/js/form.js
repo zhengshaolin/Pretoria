@@ -308,7 +308,6 @@ if ($ && jQuery) {
     // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
-        
         var type = $(this).attr('elementype'),
             key = $(this).attr('id').split('-')[1];
         if ($(this).hasClass('glyphicon_on')) {
