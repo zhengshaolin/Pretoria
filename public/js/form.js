@@ -308,7 +308,6 @@ if ($ && jQuery) {
     // 右侧update span模块
     $('.update_span').click(function() {
         console.log("update span start");
-        
         var type = $(this).attr('elementype'),
             key = $(this).attr('id').split('-')[1];
         if ($(this).hasClass('glyphicon_on')) {
@@ -342,13 +341,13 @@ if ($ && jQuery) {
     //产品
     //产品保存
     $('.e_generate_pic').on('click',function(){
-        html2canvas(document.getElementById('cnm')).then(function(canvas) {
+        html2canvas(document.getElementById('page_edit')).then(function(canvas) {
             //console.log("232323",canvas.toDataURL());
             var imgUrl = canvas.toDataURL();
-            //console.log("generate pic src",imgUrl);
+            console.log("generate pic src",imgUrl);
             //Editor.update(1, pic, canvas.toDataURL());
             //document.body.appendChild(canvas);
-            Editor.update(1, avatar, imgUrl);
+            Editor.update(1, 'avatar', imgUrl);
         });
     });
     // 产品预览

@@ -66,6 +66,7 @@ var Editor = {
                     Editor.store(JSON.stringify(result));
                     Editor.renderPage();
                     $('#v_page_list').find('li').last().prev().trigger('click');
+                    $('#v_page_list').scrollTop($('#v_page_list').find('li').length * 214);
 
                 },
                 error: function(err) {
@@ -904,7 +905,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.fetchForm(1);
+                    Editor.fetchForm(0);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
