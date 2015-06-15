@@ -6,6 +6,9 @@ var Editor = {
         //localData.set('token','554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d');
         window.location.href = 'login.html';
     },
+    scroll:function (argument) {
+        // body...
+    },
     //add method for administor creat product,page or elements
     //type 0 product
     //type 1 page
