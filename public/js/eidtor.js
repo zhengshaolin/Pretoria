@@ -509,7 +509,8 @@ var Editor = {
         console.log('render arena method start');
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')).pages,
             page_id = $('#page_id').val(),
-            page_server_id = $('#page_server_id').val();
+            page_server_id = $('#page_server_id').val(),
+            max_index = $('#arena_max_zindex').val();
         //console.log(page_id);
         num = parseInt(page_id.split('_')[1]) + parseInt(1);
         if (page_server_id == '') {
@@ -528,6 +529,7 @@ var Editor = {
                 if (data[i]._id == page_server_id) {
                     console.log("element data:", data[i].elements);
                     console.log("element background:", data[i].background_color);
+
                     if (data[i].background_type == 0) {
                         $('#cnm').css(
                             {"background-color":"",
@@ -547,6 +549,9 @@ var Editor = {
                     }
                     for (var j = 0; j < data[i].elements.length; j++) {
                         var obj = data[i].elements[j];
+                        if(obj.z_index > max_index){
+                            $('#arena_max_zindex').val(obj.z_index);
+                        }
                         if (obj.element_type == 0) {
                             console.log("dsdsdsdsd",obj.horizontal)
                             //console.log("33232323", obj.ftb);
@@ -556,7 +561,7 @@ var Editor = {
                              if(obj.vertical == 1 || obj.vertical == 3){
                                 $('.input_vertical').hide();
                             }                           
-                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {

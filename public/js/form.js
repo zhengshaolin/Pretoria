@@ -612,12 +612,13 @@ if ($ && jQuery) {
     $('#cnm').on('mousedown', function(e) {
         if (e.which == 3) {
             $(this).smartMenu([
-                // [{
-                //     text: '浮动到最上层',
-                //     func: function() {
-                //         //$(s[0]).css('zIndex',)
-                //     }
-                // }],
+                [{
+                    text: '浮动到最上层',
+                    func: function() {
+                        var max_index = parseInt(parseInt($('#arena_max_zindex').val())+1);
+                        Editor.update(2,'z_index',max_index);
+                    }
+                }],
                 [{
                     text: '删除选中层',
                     func: function() {
