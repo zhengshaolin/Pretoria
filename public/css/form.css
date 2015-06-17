@@ -190,19 +190,22 @@ li.user{margin-top:10px; widows: 120px;}
 .login-btn:hover{background-color: #d0d0d0;}
 .share{width: 500px; background-color: #fff;padding: 20px;text-align: center;}
 
-.phonewrap{position: relative;left:10%;top:0;height: 100%;}
-.phone-new{position: relative;height: 579px;width: 400px;left: 180px;top: -72px;}
+/*2015-06-14*/
+.phonewrap{position: relative;left:10%;top:0px;height: 100%;}
+.phone-new{position: relative;height: 579px;width: 400px;left: 180px;top: 0px;}
 .phone-header{position: absolute;width: 232px;height: 50px;top: 158px;left: 46px;z-index: 100;}
 .phone-header-img{position: absolute;width: 100%;height: 50px;}
-.phone-main-view{border: none;width: 232px;height: 362px;top: 208px;left: 46px;background-color: #fff;z-index: 999;position: absolute;}
-.phone-bg{width:325px;position:absolute;top:50px;}
-.phone-up{position: absolute;width: 61px;height: 61px; line-height:71px; text-align:center; font-size:30px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 110px;right: -20px;cursor: pointer;}
-.phone-down{position: absolute;width: 61px;height: 61px; line-height:71px; text-align:center; font-size:30px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 20px;right: -20px;cursor: pointer;}
+.phone-main-view{border: none;width: 180px;height: 320px;top: 149px;left: 35px;background-color: #fff;z-index: 999;position: absolute;}
+/*.phone-bg{width:325px;position:absolute;top:50px;}*/
+.phone-bg{width:250px;height:506px;position:absolute;top:50px;}
+.phone-up{position: absolute;width: 41px;height: 41px; line-height:46px; text-align:center; font-size:18px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 230px;right: 60px;cursor: pointer;}
+.phone-down{position: absolute;width: 41px;height: 41px; line-height:46px; text-align:center; font-size:18px; background-color:#4cae4c; color:#fff;border-radius:100px;bottom: 160px;right: 60px;cursor: pointer;}
 .phone-up:hover , .phone-down:hover{background-color: #449d44;}
-.qrcode-side{display: block;position: absolute;top: 40%;margin-top: -100px;left: 760px;}
+.qrcode-side{display: block;position: absolute;top: 40%;margin-top: -100px;left: 660px;}
 .qrcode-title{margin-bottom: 10px;font-size: 16px;}
 .app-set{margin-top: 10px;}
-.app-set > button{margin-bottom:10px;width:200px;}
+.app-set > button{margin-bottom:10px;}
+/*2015-06-14*/
 
 .form-control{border-radius: 0px !important;}
 li.add{background:rgba(0,0,0,0.3);padding-right:10px;}
