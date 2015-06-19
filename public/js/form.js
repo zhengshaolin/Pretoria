@@ -641,9 +641,12 @@ if ($ && jQuery) {
             })
         }
     });
-    $('#v_page_list').on('mouseover', 'li', function() {
-        
+    $('#v_page_list').on('mouseover', 'li', function(e) {
+        $(this).find('.glyphicon').removeClass('hidden');
     });
+     $('#v_page_list').on('mouseout', 'li', function(e) {
+        $(this).find('.glyphicon').addClass('hidden');
+    });   
     //上传图片控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
