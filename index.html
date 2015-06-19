@@ -177,6 +177,116 @@
     </div>
   </div>
 </div>
+<!-- dialog -->
+<!-- 确定弹窗 -->
+<div class="modal fade" id="confirmModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认框</h4>
+      </div>
+      <div class="modal-body">
+        <h3>确定要删除？</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-default btn-danger e_delete_button">确定删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--展示弹窗 -->
+<div class="modal fade" id="showModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:1000px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">预览</h4>
+      </div>
+      <div class="modal-body">
+        <div class="phonewrap">
+            <div class="phone-new">
+<!--                 <div class="phone-header">
+                    <img class="phone-header-img" src="public/image/signal-title.png">
+                </div> -->
+                 <iframe src="" id="v_preview_src" name="v_preview_src" class="phone-main-view" frameborder="0" style="width:180px; height:320px"></iframe>
+                <img class="phone-bg" src="public/image/iphone-preview.png">
+                <div class="phone-up e_up_page"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
+                <div class="phone-down e_down_page"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></div>
+            </div>
+            <div class="qrcode-side">
+                <div class="qrcode-title">
+                    <p>扫一扫分享给朋友</p>
+                    <img id="v_qrcode_share" src="" width="200" height="200" />
+                </div>
+                <div class="app-set">
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>我要编辑</button>
+                    <br>
+                    <!-- <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>设置封面</button> -->
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default e_close_preview" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--发布结果弹窗-->
+<div class="modal fade" id="qCodeModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发布结果</h4>
+      </div>
+      <div class="modal-body" id="v_qCode">
+        <p></p>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--发布弹窗-->
+<div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">发布设置</h4>
+      </div>
+      <div class="modal-body form-horizontal">
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">发布标题设置：</label>
+            <div class="col-md-8">
+              <input class="panel-text update_item form-control"  type="text" value="" elementype="0" id="d-weixin_share_title">
+            </div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label">发布详细描述：</label>
+            <div class="col-md-8">
+              <input class="panel-text form-control update_item" type="text" value="" elementype="0" id="d-weixin_share_desc">
+            </div>
+          </div>
+          <div class="form-group form-group-md">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-6">
+                <a><img id="d-weixin_share_icon" data-holder-rendered="true" src="" style="width: 64px; height: 64px;"  data-src="holder.js/64x64" alt="64x64"></a>
+                <button class="btn e_open_box col-md-6 animation-btn" replacetype="2">设置图片</button>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary e_publish">发布</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>

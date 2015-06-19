@@ -367,7 +367,7 @@ if ($ && jQuery) {
 
     $('body').on('click','.e_publish',function(){
         Editor.publish();
-    })
+    });
     // $('.e_publish').on('click',function(){
     //     conosle.log(1)
     //     Editor.publish();

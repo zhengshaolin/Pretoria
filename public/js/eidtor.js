@@ -403,6 +403,7 @@ var Editor = {
                     console.log(result);
                     Editor.store(JSON.stringify(result));
                     if (result.ok == 1) {
+                        $('#confirmModel').modal('hide');
                         $('#' + product_id).remove();
                         $('#product_id').val('');
                     };
@@ -472,6 +473,7 @@ var Editor = {
     //绘制列表页右侧信息
     renderItemInfo: function(product_id) {
         var obj = JSON.parse(localData.get(product_id + '_info'));
+        //console.log("dddd",obj.status);
         $('#v_product_info').find('.status').text(obj.status);
         $('#v_product_info').find('.avatar').attr('src', obj.avatar);
         $('#v_product_info').find('.creat_time').text(obj.createTime);
@@ -485,7 +487,7 @@ var Editor = {
         $('#v_product_list').empty();
         for (var i = 0; i < data.length; i++) {
             localData.set(data[i]._id + '_info', JSON.stringify(data[i]));
-            $('#v_product_list').append('<li id="' + data[i]._id + '"><img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '" data-toggle="modal" data-target="#publishModel">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>');
+            $('#v_product_list').append('<li id="' + data[i]._id + '"><img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '"  class="e_publish_toggle">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>');
         };
     },
     //绘制左侧页列表
