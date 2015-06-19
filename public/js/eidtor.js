@@ -493,7 +493,8 @@ var Editor = {
         console.log('render page method start');
         $('#v_page_list').empty();
         var data = JSON.parse(localData.get($('#product_id').val() + '_data')),
-            page_server_id = $('#page_server_id').val();
+            page_server_id = $('#page_server_id').val(),
+            page_server_list = $('#v_page_list').find('li');
         $('#page_number').val(parseInt(data.pages.length + 1));
         for (var i = 0; i < data.pages.length; i++) {
             $('#v_page_list').append('<li order="'+data.pages[i].order+'" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><span class="glyphicon glyphicon-arrow-down e_page_down" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
@@ -502,7 +503,14 @@ var Editor = {
         if (page_server_id == '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             $('#v_page_list').find('li').first().trigger('click');
-        };
+        }else{
+            for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
+                if($('#v_page_list').find('li').eq(i).attr('pid') == page_server_id){
+                    console.log("abcde",$('#v_page_list').find('li').eq(i).attr('pid'));
+                    $('#v_page_list').find('li').eq(i).trigger('click');
+                }
+            }
+        }
     },
     //绘制中间操作区,不存在，新增或者初始化
     renderArena: function() {
@@ -853,8 +861,9 @@ var Editor = {
     //type 0 product global element
     //tyoe 1 page element
     //type 2 elements
+    //type 3 右键最下
     //type 4 drag elements
-    update: function(type, key, val) {
+    update:function(type, key, val) {
         console.log('update method start');
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
@@ -942,6 +951,33 @@ var Editor = {
                     console.log('update_product_test returned:');
                     console.log(result);
                     Editor.fetchForm(1);
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
+        } else if (type = 3){
+            alert(111);
+            console.log('update_product_test sended');
+            console.log("2343434", page_server_id);
+            var data = {
+                'type': 3,
+                'product_id': product_id,
+                'page_id': page_server_id,
+                'element_id': element_server_id
+            };
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: data,
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log(result);
+                    Editor.renderPage();
                 },
                 error: function(err) {
                     console.log('update_product_test err:');

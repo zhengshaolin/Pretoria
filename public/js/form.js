@@ -620,6 +620,13 @@ if ($ && jQuery) {
                     }
                 }],
                 [{
+                    text: '浮动到最下层',
+                    func: function() {
+                        // var max_index = parseInt(parseInt($('#arena_max_zindex').val())+1);
+                        Editor.update(3);
+                    }
+                }],
+                [{
                     text: '删除选中层',
                     func: function() {
                         $(s[0]).remove();
@@ -634,30 +641,9 @@ if ($ && jQuery) {
             })
         }
     });
-    // $('#v_page_list').on('mousedown', function(e) {
-    //     if (e.which == 3) {
-    //         $(this).smartMenu([
-    //             [{
-    //                 text: '上移',
-    //                 func: function() {
-    //                     console.log($(this).find('li').attr('order'));
-    //                     //Editor.batchupdate();
-    //                 }
-    //             }],
-    //             [{
-    //                 text: '下移',
-    //                 func: function() {
-    //                     console.log($(this).attr('order'));
-    //                     //Editor.batchupdate();
-    //                 }
-    //             }]
-    //         ], {
-    //             offsetX: 2,
-    //             offsetY: 2,
-    //             name: ''
-    //         })
-    //     }
-    // })
+    $('#v_page_list').on('mouseover', 'li', function() {
+        
+    });
     //上传图片控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
