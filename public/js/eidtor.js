@@ -297,7 +297,7 @@ var Editor = {
         var name = localData.get('username'),
             token = localData.get('token');
         $('.v_username').html(name);
-        if (name != "admin") {
+        if (name != "admin" || token !='554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d') {
             $('.e_user').eq(1).parent('li').hide();
         };
     },
@@ -357,12 +357,35 @@ var Editor = {
                     var src = products.path + '#' + page_server_id;
                     console.log('preview src', src);
                     $('#v_preview_src').attr('src', src);
-                    $('#v_qrcode_share').attr('src',products.qrcode);
                     $('#showModel').modal('show');
                 };
 
                 //alert('发布成功')
                 //Editor.renderList(products);
+            },
+            error: function(err) {
+                console.log('select_product_test err:');
+                console.log(err);
+            }
+        });
+    },
+    publishQr: function() {
+        console.log("publishQr method start");
+        var product_id = $('#product_id').val(),
+            token = localData.get('token');
+        $.ajax({
+            type: 'GET',
+            url: 'http://115.29.32.105:8080/publish',
+            data: {
+                'product_id': product_id
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(products) {
+                $('#v_qrcode_share').attr('src',products.qrcode);
+                $('#showModel').modal('show');
             },
             error: function(err) {
                 console.log('select_product_test err:');

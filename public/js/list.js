@@ -30,6 +30,7 @@ if ($ && jQuery) {
         var id = $(this).attr('id');
         $('#product_id').val(id);
         Editor.preview();
+        Editor.publishQr();
     });
     $('#v_product_list').on('click','.e_publish_toggle',function () {
         $('#publishModel').modal('show');

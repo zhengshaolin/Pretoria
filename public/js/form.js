@@ -354,6 +354,7 @@ if ($ && jQuery) {
     // 产品发布       
     $('.e_preview').on('click',function(){
         Editor.preview();
+        Editor.publishQr();
     });
 
     $('.e_publish_toggle').on('click',function(){
@@ -644,9 +645,14 @@ if ($ && jQuery) {
     $('#v_page_list').on('mouseover', 'li', function(e) {
         $(this).find('.glyphicon').removeClass('hidden');
     });
-     $('#v_page_list').on('mouseout', 'li', function(e) {
-        $(this).find('.glyphicon').addClass('hidden');
-    });   
+    $('#v_page_list').on('mouseout', 'li', function(e) {
+        var that = $(this);
+        setTimeout(function(){that.find('.glyphicon').addClass('hidden');},3000);
+    });
+    $('#v_page_list').on('mouseout', '.glyphicon', function(e) {
+        $(this).find('.glyphicon').removeClass('hidden');
+    });
+
     //上传图片控件
     $.fn.ajaxUpload = function(options) {
         var that = $(this),
