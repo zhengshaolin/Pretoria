@@ -738,7 +738,7 @@ if ($ && jQuery) {
                 'album': $("[rel='img-taget-album']")
             },
             text = that.text();
-        new ajaxMusicUpload(that, {
+        new AjaxUpload(that, {
             action: action,
             name: name,
             data: data,
