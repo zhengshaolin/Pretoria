@@ -41,7 +41,7 @@ var Editor = {
                     $('#create_product_test_result').text(JSON.stringify(result));
                     console.log('create_product_test returned:');
                     console.log(result);
-                    $('#v_product_list').append('<li id="' + result._id + '"><img data-holder-rendered="true" src="' + result.avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a id="' + result._id + '" data-toggle="modal" data-target="#publishModel">发布</a><a class="last e_delete" type="0" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
+                    $('#v_product_list').prepend('<li id="' + result._id + '"><img data-holder-rendered="true" src="' + result.avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + result._id + '">编辑</a><a class="e_review id="' + result._id + '">预览</a><a id="' + result._id + '" data-toggle="modal" data-target="#publishModel">发布</a><a class="last e_delete" type="0" id="' + result._id + '" type="0">删除</a></div><div class="caption">' + result.product + '</div></li>');
                 },
                 error: function(err) {
                     $('#create_product_test_result').text(JSON.stringify(err));
@@ -815,9 +815,9 @@ var Editor = {
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
                             if (obj.animate_effect == '') {
-                                $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为:无效果</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
+                                $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="fly"></i>动画效果为:无效果</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="continue"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                             }else{
-                                $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="delay"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="delay"></i>持续' + obj.animate_duration + '秒后</p></div></li>'); 
+                                $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="fly"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="continue"></i>持续' + obj.animate_duration + '秒后</p></div></li>'); 
                             }
 
                         };
@@ -899,7 +899,7 @@ var Editor = {
     //tyoe 1 page element
     //type 2 elements
     //type 3 右键最下
-    //type 4 drag elements
+    //type 4 左侧page上移下移
     update:function(type, key, val) {
         console.log('update method start');
         var token = localData.get('token'),
@@ -1109,10 +1109,10 @@ var Editor = {
                 type: 'PUT',
                 url: 'http://115.29.32.105:8080/api',
                 data: {
-                    'type': 1,
+                    'type': 4,
                     'product_id': product_id,
                     'page_id': id,
-                    'order': val
+                    'pos': val
                 },
                 dataType: 'json',
                 headers: {

@@ -103,6 +103,7 @@ if ($ && jQuery) {
     $(document).on('click', '.e_page_up', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
+            pos = 'up',
             modify_page_server_id = $(this).parent('li').prev('li').attr('pid'),
             modify_order = $(this).parent('li').prev('li').attr('order');
         console.log("origin_page_server_id", origin_page_server_id);
@@ -110,8 +111,8 @@ if ($ && jQuery) {
         //if (origin_order == 0) {
         //  alert("已经是第一页了！");
         //}else{
-        Editor.changePos(origin_page_server_id, modify_order);
-        Editor.changePos(modify_page_server_id, origin_order);
+        Editor.changePos(origin_page_server_id, pos);
+        //Editor.changePos(modify_page_server_id, origin_order);
         //Editor.update(1,order,modify_order); 
         //Editor.update(1,order,modify_order);          
         //}
@@ -120,6 +121,7 @@ if ($ && jQuery) {
     $(document).on('click', '.e_page_down', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
+            pos = 'down',
             modify_page_server_id = $(this).parent('li').next('li').attr('pid'),
             modify_order = $(this).parent('li').next('li').attr('order');
         console.log("origin_page_server_id", origin_page_server_id);
@@ -127,8 +129,8 @@ if ($ && jQuery) {
         //if (origin_order == parseInt($('#v_page_list').find('li').length - 1)) {
         //  alert("已经是最后一页了！");
         //}else{
-        Editor.changePos(origin_page_server_id, modify_order);
-        Editor.changePos(modify_page_server_id, origin_order);
+        Editor.changePos(origin_page_server_id, pos);
+        //Editor.changePos(modify_page_server_id, origin_order);
         //Editor.update(1,order,modify_order); 
         //Editor.update(1,order,modify_order);          
         //}
