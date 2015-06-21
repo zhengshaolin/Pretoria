@@ -17,6 +17,16 @@ if ($ && jQuery) {
         Editor.remove(0);
     });
 
+    $('body').on('click', '.e_up_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.prevPage();
+    });
+
+    $('body').on('click', '.e_down_page', function() {
+        //更新title,更新des，更新icon
+        window.frames['v_preview_src'].nyx.nextPage();
+    });
+    
     $("#v_product_list").on("click","li", function () { 
         var List_current_id = $(this).attr('id');
         $('#product_id').val(List_current_id);
