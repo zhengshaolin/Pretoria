@@ -71,6 +71,7 @@ if ($ && jQuery) {
     });
     //左侧page选中功能
     $("#v_page_list").on("click", "li", function() {
+        // Editor.convertCanvasToImage();
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
         $('#element_id').val($(this).attr('id') + '_0');
