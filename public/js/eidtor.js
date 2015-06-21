@@ -431,6 +431,7 @@ var Editor = {
                         $('#confirmModel').modal('hide');
                         $('#' + product_id).remove();
                         $('#product_id').val('');
+
                     };
                 },
                 error: function(err) {
@@ -460,6 +461,9 @@ var Editor = {
                     Editor.store(JSON.stringify(result));
                     Editor.renderPage();
                     $('#confirmModel').modal('hide');
+                    $('#page_id').val();
+                    $('#page_server_id').val('');
+                    $('#cnm').empty();
                 },
                 error: function(err) {
                     console.log('delete_page_test err:');
@@ -485,6 +489,7 @@ var Editor = {
                     Editor.store(JSON.stringify(result));
                     console.log('delete_element_test returned:');
                     console.log(result);
+                    $('#element_server_id').val('');
                     Editor.fetchForm(0);
                 },
                 error: function(err) {
@@ -524,7 +529,7 @@ var Editor = {
             page_server_list = $('#v_page_list').find('li');
         $('#page_number').val(parseInt(data.pages.length + 1));
         for (var i = 0; i < data.pages.length; i++) {
-            $('#v_page_list').append('<li order="'+data.pages[i].order+'" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up hidden" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><span class="glyphicon glyphicon-arrow-down e_page_down hidden" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
+            $('#v_page_list').append('<li order="'+data.pages[i].order+'" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><span class="glyphicon glyphicon-arrow-down e_page_down" pid="' + data.pages[i]._id + '" order="'+data.pages[i].order+'" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
         };
         $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
         if (page_server_id == '') {
