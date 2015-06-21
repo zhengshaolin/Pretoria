@@ -594,7 +594,7 @@ var Editor = {
                              if(obj.vertical == 1 || obj.vertical == 3){
                                 $('.input_vertical').hide();
                             }                           
-                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -611,7 +611,7 @@ var Editor = {
                             template_word = '';
                         } else if (obj.element_type == 1) {
                             console.log(obj.pic, 21312321321312)
-                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
+                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
                             } else {
@@ -629,7 +629,7 @@ var Editor = {
                             console.log('12121212',obj.slider);
                             if (obj.slider != '') {
                                 var show_pic = obj.slider.split(',')[0];
-                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px" + ";";
+                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px" + ";";
                                 if (obj.horizontal == 2) {
                                     template_slider += "right:" + obj.hshift + "px;";
                                 } else {
@@ -804,7 +804,12 @@ var Editor = {
                         $("input[name='background_type']")[data[i].background_type].checked = true;
                         $('#d-background_color').val(data[i].background_color);
                         $('#dp-title').val(data[i].title).attr('placeholder', data[i].title);
-                        $('.d_page_backimg').attr('src', data[i].background_img);
+                        if (data[i].background_img == '') {
+                            $('.d_page_backimg').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                        }else{
+                            $('.d_page_backimg').attr('src', data[i].background_img);                            
+                        }
+
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
                             if (obj.animate_effect == '') {
@@ -1080,9 +1085,24 @@ var Editor = {
         }
     },
     convertCanvasToImage:function(canvas) {
-        var image = new Image();
-        image.src = canvas.toDataURL();
-        return canvas.toDataURL();
+        console.log("convertCanvasToImage method start");
+        html2canvas(document.body, {
+                        allowTaint: true,
+                        taintTest: false,
+                        onrendered: function(canvas) {
+                            canvas.id = "mycanvas";
+                            //document.body.appendChild(canvas);
+                            //生成base64图片数据
+                            var dataUrl = canvas.toDataURL();
+                            console.log("generate pic src",imgUrl);
+                            Editor.update(1, 'avatar', dataUrl);
+                        }
+        });
+        // html2canvas(document.getElementById('page_edit')).then(function(canvas) {
+        //     var imgUrl = canvas.toDataURL();
+        //     console.log("generate pic src",imgUrl);
+        //     Editor.update(1, 'avatar', imgUrl);
+        // });
     },
     changePos:function (id,val) {
         console.log("change pos");
@@ -1104,7 +1124,7 @@ var Editor = {
                 success: function(result) {
                     console.log('update_product_test returned:');
                     console.log(result);
-                    Editor.renderPage();
+                    Editor.fetchForm(0);
                 },
                 error: function(err) {
                     console.log('update_product_test err:');

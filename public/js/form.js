@@ -22,13 +22,13 @@ if ($ && jQuery) {
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
             $('#picModel').modal('show');
-        }else if(element == 5){
+        } else if (element == 5) {
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('show'); 
-        }else if(element == 6){
+            $('#picModel').modal('show');
+        } else if (element == 6) {
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('show'); 
+            $('#picModel').modal('show');
         }
     });
     $(".page-side").on("click", ".e_creat", function() {
@@ -45,22 +45,22 @@ if ($ && jQuery) {
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
             $('#picModel').modal('show');
-        }else if(element == 5){
+        } else if (element == 5) {
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('show'); 
-        }else if(element == 6){
+            $('#picModel').modal('show');
+        } else if (element == 6) {
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('show'); 
+            $('#picModel').modal('show');
         }
     });
 
-    $('.e_quite').click(function () {
-       Editor.quite();
+    $('.e_quite').click(function() {
+        Editor.quite();
     });
 
-    $('.e-close').click(function () {
-       $('.e_tab_content').hide();
+    $('.e-close').click(function() {
+        $('.e_tab_content').hide();
     });
 
     //左侧
@@ -89,7 +89,7 @@ if ($ && jQuery) {
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
         $('#confirmModel').modal('show');
-        $('.e_delete_button').attr('key',type);
+        $('.e_delete_button').attr('key', type);
     });
 
     $(document).on('click', '.e_delete_button', function() {
@@ -102,35 +102,35 @@ if ($ && jQuery) {
     $(document).on('click', '.e_page_up', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
-            modify_page_server_id  = $(this).parent('li').prev('li').attr('pid'),
+            modify_page_server_id = $(this).parent('li').prev('li').attr('pid'),
             modify_order = $(this).parent('li').prev('li').attr('order');
-            console.log("origin_page_server_id",origin_page_server_id);
-            console.log("modify_page_server_id",modify_page_server_id);
-        if (origin_order == 0) {
-            alert("已经是第一页了！");
-        }else{
-            Editor.changePos(origin_page_server_id,modify_order);
-            Editor.changePos(modify_page_server_id,origin_order);
-            //Editor.update(1,order,modify_order); 
-            //Editor.update(1,order,modify_order);          
-        }
+        console.log("origin_page_server_id", origin_page_server_id);
+        console.log("modify_page_server_id", modify_page_server_id);
+        //if (origin_order == 0) {
+        //  alert("已经是第一页了！");
+        //}else{
+        Editor.changePos(origin_page_server_id, modify_order);
+        Editor.changePos(modify_page_server_id, origin_order);
+        //Editor.update(1,order,modify_order); 
+        //Editor.update(1,order,modify_order);          
+        //}
     });
 
     $(document).on('click', '.e_page_down', function() {
         var origin_page_server_id = $(this).attr('pid'),
             origin_order = $(this).attr('order'),
-            modify_page_server_id  = $(this).parent('li').next('li').attr('pid'),
+            modify_page_server_id = $(this).parent('li').next('li').attr('pid'),
             modify_order = $(this).parent('li').next('li').attr('order');
-            console.log("origin_page_server_id",origin_page_server_id);
-            console.log("modify_page_server_id",modify_page_server_id);
-        if (origin_order == parseInt($('#v_page_list').find('li').length - 1)) {
-            alert("已经是最后一页了！");
-        }else{
-            Editor.changePos(origin_page_server_id,modify_order);
-            Editor.changePos(modify_page_server_id,origin_order);
-            //Editor.update(1,order,modify_order); 
-            //Editor.update(1,order,modify_order);          
-        }
+        console.log("origin_page_server_id", origin_page_server_id);
+        console.log("modify_page_server_id", modify_page_server_id);
+        //if (origin_order == parseInt($('#v_page_list').find('li').length - 1)) {
+        //  alert("已经是最后一页了！");
+        //}else{
+        Editor.changePos(origin_page_server_id, modify_order);
+        Editor.changePos(modify_page_server_id, origin_order);
+        //Editor.update(1,order,modify_order); 
+        //Editor.update(1,order,modify_order);          
+        //}
     });
     //图库选中功能
     $(document).on('click', '.v_pic_box li', function() {
@@ -249,11 +249,11 @@ if ($ && jQuery) {
                     //Editor.update(1, 'background_color', '');
                     //Editor.update(1, 'background_img', '');
                     Editor.update(type, key, val);
-                }else{
+                } else {
                     Editor.update(type, key, val);
                 }
                 $(this).attr("checked", true);
-            }else{
+            } else {
                 $(this).attr("checked", true);
                 Editor.update(type, key, val);
             }
@@ -287,22 +287,22 @@ if ($ && jQuery) {
         }
     });
 
-    $('.nav-right li').click(function (){
-       var key = $(this).index(),
-           page_server_id = $('#page_server_id').val();
-       if (key == 0) {
+    $('.nav-right li').click(function() {
+        var key = $(this).index(),
+            page_server_id = $('#page_server_id').val();
+        if (key == 0) {
             return false;
-       }else if(key == 1){
+        } else if (key == 1) {
             if (page_server_id != null) {
                 $('.e_tab_content').show();
             };
-       }else if(key == 2){
-        $('.e_tab_content').show();
-       }else if(key == 3){
-        $('.e_tab_content').show();
-       }else if(key == 4){
-        $('.e_tab_content').show();
-       }
+        } else if (key == 2) {
+            $('.e_tab_content').show();
+        } else if (key == 3) {
+            $('.e_tab_content').show();
+        } else if (key == 4) {
+            $('.e_tab_content').show();
+        }
     });
 
     // 右侧update span模块
@@ -313,24 +313,24 @@ if ($ && jQuery) {
         if ($(this).hasClass('glyphicon_on')) {
             if (key == 'ftb') {
                 var val = '';
-            }else if(key == 'fti'){
+            } else if (key == 'fti') {
                 var val = '';
-            }else if(key == 'ftu'){
+            } else if (key == 'ftu') {
                 var val = '';
-            }else{
+            } else {
                 var val = 1;
             }
         } else {
             if (key == 'ftb') {
                 var val = 'bold';
                 $(this).addClass('glyphicon_on');
-            }else if(key == 'fti'){
+            } else if (key == 'fti') {
                 var val = 'italic';
                 $(this).addClass('glyphicon_on');
-            }else if(key == 'ftu'){
+            } else if (key == 'ftu') {
                 var val = 'underline';
                 $(this).addClass('glyphicon_on');
-            }else{
+            } else {
                 var val = 0;
                 $(this).addClass('glyphicon_on');
             }
@@ -340,33 +340,52 @@ if ($ && jQuery) {
 
     //产品
     //产品保存
-    $('.e_generate_pic').on('click',function(){
-        html2canvas(document.getElementById('page_edit')).then(function(canvas) {
-            //console.log("232323",canvas.toDataURL());
-            var imgUrl = canvas.toDataURL();
-            console.log("generate pic src",imgUrl);
-            //Editor.update(1, pic, canvas.toDataURL());
-            //document.body.appendChild(canvas);
-            Editor.update(1, 'avatar', imgUrl);
+    $(".e_generate_pic").on("click", function(event) {
+        event.preventDefault();
+        html2canvas(document.body, {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas) {
+                canvas.id = "mycanvas";
+                //document.body.appendChild(canvas);
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL();
+                console.log("abcdefg", dataUrl);
+                Editor.update(1, 'avatar', imgUrl);
+            }
         });
     });
+    //$('.e_generate_pic').on('click',function(){
+    //         var imgUrl = $('#cnm').html();
+    //         Editor.update(1, 'avatar', imgUrl);
+    // });
+    //Editor.convertCanvasToImage();
+    // html2canvas(document.getElementById('page_edit')).then(function(canvas) {
+    //     //console.log("232323",canvas.toDataURL());
+    //     var imgUrl = canvas.toDataURL();
+    //     console.log("generate pic src",imgUrl);
+    //     //Editor.update(1, pic, canvas.toDataURL());
+    //     //document.body.appendChild(canvas);
+    //     Editor.update(1, 'avatar', imgUrl);
+    // });
+    //});
     // 产品预览
     // 产品发布       
-    $('.e_preview').on('click',function(){
+    $('.e_preview').on('click', function() {
         Editor.preview();
         Editor.publishQr();
     });
 
-    $('.e_publish_toggle').on('click',function(){
+    $('.e_publish_toggle').on('click', function() {
         $('#publishModel').modal('show');
     });
 
 
-    $('.e_publish_box').on('click',function(){
+    $('.e_publish_box').on('click', function() {
         Editor.preview();
     });
 
-    $('body').on('click','.e_publish',function(){
+    $('body').on('click', '.e_publish', function() {
         Editor.publish();
     });
     // $('.e_publish').on('click',function(){
@@ -381,11 +400,11 @@ if ($ && jQuery) {
         //更新title,更新des，更新icon
         window.frames['v_preview_src'].nyx.nextPage();
     });
-    
 
-    $('body').on('click','#v_upload_music a',function () {
-         var path = $(this).attr('path');
-         window.location.href = 'http://115.29.32.105:8080/public/Pretoria/music.html?path='+path+'';
+
+    $('body').on('click', '#v_upload_music a', function() {
+        var path = $(this).attr('path');
+        window.location.href = 'http://115.29.32.105:8080/public/Pretoria/music.html?path=' + path + '';
     });
 
     $(document).on('click', '.e_open_box', function(argument) {
@@ -394,13 +413,13 @@ if ($ && jQuery) {
         if (replaceType == 3) {
             if ($("input[name='background_type']").eq(2).attr('checked') != 'checked') {
                 alert("请选择图片上传选项");
-            }else{
+            } else {
                 $('.e_store_pic').attr('replaceType', replaceType);
-                $('#picModel').modal('show');                   
+                $('#picModel').modal('show');
             }
-        }else{
+        } else {
             $('.e_store_pic').attr('replaceType', replaceType);
-            $('#picModel').modal('show');   
+            $('#picModel').modal('show');
         }
     });
 
@@ -475,8 +494,8 @@ if ($ && jQuery) {
     });
 
     $(document).on('click', '#v_d_2 .close', function() {
-       $(this).parents('.clearfix').remove();
-       var slider = Editor.getSlider();
+        $(this).parents('.clearfix').remove();
+        var slider = Editor.getSlider();
         Editor.update(2, 'slider', slider);
         Editor.renderElementInfo();
 
@@ -591,7 +610,7 @@ if ($ && jQuery) {
             var plane = $(s[0]).attr('plane')
             var vertical = $(s[0]).attr('vertical')
             text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
-            text.css('background','transparent')
+            text.css('background', 'transparent')
             div.hide();
             $('#cnm').append(text)
             text.focus()
@@ -616,8 +635,8 @@ if ($ && jQuery) {
                 [{
                     text: '浮动到最上层',
                     func: function() {
-                        var max_index = parseInt(parseInt($('#arena_max_zindex').val())+1);
-                        Editor.update(2,'z_index',max_index);
+                        var max_index = parseInt(parseInt($('#arena_max_zindex').val()) + 1);
+                        Editor.update(2, 'z_index', max_index);
                     }
                 }],
                 [{
@@ -647,7 +666,9 @@ if ($ && jQuery) {
     });
     $('#v_page_list').on('mouseout', 'li', function(e) {
         var that = $(this);
-        setTimeout(function(){that.find('.glyphicon').addClass('hidden');},3000);
+        setTimeout(function() {
+            that.find('.glyphicon').addClass('hidden');
+        }, 3000);
     });
     $('#v_page_list').on('mouseout', '.glyphicon', function(e) {
         $(this).find('.glyphicon').removeClass('hidden');
@@ -682,7 +703,7 @@ if ($ && jQuery) {
             validation: {
                 sizeLimit: size
             },
-            onChange: function(file, extension){
+            onChange: function(file, extension) {
                 that.val('上传中...');
                 that.attr('disabled', 'disabled');
             },
@@ -751,7 +772,7 @@ if ($ && jQuery) {
             validation: {
                 sizeLimit: size
             },
-            onChange: function(file, extension){
+            onChange: function(file, extension) {
                 that.val('上传中...');
                 that.attr('disabled', 'disabled');
             },
@@ -800,7 +821,7 @@ if ($ && jQuery) {
                 //render picbox
                 Editor.renderPicBox();
             },
-            change:function(){
+            change: function() {
                 $('.e_load_area').show();
                 //console.log("正在上传中......");
             }
@@ -820,7 +841,7 @@ if ($ && jQuery) {
                 // 更新右侧公共信息
                 Editor.renderGlobalInfo();
             },
-            change:function () {
+            change: function() {
                 $('.e_load_area').show();
             }
         });
@@ -834,10 +855,10 @@ if ($ && jQuery) {
 
     $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
-        if(!$(e.target).hasClass('btn')){
+        if (!$(e.target).hasClass('btn')) {
             $('.selector').hide();
             $('.e_tab_content').hide();
-            if($('#cnm').find('textarea').length){
+            if ($('#cnm').find('textarea').length) {
                 $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
                 $(s[0]).show()
                 $('textarea').remove();

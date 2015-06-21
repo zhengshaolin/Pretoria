@@ -49,9 +49,13 @@ i{background:url(../image/header-icon.png) left no-repeat;width: 36px; height: 2
 .navb li:hover i.list{background-position: -38px -120px;}
 .navb li:hover i.publish{background-position: -38px -150px;}
 .row{margin-left: -15px;}
-li.yl{width:180px;text-align: center;}
-li.break-up{width:160px;padding:0 10px;border-left: 1px solid #5b5a5a;}
-li.break-up-r{width:120px;border-left: 1px solid #5b5a5a;}
+li.return{width:180px;}
+li.return > i{margin-top:8px !important;}
+li.return > i > span.glyphicon-home{color:#9d9d9d;font-size: 24px;line-height:24px;}
+li.return:hover > i > span.glyphicon-home{color:#fff;}
+li.yl{width:120px;text-align: center;}
+li.break-up{width:160px;padding:0 10px;}
+li.break-up-r{width:120px;}
 li.w120{width:120px;}
 li.user{margin-top:10px; widows: 120px;}
 .navb .user{margin-top: 10px;}
@@ -79,7 +83,8 @@ li.user{margin-top:10px; widows: 120px;}
 .works-body  h3{height: 44px;line-height: 44px;font-size: 12px;margin-top: 0px; text-align: center;}
 .works-body .caption {text-align: left;}
 
-
+#v_page_list li .item{position: relative;}
+#cnm .item{position: absolute;}
 /*form*/
 
 /*左侧页面*/
@@ -145,6 +150,7 @@ li.user{margin-top:10px; widows: 120px;}
 .panel .panel-text{border:1px solid #e0e0e0;background-color: #f0efef;height:24px;}
 .w187{width:187px;}
 .w55{width:55px;}
+.w60{width:60px;}
 .lb{border-bottom: 1px dotted #ababab;width:100%;}
 .pic-name{font-size: 12px;width:64px;text-align: center;color: #444444;}
 .pic-btn{width:95px;height:30px;background-color: #e5e5e5;border:1px dotted #b5b5b5;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius:3px;margin-top:30px;}

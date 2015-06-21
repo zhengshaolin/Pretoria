@@ -36,7 +36,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <ul class="navb navbar-nav navbar-right">
-            <li class="yl"><i  class="yulan"></i><a class="e_preview">预览</a></li>
+            <li class="return" style="width:180px;"><i><span class="glyphicon glyphicon-home" aria-hidden="true"></span></i><a href="http://115.29.32.105:8080/public/Pretoria/" target="_blank">返回作品列表</a></li>
             <li class="break-up"><i class="add-text"></i><a class="e_creat" type="2" element="2">添加文本素材</a></li>
             <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="3" element="3">添加图片素材</a></li>
             <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="4" element="4">添加轮播素材</a></li>
@@ -44,7 +44,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navb navbar-nav navbar-right">
-            <li class="break-up-r"><i class="list"></i><a href="http://115.29.32.105:8080/public/Pretoria/" target="_blank">作品列表</a></li>
+
+            <li class="yl"><i  class="yulan"></i><a class="e_preview">预览</a></li>
             <li class="w120 mr40"><i class="publish"></i><a data-toggle="modal" data-target="#publishModel">发布作品</a></li>
             <div class="btn-group user">
             <button type="button" class="btn btn-primary v_username"></button>
@@ -164,17 +165,17 @@
                         <div class="form-group">
                           字体大小:
                           <select class="click-action ml10 update_select" elementype="2" id="d-fts">
-                            <option value="12">12</option>
-                            <option value="14">14</option>
-                            <option value="16">16</option> 
-                            <option value="18">18</option>
-                            <option value="20">20</option>
-                            <option value="22">22</option>
-                            <option value="24">24</option>
-                            <option value="26">26</option>
-                            <option value="28">28</option>
-                            <option value="30">30</option>
-                            <option value="32">32</option>   
+                            <option value="12px">12px</option>
+                            <option value="14px">14px</option>
+                            <option value="16px">16px</option> 
+                            <option value="18px">18px</option>
+                            <option value="20px">20px</option>
+                            <option value="22px">22px</option>
+                            <option value="24px">24px</option>
+                            <option value="26px">26px</option>
+                            <option value="28px">28px</option>
+                            <option value="30px">30px</option>
+                            <option value="32px">32px</option>   
                           </select>
                         </div>
                         <div class="form-group">
@@ -217,14 +218,14 @@
                       </div>
                     </li>
                     <li class="last">
-                      <label>点击动作:</label>
+                      <label class="w60">点击动作</label>
                        <select class="click-action update_select" elementype="2" id="d-click_method">
                         <option value="page">跳转内部页面页面</option>
                         <option value="url">跳转外部页面</option>
                       </select>
                       <!-- 内部 -->
                       <div class="" id="v_url">
-                        <label>指定页</label>
+                        <label class="w60">指定页</label>
                        <select class="click-action update_select" elementype="2" id="d-click_action">
                         </select>
                       </div>
@@ -260,9 +261,8 @@
                           <div class="panel-body">
                             <div class="fl mt10">
                             <a href="#">
-                              <img class="d_page_backimg" data-holder-rendered="true" src="" style="width: 64px; height: 64px;" class="media-object" data-src="holder.js/64x64" alt="64x64">
+                              <img class="d_page_backimg"  style="width: 64px; height: 64px;" class="media-object" src="public/image/morentu.png" />
                             </a>
-                            <h4 class="pic-name">绘图.png</h4>
                             </div>
                              <button class="pic-btn fr e_open_box" replacetype="3">设置图片</button>
                           </div>
@@ -366,7 +366,7 @@
                               </a>
                               <h4 class="pic-name">绘图.png</h4>
                               </div>
-                            <button class="btn e_open_box" replacetype="4">设置图片</button>
+                            <button class="btn fr mt10 e_open_box" replacetype="4">设置图片</button>
                             </div>                          
                             <span>涂抹程度:</span><input type="text" class="panel-text w55 ml10 update_item" elementype="0" id="d-glass_trans" value="" />%
                           </div>
