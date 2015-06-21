@@ -342,33 +342,8 @@ if ($ && jQuery) {
     //产品保存
     $(".e_generate_pic").on("click", function(event) {
         event.preventDefault();
-        html2canvas(document.getElementById('page_edit'), {
-            allowTaint: true,
-            taintTest: false,
-            onrendered: function(canvas){
-                canvas.id = "mycanvas";
-                //document.body.appendChild(canvas);
-                //生成base64图片数据
-                var dataUrl = canvas.toDataURL();
-                console.log("abcdefg", dataUrl);
-                Editor.update(1, 'avatar', dataUrl);
-            }
-        });
+        Editor.convertCanvasToImage();
     });
-    //$('.e_generate_pic').on('click',function(){
-    //         var imgUrl = $('#cnm').html();
-    //         Editor.update(1, 'avatar', imgUrl);
-    // });
-    //Editor.convertCanvasToImage();
-    // html2canvas(document.getElementById('page_edit')).then(function(canvas) {
-    //     //console.log("232323",canvas.toDataURL());
-    //     var imgUrl = canvas.toDataURL();
-    //     console.log("generate pic src",imgUrl);
-    //     //Editor.update(1, pic, canvas.toDataURL());
-    //     //document.body.appendChild(canvas);
-    //     Editor.update(1, 'avatar', imgUrl);
-    // });
-    //});
     // 产品预览
     // 产品发布       
     $('.e_preview').on('click', function() {

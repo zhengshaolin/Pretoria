@@ -221,6 +221,7 @@ var Editor = {
                     Editor.store(JSON.stringify(products));
                     //渲染左侧列表
                     Editor.renderPage();
+                    Editor.convertCanvasToImage();
                     //渲染中间操作层
                     //Editor.renderArena();
                     //渲染右侧页面元素元素信息
@@ -255,6 +256,7 @@ var Editor = {
                     Editor.store(JSON.stringify(products));
                     //渲染左侧列表
                     //Editor.renderPage();
+                    Editor.convertCanvasToImage();
                     //渲染中间操作层
                     Editor.renderArena();
                     //渲染右侧页面元素元素信息
@@ -1084,25 +1086,20 @@ var Editor = {
             return sliderArr.join(",");
         }
     },
-    convertCanvasToImage:function(canvas) {
+    convertCanvasToImage:function() {
         console.log("convertCanvasToImage method start");
-        html2canvas(document.body, {
-                        allowTaint: true,
-                        taintTest: false,
-                        onrendered: function(canvas) {
-                            canvas.id = "mycanvas";
-                            //document.body.appendChild(canvas);
-                            //生成base64图片数据
-                            var dataUrl = canvas.toDataURL();
-                            console.log("generate pic src",imgUrl);
-                            Editor.update(1, 'avatar', dataUrl);
-                        }
+        html2canvas(document.getElementById('page_edit'), {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas){
+                canvas.id = "mycanvas";
+                //document.body.appendChild(canvas);
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL();
+                console.log("abcdefg", dataUrl);
+                Editor.update(1, 'avatar', dataUrl);
+            }
         });
-        // html2canvas(document.getElementById('page_edit')).then(function(canvas) {
-        //     var imgUrl = canvas.toDataURL();
-        //     console.log("generate pic src",imgUrl);
-        //     Editor.update(1, 'avatar', imgUrl);
-        // });
     },
     changePos:function (id,val) {
         console.log("change pos");
