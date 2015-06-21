@@ -221,7 +221,7 @@ var Editor = {
                     Editor.store(JSON.stringify(products));
                     //渲染左侧列表
                     Editor.renderPage();
-                    Editor.convertCanvasToImage();
+                    //Editor.convertCanvasToImage();
                     //渲染中间操作层
                     //Editor.renderArena();
                     //渲染右侧页面元素元素信息
@@ -256,7 +256,7 @@ var Editor = {
                     Editor.store(JSON.stringify(products));
                     //渲染左侧列表
                     //Editor.renderPage();
-                    Editor.convertCanvasToImage();
+                    //Editor.convertCanvasToImage();
                     //渲染中间操作层
                     Editor.renderArena();
                     //渲染右侧页面元素元素信息
@@ -596,7 +596,7 @@ var Editor = {
                              if(obj.vertical == 1 || obj.vertical == 3){
                                 $('.input_vertical').hide();
                             }                           
-                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
+                            template_word += "<div class='item' element_type='0' text='true' plane='" + obj.horizontal + "' mid='" + obj._id + "' vertical='" + obj.vertical + "' style='position:absolute;z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;font-size:" + obj.fts + "px; color:" + obj.ftc + ";text-align:" + obj.text_align + ";font-weight:" + obj.ftb + "; text-decoration:" + obj.ftu + "; font-style:" + obj.fti + ";";
                             if (obj.horizontal == 2) {
                                 template_word += "right:" + obj.hshift + "px;";
                             } else {
@@ -613,7 +613,7 @@ var Editor = {
                             template_word = '';
                         } else if (obj.element_type == 1) {
                             console.log(obj.pic, 21312321321312)
-                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
+                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='position:absolute;z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
                             } else {
@@ -631,7 +631,7 @@ var Editor = {
                             console.log('12121212',obj.slider);
                             if (obj.slider != '') {
                                 var show_pic = obj.slider.split(',')[0];
-                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px" + ";";
+                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='position:absolute;z-index:" + obj.z_index + ";width:" + obj.width + "px;height:" + obj.height + "px" + ";";
                                 if (obj.horizontal == 2) {
                                     template_slider += "right:" + obj.hshift + "px;";
                                 } else {
