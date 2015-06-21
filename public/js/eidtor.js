@@ -611,7 +611,7 @@ var Editor = {
                             template_word = '';
                         } else if (obj.element_type == 1) {
                             console.log(obj.pic, 21312321321312)
-                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
+                            template_pic += "<img class='item' element_type='1' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + obj.pic + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px;text-align:" + obj.text_align + ";";
                             if (obj.horizontal == 2) {
                                 template_pic += "right:" + obj.hshift + "px;";
                             } else {
@@ -629,7 +629,7 @@ var Editor = {
                             console.log('12121212',obj.slider);
                             if (obj.slider != '') {
                                 var show_pic = obj.slider.split(',')[0];
-                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + j + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px" + ";";
+                                template_slider += "<img class='item'  element_type='2' plane='" + obj.horizontal + "' vertical='" + obj.vertical + "' mid='" + obj._id + "' src='" + show_pic + "' style='z-index:" + obj.z_index + ";position:absolute;width:" + obj.width + "px;height:" + obj.height + "px" + ";";
                                 if (obj.horizontal == 2) {
                                     template_slider += "right:" + obj.hshift + "px;";
                                 } else {
@@ -961,7 +961,7 @@ var Editor = {
             });
         } else if (type == 2) {
             console.log('update_product_test sended');
-            console.log("2343434", page_server_id);
+            console.log("addd", page_server_id);
             var data = {
                 'type': 2,
                 'product_id': product_id,
@@ -989,7 +989,7 @@ var Editor = {
             });
         } else if (type = 3){
             console.log('update_product_test sended');
-            console.log("2343434", page_server_id);
+            console.log("abced", page_server_id);
             var data = {
                 'type': 3,
                 'product_id': product_id,
