@@ -710,7 +710,12 @@ var Editor = {
                                     if (obj.ftu == 'underline') {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
-                                    $('#d-element_pic').attr('src', obj.pic);
+                                    if (obj.pic == '') {
+                                        $('#d-element_pic').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                                    }else{
+                                        $('#d-element_pic').attr('src', obj.pic);
+                                    }
+                                    
                                     var slider = obj.slider.split(',');
                                     console.log("slider length",slider.length);
                                     $('#v_d_2').empty();
@@ -731,8 +736,36 @@ var Editor = {
                                     // console.log("29999",obj.animate_effect);
                                     if (obj.animate_effect == '') {
                                         $('.d-animate_effect').html("无动画");
-                                    }else{
-                                        $('.d-animate_effect').html(obj.animate_effect);
+                                    }else if(obj.animate_effect == 'bounceInLeft'){
+                                        $('.d-animate_effect').html("左飞入");
+                                    }else if(obj.animate_effect == 'bounceInRight'){
+                                        $('.d-animate_effect').html("右飞入");
+                                    }else if(obj.animate_effect == 'bounceInUp'){
+                                        $('.d-animate_effect').html("上飞入");
+                                    }else if(obj.animate_effect == 'bounceInDown'){
+                                        $('.d-animate_effect').html("下飞入");
+                                    }else if(obj.animate_effect == 'zoomIn'){
+                                        $('.d-animate_effect').html("放大出现");
+                                    }else if(obj.animate_effect == 'flipInX'){
+                                        $('.d-animate_effect').html("上下翻转");
+                                    }else if(obj.animate_effect == 'flipInY'){
+                                        $('.d-animate_effect').html("左右翻转");
+                                    }else if(obj.animate_effect == 'rollIn'){
+                                        $('.d-animate_effect').html("旋转飞入");
+                                    }else if(obj.animate_effect == 'lightSpeedIn'){
+                                        $('.d-animate_effect').html("刹车进入");
+                                    }else if(obj.animate_effect == 'swing'){
+                                        $('.d-animate_effect').html("摆动");
+                                    }else if(obj.animate_effect == 'jello'){
+                                        $('.d-animate_effect').html("抖动");
+                                    }else if(obj.animate_effect == 'flash'){
+                                        $('.d-animate_effect').html("闪烁");
+                                    }else if(obj.animate_effect == 'bounce'){
+                                        $('.d-animate_effect').html("弹跳");
+                                    }else if(obj.animate_effect == 'shake'){
+                                        $('.d-animate_effect').html("摇摆");
+                                    }else if(obj.animate_effect == 'tada'){
+                                        $('.d-animate_effect').html("振铃");
                                     }
                                     //if (obj.animate_delay == '') {
                                         //$('.d-animate_delay').html("3000ms");
@@ -798,7 +831,8 @@ var Editor = {
             page_id = $('#page_id').val(),
             page_server_id = $('#page_server_id').val(),
             element_id = $('#element_id').val(),
-            element_server_id = $('#element_server_id').val();
+            element_server_id = $('#element_server_id').val(),
+            template_animate = "";
 
         if (page_server_id != '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
@@ -819,10 +853,43 @@ var Editor = {
 
                         for (var j = 0; j < data[i].elements.length; j++) {
                             var obj = data[i].elements[j];
-                            if (obj.animate_effect == '') {
+                            if (obj.animate_effect == '') {                           
                                 $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="fly"></i>动画效果为:无效果</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="continue"></i>持续' + obj.animate_duration + '秒后</p></div></li>');
                             }else{
-                                $('#v_page_animate').append('<li><label>' + obj.title + ':</label><button class="animation-btn" data-toggle="modal" data-target="#animateModel" mid="' + obj._id + '">修改动画</button><div class="animation"><p><i class="fly"></i>动画效果为' + obj.animate_effect + '</p></div><div class="animation"><p><i class="delay"></i>延迟' + obj.animate_delay + '秒后出现</p></div><div class="animation"><p><i class="continue"></i>持续' + obj.animate_duration + '秒后</p></div></li>'); 
+                            template_animate += "<li><label>" + obj.title + ":</label><button class='animation-btn' data-toggle='modal' data-target='#animateModel' mid='" + obj._id + "'>修改动画</button><div class='animation'><p><i class='fly'></i>";
+                            if (obj.animate_effect == 'bounceInLeft') {
+                                template_animate += "动画效果为:左飞入</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            } else if(obj.animate_effect == 'bounceInRight') {
+                                template_animate += "动画效果为:右飞入'</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'bounceInUp'){
+                                template_animate += "动画效果为:上飞入</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'bounceInDown'){
+                                template_animate += "动画效果为:下飞入</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'zoomIn'){
+                                template_animate += "动画效果为:放大出现</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'flipInX'){
+                                template_animate += "动画效果为:上下翻转</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'flipInY'){
+                                template_animate += "动画效果为:左右翻转</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'rollIn'){
+                                template_animate += "动画效果为:旋转飞入</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'lightSpeedIn'){
+                                template_animate += "动画效果为:刹车进入</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'swing'){
+                                template_animate += "动画效果为:摆动</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'jello'){
+                                template_animate += "动画效果为:抖动</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'flash'){
+                                template_animate += "动画效果为:闪烁</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'bounce'){
+                                template_animate += "动画效果为:弹跳</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'shake'){
+                                template_animate += "动画效果为:摇摆</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            }else if(obj.animate_effect == 'tada'){
+                                template_animate += "动画效果为:振铃</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
+                            };
+                            $('#v_page_animate').append(template_animate);
+                            template_animate = '';
                             }
 
                         };
