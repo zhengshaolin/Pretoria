@@ -827,7 +827,12 @@ var Editor = {
         console.log("renderListPublish method start");
         var data = JSON.parse(localData.get(id + '_info'));
         //console.log("bcd",data);
-        $('#d-weixin_share_icon').attr('src',data.weixin_share_icon);
+        if (data.weixin_share_icon == '') {
+            $('#d-weixin_share_icon').attr('src','http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+        }else{
+            $('#d-weixin_share_icon').attr('src',data.weixin_share_icon);
+        };
+
         $('#d-weixin_share_title').val(data.weixin_share_title); 
         $('#d-weixin_share_desc').val(data.weixin_share_desc);
     },
