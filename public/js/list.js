@@ -30,7 +30,6 @@ if ($ && jQuery) {
     $(document).on('click', '.e_close_preview', function() {
         $('#showModel').modal('hide');
         $('#v_preview_src').attr('src', '');
-
     });
 
     $(document).on('click', '.e_open_box', function(argument) {
@@ -187,25 +186,38 @@ if ($ && jQuery) {
             }
         });
     });
+    //图库选中功能
+    $(document).on('click', '.v_pic_box li', function() {
+        var pic = $(this).find('img').attr("src");
+        $(this).siblings().removeClass();
+        $(this).addClass('active');
+        if (pic != undefined) {
+            $('#upload_img_src').val(pic);
+        };
+    });
 
     $("#v_product_list").on("click","li", function () { 
         var List_current_id = $(this).attr('id');
         $('#product_id').val(List_current_id);
         Editor.renderItemInfo(List_current_id);
     });
+
     $('#v_product_list').on('click','.e_edit',function () {
         var id = $(this).attr('id');
         window.location.href = 'form.html?id='+id+'';
     });
+
     $('#v_product_list').on('click','.e_review',function () {
         var id = $(this).attr('id');
         $('#product_id').val(id);
         Editor.preview();
         Editor.publishQr();
     });
+
     $('#v_product_list').on('click','.e_publish_toggle',function () {
         $('#publishModel').modal('show');
     });
+    
     $('body').on('click','.e_publish',function(){
         Editor.publish();
     });

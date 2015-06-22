@@ -402,7 +402,6 @@ if ($ && jQuery) {
     });
 
     $(document).on('click', '.e_close_preview', function() {
-        alert(111);
         $('#showModel').modal('hide');
         $('#v_preview_src').attr('src', '');
     });
