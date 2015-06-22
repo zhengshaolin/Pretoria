@@ -701,13 +701,19 @@ var Editor = {
                                     $('.d-vertical').eq(obj.vertical).addClass('glyphicon_on');
                                     if (obj.text_align == 'left') {
                                         $('.d-align').eq(0).addClass('glyphicon_on');
+                                        $('.d-align').eq(1).removeClass('glyphicon_on');
+                                        $('.d-align').eq(2).removeClass('glyphicon_on');
+
                                     }else if(obj.text_align == 'center'){
                                         $('.d-align').eq(1).addClass('glyphicon_on');
+                                        $('.d-align').eq(0).removeClass('glyphicon_on');
+                                        $('.d-align').eq(2).removeClass('glyphicon_on');
+
                                     }else if(obj.text_align == 'right'){
                                         $('.d-align').eq(2).addClass('glyphicon_on');
+                                        $('.d-align').eq(1).removeClass('glyphicon_on');
+                                        $('.d-align').eq(0).removeClass('glyphicon_on');
                                     }
-                                    
-
                                     if (obj.ftb == 'bold') {
                                         $('#d-ftb').addClass('glyphicon_on');
                                     };
