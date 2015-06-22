@@ -173,18 +173,22 @@ if ($ && jQuery) {
         };
         if (val == 0) {
             $(this).parent().next().show();
+            $('#d-width').parents('span').show();
             s.planeLeft();
             Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
         } else if (val == 1) {
             $(this).parent().next().hide();
+            $('#d-width').parents('span').show();
             s.planeMiddle();
             Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
         } else if (val == 2) {
             $(this).parent().next().show();
+            $('#d-width').parents('span').show();
             s.planeRight();
             Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
         } else if (val == 3) {
             $(this).parent().next().hide();
+            $('#d-width').parents('span').hide();
             s.planeFull();
             Editor.batchupdate(['hshift', 'horizontal', 'width'], [parseInt(hshift), val, parseInt($(s[0]).css('width'))]);
         }
@@ -202,17 +206,21 @@ if ($ && jQuery) {
         }
         if (val == 0) {
             $(this).parent().next().show();
+            $('#d-height').parents('span').show();
             s.verticalTop();
             Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
         } else if (val == 1) {
+            $('#d-height').parents('span').show();
             $(this).parent().next().hide();
             s.verticalMiddle();
             Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
         } else if (val == 2) {
+            $('#d-height').parents('span').show();
             $(this).parent().next().show();
             s.verticalBottom();
             Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
         } else if (val == 3) {
+            $('#d-height').parents('span').hide();
             $(this).parent().next().hide();
             s.verticalFull();
             Editor.batchupdate(['vshift', 'vertical', 'height'], [parseInt(vshift), val, parseInt($(s[0]).css('height'))]);
