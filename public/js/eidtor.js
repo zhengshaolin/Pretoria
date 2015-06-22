@@ -1201,6 +1201,8 @@ var Editor = {
         });
     },
     formatUrl:function(dataUrl){
+            console.log("formatUrl method start");
+            var token = localData.get('token');
             $.ajax({
                 type: 'POST',
                 url: 'http://115.29.32.105:8080/dataurl2img',
