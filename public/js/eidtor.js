@@ -1194,10 +1194,33 @@ var Editor = {
                 //document.body.appendChild(canvas);
                 //生成base64图片数据
                 var dataUrl = canvas.toDataURL();
-                console.log("abcdefg", dataUrl);
-                Editor.update(1, 'avatar', dataUrl);
+                Editor.formatUrl(dataUrl);
+                //console.log("abcdefg", dataUrl);
+                //Editor.update(1, 'avatar', dataUrl);
             }
         });
+    },
+    formatUrl:function(dataUrl){
+            $.ajax({
+                type: 'POST',
+                url: 'http://115.29.32.105:8080/dataurl2img',
+                data: {
+                    'dataUrl': dataUrl
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    console.log('update_product_test returned:');
+                    console.log(result);
+                    Editor.update(1, 'avatar', result.url);
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });
     },
     changePos:function (id,val) {
         console.log("change pos");

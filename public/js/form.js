@@ -166,27 +166,28 @@ if ($ && jQuery) {
             hshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (val == 0) {
-            $(this).parent().next().show();
-            s.planeLeft();
-        } else if (val == 1) {
-            $(this).parent().next().hide();
-            s.planeMiddle()
-        } else if (val == 2) {
-            $(this).parent().next().show();
-            s.planeRight()
-        } else if (val == 3) {
-            $(this).parent().next().hide();
-            s.planeFull();
-            Editor.update(2, 'width', parseInt($(s[0]).css('width')));
-        }
         if (Math.abs(parseInt($(s[0]).css('left'))) + 1) {
             hshift = $(s[0]).css('left')
         } else {
             hshift = $(s[0]).css('right')
         };
-        Editor.update(2, 'hshift', parseInt(hshift));
-        Editor.update(2, 'horizontal', val);
+        if (val == 0) {
+            $(this).parent().next().show();
+            s.planeLeft();
+            Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
+        } else if (val == 1) {
+            $(this).parent().next().hide();
+            s.planeMiddle();
+            Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
+        } else if (val == 2) {
+            $(this).parent().next().show();
+            s.planeRight();
+            Editor.batchupdate(['hshift', 'horizontal'], [parseInt(hshift), val]);
+        } else if (val == 3) {
+            $(this).parent().next().hide();
+            s.planeFull();
+            Editor.batchupdate(['hshift', 'horizontal','width'], [parseInt(hshift), val,parseInt($(s[0]).css('width'))]);
+        }
     });
     //右侧垂直操作
     $('.d-vertical').click(function() {
@@ -194,28 +195,28 @@ if ($ && jQuery) {
             vshift;
         $(this).siblings().removeClass('glyphicon_on');
         $(this).addClass('glyphicon_on');
-        if (val == 0) {
-            $(this).parent().next().show();
-            s.verticalTop();
-        } else if (val == 1) {
-            $(this).parent().next().hide();
-            s.verticalMiddle();
-        } else if (val == 2) {
-            $(this).parent().next().show();
-            s.verticalBottom();
-        } else if (val == 3) {
-            $(this).parent().next().hide();
-            s.verticalFull();
-            Editor.update(2, 'height', parseInt($(s[0]).css('height')));
-
-        }
         if (Math.abs(parseInt($(s[0]).css('top'))) + 1) {
             vshift = $(s[0]).css('top')
         } else {
             vshift = $(s[0]).css('bottom')
         }
-        Editor.update(2, 'vshift', parseInt(vshift));
-        Editor.update(2, 'vertical', val)
+        if (val == 0) {
+            $(this).parent().next().show();
+            s.verticalTop();
+            Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
+        } else if (val == 1) {
+            $(this).parent().next().hide();
+            s.verticalMiddle();
+            Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
+        } else if (val == 2) {
+            $(this).parent().next().show();
+            s.verticalBottom();
+            Editor.batchupdate(['vshift', 'vertical'], [parseInt(vshift), val]);
+        } else if (val == 3) {
+            $(this).parent().next().hide();
+            s.verticalFull();
+            Editor.batchupdate(['vshift', 'vertical','height'], [parseInt(vshift),val,parseInt($(s[0]).css('height'))]);
+        }
     });
     //右侧对齐操作
     $('.d-align').click(function() {
