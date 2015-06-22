@@ -3,11 +3,11 @@ if ($ && jQuery) {
         Editor.initList();
     });
 
-    $('.e_creat').click(function(){
+    $('.e_creat').click(function() {
         var type = $(this).attr('type');
         Editor.add(type);
     });
-    $('#v_product_list').on('click','.e_delete',function () {
+    $('#v_product_list').on('click', '.e_delete', function() {
         var type = $(this).attr('type');
         $('#product_id').val($(this).attr('id'));
         $('#confirmModel').modal('show');
@@ -63,44 +63,47 @@ if ($ && jQuery) {
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
             pic = $('#upload_img_src').val();
-        if (replaceType == 0) {
-            Editor.add(type);
-        } else if (replaceType == 1) {
-            Editor.update(2, 'pic', pic);
-            //Editor.fetchForm(0);
-        } else if (replaceType == 2) {
-            Editor.update(0, 'weixin_share_icon', pic);
-            $('#d-weixin_share_icon').attr('src', pic);
-        } else if (replaceType == 3) {
-            console.log("replace 3", pic);
-            Editor.update(1, 'background_img', pic);
-            //Editor.fetchForm(0);
-        } else if (replaceType == 4) {
-            Editor.update(0, 'glass_url', pic);
-            //Editor.fetchForm(0);
-        } else if (replaceType == 5) {
-            Editor.add(4);
-        } else if (replaceType == 6) {
-            //console.log("aaa",Editor.getSlider());
-            if (Editor.getSlider() != false) {
-                var slider = Editor.addSlider(pic);
-                Editor.update(2, 'slider', slider);
-                Editor.renderElementInfo();
-                $('#picModel').modal('hide');
-            } else {
-                return false;
+        if (pic != 0) {
+            if (replaceType == 0) {
+                Editor.add(type);
+            } else if (replaceType == 1) {
+                Editor.update(2, 'pic', pic);
+                //Editor.fetchForm(0);
+            } else if (replaceType == 2) {
+                Editor.update(0, 'weixin_share_icon', pic);
+                $('#d-weixin_share_icon').attr('src', pic);
+            } else if (replaceType == 3) {
+                console.log("replace 3", pic);
+                Editor.update(1, 'background_img', pic);
+                //Editor.fetchForm(0);
+            } else if (replaceType == 4) {
+                Editor.update(0, 'glass_url', pic);
+                //Editor.fetchForm(0);
+            } else if (replaceType == 5) {
+                Editor.add(4);
+            } else if (replaceType == 6) {
+                //console.log("aaa",Editor.getSlider());
+                if (Editor.getSlider() != false) {
+                    var slider = Editor.addSlider(pic);
+                    Editor.update(2, 'slider', slider);
+                    Editor.renderElementInfo();
+                    $('#picModel').modal('hide');
+                } else {
+                    return false;
+                }
+            } else if (replaceType == 7) {
+                if (Editor.getSlider() != false) {
+                    var slider = Editor.getSlider();
+                    Editor.update(2, 'slider', slider);
+                    Editor.renderElementInfo();
+                    $('#picModel').modal('hide');
+                } else {
+                    return false;
+                }
             }
-        } else if (replaceType == 7) {
-            if (Editor.getSlider() != false) {
-                var slider = Editor.getSlider();
-                Editor.update(2, 'slider', slider);
-                Editor.renderElementInfo();
-                $('#picModel').modal('hide');
-            } else {
-                return false;
-            }
+            $('#picModel').modal('hide');
         }
-        $('#picModel').modal('hide');
+
     });
     //上传图片控件
     $.fn.ajaxUpload = function(options) {
@@ -196,18 +199,18 @@ if ($ && jQuery) {
         };
     });
 
-    $("#v_product_list").on("click","li", function () { 
+    $("#v_product_list").on("click", "li", function() {
         var List_current_id = $(this).attr('id');
         $('#product_id').val(List_current_id);
         Editor.renderItemInfo(List_current_id);
     });
 
-    $('#v_product_list').on('click','.e_edit',function () {
+    $('#v_product_list').on('click', '.e_edit', function() {
         var id = $(this).attr('id');
-        window.location.href = 'form.html?id='+id+'';
+        window.location.href = 'form.html?id=' + id + '';
     });
 
-    $('#v_product_list').on('click','.e_review',function () {
+    $('#v_product_list').on('click', '.e_review', function() {
         var id = $(this).attr('id');
         $('#product_id').val(id);
         Editor.preview();
@@ -224,20 +227,20 @@ if ($ && jQuery) {
         val = $(this).val();
         Editor.update(type, key, val);
     });
-    
-    $('#v_product_list').on('click','.e_publish_toggle',function () {
+
+    $('#v_product_list').on('click', '.e_publish_toggle', function() {
         var product_id = $(this).attr('id');
         Editor.renderListPublish(product_id);
         $('#publishModel').modal('show');
     });
 
-    $('body').on('click','.e_publish',function(){
+    $('body').on('click', '.e_publish', function() {
         Editor.publish();
     });
-    $('.e_quite').click(function () {
-       Editor.quite();
+    $('.e_quite').click(function() {
+        Editor.quite();
     });
-    $('body').on('click','.e_publish',function () {
+    $('body').on('click', '.e_publish', function() {
         Editor.publish();
     });
 
@@ -247,9 +250,9 @@ if ($ && jQuery) {
         //elementype 2 元素属性
         //key 映射json里的key
         var type = $(this).attr('elementype');
-            key = $(this).attr('id').split('-')[1],
-            val = $(this).val();
-        Editor.update(type,key,val);
+        key = $(this).attr('id').split('-')[1],
+        val = $(this).val();
+        Editor.update(type, key, val);
     });
 
 };

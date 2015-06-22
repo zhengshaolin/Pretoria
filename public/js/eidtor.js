@@ -965,7 +965,12 @@ var Editor = {
             //box5
             $('#d-product').val(data.product);
             $("input[name='glass']").eq([data.glass]).attr('checked', true);
-            $('#d-glass_url').attr('src', data.glass_url);
+            if (data.glass_url == '') {
+                $('#d-glass_url').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+            }else{
+                $('#d-glass_url').attr('src', data.glass_url);
+ 
+            }
             $('#d-glass_trans').val(data.glass_trans);
             $('#d-orign_num').val(data.orign_num);
             $('#d-pry').val(data.pry);

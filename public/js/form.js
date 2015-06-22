@@ -186,7 +186,7 @@ if ($ && jQuery) {
         } else if (val == 3) {
             $(this).parent().next().hide();
             s.planeFull();
-            Editor.batchupdate(['hshift', 'horizontal','width'], [parseInt(hshift), val,parseInt($(s[0]).css('width'))]);
+            Editor.batchupdate(['hshift', 'horizontal', 'width'], [parseInt(hshift), val, parseInt($(s[0]).css('width'))]);
         }
     });
     //右侧垂直操作
@@ -215,7 +215,7 @@ if ($ && jQuery) {
         } else if (val == 3) {
             $(this).parent().next().hide();
             s.verticalFull();
-            Editor.batchupdate(['vshift', 'vertical','height'], [parseInt(vshift),val,parseInt($(s[0]).css('height'))]);
+            Editor.batchupdate(['vshift', 'vertical', 'height'], [parseInt(vshift), val, parseInt($(s[0]).css('height'))]);
         }
     });
     //右侧对齐操作
@@ -306,7 +306,7 @@ if ($ && jQuery) {
             $('.e_tab_content').show();
         } else if (key == 4) {
             $('.e_tab_content').show();
-        }else if(key == 5){
+        } else if (key == 5) {
             $('.e_tab_content').show();
         }
     });
@@ -425,44 +425,47 @@ if ($ && jQuery) {
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
             pic = $('#upload_img_src').val();
-        if (replaceType == 0) {
-            Editor.add(type);
-        } else if (replaceType == 1) {
-            Editor.update(2, 'pic', pic);
-            Editor.fetchForm(0);
-        } else if (replaceType == 2) {
-            Editor.update(0, 'weixin_share_icon', pic);
-            $('#d-weixin_share_icon').attr('src', pic);
-        } else if (replaceType == 3) {
-            console.log("replace 3", pic);
-            Editor.update(1, 'background_img', pic);
-            Editor.fetchForm(0);
-        } else if (replaceType == 4) {
-            Editor.update(0, 'glass_url', pic);
-            Editor.fetchForm(0);
-        } else if (replaceType == 5) {
-            Editor.add(4);
-        } else if (replaceType == 6) {
-            //console.log("aaa",Editor.getSlider());
-            if (Editor.getSlider() != false) {
-                var slider = Editor.addSlider(pic);
-                Editor.update(2, 'slider', slider);
-                Editor.renderElementInfo();
-                $('#picModel').modal('hide');
-            } else {
-                return false;
+        if (pic != 0) {
+            if (replaceType == 0) {
+                Editor.add(type);
+            } else if (replaceType == 1) {
+                Editor.update(2, 'pic', pic);
+                Editor.fetchForm(0);
+            } else if (replaceType == 2) {
+                Editor.update(0, 'weixin_share_icon', pic);
+                $('#d-weixin_share_icon').attr('src', pic);
+            } else if (replaceType == 3) {
+                console.log("replace 3", pic);
+                Editor.update(1, 'background_img', pic);
+                Editor.fetchForm(0);
+            } else if (replaceType == 4) {
+                Editor.update(0, 'glass_url', pic);
+                Editor.fetchForm(0);
+            } else if (replaceType == 5) {
+                Editor.add(4);
+            } else if (replaceType == 6) {
+                //console.log("aaa",Editor.getSlider());
+                if (Editor.getSlider() != false) {
+                    var slider = Editor.addSlider(pic);
+                    Editor.update(2, 'slider', slider);
+                    Editor.renderElementInfo();
+                    $('#picModel').modal('hide');
+                } else {
+                    return false;
+                }
+            } else if (replaceType == 7) {
+                if (Editor.getSlider() != false) {
+                    var slider = Editor.getSlider();
+                    Editor.update(2, 'slider', slider);
+                    Editor.renderElementInfo();
+                    $('#picModel').modal('hide');
+                } else {
+                    return false;
+                }
             }
-        } else if (replaceType == 7) {
-            if (Editor.getSlider() != false) {
-                var slider = Editor.getSlider();
-                Editor.update(2, 'slider', slider);
-                Editor.renderElementInfo();
-                $('#picModel').modal('hide');
-            } else {
-                return false;
-            }
-        }
-        $('#picModel').modal('hide');
+            $('#picModel').modal('hide');
+        };
+
     });
 
     //图库选中功能
