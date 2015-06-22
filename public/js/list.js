@@ -34,7 +34,7 @@ if ($ && jQuery) {
 
     $(document).on('click', '.e_open_box', function(argument) {
         var replaceType = $(this).attr('replaceType');
-
+        Editor.renderPicBox();
         if (replaceType == 3) {
             if ($("input[name='background_type']").eq(2).attr('checked') != 'checked') {
                 alert("请选择图片上传选项");
