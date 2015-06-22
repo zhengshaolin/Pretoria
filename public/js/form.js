@@ -305,6 +305,8 @@ if ($ && jQuery) {
             $('.e_tab_content').show();
         } else if (key == 4) {
             $('.e_tab_content').show();
+        }else if(key == 5){
+            $('.e_tab_content').show();
         }
     });
 
