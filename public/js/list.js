@@ -214,7 +214,20 @@ if ($ && jQuery) {
         Editor.publishQr();
     });
 
+    $(document).on('blur', '.update_item', function() {
+        //elementype 0 产品全局
+        //elementype 1 页面属性
+        //elementype 2 元素属性
+        //key 映射json里的key
+        var type = $(this).attr('elementype');
+        key = $(this).attr('id').split('-')[1],
+        val = $(this).val();
+        Editor.update(type, key, val);
+    });
+    
     $('#v_product_list').on('click','.e_publish_toggle',function () {
+        var product_id = $(this).attr('id');
+        Editor.renderListPublish(product_id);
         $('#publishModel').modal('show');
     });
 
