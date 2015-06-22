@@ -67,17 +67,17 @@ if ($ && jQuery) {
             Editor.add(type);
         } else if (replaceType == 1) {
             Editor.update(2, 'pic', pic);
-            Editor.fetchForm(0);
+            //Editor.fetchForm(0);
         } else if (replaceType == 2) {
             Editor.update(0, 'weixin_share_icon', pic);
             $('#d-weixin_share_icon').attr('src', pic);
         } else if (replaceType == 3) {
             console.log("replace 3", pic);
             Editor.update(1, 'background_img', pic);
-            Editor.fetchForm(0);
+            //Editor.fetchForm(0);
         } else if (replaceType == 4) {
             Editor.update(0, 'glass_url', pic);
-            Editor.fetchForm(0);
+            //Editor.fetchForm(0);
         } else if (replaceType == 5) {
             Editor.add(4);
         } else if (replaceType == 6) {
@@ -217,7 +217,7 @@ if ($ && jQuery) {
     $('#v_product_list').on('click','.e_publish_toggle',function () {
         $('#publishModel').modal('show');
     });
-    
+
     $('body').on('click','.e_publish',function(){
         Editor.publish();
     });
