@@ -101,6 +101,11 @@ Drag.prototype.dragger = function(btn) {
             }
             function lock(){}
             document.onmousemove = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if(window.getSelection){
+                    window.getSelection().removeAllRanges(); //w3c
+                }
                 var border = parseInt(html.css('border'));
                 var tx = page.pageX(e) - x - htmlleft - $('#cnm').offset().left - border,
                     ty = page.pageY(e) - y - htmltop - $('#cnm').offset().top - border;
@@ -486,12 +491,17 @@ Drag.prototype.dragDiv = function() {
                 targetWidth = that.width(),
                 targetHeight = that.height(),
                 y = y2 - y1;
+            e.preventDefault();
+            e.stopPropagation();
                 function lock(){
                     this.lockPlane=dragLeft;
                     this.lockVertical=dragTop;
                 }
                 var loc = new lock();
                 //plane:左0中1右2满3
+            if(window.getSelection){
+                window.getSelection().removeAllRanges(); //w3c
+            }
             if (parseInt(_this.style.left) == 0 || parseInt(_this.style.left)) {//elements have left style
                 if (dragLeft + x >= 0 && dragLeft + x + targetWidth <= mainWidth) {
                     _this.style.left = (dragLeft + x) + 'px';
