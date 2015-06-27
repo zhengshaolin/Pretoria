@@ -1471,6 +1471,10 @@ var Editor = {
             }
         });
     },
+    showPicBox:function(){
+            $('e_upload_pic').trigger('click');
+            $('#picModel').modal('show');
+    },
     //left page change pange position
     changePos: function(id, val) {
         console.log("change pos");

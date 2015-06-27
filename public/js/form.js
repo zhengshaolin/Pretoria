@@ -18,17 +18,17 @@ if ($ && jQuery) {
             Editor.add(element);
         } else if (element == 3) {
             $('.e_store_pic').attr('replaceType', 0);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 5) {
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 6) {
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         }
     });
     $(".page-side").on("click", ".e_creat", function() {
@@ -41,17 +41,17 @@ if ($ && jQuery) {
             Editor.add(element);
         } else if (element == 3) {
             $('.e_store_pic').attr('replaceType', 0);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 5) {
             $('.e_store_pic').attr('replaceType', 6);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 6) {
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         }
     });
 
@@ -71,18 +71,53 @@ if ($ && jQuery) {
     });
     //左侧page选中功能
     $("#v_page_list").on("click", "li", function() {
-        // Editor.convertCanvasToImage();
-        clearDrag();
-        $('#page_id').val($(this).attr('id'));
-        $('#page_server_id').val($(this).attr('pid'));
-        $('#element_id').val($(this).attr('id') + '_0');
-        $('.e_tab_content').hide();
-        $(this).siblings().removeClass('active');
-        $(this).addClass('active');
-        Editor.renderArena(0,'tab');
-        Editor.renderPageAnimate();
-        Editor.renderElementInfo();
-        Editor.renderGlobalInfo();
+        if ($('#initSave').val() == 1) {
+            if($('#isSave').val() == 0){
+                $('#to_page').val($(this).attr('pid'));
+                $('#pageSaveModel').modal('show');
+            }else if($('#isSave').val() == 1){
+                clearDrag();
+                $('#page_id').val($(this).attr('id'));
+                $('#page_server_id').val($(this).attr('pid'));
+                $('#element_id').val($(this).attr('id') + '_0');
+                $('#initSave').val('1');
+                $('.e_tab_content').hide();
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                Editor.renderArena(0,'tab');
+                Editor.renderPageAnimate();
+                Editor.renderElementInfo();
+                Editor.renderGlobalInfo();
+            }
+        }else if($('#initSave').val() == 0){
+            $('#initSave').val('1');
+            clearDrag();
+            $('#page_id').val($(this).attr('id'));
+            $('#page_server_id').val($(this).attr('pid'));
+            $('#element_id').val($(this).attr('id') + '_0');
+            $('#initSave').val('1');
+            $('.e_tab_content').hide();
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            Editor.renderArena(0,'tab');
+            Editor.renderPageAnimate();
+            Editor.renderElementInfo();
+            Editor.renderGlobalInfo();           
+        }
+    });
+
+    $(document).on('click', '.e_page_save_button', function() {
+        Editor.convertCanvasToImage();
+        $('#page_server_id').val($('#to_page').val());
+        for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
+            if($('#v_page_list').find('li').eq(i).attr('pid') == $('#page_server_id').val()){
+                $('#v_page_list').find('li').eq(i).trigger('click');
+            }
+        };
+        $('#isSave').val('0');
+        $('#pageSaveModel').modal('hide');
+        
+
     });
 
     //左侧page删除功能
@@ -155,9 +190,9 @@ if ($ && jQuery) {
         if (element == 0) {
             Editor.add(type);
         } else if (element == 1) {
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         } else if (element == 2) {
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         }
     });
 
@@ -359,8 +394,9 @@ if ($ && jQuery) {
     //产品
     //产品保存
     $(".e_generate_pic").on("click", function(event) {
-        clearDrag()
+        clearDrag();
         event.preventDefault();
+        $('#isSave').val('1');
         Editor.convertCanvasToImage();
     });
     // 产品预览
@@ -409,11 +445,11 @@ if ($ && jQuery) {
                 alert("请选择图片上传选项");
             } else {
                 $('.e_store_pic').attr('replaceType', replaceType);
-                $('#picModel').modal('show');
+                Editor.showPicBox();
             }
         } else {
             $('.e_store_pic').attr('replaceType', replaceType);
-            $('#picModel').modal('show');
+            Editor.showPicBox();
         }
     });
 
