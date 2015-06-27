@@ -714,3 +714,23 @@ Drag.prototype.verticalFull = function() {
     that.attr('vertical', '3')
     this.tagreset($(that).attr('plane'), $(that).attr('vertical'))
 }
+Drag.prototype.locking = function(){
+    var html = $('.selector'),
+        dragLeft = html[0].offsetLeft,
+        dragTop = html[0].offsetTop;
+    html.on('mousedown', function(event) {
+        document.onmousemove = function(event) {
+            html[0].style.top = dragTop
+            html[0].style.left = dragLeft
+        }
+    })
+    console.log(dragTop,dragLeft)
+}
+Drag.prototype.unlocking = function(){
+    if(s[0]==$('#cnm')[0]){
+        s[0]=dragcache
+    }
+    this.dragDiv()
+}
+
+

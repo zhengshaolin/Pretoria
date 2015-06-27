@@ -302,6 +302,7 @@ if ($ && jQuery) {
     $('.nav-right li').click(function() {
         var key = $(this).index(),
             page_server_id = $('#page_server_id').val();
+        clearDrag()
         if (key == 0) {
             return false;
         } else if (key == 1) {
@@ -351,10 +352,13 @@ if ($ && jQuery) {
         }
         Editor.update(type, key, val);
     });
-
+    $('.e_preview,.e_publish_toggle').on('click',function(){
+        clearDrag()
+    })
     //产品
     //产品保存
     $(".e_generate_pic").on("click", function(event) {
+        clearDrag()
         event.preventDefault();
         Editor.convertCanvasToImage();
     });
@@ -605,7 +609,8 @@ if ($ && jQuery) {
             text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
             text.css('background', 'transparent')
             div.hide();
-            $('#cnm').append(text)
+            $('#cnm').append(text);
+            s.locking()
             text.focus()
             var len = text[0].value.length;
             if (document.selection) {
@@ -617,6 +622,7 @@ if ($ && jQuery) {
                 text[0].selectionStart = text[0].selectionEnd = len;
             }
         } else if (te && $('textarea').last().val()) {
+            s.unlocking()
             te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
             te.show()
             $('textarea').remove()
@@ -697,7 +703,8 @@ if ($ && jQuery) {
                 sizeLimit: size
             },
             onChange: function(file, extension) {
-                that.val('上传中...');
+                $('.e_load_area').removeClass('hide');
+                that.text('上传中...');
                 that.attr('disabled', 'disabled');
             },
             onSubmit: function(file, extension) {
@@ -725,7 +732,8 @@ if ($ && jQuery) {
                 return true;
             },
             onComplete: function(file, res) {
-                that.val('选择图片');
+                that.text('选择图片');
+                $('.e_load_area').addClass('hide');
                 //console.log(res);
                 if (typeof res == 'object')
                     res = res;
@@ -766,12 +774,13 @@ if ($ && jQuery) {
                 sizeLimit: size
             },
             onChange: function(file, extension) {
-                that.val('上传中...');
+                that.text('上传中...');
                 that.attr('disabled', 'disabled');
+                $('.e_load_area').show();
             },
             onSubmit: function(file, extension) {
-                that.val('loading...');
                 that.attr('disabled', 'disabled');
+                $('.e_load_area').removeClass('hide');
                 tarImg = arrType[type];
                 if (genre === 'img') {
                     if (extension && /^(mp3)$/.test(extension)) {
@@ -794,7 +803,8 @@ if ($ && jQuery) {
                 return true;
             },
             onComplete: function(file, res) {
-                that.val('选择图片');
+                that.text('选择图片');
+                $('.e_load_area').addClass('hide');
                 //console.log(res);
                 if (typeof res == 'object')
                     res = res;
@@ -849,15 +859,19 @@ if ($ && jQuery) {
     $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
         if (!$(e.target).hasClass('btn')) {
-            $('.selector').hide();
-            $('.e_tab_content').hide();
-            if ($('#cnm').find('textarea').length) {
-                $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
-                $(s[0]).show()
-                $('textarea').remove();
-                s[0].func();
-            }
+            clearDrag()
         }
     })
+    function clearDrag(){
+        $('.selector').hide();
+        $('.e_tab_content').hide();
+        if ($('#cnm').find('textarea').length) {
+            $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
+            $(s[0]).show()
+            $('textarea').remove();
+            s[0].func();
+        }
+        $('#element_server_id').val('')
+    }
 
 };
