@@ -18,20 +18,16 @@ if ($ && jQuery) {
             Editor.add(element);
         } else if (element == 3) {
             $('.e_store_pic').attr('replaceType', 0);
-            $('.e_upload_pic').trigger('click');
             $('#picModel').modal('show');
         } else if (element == 4) {
             $('.e_store_pic').attr('replaceType', 5);
-             $('.e_upload_pic').trigger('click');
             $('#picModel').modal('show');
         } else if (element == 5) {
             $('.e_store_pic').attr('replaceType', 6);
-             $('.e_upload_pic').trigger('click');
             $('#picModel').modal('show');
         } else if (element == 6) {
             $('.e_store_pic').attr('replaceType', 7);
             //$('#slider_replace_index').val();
-             $('.e_upload_pic').trigger('click');
             $('#picModel').modal('show');
         }
     });
@@ -413,12 +409,10 @@ if ($ && jQuery) {
                 alert("请选择图片上传选项");
             } else {
                 $('.e_store_pic').attr('replaceType', replaceType);
-                 $('.e_upload_pic').trigger('click');
                 $('#picModel').modal('show');
             }
         } else {
             $('.e_store_pic').attr('replaceType', replaceType);
-             $('.e_upload_pic').trigger('click');
             $('#picModel').modal('show');
         }
     });
@@ -742,7 +736,7 @@ if ($ && jQuery) {
                 that.attr('disabled', 'disabled');
                 tarImg = arrType[type];
                 if (genre === 'img') {
-                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF)$/.test(extension)) {
+                    if (extension && /^(jpg|png|gif|JPG|PNG|GIF|jpeg|JPEG)$/.test(extension)) {
                         if (type === 'picture') {
                             var activeCount = tarImg.length;
                             if (activeCount === 8) {
@@ -753,13 +747,16 @@ if ($ && jQuery) {
                             }
                         }
                     } else {
-                        alert('上传的图片仅限gif,jpg,png,mp3!');
+                        alert('上传的图片仅限gif,jpg,png,jpeg!');
                         that.text(text);
                         that.removeAttr('disabled');
                         return false;
                     }
                 }
                 return true;
+            },
+            onerror:function(){
+                $('.e_load_area').addClass('hide');
             },
             onComplete: function(file, res) {
                 that.text('选择图片');
@@ -832,8 +829,11 @@ if ($ && jQuery) {
                 }
                 return true;
             },
+            onerror:function(){
+                $('.e_load_area').addClass('hide');
+            },
             onComplete: function(file, res) {
-                that.text('选择图片');
+                that.text('选择音乐');
                 $('.e_load_area').addClass('hide');
                 //console.log(res);
                 if (typeof res == 'object')
