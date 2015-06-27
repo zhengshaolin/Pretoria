@@ -436,7 +436,8 @@ if ($ && jQuery) {
         e.preventDefault();
         var type = $('#add_type').val(),
             replaceType = $(this).attr('replaceType'),
-            pic = $('#upload_img_src').val();
+            pic = $('#upload_img_src').val(),
+            index = $('#slider_update_index').val();
         if (pic != 0) {
             if (replaceType == 0) {
                 Editor.add(type);
@@ -459,18 +460,12 @@ if ($ && jQuery) {
                 //console.log("aaa",Editor.getSlider());
                 if (Editor.getSlider() != false) {
                     var slider = Editor.addSlider(pic);
-                    Editor.update(2, 'slider', slider);
-                    Editor.renderElementInfo();
-                    $('#picModel').modal('hide');
                 } else {
                     return false;
                 }
             } else if (replaceType == 7) {
-                if (Editor.getSlider() != false) {
-                    var slider = Editor.getSlider();
-                    Editor.update(2, 'slider', slider);
-                    Editor.renderElementInfo();
-                    $('#picModel').modal('hide');
+                if ($('#v_d_2').find('.pic_slider').length >= 1) {
+                    Editor.updateSlider(pic,index);
                 } else {
                     return false;
                 }
@@ -491,13 +486,19 @@ if ($ && jQuery) {
     });
 
     $(document).on('click', '#v_d_2 .close', function() {
-        $(this).parents('.clearfix').remove();
-        var slider = Editor.getSlider();
-        Editor.update(2, 'slider', slider);
-        Editor.renderElementInfo();
-
+        var index = $('#v_d_2 .close').index(this);        
+        if($('#v_d_2').find('.pic_slider').length == 1){
+            Editor.update(2, 'slider', '');
+            Editor.renderElementInfo();
+            $('#picModel').modal('hide');
+        }else{
+           Editor.removeSlider(index); 
+        }        
     });
-
+    $(document).on('click', '#v_d_2 .slider_update', function() {
+        var index = $('#v_d_2 .slider_update').index(this);        
+       $('#slider_update_index').val(index);   
+    });
 
     //弹出框调取动画保存
     $(document).on('click', '.e_store_animate', function() {
@@ -529,23 +530,28 @@ if ($ && jQuery) {
         $('.e_tab_content').show();
         if (element == 0) {
             //文字元素
-            $('.d_0').removeClass('hidden').show();
+            //$('.d_0').removeClass('hidden').show();
             $('.d_1').addClass('hidden').hide();
             $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
             Editor.renderPageAnimate();
             Editor.renderGlobalInfo();
+            if(!$('.divtext').length){
+            $('#tab1 .panel li').eq(2).show()
+            $('#tab1 .panel .d_0').show()}
         } else if (element == 1) {
             //图片元素
             $('.d_0').addClass('hidden').hide();
             $('.d_1').removeClass('hidden').show();
             $('.d_2').addClass('hidden').hide();
+            $('#tab1 .panel li').eq(2).show()
             Editor.renderElementInfo();
         } else if (element == 2) {
             //轮播元素
             $('.d_0').addClass('hidden').hide();
             $('.d_1').addClass('hidden').hide();
             $('.d_2').removeClass('hidden').show();
+            $('#tab1 .panel li').eq(2).show()
             Editor.renderElementInfo();
         }
         //console.log(s)
@@ -570,7 +576,10 @@ if ($ && jQuery) {
             };
             if (elementype == 0) {
                 //文字元素
-                $('.d_0').removeClass('hidden').show();
+                if(!$('.divtext').length){
+                    $('#tab1 .panel li').eq(2).show()
+                    $('#tab1 .panel .d_0').show()}
+                //$('.d_0').removeClass('hidden').show();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').addClass('hidden').hide();
                 //console.log(vshift,hshift)
@@ -583,6 +592,7 @@ if ($ && jQuery) {
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').removeClass('hidden').show();
                 $('.d_2').addClass('hidden').hide();
+                $('#tab1 .panel li').eq(2).show()
                 Editor.batchupdate(['z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [$(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
                 ])
@@ -590,6 +600,7 @@ if ($ && jQuery) {
                 $('.d_0').addClass('hidden').hide();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').removeClass('hidden').show();
+                $('#tab1 .panel li').eq(2).show()
                 //轮播元素
                 Editor.batchupdate(['z-index', 'width', 'height', 'horizontal', 'vertical', 'vshift', 'hshift'], [$(s[0]).css('z-index'), parseInt($(s[0]).css('width')), parseInt($(s[0]).css('height')), $(s[0]).attr('plane'),
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
@@ -599,33 +610,45 @@ if ($ && jQuery) {
                 $('.d_2').show();
             }
         }
-        if ($(s[0]).attr('text') && !$('.divtext').length) {
-            te = $(s[0])
-            var sty = $(s[0]).attr('style');
-            var text = $('<textarea>');
-            var div = $(s[0]);
-            var plane = $(s[0]).attr('plane')
-            var vertical = $(s[0]).attr('vertical')
-            text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
-            text.css('background', 'transparent')
-            div.hide();
-            $('#cnm').append(text);
-            s.locking()
-            text.focus()
-            var len = text[0].value.length;
-            if (document.selection) {
-                var sel = text[0].createTextRange();
-                sel.moveStart('character', len);
-                sel.collapse();
-                sel.select();
-            } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
-                text[0].selectionStart = text[0].selectionEnd = len;
+    });
+    $('#cnm').on('dblclick',function(e){
+        e.stopPropagation();
+        if(s[0]){
+            if ($(s[0]).attr('text') && !$('.divtext').length) {
+                te = $(s[0])
+                var sty = $(s[0]).attr('style');
+                var text = $('<textarea>');
+                var div = $(s[0]);
+                var plane = $(s[0]).attr('plane')
+                var vertical = $(s[0]).attr('vertical')
+                text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
+                text.css('background', 'transparent').css('overflow-y','hidden').css('border',0)
+                div.hide();
+                $('#cnm').append(text);
+                s.locking()
+                $('#tab1 .panel li').eq(2).hide()
+                $('#tab1 .panel .d_0').hide()
+                text.focus()
+                var len = text[0].value.length;
+                if (document.selection) {
+                    var sel = text[0].createTextRange();
+                    sel.moveStart('character', len);
+                    sel.collapse();
+                    sel.select();
+                } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
+                    text[0].selectionStart =0; 
+                    text[0].selectionEnd = len;
+                }
+            } else if (te && $('textarea').last().val()) {
+                $('#tab1 .panel li').eq(2).show()
+                $('#tab1 .panel .d_0').show()
+                s.unlocking()
+                te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
+                te.show()
+                $('textarea').remove()
             }
-        } else if (te && $('textarea').last().val()) {
-            s.unlocking()
-            te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
-            te.show()
-            $('textarea').remove()
+        }else{
+
         }
     });
     $('#cnm').on('mousedown', function(e) {
