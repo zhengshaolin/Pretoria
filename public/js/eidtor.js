@@ -835,6 +835,7 @@ var Editor = {
                         }
                         s_selector = Drag(obj)
                     }
+                };
                 }
             },
             //绘制右侧的数据中的元素信息

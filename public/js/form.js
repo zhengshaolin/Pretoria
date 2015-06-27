@@ -75,6 +75,8 @@ if ($ && jQuery) {
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
         $('#element_id').val($(this).attr('id') + '_0');
+        $('.e_tab_content').hide();
+        clearDrag();
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
         Editor.renderArena();
