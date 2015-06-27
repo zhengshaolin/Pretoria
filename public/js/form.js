@@ -646,6 +646,14 @@ if ($ && jQuery) {
                 $('.d_1').hide();
                 $('.d_2').show();
             }
+            if ($(s[0]).length && $('textarea').last().val()) {
+                $('#tab1 .panel li').eq(2).show()
+                $('#tab1 .panel .d_0').removeClass('hidden').show()
+                s.unlocking()
+                $(s[0]).html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
+                $(s[0]).show()
+                $('textarea').remove()
+            }
         }
     });
     $('#cnm').on('dblclick',function(e){
@@ -667,25 +675,16 @@ if ($ && jQuery) {
                 $('#tab1 .panel .d_0').hide()
                 text.focus()
                 var len = text[0].value.length;
-                if (document.selection) {
-                    var sel = text[0].createTextRange();
-                    sel.moveStart('character', len);
-                    sel.collapse();
-                    sel.select();
-                } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
-                    text[0].selectionStart =0; 
-                    text[0].selectionEnd = len;
-                }
-            } else if (te && $('textarea').last().val()) {
-                $('#tab1 .panel li').eq(2).show()
-                $('#tab1 .panel .d_0').removeClass('hidden').show()
-                s.unlocking()
-                te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
-                te.show()
-                $('textarea').remove()
+                // if (document.selection) {
+                //     var sel = text[0].createTextRange();
+                //     sel.moveStart('character', len);
+                //     sel.collapse();
+                //     sel.select();
+                // } else if (typeof text[0].selectionStart == 'number' && typeof text[0].selectionEnd == 'number') {
+                //     text[0].selectionStart =0; 
+                //     text[0].selectionEnd = len;
+                // }
             }
-        }else{
-
         }
     });
     $('#cnm').on('mousedown', function(e) {
@@ -763,7 +762,6 @@ if ($ && jQuery) {
                 sizeLimit: size
             },
             onChange: function(file, extension) {
-                $('.e_load_area').removeClass('hide');
                 that.text('上传中...');
                 that.attr('disabled', 'disabled');
             },
@@ -792,11 +790,9 @@ if ($ && jQuery) {
                 return true;
             },
             onerror:function(){
-                $('.e_load_area').addClass('hide');
             },
             onComplete: function(file, res) {
                 that.text('选择图片');
-                $('.e_load_area').addClass('hide');
                 //console.log(res);
                 if (typeof res == 'object')
                     res = res;
@@ -839,11 +835,9 @@ if ($ && jQuery) {
             onChange: function(file, extension) {
                 that.text('上传中...');
                 that.attr('disabled', 'disabled');
-                $('.e_load_area').show();
             },
             onSubmit: function(file, extension) {
                 that.attr('disabled', 'disabled');
-                $('.e_load_area').removeClass('hide');
                 tarImg = arrType[type];
                 if (genre === 'img') {
                     if (extension && /^(mp3)$/.test(extension)) {
@@ -866,11 +860,9 @@ if ($ && jQuery) {
                 return true;
             },
             onerror:function(){
-                $('.e_load_area').addClass('hide');
             },
             onComplete: function(file, res) {
                 that.text('选择音乐');
-                $('.e_load_area').addClass('hide');
                 //console.log(res);
                 if (typeof res == 'object')
                     res = res;
@@ -891,7 +883,6 @@ if ($ && jQuery) {
                 Editor.renderPicBox();
             },
             change: function() {
-                $('.e_load_area').show();
                 //console.log("正在上传中......");
             }
         });
@@ -911,7 +902,6 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
             },
             change: function() {
-                $('.e_load_area').show();
             }
         });
     });
