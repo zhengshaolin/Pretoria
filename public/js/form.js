@@ -72,14 +72,14 @@ if ($ && jQuery) {
     //左侧page选中功能
     $("#v_page_list").on("click", "li", function() {
         // Editor.convertCanvasToImage();
+        clearDrag();
         $('#page_id').val($(this).attr('id'));
         $('#page_server_id').val($(this).attr('pid'));
         $('#element_id').val($(this).attr('id') + '_0');
         $('.e_tab_content').hide();
-        clearDrag();
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
-        Editor.renderArena();
+        Editor.renderArena(0,'tab');
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
@@ -532,25 +532,25 @@ if ($ && jQuery) {
         $('.e_tab_content').show();
         if (element == 0) {
             //文字元素
+            if(!$('.divtext').length){
+                    $('#tab1 .panel li').eq(2).show()
+                    $('#tab1 .panel .d_0').removeClass('hidden').show()}
             //$('.d_0').removeClass('hidden').show();
             $('.d_1').addClass('hidden').hide();
             $('.d_2').addClass('hidden').hide();
             Editor.renderElementInfo();
             Editor.renderPageAnimate();
             Editor.renderGlobalInfo();
-            if(!$('.divtext').length){
-            $('#tab1 .panel li').eq(2).show()
-            $('#tab1 .panel .d_0').show()}
         } else if (element == 1) {
             //图片元素
-            $('.d_0').addClass('hidden').hide();
+            $('.d_0').hide();
             $('.d_1').removeClass('hidden').show();
             $('.d_2').addClass('hidden').hide();
             $('#tab1 .panel li').eq(2).show()
             Editor.renderElementInfo();
         } else if (element == 2) {
             //轮播元素
-            $('.d_0').addClass('hidden').hide();
+            $('.d_0').hide();
             $('.d_1').addClass('hidden').hide();
             $('.d_2').removeClass('hidden').show();
             $('#tab1 .panel li').eq(2).show()
@@ -580,7 +580,7 @@ if ($ && jQuery) {
                 //文字元素
                 if(!$('.divtext').length){
                     $('#tab1 .panel li').eq(2).show()
-                    $('#tab1 .panel .d_0').show()}
+                    $('#tab1 .panel .d_0').removeClass('hidden').show()}
                 //$('.d_0').removeClass('hidden').show();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').addClass('hidden').hide();
@@ -591,7 +591,7 @@ if ($ && jQuery) {
                 ])
             } else if (elementype == 1) {
                 //图片元素
-                $('.d_0').addClass('hidden').hide();
+                $('.d_0').hide();
                 $('.d_1').removeClass('hidden').show();
                 $('.d_2').addClass('hidden').hide();
                 $('#tab1 .panel li').eq(2).show()
@@ -599,7 +599,7 @@ if ($ && jQuery) {
                     $(s[0]).attr('vertical'), parseInt(vshift), parseInt(hshift)
                 ])
             } else if (elementype == 2) {
-                $('.d_0').addClass('hidden').hide();
+                $('.d_0').hide();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').removeClass('hidden').show();
                 $('#tab1 .panel li').eq(2).show()
@@ -643,7 +643,7 @@ if ($ && jQuery) {
                 }
             } else if (te && $('textarea').last().val()) {
                 $('#tab1 .panel li').eq(2).show()
-                $('#tab1 .panel .d_0').show()
+                $('#tab1 .panel .d_0').removeClass('hidden').show()
                 s.unlocking()
                 te.html($('textarea').last().val().replace(/[\r\n]/ig, '<br \/>'))
                 te.show()
