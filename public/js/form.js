@@ -83,7 +83,6 @@ if ($ && jQuery) {
         Editor.renderPageAnimate();
         Editor.renderElementInfo();
         Editor.renderGlobalInfo();
-        Editor.fetchForm(1);
     });
 
     //左侧page删除功能
@@ -624,7 +623,7 @@ if ($ && jQuery) {
                 var plane = $(s[0]).attr('plane')
                 var vertical = $(s[0]).attr('vertical')
                 text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
-                text.css('background', 'transparent').css('overflow-y','hidden').css('border',0)
+                text.css('background', 'transparent').css('overflow-y','hidden').css('border','none')
                 div.hide();
                 $('#cnm').append(text);
                 s.locking()

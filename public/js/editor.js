@@ -259,7 +259,7 @@ var Editor = {
                     //Editor.renderPage();
                     //Editor.convertCanvasToImage();
                     //渲染中间操作层
-                    Editor.renderArena(0,'tab');
+                    Editor.renderArena(0);
                     //渲染右侧页面元素元素信息
                     Editor.renderPageAnimate();
                     //渲染右侧元素元素信息
@@ -821,6 +821,7 @@ var Editor = {
             s_selector = Drag(obj)
         } else {
             if(arguments[1]){
+                console.log(111)
                 $('.selector').hide()
             }else{
                 if (s_selector) {
