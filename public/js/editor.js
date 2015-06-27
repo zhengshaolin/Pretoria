@@ -821,7 +821,6 @@ var Editor = {
             s_selector = Drag(obj)
         } else {
             if(arguments[1]){
-                console.log(111)
                 $('.selector').hide()
             }else{
                 if (s_selector) {
