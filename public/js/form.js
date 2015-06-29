@@ -70,17 +70,17 @@ if ($ && jQuery) {
         Editor.add(type);
     });
     //左侧page选中功能
+    //initsave 页面是否保存过，0为为保存 1为初始化点击
+    //isSave  当前页面是否保存过 0为未保存 1为保存过
     $("#v_page_list").on("click", "li", function() {
         if ($('#initSave').val() == 1) {
             if($('#isSave').val() == 0){
-                $('#to_page').val($(this).attr('pid'));
-                $('#pageSaveModel').modal('show');
+                Editor.autoSave($(this).attr('pid'));
             }else if($('#isSave').val() == 1){
                 clearDrag();
                 $('#page_id').val($(this).attr('id'));
                 $('#page_server_id').val($(this).attr('pid'));
                 $('#element_id').val($(this).attr('id') + '_0');
-                $('#initSave').val('1');
                 $('.e_tab_content').hide();
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
@@ -88,6 +88,7 @@ if ($ && jQuery) {
                 Editor.renderPageAnimate();
                 Editor.renderElementInfo();
                 Editor.renderGlobalInfo();
+                //$('#isSave').val(0);
             }
         }else if($('#initSave').val() == 0){
             $('#initSave').val('1');
@@ -95,7 +96,6 @@ if ($ && jQuery) {
             $('#page_id').val($(this).attr('id'));
             $('#page_server_id').val($(this).attr('pid'));
             $('#element_id').val($(this).attr('id') + '_0');
-            $('#initSave').val('1');
             $('.e_tab_content').hide();
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
@@ -104,20 +104,6 @@ if ($ && jQuery) {
             Editor.renderElementInfo();
             Editor.renderGlobalInfo();           
         }
-    });
-
-    $(document).on('click', '.e_page_save_button', function() {
-        Editor.convertCanvasToImage();
-        $('#page_server_id').val($('#to_page').val());
-        for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
-            if($('#v_page_list').find('li').eq(i).attr('pid') == $('#page_server_id').val()){
-                $('#v_page_list').find('li').eq(i).trigger('click');
-            }
-        };
-        $('#isSave').val('0');
-        $('#pageSaveModel').modal('hide');
-        
-
     });
 
     //左侧page删除功能
@@ -397,7 +383,7 @@ if ($ && jQuery) {
         clearDrag();
         event.preventDefault();
         $('#isSave').val('1');
-        Editor.convertCanvasToImage();
+        Editor.convertCanvasToImage(0);
     });
     // 产品预览
     // 产品发布       

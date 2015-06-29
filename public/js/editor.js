@@ -1297,6 +1297,36 @@ var Editor = {
             });
         }
     },
+    //延迟更新，适用场景，切换page自动保存
+    dealyupdate:function(key, val){
+        console.log('dealyupdate method start');
+        var token = localData.get('token'),
+            product_id = $('#product_id').val(),
+            page_server_id = $('#origin_pid').val();
+            var data = {
+                'type': 1,
+                'product_id': product_id,
+                'page_id': page_server_id
+            };
+            data[key] = val;
+            $.ajax({
+                type: 'PUT',
+                url: 'http://115.29.32.105:8080/api',
+                data: data,
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    $('#isSave').val(0);
+                    Editor.renderPage();
+                },
+                error: function(err) {
+                    console.log('update_product_test err:');
+                    console.log(err);
+                }
+            });  
+    },
     batchupdate: function(key, val) {
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
@@ -1424,13 +1454,15 @@ var Editor = {
                     }
                 }
             }
-        }
+        };
         Editor.update(2, 'slider', slider);
         Editor.renderElementInfo();
         $('#picModel').modal('hide');
     },
     //canvas to 64dataurl
-    convertCanvasToImage: function() {
+    //type 0 主动保存
+    //type 1 被动保存
+    convertCanvasToImage: function(type) {
         console.log("convertCanvasToImage method start");
         html2canvas(document.getElementById('page_edit'), {
             allowTaint: true,
@@ -1440,17 +1472,20 @@ var Editor = {
                 //document.body.appendChild(canvas);
                 //生成base64图片数据
                 var dataUrl = canvas.toDataURL();
-                Editor.formatUrl(dataUrl);
+                Editor.formatUrl(type,dataUrl);
                 //console.log("abcdefg", dataUrl);
                 //Editor.update(1, 'avatar', dataUrl);
             }
         });
     },
     //64dataurl to normal
-    formatUrl: function(dataUrl) {
+    //type 0 主动保存
+    //type 1 被动保存
+    formatUrl: function(type,dataUrl) {
         console.log("formatUrl method start");
         var token = localData.get('token');
-        $.ajax({
+        if (type == 0) {
+            $.ajax({
             type: 'POST',
             url: 'http://115.29.32.105:8080/dataurl2img',
             data: {
@@ -1469,7 +1504,44 @@ var Editor = {
                 // console.log('update_product_test err:');
                 // console.log(err);
             }
-        });
+            });
+        }else if(type == 1){
+            $.ajax({
+            type: 'POST',
+            url: 'http://115.29.32.105:8080/dataurl2img',
+            data: {
+                'dataUrl': dataUrl
+            },
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(result) {
+                // console.log('update_product_test returned:');
+                // console.log(result);
+                Editor.dealyupdate('avatar', result.url);
+            },
+            error: function(err) {
+                // console.log('update_product_test err:');
+                // console.log(err);
+            }
+            });
+        }
+    },
+    autoSave:function(pid){
+        console.log("autosave method start");
+        $('#origin_pid').val(pid);
+        $('#isSave').val('1');
+        Editor.flip();
+    },
+    flip:function(){
+        Editor.convertCanvasToImage(1);
+        for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
+            if($('#v_page_list').find('li').eq(i).attr('pid') == $('#page_server_id').val()){
+                $('#v_page_list').find('li').eq(i).trigger('click');
+            }
+        };
+
     },
     showPicBox:function(){
             $('e_upload_pic').trigger('click');
