@@ -2,6 +2,11 @@ if ($ && jQuery) {
     $(document).ready(function() {
         Editor.initForm();
     });
+    setTimeout(function(){
+        $('#picModel,#musicModel').on('shown.bs.modal', function (e) {
+        $('.e_upload_pic').trigger('click');
+    })
+    },1000)
     //导航条新建3种素材
     //type 2 新增文字元素
     //type 3 新增图片元素
