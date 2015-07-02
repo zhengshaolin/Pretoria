@@ -885,7 +885,8 @@ if ($ && jQuery) {
                 Editor.renderPicBox();
             },
             change: function() {
-                //console.log("正在上传中......");
+                //$('.e_load_area').show();
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
@@ -904,6 +905,8 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
             },
             change: function() {
+                ('.e_load_area').show();
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
