@@ -80,7 +80,18 @@ if ($ && jQuery) {
     $("#v_page_list").on("click", "li", function() {
         if ($('#initSave').val() == 1) {
             if($('#isSave').val() == 0){
-                Editor.autoSave($(this).attr('pid'));
+                //Editor.autoSave($(this).attr('pid'));
+                clearDrag();
+                $('#page_id').val($(this).attr('id'));
+                $('#page_server_id').val($(this).attr('pid'));
+                $('#element_id').val($(this).attr('id') + '_0');
+                $('.e_tab_content').hide();
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                Editor.renderArena(0,'tab');
+                Editor.renderPageAnimate();
+                Editor.renderElementInfo();
+                Editor.renderGlobalInfo();
             }else if($('#isSave').val() == 1){
                 clearDrag();
                 $('#page_id').val($(this).attr('id'));
@@ -96,7 +107,7 @@ if ($ && jQuery) {
                 //$('#isSave').val(0);
             }
         }else if($('#initSave').val() == 0){
-            $('#initSave').val('1');
+            //$('#initSave').val('1');
             clearDrag();
             $('#page_id').val($(this).attr('id'));
             $('#page_server_id').val($(this).attr('pid'));
