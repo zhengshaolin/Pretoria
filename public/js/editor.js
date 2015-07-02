@@ -10,6 +10,16 @@ var Editor = {
     scroll: function() {
         // body...
     },
+    count:function(){
+        var num = parseInt($('e_progress').attr('aria-valuenow'))+10;
+        if (num == 100) {
+                $('e_progress').attr('aria-valuenow','0')
+        };
+        $('e_progress').css('width',''+num+'%');
+    },
+    progress:function(){
+       setInterval(this.count(),100); 
+    },
     //add method for administor creat product,page or elements
     //type 0 product
     //type 1 page
