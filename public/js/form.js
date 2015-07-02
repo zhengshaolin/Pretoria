@@ -436,7 +436,7 @@ if ($ && jQuery) {
 
     $('body').on('click', '#v_upload_music a', function() {
         var path = $(this).attr('path');
-        window.location.href = 'http://115.29.32.105:8080/public/Pretoria/music.html?path=' + path + '';
+        window.location.href = ''+Editor.baseUrl+'public/Pretoria/music.html?path=' + path + '';
     });
 
     $(document).on('click', '.e_open_box', function(argument) {
@@ -878,7 +878,7 @@ if ($ && jQuery) {
     // 上传功能
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
-            action: 'http://115.29.32.105:8080/upload',
+            action: ''+Editor.baseUrl+'upload',
             type: 0,
             callback: function(data) {
                 //render picbox
@@ -893,7 +893,7 @@ if ($ && jQuery) {
     // 上传功能
     $(document).on('click', '.e_upload_music', function() {
         $(this).ajaxMusicUpload({
-            action: 'http://115.29.32.105:8080/upload',
+            action: ''+Editor.baseUrl+'upload',
             type: 1,
             callback: function(data) {
                 //close modal

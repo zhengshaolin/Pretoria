@@ -1,5 +1,6 @@
 window.s_selector = '';
 var Editor = {
+        baseUrl:'http://www.xhyilan.com/',
         // authority method for unlogin cutomer, return unique token
         auth: function() {
             console.log('auth method start');
@@ -29,7 +30,7 @@ var Editor = {
                 console.log('add type 0 method start');
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 0
                     },
@@ -54,7 +55,7 @@ var Editor = {
                 //添加page
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 1,
                         'product_id': product_id
@@ -85,7 +86,7 @@ var Editor = {
                 };
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 2,
                         'product_id': product_id,
@@ -116,7 +117,7 @@ var Editor = {
                 };
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 2,
                         'product_id': product_id,
@@ -146,7 +147,7 @@ var Editor = {
                 };
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 2,
                         'product_id': product_id,
@@ -176,7 +177,7 @@ var Editor = {
             var token = localData.get('token');
             $.ajax({
                 type: 'GET',
-                url: 'http://115.29.32.105:8080/api',
+                url: ''+Editor.baseUrl+'api',
                 data: {
                     'type': 0
                 },
@@ -206,7 +207,7 @@ var Editor = {
             if (type == 0) {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 0,
                         'product_id': product_id
@@ -241,7 +242,7 @@ var Editor = {
             } else if (type == 1) {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 0,
                         'product_id': product_id
@@ -276,7 +277,7 @@ var Editor = {
             } else if (type == 2) {
                 $.ajax({
                     type: 'GET',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 0,
                         'product_id': product_id
@@ -349,7 +350,7 @@ var Editor = {
                 token = localData.get('token');
             $.ajax({
                 type: 'GET',
-                url: 'http://115.29.32.105:8080/publish',
+                url: ''+Editor.baseUrl+'publish',
                 data: {
                     'product_id': product_id
                 },
@@ -380,7 +381,7 @@ var Editor = {
                 src;
             $.ajax({
                 type: 'GET',
-                url: 'http://115.29.32.105:8080/publish',
+                url: ''+Editor.baseUrl+'publish',
                 data: {
                     'product_id': product_id,
                     'preview': 1
@@ -413,7 +414,7 @@ var Editor = {
                 token = localData.get('token');
             $.ajax({
                 type: 'GET',
-                url: 'http://115.29.32.105:8080/publish',
+                url: ''+Editor.baseUrl+'publish',
                 data: {
                     'product_id': product_id
                 },
@@ -449,7 +450,7 @@ var Editor = {
                 console.log('delete_product_test sended');
                 $.ajax({
                     type: 'DELETE',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 0,
                         'product_id': product_id
@@ -481,7 +482,7 @@ var Editor = {
                 // console.log(page_sever_id);
                 $.ajax({
                     type: 'DELETE',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 1,
                         'product_id': product_id,
@@ -510,7 +511,7 @@ var Editor = {
                 console.log('delete_page_test sended');
                 $.ajax({
                     type: 'DELETE',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 2,
                         'product_id': product_id,
@@ -895,7 +896,7 @@ var Editor = {
                                                 $('#d-ftu').addClass('glyphicon_on');
                                             };
                                             if (obj.pic == '') {
-                                                $('#d-element_pic').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                                                $('#d-element_pic').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
                                             } else {
                                                 $('#d-element_pic').attr('src', obj.pic);
                                             }
@@ -1010,7 +1011,7 @@ var Editor = {
                 var data = JSON.parse(localData.get(id + '_info'));
                 //console.log("bcd",data);
                 if (data.weixin_share_icon == '') {
-                    $('#d-weixin_share_icon').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                    $('#d-weixin_share_icon').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
                 } else {
                     $('#d-weixin_share_icon').attr('src', data.weixin_share_icon);
                 };
@@ -1041,7 +1042,7 @@ var Editor = {
                                 $('#d-background_color').val(data[i].background_color);
                                 $('#dp-title').val(data[i].title).attr('placeholder', data[i].title);
                                 if (data[i].background_img == '') {
-                                    $('.d_page_backimg').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                                    $('.d_page_backimg').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
                                 } else {
                                     $('.d_page_backimg').attr('src', data[i].background_img);
                                 }
@@ -1101,7 +1102,7 @@ var Editor = {
                     token = localData.get('token');
                 $.ajax({
                     type: 'GET',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'product_id': product_id
                     },
@@ -1135,7 +1136,7 @@ var Editor = {
                     $('#d-product').val(data.product);
                     $("input[name='glass']").eq([data.glass]).attr('checked', true);
                     if (data.glass_url == '') {
-                        $('#d-glass_url').attr('src', 'http://115.29.32.105:8080/public/Pretoria/public/image/morentu.png');
+                        $('#d-glass_url').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
                     } else {
                         $('#d-glass_url').attr('src', data.glass_url);
 
@@ -1196,7 +1197,7 @@ var Editor = {
                     data[key] = val;
                     $.ajax({
                         type: 'PUT',
-                        url: 'http://115.29.32.105:8080/api',
+                        url: ''+Editor.baseUrl+'api',
                         data: data,
                         dataType: 'json',
                         headers: {
@@ -1222,7 +1223,7 @@ var Editor = {
                     data[key] = val;
                     $.ajax({
                         type: 'PUT',
-                        url: 'http://115.29.32.105:8080/api',
+                        url: ''+Editor.baseUrl+'api',
                         data: data,
                         dataType: 'json',
                         headers: {
@@ -1250,7 +1251,7 @@ var Editor = {
                     data[key] = val;
                     $.ajax({
                         type: 'PUT',
-                        url: 'http://115.29.32.105:8080/api',
+                        url: ''+Editor.baseUrl+'api',
                         data: data,
                         dataType: 'json',
                         headers: {
@@ -1277,7 +1278,7 @@ var Editor = {
                     };
                     $.ajax({
                         type: 'PUT',
-                        url: 'http://115.29.32.105:8080/api',
+                        url: ''+Editor.baseUrl+'api',
                         data: data,
                         dataType: 'json',
                         headers: {
@@ -1313,7 +1314,7 @@ var Editor = {
                 };
                 $.ajax({
                     type: 'PUT',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: data,
                     dataType: 'json',
                     headers: {
@@ -1449,7 +1450,7 @@ var Editor = {
                 var token = localData.get('token');
                 $.ajax({
                     type: 'POST',
-                    url: 'http://115.29.32.105:8080/dataurl2img',
+                    url: ''+Editor.baseUrl+'dataurl2img',
                     data: {
                         'dataUrl': dataUrl
                     },
@@ -1475,7 +1476,7 @@ var Editor = {
                     product_id = $('#product_id').val();
                 $.ajax({
                     type: 'PUT',
-                    url: 'http://115.29.32.105:8080/api',
+                    url: ''+Editor.baseUrl+'api',
                     data: {
                         'type': 4,
                         'product_id': product_id,
