@@ -2,7 +2,7 @@ var Login = {
     login: function() {
         $.ajax({
             type: 'post',
-            url: 'http://115.29.32.105:8080/login',
+            url: ''+Editor.baseUrl+'login',
             data: {
                 user: $('.name').val(),
                 pass: $('.password').val()
@@ -33,7 +33,7 @@ var Login = {
         //查看所有用户
         $.ajax({
             type: 'post',
-            url: 'http://115.29.32.105:8080/user/all',
+            url: ''+Editor.baseUrl+'user/all',
             dataType: 'json',
             headers: {
                 'Access-Token': localData.get('token')
@@ -63,7 +63,7 @@ var Login = {
             var that = $(this);
             $.ajax({
                 type: 'post',
-                url: 'http://115.29.32.105:8080/user/enable',
+                url: ''+Editor.baseUrl+'user/enable',
                 data: {
                     user_id: that.parent().prev().attr('user_id'),
                     enable: 1
@@ -83,7 +83,7 @@ var Login = {
             var that = $(this);
             $.ajax({
                 type: 'post',
-                url: 'http://115.29.32.105:8080/user/enable',
+                url: ''+Editor.baseUrl+'user/enable',
                 data: {
                     user_id: that.parent().prev().attr('user_id'),
                     enable: 0
@@ -108,7 +108,7 @@ var Login = {
                 that.html('确认');
             } else {
                 $.ajax({
-                    url: 'http://115.29.32.105:8080/user/changepass',
+                    url: ''+Editor.baseUrl+'user/changepass',
                     type: 'post',
                     data: {
                         user_id: that.parent().siblings().first().attr('user_id'),
@@ -138,7 +138,7 @@ var Login = {
             } else {
                 $.ajax({
                     type: 'post',
-                    url: 'http://115.29.32.105:8080/user/changepass',
+                    url: ''+Editor.baseUrl+'user/changepass',
                     data: {
                         old_pass: oldpass,
                         new_pass: newpass
@@ -169,7 +169,7 @@ var Login = {
         //注册新用户
         $.ajax({
             type: 'post',
-            url: 'http://115.29.32.105:8080/user/create',
+            url: ''+Editor.baseUrl+'user/create',
             data: {
                 user: $('.r_name').val(),
                 pass: $('.r_password').val()
