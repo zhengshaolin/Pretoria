@@ -346,12 +346,15 @@ var Editor = {
         var name = localData.get('username'),
             token = localData.get('token');
         $('.v_username').html(name);
-        if (name != "admin" || token != '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d') {
+
+        //if (name != "admin" || token != '554f4b95b3a3cf29e2a0ee43-89afa2366bf2fae2f47ff358a2b3080d') {
+        if (name != "admin") {
             $('.e_user').eq(1).parent('li').hide();
         };
     },
     quite: function() {
         localData.set('token', '');
+        localData.set('username', '');
         window.location.href = 'login.html';
     },
     //发布
@@ -1093,7 +1096,6 @@ var Editor = {
                                 } else if (obj.animate_effect == 'bounce') {
                                     template_animate += "动画效果为:弹跳</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
                                 } else if (obj.animate_effect == 'shake') {
-                                    template_animate += "动画效果为:摇摆</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
                                 } else if (obj.animate_effect == 'tada') {
                                     template_animate += "动画效果为:振铃</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
                                 };
