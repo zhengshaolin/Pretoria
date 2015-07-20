@@ -75,7 +75,7 @@ if ($ && jQuery) {
         Editor.add(type);
     });
     //左侧page选中功能
-    //Editor.isChange  false 页面未保存过，弹出框强制保存
+    //Editor.isInit  true 页面初始化，false页面不是初始化
     //Editor.isChange  true 保存过，切换page
     $("#v_page_list").on("click", "li", function() {
         if (Editor.isInit == false) {

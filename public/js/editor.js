@@ -1,8 +1,8 @@
 window.s_selector = '';
 var Editor = {
-    baseUrl:'http://www.xhyilan.com/',
-    isInit:true,
-    isChange:false,
+    baseUrl: 'http://www.xhyilan.com/',
+    isInit: true,
+    isChange: false,
     // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
@@ -12,15 +12,15 @@ var Editor = {
     scroll: function() {
         // body...
     },
-    count:function(){
-        var num = parseInt($('e_progress').attr('aria-valuenow'))+10;
+    count: function() {
+        var num = parseInt($('e_progress').attr('aria-valuenow')) + 10;
         if (num == 100) {
-                $('e_progress').attr('aria-valuenow','0')
+            $('e_progress').attr('aria-valuenow', '0')
         };
-        $('e_progress').css('width',''+num+'%');
+        $('e_progress').css('width', '' + num + '%');
     },
-    progress:function(){
-       setInterval(this.count(),100); 
+    progress: function() {
+        setInterval(this.count(), 100);
     },
     //add method for administor creat product,page or elements
     //type 0 product
@@ -42,7 +42,7 @@ var Editor = {
             console.log('add type 0 method start');
             $.ajax({
                 type: 'POST',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 0
                 },
@@ -67,7 +67,7 @@ var Editor = {
             //添加page
             $.ajax({
                 type: 'POST',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 1,
                     'product_id': product_id
@@ -98,7 +98,7 @@ var Editor = {
             };
             $.ajax({
                 type: 'POST',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 2,
                     'product_id': product_id,
@@ -129,7 +129,7 @@ var Editor = {
             };
             $.ajax({
                 type: 'POST',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 2,
                     'product_id': product_id,
@@ -159,7 +159,7 @@ var Editor = {
             };
             $.ajax({
                 type: 'POST',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 2,
                     'product_id': product_id,
@@ -189,7 +189,7 @@ var Editor = {
         var token = localData.get('token');
         $.ajax({
             type: 'GET',
-            url: ''+Editor.baseUrl+'api',
+            url: '' + Editor.baseUrl + 'api',
             data: {
                 'type': 0
             },
@@ -219,7 +219,7 @@ var Editor = {
         if (type == 0) {
             $.ajax({
                 type: 'GET',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 0,
                     'product_id': product_id
@@ -230,7 +230,7 @@ var Editor = {
                 },
                 success: function(products) {
                     // console.log('fetchForm returned');
-                    console.log(products);
+                    //console.log(products);
                     //保存数据到本地
                     Editor.store(JSON.stringify(products));
                     //渲染左侧列表
@@ -254,7 +254,7 @@ var Editor = {
         } else if (type == 1) {
             $.ajax({
                 type: 'GET',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 0,
                     'product_id': product_id
@@ -289,7 +289,7 @@ var Editor = {
         } else if (type == 2) {
             $.ajax({
                 type: 'GET',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 0,
                     'product_id': product_id
@@ -365,7 +365,7 @@ var Editor = {
             token = localData.get('token');
         $.ajax({
             type: 'GET',
-            url: ''+Editor.baseUrl+'publish',
+            url: '' + Editor.baseUrl + 'publish',
             data: {
                 'product_id': product_id
             },
@@ -396,7 +396,7 @@ var Editor = {
             src;
         $.ajax({
             type: 'GET',
-            url: ''+Editor.baseUrl+'publish',
+            url: '' + Editor.baseUrl + 'publish',
             data: {
                 'product_id': product_id,
                 'preview': 1
@@ -429,7 +429,7 @@ var Editor = {
             token = localData.get('token');
         $.ajax({
             type: 'GET',
-            url: ''+Editor.baseUrl+'publish',
+            url: '' + Editor.baseUrl + 'publish',
             data: {
                 'product_id': product_id
             },
@@ -465,7 +465,7 @@ var Editor = {
             console.log('delete_product_test sended');
             $.ajax({
                 type: 'DELETE',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 0,
                     'product_id': product_id
@@ -497,7 +497,7 @@ var Editor = {
             // console.log(page_sever_id);
             $.ajax({
                 type: 'DELETE',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 1,
                     'product_id': product_id,
@@ -526,7 +526,7 @@ var Editor = {
             console.log('delete_page_test sended');
             $.ajax({
                 type: 'DELETE',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: {
                     'type': 2,
                     'product_id': product_id,
@@ -578,34 +578,56 @@ var Editor = {
             template_list += '<img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '"  class="e_publish_toggle">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>';
         };
         $('#v_product_list').append(template_list);
-        
+
     },
     //绘制左侧页列表
     renderPage: function() {
         console.log('render page method start');
-        $('#v_page_list').empty();
-        var data = JSON.parse(localData.get($('#product_id').val() + '_data')),
-            page_server_id = $('#page_server_id').val(),
-            page_server_list = $('#v_page_list').find('li');
-        $('#page_number').val(parseInt(data.pages.length + 1));
-        for (var i = 0; i < data.pages.length; i++) {
-            $('#v_page_list').append('<li order="' + data.pages[i].order + '" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up" pid="' + data.pages[i]._id + '" order="' + data.pages[i].order + '" title="上移"></span><span class="glyphicon glyphicon-arrow-down e_page_down" pid="' + data.pages[i]._id + '" order="' + data.pages[i].order + '" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
-        };
-        $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
-        if (page_server_id == '') {
-            //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
-            $('#v_page_list').find('li').first().trigger('click');
+            $('#v_page_list').empty();
+            var data = JSON.parse(localData.get($('#product_id').val() + '_data')),
+                page_server_id = $('#page_server_id').val(),
+                page_server_list = $('#v_page_list').find('li');
+            $('#page_number').val(parseInt(data.pages.length + 1));
+            for (var i = 0; i < data.pages.length; i++) {
+                $('#v_page_list').append('<li order="' + data.pages[i].order + '" pid="' + data.pages[i]._id + '" id="p_' + i + '"><span class="page-num">' + parseInt(i + 1) + '</span><i class="del e_delete" type="1" id="p_' + i + '" pid="' + data.pages[i]._id + '"></i><span class="glyphicon glyphicon-arrow-up e_page_up" pid="' + data.pages[i]._id + '" order="' + data.pages[i].order + '" title="上移"></span><span class="glyphicon glyphicon-arrow-down e_page_down" pid="' + data.pages[i]._id + '" order="' + data.pages[i].order + '" title="下移"></span><img data-holder-rendered="true" src="' + data.pages[i].avatar + '" class="page-img" ></li>');
+            };
+            $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
+            //页面初始化
+        if (Editor.isInit == true) {
+            if (page_server_id == '') {
+                //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+                $('#v_page_list').find('li').first().trigger('click');
                 Editor.isInit = false;
+            } else {
+                for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
+                    if ($('#v_page_list').find('li').eq(i).attr('pid') == page_server_id) {
+                        //console.log("abcde",$('#v_page_list').find('li').eq(i).attr('pid'));
+
+                        $('#v_page_list').find('li').eq(i).trigger('click');
+                        Editor.isInit = false;
+                    }
+                }
+            }
         } else {
-            for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
-                if ($('#v_page_list').find('li').eq(i).attr('pid') == page_server_id) {
-                    //console.log("abcde",$('#v_page_list').find('li').eq(i).attr('pid'));
-                    
-                    $('#v_page_list').find('li').eq(i).trigger('click');
-                    Editor.isInit = false;
+            if (page_server_id == '') {
+                //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+                Editor.isInit = true;
+                $('#v_page_list').find('li').first().trigger('click');
+                Editor.isInit = false;
+                
+            } else {
+                for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
+                    if ($('#v_page_list').find('li').eq(i).attr('pid') == page_server_id) {
+                        //console.log("abcde",$('#v_page_list').find('li').eq(i).attr('pid'));
+                        Editor.isInit = true;
+                        $('#v_page_list').find('li').eq(i).trigger('click');
+                        Editor.isInit = false;
+                        
+                    }
                 }
             }
         }
+
     },
     //绘制中间操作区,不存在，新增或者初始化
     //type 0 为正常绘制
@@ -849,9 +871,9 @@ var Editor = {
             }
             s_selector = Drag(obj)
         } else {
-            if(arguments[1]){
+            if (arguments[1]) {
                 $('.selector').hide()
-            }else{
+            } else {
                 if (s_selector) {
                     for (var i in $('#cnm').children()) {
                         if ($('#cnm').children().eq(i).attr('mid') == $(s_selector[0]).attr('mid')) {
@@ -927,7 +949,7 @@ var Editor = {
                                         $('#d-ftu').addClass('glyphicon_on');
                                     };
                                     if (obj.pic == '') {
-                                        $('#d-element_pic').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
+                                        $('#d-element_pic').attr('src', '' + Editor.baseUrl + 'public/Pretoria/public/image/morentu.png');
                                     } else {
                                         $('#d-element_pic').attr('src', obj.pic);
                                     }
@@ -1042,7 +1064,7 @@ var Editor = {
         var data = JSON.parse(localData.get(id + '_info'));
         //console.log("bcd",data);
         if (data.weixin_share_icon == '') {
-            $('#d-weixin_share_icon').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
+            $('#d-weixin_share_icon').attr('src', '' + Editor.baseUrl + 'public/Pretoria/public/image/morentu.png');
         } else {
             $('#d-weixin_share_icon').attr('src', data.weixin_share_icon);
         };
@@ -1073,7 +1095,7 @@ var Editor = {
                         $('#d-background_color').val(data[i].background_color);
                         $('#dp-title').val(data[i].title).attr('placeholder', data[i].title);
                         if (data[i].background_img == '') {
-                            $('.d_page_backimg').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
+                            $('.d_page_backimg').attr('src', '' + Editor.baseUrl + 'public/Pretoria/public/image/morentu.png');
                         } else {
                             $('.d_page_backimg').attr('src', data[i].background_img);
                         }
@@ -1110,8 +1132,7 @@ var Editor = {
                                     template_animate += "动画效果为:闪烁</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
                                 } else if (obj.animate_effect == 'bounce') {
                                     template_animate += "动画效果为:弹跳</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
-                                } else if (obj.animate_effect == 'shake') {
-                                } else if (obj.animate_effect == 'tada') {
+                                } else if (obj.animate_effect == 'shake') {} else if (obj.animate_effect == 'tada') {
                                     template_animate += "动画效果为:振铃</p></div><div class='animation'><p><i class='delay'></i>延迟" + obj.animate_delay + "秒后出现</p></div><div class='animation'><p><i class='continue'></i>持续" + obj.animate_duration + "秒后</p></div></li>";
                                 };
                                 $('#v_page_animate').append(template_animate);
@@ -1132,7 +1153,7 @@ var Editor = {
             token = localData.get('token');
         $.ajax({
             type: 'GET',
-            url: ''+Editor.baseUrl+'api',
+            url: '' + Editor.baseUrl + 'api',
             data: {
                 'product_id': product_id
             },
@@ -1166,7 +1187,7 @@ var Editor = {
             $('#d-product').val(data.product);
             $("input[name='glass']").eq([data.glass]).attr('checked', true);
             if (data.glass_url == '') {
-                $('#d-glass_url').attr('src', ''+Editor.baseUrl+'public/Pretoria/public/image/morentu.png');
+                $('#d-glass_url').attr('src', '' + Editor.baseUrl + 'public/Pretoria/public/image/morentu.png');
             } else {
                 $('#d-glass_url').attr('src', data.glass_url);
 
@@ -1227,7 +1248,7 @@ var Editor = {
             data[key] = val;
             $.ajax({
                 type: 'PUT',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: data,
                 dataType: 'json',
                 headers: {
@@ -1253,7 +1274,7 @@ var Editor = {
             data[key] = val;
             $.ajax({
                 type: 'PUT',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: data,
                 dataType: 'json',
                 headers: {
@@ -1281,7 +1302,7 @@ var Editor = {
             data[key] = val;
             $.ajax({
                 type: 'PUT',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: data,
                 dataType: 'json',
                 headers: {
@@ -1308,7 +1329,7 @@ var Editor = {
             };
             $.ajax({
                 type: 'PUT',
-                url: ''+Editor.baseUrl+'api',
+                url: '' + Editor.baseUrl + 'api',
                 data: data,
                 dataType: 'json',
                 headers: {
@@ -1326,35 +1347,37 @@ var Editor = {
         }
     },
     //延迟更新，适用场景，切换page自动保存
-    dealyupdate:function(key, val){
+    dealyupdate: function(key, val) {
         console.log('dealyupdate method start');
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
             page_server_id = $('#page_server_id').val();
-            var data = {
-                'type': 1,
-                'product_id': product_id,
-                'page_id': page_server_id
-            };
-            data[key] = val;
-            $.ajax({
-                type: 'PUT',
-                url: ''+Editor.baseUrl+'api',
-                data: data,
-                dataType: 'json',
-                headers: {
-                    'Access-Token': token
-                },
-                success: function(result) {
-                    Editor.renderPage();
-                    $('#pageSaveModel').modal('hide');
-                    Editor.isChange = true;
-                },
-                error: function(err) {
-                    console.log('update_product_test err:');
-                    console.log(err);
-                }
-            });  
+        var data = {
+            'type': 1,
+            'product_id': product_id,
+            'page_id': page_server_id
+        };
+        data[key] = val;
+        $.ajax({
+            type: 'PUT',
+            url: '' + Editor.baseUrl + 'api',
+            data: data,
+            dataType: 'json',
+            headers: {
+                'Access-Token': token
+            },
+            success: function(result) {
+                console.log(result);
+                Editor.store(JSON.stringify(result));
+                Editor.renderPage();
+                $('#pageSaveModel').modal('hide');
+                Editor.isChange = true;
+            },
+            error: function(err) {
+                console.log('update_product_test err:');
+                console.log(err);
+            }
+        });
     },
     batchupdate: function(key, val) {
         var token = localData.get('token'),
@@ -1375,7 +1398,7 @@ var Editor = {
         };
         $.ajax({
             type: 'PUT',
-            url: ''+Editor.baseUrl+'api',
+            url: '' + Editor.baseUrl + 'api',
             data: data,
             dataType: 'json',
             headers: {
@@ -1501,7 +1524,7 @@ var Editor = {
                 //document.body.appendChild(canvas);
                 //生成base64图片数据
                 var dataUrl = canvas.toDataURL();
-                Editor.formatUrl(type,dataUrl);
+                Editor.formatUrl(type, dataUrl);
                 //console.log("abcdefg", dataUrl);
                 //Editor.update(1, 'avatar', dataUrl);
             }
@@ -1510,60 +1533,60 @@ var Editor = {
     //64dataurl to normal
     //type 0 主动保存
     //type 1 被动保存
-    formatUrl: function(type,dataUrl) {
+    formatUrl: function(type, dataUrl) {
         console.log("formatUrl method start");
         var token = localData.get('token');
         if (type == 0) {
             $.ajax({
-            type: 'POST',
-            url: ''+Editor.baseUrl+'dataurl2img',
-            data: {
-                'dataUrl': dataUrl
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': token
-            },
-            success: function(result) {
-                // console.log('update_product_test returned:');
-                // console.log(result);
-                Editor.update(1, 'avatar', result.url);
-            },
-            error: function(err) {
-                // console.log('update_product_test err:');
-                // console.log(err);
-            }
+                type: 'POST',
+                url: '' + Editor.baseUrl + 'dataurl2img',
+                data: {
+                    'dataUrl': dataUrl
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    // console.log('update_product_test returned:');
+                    // console.log(result);
+                    Editor.update(1, 'avatar', result.url);
+                },
+                error: function(err) {
+                    // console.log('update_product_test err:');
+                    // console.log(err);
+                }
             });
-        }else if(type == 1){
+        } else if (type == 1) {
             $.ajax({
-            type: 'POST',
-            url: ''+Editor.baseUrl+'dataurl2img',
-            data: {
-                'dataUrl': dataUrl
-            },
-            dataType: 'json',
-            headers: {
-                'Access-Token': token
-            },
-            success: function(result) {
-                // console.log('update_product_test returned:');
-                // console.log(result);
-                Editor.dealyupdate('avatar', result.url);
-            },
-            error: function(err) {
-                // console.log('update_product_test err:');
-                // console.log(err);
-            }
+                type: 'POST',
+                url: '' + Editor.baseUrl + 'dataurl2img',
+                data: {
+                    'dataUrl': dataUrl
+                },
+                dataType: 'json',
+                headers: {
+                    'Access-Token': token
+                },
+                success: function(result) {
+                    // console.log('update_product_test returned:');
+                    // console.log(result);
+                    Editor.dealyupdate('avatar', result.url);
+                },
+                error: function(err) {
+                    // console.log('update_product_test err:');
+                    // console.log(err);
+                }
             });
         }
     },
-    autoSave:function(pid){
+    autoSave: function(pid) {
         console.log("autosave method start");
         Editor.convertCanvasToImage(1);
     },
-    showPicBox:function(){
-            $('e_upload_pic').trigger('click');
-            $('#picModel').modal('show');
+    showPicBox: function() {
+        $('e_upload_pic').trigger('click');
+        $('#picModel').modal('show');
     },
     //left page change pange position
     changePos: function(id, val) {
@@ -1572,7 +1595,7 @@ var Editor = {
             product_id = $('#product_id').val();
         $.ajax({
             type: 'PUT',
-            url: ''+Editor.baseUrl+'api',
+            url: '' + Editor.baseUrl + 'api',
             data: {
                 'type': 4,
                 'product_id': product_id,
