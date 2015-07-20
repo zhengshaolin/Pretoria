@@ -41,7 +41,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
           <ul class="navb navbar-nav navbar-right">
-            <li class="return" style="width:180px;"><i><span class="glyphicon glyphicon-home" aria-hidden="true"></span></i><a href="http://www.xhyilan.com/public/Pretoria/" target="_blank">返回作品列表</a></li>
+            <li class="return" style="width:180px;"><i><span class="glyphicon glyphicon-home" aria-hidden="true"></span></i><a href="http://www.xhyilan.com/" target="_self">返回作品列表</a></li>
             <li class="break-up"><i class="add-text"></i><a class="e_creat" type="2" element="2">添加文本素材</a></li>
             <li class="break-up"><i class="add-pic"></i><a class="e_creat" type="3" element="3">添加图片素材</a></li>
             <li class="break-up"><i class="add-lb"></i><a class="e_creat" type="4" element="4">添加轮播素材</a></li>
@@ -171,12 +171,12 @@
                         <div class="form-group">
                           字体大小:
                           <select class="click-action ml10 update_select" elementype="2" id="d-fts">
-                            <option value="12">12px</option>
+<!--                             <option value="12">12px</option>
                             <option value="14">14px</option>
                             <option value="16">16px</option> 
                             <option value="18">18px</option>
                             <option value="20">20px</option>
-                            <option value="22">22px</option>
+                            <option value="22">22px</option> -->
                             <option value="24">24px</option>
                             <option value="26">26px</option>
                             <option value="28">28px</option>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="form-group mb10">
                           字体颜色:
-                          <input class="panel-text ml10 update_item" elementype="2" id="d-ftc" value="" aria-describedby="basic-addon1" type="text">
+                          <input class="panel-text ml10 update_item color_select" elementype="2" id="d-ftc" value="" aria-describedby="basic-addon1" type="text">
                         </div>
                         <div class="form-group mb10">
                           字体对齐:
@@ -260,7 +260,7 @@
                           <input type="radio" class="mr5 update_radio" value="0" name="background_type"><span class="ml10">无背景</span>
                       </li>
                       <li>
-                          <input type="radio" class="mr5 update_radio" value="1" name="background_type"><span class="ml10">纯色背景填充<input type="text" class="panel-text ml10 update_item" elementype="1" id="d-background_color" aria-label="..."></span>
+                          <input type="radio" class="mr5 update_radio" value="1" name="background_type"><span class="ml10">纯色背景填充<input type="text" class="panel-text ml10 update_item color_select" elementype="1" id="d-background_color" aria-label="..."></span>
                       </li>                      
                       <li class="last">
                           <input type="radio" class="mr5 update_radio" value="2" name="background_type"><span class="ml10">图片背景填充<small class="red">建议尺寸：640*960</small></span>

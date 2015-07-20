@@ -2,11 +2,11 @@ if ($ && jQuery) {
     $(document).ready(function() {
         Editor.initForm();
     });
-    setTimeout(function(){
-        $('#picModel,#musicModel').on('shown.bs.modal', function (e) {
-        $('.e_upload_pic').trigger('click');
-    })
-    },1000)
+    setTimeout(function() {
+        $('#picModel,#musicModel').on('shown.bs.modal', function(e) {
+            $('.e_upload_pic').trigger('click');
+        })
+    }, 1000)
     //导航条新建3种素材
     //type 2 新增文字元素
     //type 3 新增图片元素
@@ -75,11 +75,11 @@ if ($ && jQuery) {
         Editor.add(type);
     });
     //左侧page选中功能
-    //initsave 页面是否保存过，0为为保存 1为初始化点击
-    //isSave  当前页面是否保存过 0为未保存 1为保存过
+    //Editor.isChange  false 页面未保存过，弹出框强制保存
+    //Editor.isChange  true 保存过，切换page
     $("#v_page_list").on("click", "li", function() {
-        if ($('#initSave').val() == 1) {
-            if($('#isSave').val() == 0){
+        if (Editor.isInit == false) {
+            if (Editor.isChange == true) {
                 //Editor.autoSave($(this).attr('pid'));
                 clearDrag();
                 $('#page_id').val($(this).attr('id'));
@@ -88,26 +88,17 @@ if ($ && jQuery) {
                 $('.e_tab_content').hide();
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
-                Editor.renderArena(0,'tab');
+                Editor.renderArena(0, 'tab');
                 Editor.renderPageAnimate();
                 Editor.renderElementInfo();
                 Editor.renderGlobalInfo();
-            }else if($('#isSave').val() == 1){
-                clearDrag();
-                $('#page_id').val($(this).attr('id'));
-                $('#page_server_id').val($(this).attr('pid'));
-                $('#element_id').val($(this).attr('id') + '_0');
-                $('.e_tab_content').hide();
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-                Editor.renderArena(0,'tab');
-                Editor.renderPageAnimate();
-                Editor.renderElementInfo();
-                Editor.renderGlobalInfo();
-                //$('#isSave').val(0);
+                Editor.isChange = false;
+            } else if (Editor.isChange == false) {
+                var key = $(this).index();
+                localData.set('page_key', key)
+                $('#pageSaveModel').modal('show');
             }
-        }else if($('#initSave').val() == 0){
-            //$('#initSave').val('1');
+        } else {
             clearDrag();
             $('#page_id').val($(this).attr('id'));
             $('#page_server_id').val($(this).attr('pid'));
@@ -115,11 +106,15 @@ if ($ && jQuery) {
             $('.e_tab_content').hide();
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
-            Editor.renderArena(0,'tab');
+            Editor.renderArena(0, 'tab');
             Editor.renderPageAnimate();
             Editor.renderElementInfo();
-            Editor.renderGlobalInfo();           
+            Editor.renderGlobalInfo();
         }
+    });
+
+    $(document).on('click', '.e_page_save_button', function() {
+        Editor.autoSave();
     });
 
     //左侧page删除功能
@@ -390,7 +385,7 @@ if ($ && jQuery) {
         }
         Editor.update(type, key, val);
     });
-    $('.e_preview,.e_publish_toggle').on('click',function(){
+    $('.e_preview,.e_publish_toggle').on('click', function() {
         clearDrag()
     })
     //产品
@@ -398,7 +393,7 @@ if ($ && jQuery) {
     $(".e_generate_pic").on("click", function(event) {
         clearDrag();
         event.preventDefault();
-        $('#isSave').val('1');
+        Editor.isChange = true;
         Editor.convertCanvasToImage(0);
     });
     // 产品预览
@@ -436,7 +431,7 @@ if ($ && jQuery) {
 
     $('body').on('click', '#v_upload_music a', function() {
         var path = $(this).attr('path');
-        window.location.href = ''+Editor.baseUrl+'public/Pretoria/music.html?path=' + path + '';
+        window.location.href = '' + Editor.baseUrl + 'public/Pretoria/music.html?path=' + path + '';
     });
 
     $(document).on('click', '.e_open_box', function(argument) {
@@ -504,7 +499,7 @@ if ($ && jQuery) {
                 }
             } else if (replaceType == 7) {
                 if ($('#v_d_2').find('.pic_slider').length >= 1) {
-                    Editor.updateSlider(pic,index);
+                    Editor.updateSlider(pic, index);
                 } else {
                     return false;
                 }
@@ -525,18 +520,18 @@ if ($ && jQuery) {
     });
 
     $(document).on('click', '#v_d_2 .close', function() {
-        var index = $('#v_d_2 .close').index(this);        
-        if($('#v_d_2').find('.pic_slider').length == 1){
+        var index = $('#v_d_2 .close').index(this);
+        if ($('#v_d_2').find('.pic_slider').length == 1) {
             Editor.update(2, 'slider', '');
             Editor.renderElementInfo();
             $('#picModel').modal('hide');
-        }else{
-           Editor.removeSlider(index); 
-        }        
+        } else {
+            Editor.removeSlider(index);
+        }
     });
     $(document).on('click', '#v_d_2 .slider_update', function() {
-        var index = $('#v_d_2 .slider_update').index(this);        
-       $('#slider_update_index').val(index);   
+        var index = $('#v_d_2 .slider_update').index(this);
+        $('#slider_update_index').val(index);
     });
 
     //弹出框调取动画保存
@@ -569,9 +564,10 @@ if ($ && jQuery) {
         $('.e_tab_content').show();
         if (element == 0) {
             //文字元素
-            if(!$('.divtext').length){
-                    $('#tab1 .panel li').eq(2).show()
-                    $('#tab1 .panel .d_0').removeClass('hidden').show()}
+            if (!$('.divtext').length) {
+                $('#tab1 .panel li').eq(2).show()
+                $('#tab1 .panel .d_0').removeClass('hidden').show()
+            }
             //$('.d_0').removeClass('hidden').show();
             $('.d_1').addClass('hidden').hide();
             $('.d_2').addClass('hidden').hide();
@@ -615,9 +611,10 @@ if ($ && jQuery) {
             };
             if (elementype == 0) {
                 //文字元素
-                if(!$('.divtext').length){
+                if (!$('.divtext').length) {
                     $('#tab1 .panel li').eq(2).show()
-                    $('#tab1 .panel .d_0').removeClass('hidden').show()}
+                    $('#tab1 .panel .d_0').removeClass('hidden').show()
+                }
                 //$('.d_0').removeClass('hidden').show();
                 $('.d_1').addClass('hidden').hide();
                 $('.d_2').addClass('hidden').hide();
@@ -658,9 +655,9 @@ if ($ && jQuery) {
             }
         }
     });
-    $('#cnm').on('dblclick',function(e){
+    $('#cnm').on('dblclick', function(e) {
         e.stopPropagation();
-        if(s[0]){
+        if (s[0]) {
             if ($(s[0]).attr('text') && !$('.divtext').length) {
                 te = $(s[0])
                 var sty = $(s[0]).attr('style');
@@ -669,7 +666,7 @@ if ($ && jQuery) {
                 var plane = $(s[0]).attr('plane')
                 var vertical = $(s[0]).attr('vertical')
                 text.attr('style', sty).val(div.html().replace(/<br>/ig, '\r\n')).attr('plane', plane).attr('vertical', vertical).attr('class', 'divtext');
-                text.css('background', 'transparent').css('overflow-y','hidden').css('border','none')
+                text.css('background', 'transparent').css('overflow-y', 'hidden').css('border', 'none')
                 div.hide();
                 $('#cnm').append(text);
                 s.locking()
@@ -791,8 +788,7 @@ if ($ && jQuery) {
                 }
                 return true;
             },
-            onerror:function(){
-            },
+            onerror: function() {},
             onComplete: function(file, res) {
                 that.text('选择图片');
                 //console.log(res);
@@ -861,8 +857,7 @@ if ($ && jQuery) {
                 }
                 return true;
             },
-            onerror:function(){
-            },
+            onerror: function() {},
             onComplete: function(file, res) {
                 that.text('选择音乐');
                 //console.log(res);
@@ -878,15 +873,16 @@ if ($ && jQuery) {
     // 上传功能
     $(document).on('click', '.e_upload_pic', function() {
         $(this).ajaxUpload({
-            action: ''+Editor.baseUrl+'upload',
+            action: '' + Editor.baseUrl + 'upload',
             type: 0,
             callback: function(data) {
                 //render picbox
                 Editor.renderPicBox();
             },
             change: function() {
+                $('.e_load_area').show();
                 //$('.e_load_area').show();
-                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
+                //$('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
@@ -894,7 +890,7 @@ if ($ && jQuery) {
     // 上传功能
     $(document).on('click', '.e_upload_music', function() {
         $(this).ajaxMusicUpload({
-            action: ''+Editor.baseUrl+'upload',
+            action: '' + Editor.baseUrl + 'upload',
             type: 1,
             callback: function(data) {
                 //close modal
@@ -905,8 +901,8 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
             },
             change: function() {
-                ('.e_load_area').show();
-                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
+                $('.e_load_area').show();
+                //$('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
@@ -917,6 +913,14 @@ if ($ && jQuery) {
         Editor.fetchForm(1);
     });
 
+    $(".color_select").colorpicker({
+        fillcolor: true,
+        success: function(o, color) {
+            $(o).css("color", color);
+            $(o).trigger('blur');
+        }
+    });
+
     $('.col-md-6').on('click', function(e) {
         e.stopPropagation();
         $.smartMenu.hide()
@@ -924,7 +928,8 @@ if ($ && jQuery) {
             clearDrag()
         }
     })
-    function clearDrag(){
+
+    function clearDrag() {
         $('.selector').hide();
         $('.e_tab_content').hide();
         if ($('#cnm').find('textarea').length) {

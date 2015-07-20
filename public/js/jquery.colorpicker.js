@@ -78,13 +78,14 @@
             +'<table id="CT" border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse" bordercolor="000000"  style="cursor:pointer;">'
             +colorTable+'</table>';
             $("#colorpanel").html(colorTable);
-            $("#_cclose").live('click',function(){
+            $('#_cclose').on('click',function(){
                 $("#colorpanel").hide();
                 return false;
             }).css({
                 "font-size":"12px",
                 "padding-left":"20px"
             });
+            //$("#_cclose").live('click',);
         }
     };
     jQuery.fn.colorpicker.defaults = {

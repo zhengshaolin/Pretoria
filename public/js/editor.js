@@ -1,6 +1,8 @@
 window.s_selector = '';
 var Editor = {
     baseUrl:'http://www.xhyilan.com/',
+    isInit:true,
+    isChange:false,
     // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
@@ -563,12 +565,20 @@ var Editor = {
     },
     //绘制列表页展示区
     renderList: function(data) {
+        var template_list = "";
+        var username = localData.get('username');
         console.log('renderList method start');
         $('#v_product_list').empty();
         for (var i = 0; i < data.length; i++) {
             localData.set(data[i]._id + '_info', JSON.stringify(data[i]));
-            $('#v_product_list').append('<li id="' + data[i]._id + '"><img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '"  class="e_publish_toggle">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>');
+            template_list += '<li id="' + data[i]._id + '">';
+            if (username == 'admin') {
+                template_list += '<h5>' + data[i].author + '</h5>';
+            }
+            template_list += '<img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '"  class="e_publish_toggle">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>';
         };
+        $('#v_product_list').append(template_list);
+        
     },
     //绘制左侧页列表
     renderPage: function() {
@@ -585,11 +595,14 @@ var Editor = {
         if (page_server_id == '') {
             //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
             $('#v_page_list').find('li').first().trigger('click');
+                Editor.isInit = false;
         } else {
             for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
                 if ($('#v_page_list').find('li').eq(i).attr('pid') == page_server_id) {
                     //console.log("abcde",$('#v_page_list').find('li').eq(i).attr('pid'));
+                    
                     $('#v_page_list').find('li').eq(i).trigger('click');
+                    Editor.isInit = false;
                 }
             }
         }
@@ -608,6 +621,7 @@ var Editor = {
             num = parseInt(page_id.split('_')[1]) + parseInt(1);
             if (page_server_id == '') {
                 var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+                Editor.isInit == false;
                 $('#v_page_list').find('li').first().trigger('click');
 
             };
@@ -724,6 +738,7 @@ var Editor = {
             num = parseInt(page_id.split('_')[1]) + parseInt(1);
             if (page_server_id == '') {
                 var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
+                Editor.isInit == false;
                 $('#v_page_list').find('li').first().trigger('click');
 
             };
@@ -1315,7 +1330,7 @@ var Editor = {
         console.log('dealyupdate method start');
         var token = localData.get('token'),
             product_id = $('#product_id').val(),
-            page_server_id = $('#origin_pid').val();
+            page_server_id = $('#page_server_id').val();
             var data = {
                 'type': 1,
                 'product_id': product_id,
@@ -1331,8 +1346,9 @@ var Editor = {
                     'Access-Token': token
                 },
                 success: function(result) {
-                    $('#isSave').val(0);
                     Editor.renderPage();
+                    $('#pageSaveModel').modal('hide');
+                    Editor.isChange = true;
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
@@ -1543,18 +1559,7 @@ var Editor = {
     },
     autoSave:function(pid){
         console.log("autosave method start");
-        $('#origin_pid').val(pid);
-        $('#isSave').val('1');
-        Editor.flip();
-    },
-    flip:function(){
         Editor.convertCanvasToImage(1);
-        for (var i = 0; i < $('#v_page_list').find('li').length; i++) {
-            if($('#v_page_list').find('li').eq(i).attr('pid') == $('#page_server_id').val()){
-                $('#v_page_list').find('li').eq(i).trigger('click');
-            }
-        };
-
     },
     showPicBox:function(){
             $('e_upload_pic').trigger('click');

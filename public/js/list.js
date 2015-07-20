@@ -184,8 +184,8 @@ if ($ && jQuery) {
                 Editor.renderPicBox();
             },
             change: function() {
-                //$('.e_load_area').show();
-                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
+                $('.e_load_area').show();
+                //$('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
                 //console.log("正在上传中......");
             }
         });

@@ -43,6 +43,7 @@ var Login = {
                 if (data.length == 0) {
                     $('.e_showUser').append("暂无其他用户");
                 } else {
+                    $('.e_showUser').empty();
                     var html = '',
                         pillsnot = '<td><a href="#" class="userStop"> 启用</a></td>',
                         pillsPassword = '<td><a href="#" class="userChangePwd">更改密码</a></td>'
