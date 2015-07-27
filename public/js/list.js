@@ -137,6 +137,7 @@ if ($ && jQuery) {
             onChange: function(file, extension) {
                 that.val('上传中...');
                 that.attr('disabled', 'disabled');
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             },
             onSubmit: function(file, extension) {
                 that.val('loading...');
