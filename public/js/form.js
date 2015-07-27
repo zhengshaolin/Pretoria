@@ -880,9 +880,9 @@ if ($ && jQuery) {
                 Editor.renderPicBox();
             },
             change: function() {
-                $('.e_load_area').show();
+                $('.e_load_area').removeClass('hide');
                 //$('.e_load_area').show();
-                //$('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
@@ -901,8 +901,8 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
             },
             change: function() {
-                $('.e_load_area').show();
-                //$('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
+                 $('.e_load_area').removeClass('hide');
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
     });
