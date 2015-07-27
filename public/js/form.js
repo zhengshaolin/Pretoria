@@ -95,9 +95,9 @@ if ($ && jQuery) {
                 //Editor.isChange = false;
             } else if (Editor.isChange == false) {
                 $('#goto_pid').val($(this).attr('pid'));
-                if($('#goto_pid').val() == $('#page_server_id').val()){
+                if ($('#goto_pid').val() == $('#page_server_id').val()) {
                     return false;
-                }else{
+                } else {
                     var key = $(this).index();
                     localData.set('page_key', key)
                     $('#pageSaveModel').modal('show');
@@ -105,31 +105,31 @@ if ($ && jQuery) {
             }
         } else {
             if (Editor.isChange == true) {
-            clearDrag();
-            $('#page_id').val($(this).attr('id'));
-            $('#page_server_id').val($(this).attr('pid'));
-            $('#element_id').val($(this).attr('id') + '_0');
-            $('.e_tab_content').hide();
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-            Editor.renderArena(0, 'tab');
-            Editor.renderPageAnimate();
-            Editor.renderElementInfo();
-            Editor.renderGlobalInfo();
-            //Editor.isChange = false;
+                clearDrag();
+                $('#page_id').val($(this).attr('id'));
+                $('#page_server_id').val($(this).attr('pid'));
+                $('#element_id').val($(this).attr('id') + '_0');
+                $('.e_tab_content').hide();
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                Editor.renderArena(0, 'tab');
+                Editor.renderPageAnimate();
+                Editor.renderElementInfo();
+                Editor.renderGlobalInfo();
+                //Editor.isChange = false;
             } else if (Editor.isChange == false) {
-            clearDrag();
-            $('#page_id').val($(this).attr('id'));
-            $('#page_server_id').val($(this).attr('pid'));
-            $('#element_id').val($(this).attr('id') + '_0');
-            $('.e_tab_content').hide();
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-            Editor.renderArena(0, 'tab');
-            Editor.renderPageAnimate();
-            Editor.renderElementInfo();
-            Editor.renderGlobalInfo();
-            //Editor.isChange = false;
+                clearDrag();
+                $('#page_id').val($(this).attr('id'));
+                $('#page_server_id').val($(this).attr('pid'));
+                $('#element_id').val($(this).attr('id') + '_0');
+                $('.e_tab_content').hide();
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                Editor.renderArena(0, 'tab');
+                Editor.renderPageAnimate();
+                Editor.renderElementInfo();
+                Editor.renderGlobalInfo();
+                //Editor.isChange = false;
             }
 
         }
@@ -929,7 +929,7 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
             },
             change: function() {
-                 $('.e_load_area').removeClass('hide');
+                $('.e_load_area').removeClass('hide');
                 $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             }
         });
