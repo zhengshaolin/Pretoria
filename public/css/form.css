@@ -55,7 +55,7 @@ li.return > i{margin-top:8px !important;}
 li.return > i > span.glyphicon-home{color:#9d9d9d;font-size: 24px;line-height:24px;}
 li.return:hover > i > span.glyphicon-home{color:#fff;}
 li.yl{width:120px;text-align: center;}
-li.break-up{width:160px;padding:0 10px;}
+li.break-up{width:150px;padding:0 10px;}
 li.break-up-r{width:120px;}
 li.w120{width:120px;}
 li.user{margin-top:10px; widows: 120px;}
@@ -170,7 +170,7 @@ li.user{margin-top:10px; widows: 120px;}
 
 .bg_y{background: #f0efef;}
 
-.page-list li.active .page-img{border:2px solid #93db70;}
+.page-list li.active .page-img{border:2px solid #3f3f3f;}
 .page-name{height: 30px;text-align: center;}
 .t-v{background: url(../image/t-v.png) left no-repeat;width: 18px; height: 18px; cursor: text;}
 .t-v-top{background-position: 2px 0;}

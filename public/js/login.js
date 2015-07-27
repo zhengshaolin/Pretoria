@@ -39,7 +39,7 @@ var Login = {
                 'Access-Token': localData.get('token')
             },
             success: function(data) {
-            	console.log(data);
+            	console.log("findUser",data);
                 if (data.length == 0) {
                     $('.e_showUser').append("暂无其他用户");
                 } else {
@@ -48,8 +48,9 @@ var Login = {
                         pillsnot = '<td><a href="#" class="userStop"> 启用</a></td>',
                         pillsPassword = '<td><a href="#" class="userChangePwd">更改密码</a></td>'
                     pillsok = '<td><a href="#" class="userOk"> 停用</a></td>';
-                    for (var i in data) {
+                    for (var i = 0; i < data.length; i++) {
                         html += '<tr trid = "' + i + '"><td user_id=' + data[i]._id + '>' + data[i].user + '</td>' + (!data.enabled ? pillsnot : pillsok) + pillsPassword + '</tr>';
+
                     }
                     $('.e_showUser').append(html)
                 }

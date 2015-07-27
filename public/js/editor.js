@@ -573,7 +573,7 @@ var Editor = {
             localData.set(data[i]._id + '_info', JSON.stringify(data[i]));
             template_list += '<li id="' + data[i]._id + '">';
             if (username == 'admin') {
-                template_list += '<h5>' + data[i].author + '</h5>';
+                template_list += '<h5>[作者：' + data[i].author + ']</h5>';
             }
             template_list += '<img data-holder-rendered="true" src="' + data[i].avatar + '" class="works-img"><div class="operation"><a class="e_edit" id="' + data[i]._id + '">编辑</a><a class="e_review" id="' + data[i]._id + '">预览</a><a id="' + data[i]._id + '"  class="e_publish_toggle">发布</a><a class="last e_delete" id="' + data[i]._id + '" type="0">删除</a></div><div class="caption">' + data[i].product + '</div></li>';
         };
