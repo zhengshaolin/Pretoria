@@ -3,7 +3,7 @@ var Editor = {
     //baseUrl: 'http://'+window.location.host+'/',
     baseUrl:'http://www.xhyilan.com/',
     isInit: true,
-    isChange: false,
+    isChange: true,//默认为未修改
     // authority method for unlogin cutomer, return unique token
     auth: function() {
         console.log('auth method start');
@@ -1286,6 +1286,7 @@ var Editor = {
                     //console.log('update_product_test returned:');
                     //console.log(result);
                     Editor.fetchForm(0);
+                    Editor.isChange = false;
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
@@ -1314,6 +1315,7 @@ var Editor = {
                     //console.log('update_product_test returned:');
                     //console.log(result);
                     Editor.fetchForm(1);
+                    Editor.isChange = false;
                 },
                 error: function(err) {
                     console.log('update_product_test err:');
@@ -1414,6 +1416,7 @@ var Editor = {
                 //console.log(result);
                 Editor.store(JSON.stringify(result));
                 Editor.renderElementInfo();
+                Editor.isChange = false;
             },
             error: function(err) {
                 console.log('update_product_test err:');
