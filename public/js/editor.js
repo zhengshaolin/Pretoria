@@ -1,6 +1,6 @@
 window.s_selector = '';
 var Editor = {
-    baseUrl: 'http://'+window.location.host,
+    baseUrl: 'http://'+window.location.host+'/',
     isInit: true,
     isChange: false,
     // authority method for unlogin cutomer, return unique token
