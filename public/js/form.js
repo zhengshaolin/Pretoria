@@ -833,6 +833,9 @@ if ($ && jQuery) {
             onChange: function(file, extension) {
                 that.text('上传中...');
                 that.attr('disabled', 'disabled');
+                $('.e_load_area').removeClass('hide');
+                //$('.e_load_area').show();
+                $('.v_pic_box').append('<li><img src="public/image/load.gif"></li>');
             },
             onSubmit: function(file, extension) {
                 that.attr('disabled', 'disabled');
