@@ -94,9 +94,14 @@ if ($ && jQuery) {
                 Editor.renderGlobalInfo();
                 Editor.isChange = false;
             } else if (Editor.isChange == false) {
-                var key = $(this).index();
-                localData.set('page_key', key)
-                $('#pageSaveModel').modal('show');
+                $('#goto_pid').val($(this).attr('pid'));
+                if($('#goto_pid').val() == $('#page_server_id').val()){
+                    return false;
+                }else{
+                    var key = $(this).index();
+                    localData.set('page_key', key)
+                    $('#pageSaveModel').modal('show');
+                }
             }
         } else {
             clearDrag();

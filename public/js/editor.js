@@ -1,6 +1,7 @@
 window.s_selector = '';
 var Editor = {
-    baseUrl: 'http://'+window.location.host+'/',
+    //baseUrl: 'http://'+window.location.host+'/',
+    baseUrl:'http://www.xhyilan.com/',
     isInit: true,
     isChange: false,
     // authority method for unlogin cutomer, return unique token
@@ -593,6 +594,7 @@ var Editor = {
             };
             $('#v_page_list').append('<li><span class="page-num">' + $('#page_number').val() + '</span><div class="add-newpage e_creat" type="1"></div></li>');
             //页面初始化
+        console.log("tttt",page_server_id);
         if (Editor.isInit == true) {
             if (page_server_id == '') {
                 //var page_server_id = $('#v_page_list').find('li').eq(0).attr('pid');
@@ -1369,6 +1371,9 @@ var Editor = {
             success: function(result) {
                 console.log(result);
                 Editor.store(JSON.stringify(result));
+                if($('#goto_pid').val()!=''){
+                    page_server_id = $('#page_server_id').val($('#goto_pid').val());
+                }
                 Editor.renderPage();
                 $('#pageSaveModel').modal('hide');
                 Editor.isChange = true;
