@@ -1,7 +1,7 @@
 window.s_selector = '';
 var Editor = {
-    //baseUrl: 'http://'+window.location.host+'/',
-    baseUrl:'http://www.xhyilan.com/',
+    baseUrl: 'http://'+window.location.host+'/',
+    //baseUrl:'http://www.xhyilan.com/',
     isInit: true,
     isChange: true,//默认为未修改
     // authority method for unlogin cutomer, return unique token
