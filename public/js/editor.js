@@ -1,6 +1,6 @@
 window.s_selector = '';
 var Editor = {
-    baseUrl: 'http://www.xhyilan.com/',
+    baseUrl: document.domain,
     isInit: true,
     isChange: false,
     // authority method for unlogin cutomer, return unique token
