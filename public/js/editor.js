@@ -115,6 +115,7 @@ var Editor = {
                     // console.log(result);
                     //添加文字素材
                     Editor.fetchForm(2);
+                    Editor.isChange = false;
                 },
                 error: function(err) {
                     $('#create_element_test_result').text(JSON.stringify(err));
@@ -144,6 +145,7 @@ var Editor = {
                 },
                 success: function(result) {
                     Editor.fetchForm(2);
+                    Editor.isChange = false;
                     $('#picModel').modal('hide');
                 },
                 error: function(err) {
@@ -174,6 +176,7 @@ var Editor = {
                 },
                 success: function(result) {
                     Editor.fetchForm(2);
+                    Editor.isChange = false;
                     $('#picModel').modal('hide');
                 },
                 error: function(err) {
