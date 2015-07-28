@@ -1561,7 +1561,8 @@ var Editor = {
                 success: function(result) {
                     // console.log('update_product_test returned:');
                     // console.log(result);
-                    Editor.update(1, 'avatar', result.url);
+                    Editor.dealyupdate('avatar', result.url);
+                    //Editor.update(1, 'avatar', result.url);
                 },
                 error: function(err) {
                     // console.log('update_product_test err:');

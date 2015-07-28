@@ -415,7 +415,6 @@ if ($ && jQuery) {
     $(".e_generate_pic").on("click", function(event) {
         clearDrag();
         event.preventDefault();
-        Editor.isChange = true;
         Editor.convertCanvasToImage(0);
     });
     // 产品预览
