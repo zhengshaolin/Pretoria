@@ -170,12 +170,12 @@
                         <div class="form-group">
                           字体大小:
                           <select class="click-action ml10 update_select" elementype="2" id="d-fts">
-<!--                             <option value="12">12px</option>
+                            <option value="12">12px</option>
                             <option value="14">14px</option>
                             <option value="16">16px</option> 
                             <option value="18">18px</option>
                             <option value="20">20px</option>
-                            <option value="22">22px</option> -->
+                            <option value="22">22px</option>
                             <option value="24">24px</option>
                             <option value="26">26px</option>
                             <option value="28">28px</option>
@@ -380,6 +380,7 @@
                           <div class="panel-body">
                             <select class="click-action update_select" elementype="0" id="d-switch_type">
                               <option value="slide">平移出现</option>
+                              <option value="slideHorizontally">横向切换</option>
 <!--                               <option value="flip">弹动出现</option> -->
                               <option value="shrinkAndSlide">放大出现</option>
                             </select>
@@ -639,10 +640,15 @@
             <div class="col-md-8">
               <select class="click-action update_select form-control" elementype="2" id="ds-animate_effect">
                 <option value="">没有效果</option>
+                <option value="fadeIn">淡入</option>
+                <option value="fadeInDown">从上方淡入</option>
+                <option value="fadeInUp">从下方淡入</option>
+                <option value="fadeInLeft">从左方淡入</option>
+                <option value="fadeInRight">从右方淡入</option>
                 <option value="bounceInLeft">左飞入</option>
                 <option value="bounceInRight">右飞入</option>
-                <option value="bounceInUp">上飞入</option>
-                <option value="bounceInDown">下飞入</option>
+                <option value="bounceInUp">从下方飞入</option>
+                <option value="bounceInDown">从上飞入</option>
                 <option value="zoomIn">放大出现</option>
                 <option value="flipInX">上下翻转</option>
                 <option value="flipInY">左右翻转</option>
